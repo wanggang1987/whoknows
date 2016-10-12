@@ -1,0 +1,55 @@
+{
+  "name": "whoKnows",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery-ui": "~1.11.4",
+    "jquery": "~2.2.0",
+    "angular": "1.4.8",
+    "blueimp-file-upload": "jquery-file-upload#~9.11.2",
+    "angular-cookies": "1.4.8",
+    "angular-resource": "1.4.8",
+    "angular-loader": "1.4.8",
+    "angular-sanitize": "1.4.8",
+    "angular-route": "1.4.8",
+    "lodash": "~3.10.1",
+    "bootstrap": "~3.3.4",
+    "seiyria-bootstrap-slider": "~3.1.0",
+    "jquery.scrollTo": "~1.4.13",
+    "bootstrap-sass-official": "~3.2.0",
+    "bootstrap-additions": "^0.3.1",
+    "moment": "~2.10.2",
+    "jquery.placeholder": "~0.2.4",
+    "moment-timezone": "~0.2.5",
+    "bootstrap-datepicker": "~1.3.1",
+    "angularjs-viewhead": "~0.0.1",
+    "odometer": "~0.4.7",
+    "commonmark": "~0.19.0",
+    "pikaday": "1.3.2",
+    "ng-file-upload": "10.0.2",
+    "tinymce": "4.3.12",
+    "angular-ui-tinymce": "latest",
+    "textAngular": "^1.5.1",
+    "js-quantities": "^1.6.2",
+    "angular-filter": "0.5.8"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.4.8",
+    "angular-scenario": "1.4.8"
+  },
+  "resolutions": {
+    "angular": "1.4.8",
+    "bootstrap": "~3.1.1"
+  },
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
