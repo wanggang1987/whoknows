@@ -20,7 +20,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log) {
 			            	 	topicHeader:"C-N欧联有没有可能不用陪体呢?",
 			            	 	topicAuthor:{
 			            	 		img : "../../images/selfPicture/2.png",
-			            	 		baseInfo:"陈文婷 | 药明康德新药开发有限公司 | 资深化学家"
+			            	 		baseInfo:"陈雯婷 | 药明康德新药开发有限公司 | 资深化学家"
 			            	 	},
 			             	topicContent:"做一周了试了三个体系，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
 			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
@@ -110,7 +110,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log) {
 			            	 	topicHeader:"C-N欧联有没有可能不用陪体呢?",
 			            	 	topicAuthor:{
 			            	 		img : "../../images/selfPicture/2.png",
-			            	 		baseInfo:"陈文婷 | 药明康德新药开发有限公司 | 资深化学家"
+			            	 		baseInfo:"陈雯婷 | 药明康德新药开发有限公司 | 资深化学家"
 			            	 	},
 			             	topicContent:"做一周了试了三个体系，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
 			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+

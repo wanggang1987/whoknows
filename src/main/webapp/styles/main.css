@@ -11,7 +11,7 @@ body{
 	border-radius: 0px;
 }
 .navbar-brand{
-	padding: 3px 15px;
+	padding: 3px 25px;
 }
 .navbar-default .navbar-brand  {color:#fff}
 .navbar-default .navbar-nav li a {color:#fff}
@@ -28,13 +28,19 @@ body{
 }
 .container-fluid{
 	min-width:385px;
-	max-width:1024px;
+	max-width:1140px;
 	margin:0px auto;
 	padding:0px 0px;
 }
 .fill-maring-left{margin-left:100px}
+.img-20-size{
+	margin-right:10px;
+	width:20px;
+	height:20px;
+	border:0px;
+}
 nav.navbar{ 
-	background-color:#0f6ab4;
+	background-color:#1386ab;
 	margin:0px;
 	padding:0px;
 	border:0px;
@@ -94,7 +100,7 @@ footer {
 	height: 35px;
 	width: 165px;
 	border:0px;
-	background-color: #0f6ab4;
+	background-color: #1386ab;
 	padding: 7px 27px;
 }
 .home-page-link a{
@@ -176,7 +182,7 @@ footer {
 	border-radius: 0px;/*消除圆角*/
 }
 .hot-topic-siderbar .input-group-btn:last-child .btn:hover{
-	background-color: #ee6e1e;
+	background-color: #e16e1e;
 }
 .hot-topic-siderbar .self-home-page .panel-body{
 	padding: 15px 5px 5px 5px;
@@ -269,7 +275,27 @@ footer {
 	font-size:13px;
 	color:#b5b5b5;
 }
-
+.topic-page .have-follow-topic a{
+	background: #fff;
+    padding: 1px 10px 0;
+    border-radius: 30px;
+    text-decoration: none;
+    margin: 0 5px 5px 0;
+    display: inline-block;
+    float: left;
+    white-space: nowrap;
+    border : 2px solid #e16e1e;
+    color: #000;
+}
+.topic-page .have-follow-topic a.active{
+	background: #e16e1e;
+}
+.topic-page .have-follow-topic hr {
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 2px solid #e16e1e;
+}
 /*--comment list style---*/
 topic-comment-list .topic-comment-body .topic-comment-body-author{
 	margin:0px;
@@ -285,6 +311,7 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 	border-radius: 3px;
     background-color: #eee;
     margin:3px;
+    border-bottom: 1px solid #e5e5e5;
 }
 .topic-comment-list .topic-comment-body .topic-comment-body-author span{
 	font-size:12px;
