@@ -1,0 +1,48 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	
+    <changeSet id="user" author="whoknows">
+        <createTable tableName="user">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passwd" type="varchar(30)"/>
+            <column name="e_pass" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)"/>
+            <column name="last_name" type="varchar(50)"/>
+            <column name="comapny_name" type="varchar(50)"/>
+            <column name="province" type="varchar(20)"/>
+            <column name="city" type="varchar(20)"/>
+            <column name="address" type="varchar(100)"/>
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="login_history" author="whoknows">
+        <createTable tableName="login_history">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="timestamp"/>
+            <column name="ip" type="varchar(100)"/>
+        </createTable>
+    </changeSet>
+	
+</databaseChangeLog>
