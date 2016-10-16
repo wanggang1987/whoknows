@@ -73,4 +73,66 @@
         </addColumn>
     </changeSet>
     
+    <changeSet id="rename issue_tag" author="whoknows">
+        <renameTable oldTableName="issue_tag" newTableName="tag_issue"/>
+    </changeSet>
+    
+    <changeSet id="move rank from issue to tag" author="whoknows">
+        <dropColumn tableName="issue" columnName="rank"/>
+        <addColumn tableName="tag">
+            <column name="rank" type="bigint"/>
+        </addColumn>
+        <createIndex tableName="tag" indexName="rank">
+            <column name="rank"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="add time" author="whoknows">
+        <addColumn tableName="comment">
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="issue">
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="reply">
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="add time index" author="whoknows">
+        <createIndex tableName="comment" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="comment" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="issue" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="issue" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="reply" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="reply" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="user" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="user" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="vip" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="vip" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+    </changeSet>
+    
 </databaseChangeLog>
