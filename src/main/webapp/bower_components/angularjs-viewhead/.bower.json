@@ -1,0 +1,27 @@
+{
+  "name": "angularjs-viewhead",
+  "main": "angularjs-viewhead.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/apparentlymart/angularjs-viewhead",
+  "authors": [
+    "Martin Atkins <mart@degeneration.co.uk>"
+  ],
+  "description": "Change the HTML title and head elements on a per-view basis",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.0.1",
+    "commit": "9c21693f5ac8db32dda63b995cf4feeea5b04df7"
+  },
+  "_source": "https://github.com/apparentlymart/angularjs-viewhead.git",
+  "_target": "~0.0.1",
+  "_originalSource": "angularjs-viewhead"
+}
