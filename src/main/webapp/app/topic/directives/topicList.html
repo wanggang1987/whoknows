@@ -19,7 +19,7 @@
 					<li><a href="javascript:void(0);" ng-if="!expandTopicContentAble" ng-click="collapseTopicContent(topic)"><span class="glyphicon glyphicon-eject" ></span> 收起</a></li>
 				</ul>
 				<div class="topic-comment-lists" >
-					<div class="popover bottom topic-comment-list-{{topic.id}}" role="tooltip" style="width: 539px;">
+					<div class="popover bottom topic-comment-list-{{topic.id}}" role="tooltip"  >
 					      <div class="arrow"></div>
 					      <div class="popover-content">
 					      		<div class="topic-comment-list row" ng-repeat="comment in topic.commentLists">
@@ -33,7 +33,7 @@
 										</div>
 									</div>
 					      		</div>
-					      		
+					      		 <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></ul>
 					      </div>
 					 </div>
 				</div>

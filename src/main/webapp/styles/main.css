@@ -7,12 +7,21 @@ body{
 #navbar .active{
 	background-color: #e16e1e;
 } 
+.page-home .input-group .form-control, .page-home .input-group-btn .btn{
+	border-radius: 0px;
+}
+.navbar-brand{
+	padding: 3px 15px;
+}
 .navbar-default .navbar-brand  {color:#fff}
 .navbar-default .navbar-nav li a {color:#fff}
 .navbar-default .navbar-nav .active a {
 	color:#fff;
 	background-color: #e16e1e;
 }
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus{
+	color:#fff;
+}	
 .navbar-default .navbar-nav  .active a:focus{
 	color:#fff;
 	background-color: #e16e1e;
@@ -36,7 +45,7 @@ article.page-home{
 	padding:0px;
 }
 .app-content{
-	padding-top: 25px;
+	padding: 5px;
 	padding-bottom: 10px;
 }
 footer {
@@ -46,6 +55,7 @@ footer {
     background-color: #f9f9f9;
     border-top: 1px solid #e5e5e5;
 } 
+
 /*----------homePage-------------*/
 .page-home{
 	background:url("../images/home-bg.png") no-repeat;
@@ -62,13 +72,13 @@ footer {
 }
 .page-home .input-group .form-control{
 	background-color: #e16e1e;
-	height: 35px;
+	height: 45px;
 	width: 300px;
 	border: 0px;
 }
 .page-home .input-group-btn .btn{
 	background-color: #e16e1e;
-	height: 35px;
+	height: 45px;
 	width: 55px;
 	border:0px;
 }
@@ -80,11 +90,21 @@ footer {
 	margin : 20px auto;
 	color:#fff;
 }
+.home-page-link div{
+	height: 35px;
+	width: 165px;
+	border:0px;
+	background-color: #0f6ab4;
+	padding: 7px 27px;
+}
 .home-page-link a{
 	color:#fff;
 }
 
 /*----------self-home-page page-------------*/
+.self-home-page{
+	margin-top: 20px;
+}
 .self-home-page .self-info img{
 	height:200px;
 	width:150px;
@@ -232,8 +252,12 @@ footer {
 	clear:both;
 	position: relative;
     float: left;
-    width: 539px;
+    max-width: 740px !important;
     margin: 20px;
+    width: 90%;
+    min-width: 354px;
+    box-shadow:none;
+    -webkit-box-shadow:none;
 }
 .topic-list .topic-footer ul li{
 	margin:0px;
@@ -251,7 +275,9 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 	margin:0px;
 	padding: 0px 0px 5px 45px;
 }
-
+.popover.bottom .arrow{
+	left:95px;
+}
 .topic-comment-list .topic-comment-body .topic-comment-body-author img{
 	width:25px;
 	height:25px;

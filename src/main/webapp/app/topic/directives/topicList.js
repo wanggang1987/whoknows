@@ -19,7 +19,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log) {
 			             {	id: 1,
 			            	 	topicHeader:"C-N欧联有没有可能不用陪体呢?",
 			            	 	topicAuthor:{
-			            	 		img : "../../images/selfPicture/selfPic.png",
+			            	 		img : "../../images/selfPicture/2.png",
 			            	 		baseInfo:"陈文婷 | 药明康德新药开发有限公司 | 资深化学家"
 			            	 	},
 			             	topicContent:"做一周了试了三个体系，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
@@ -40,7 +40,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log) {
 						    		        	 	commentContent:"经过高温更好",
 						    					},{	id: 3,
 						    						commentAuthor:{
-						    		        	 		img : "../../images/selfPicture/selfPic.png",
+						    		        	 		img : "../../images/selfPicture/2.png",
 						    		        	 		baseInfo:"汪健 | 药明康德新药开发有限公司 | 资深化学家"
 						    		        	 		},
 						    			        	 	commentContent:"亲测可以",
@@ -70,7 +70,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log) {
 							    		        	 	commentContent:"经过高温更好",
 							    					},{	id: 3,
 							    						commentAuthor:{
-							    		        	 		img : "../../images/selfPicture/selfPic.png",
+							    		        	 		img : "../../images/selfPicture/2.png",
 							    		        	 		baseInfo:"汪健 | 药明康德新药开发有限公司 | 资深化学家"
 							    		        	 		},
 							    			        	 	commentContent:"亲测可以",
@@ -100,7 +100,97 @@ angular.module('wkTopic').directive('topicList', function ($location, $log) {
 							    		        	 	commentContent:"经过高温更好",
 							    					},{	id: 3,
 							    						commentAuthor:{
-							    		        	 		img : "../../images/selfPicture/selfPic.png",
+							    		        	 		img : "../../images/selfPicture/2.png",
+							    		        	 		baseInfo:"汪健 | 药明康德新药开发有限公司 | 资深化学家"
+							    		        	 		},
+							    			        	 	commentContent:"亲测可以",
+							    						}]			
+			             },
+			             {	id: 4,
+			            	 	topicHeader:"C-N欧联有没有可能不用陪体呢?",
+			            	 	topicAuthor:{
+			            	 		img : "../../images/selfPicture/2.png",
+			            	 		baseInfo:"陈文婷 | 药明康德新药开发有限公司 | 资深化学家"
+			            	 	},
+			             	topicContent:"做一周了试了三个体系，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
+			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
+			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不...",
+			             	commentListsExpandAble : true,
+			             	commentLists:[{	id: 1,
+						    				commentAuthor:{
+						            	 		img : "../../images/selfPicture/1.png",
+						            	 		baseInfo:"李菲 | 药明康德新药开发有限公司 | 资深化学家"
+						            	 		},
+						    	        	 	commentContent:"亲测可以",
+						    				},{	id: 2,
+						    					commentAuthor:{
+						    	        	 		img : "../../images/selfPicture/3.jpg",
+						    	        	 		baseInfo:"静兰 | 药明康德新药开发有限公司 | 资深化学家"
+						    	        	 		},
+						    		        	 	commentContent:"经过高温更好",
+						    					},{	id: 3,
+						    						commentAuthor:{
+						    		        	 		img : "../../images/selfPicture/2.png",
+						    		        	 		baseInfo:"汪健 | 药明康德新药开发有限公司 | 资深化学家"
+						    		        	 		},
+						    			        	 	commentContent:"亲测可以",
+						    						}]
+			             },
+			             {	id: 5,
+			            	 	topicHeader:"如何提高合成效率?",
+			            	 	topicAuthor:{
+			            	 		img : "../../images/selfPicture/1.png",
+			            	 		baseInfo:"李菲 | 药明康德新药开发有限公司 | 资深化学家"
+			            	 	},
+			             	topicContent:"做一周了试了三个体系，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
+			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
+			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不...",
+			             	commentListsExpandAble : true,
+			             	commentLists:[{	id: 1,
+							    				commentAuthor:{
+							            	 		img : "../../images/selfPicture/1.png",
+							            	 		baseInfo:"李菲 | 药明康德新药开发有限公司 | 资深化学家"
+							            	 		},
+							    	        	 	commentContent:"亲测可以",
+							    				},{	id: 2,
+							    					commentAuthor:{
+							    	        	 		img : "../../images/selfPicture/3.jpg",
+							    	        	 		baseInfo:"静兰 | 药明康德新药开发有限公司 | 资深化学家"
+							    	        	 		},
+							    		        	 	commentContent:"经过高温更好",
+							    					},{	id: 3,
+							    						commentAuthor:{
+							    		        	 		img : "../../images/selfPicture/2.png",
+							    		        	 		baseInfo:"汪健 | 药明康德新药开发有限公司 | 资深化学家"
+							    		        	 		},
+							    			        	 	commentContent:"亲测可以",
+							    						}]
+			             },
+			             {	id: 6,
+			            	 	topicHeader:"几个化学合成的问题",
+			            	 	topicAuthor:{
+			            	 		img : "../../images/selfPicture/3.jpg",
+			            	 		baseInfo:"汪健 | 药明康德新药开发有限公司 | 资深化学家"
+			            	 	},
+			             	topicContent:"做一周了试了三个体系，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
+			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不上，积峰14个未知化合物。再做不出来没法交代了，要跪在原料的道路。"+
+			             					"，铜/2价耙/零价耙，磷配体，一四二氧六环/DMF   N2 保护做出来打谱对不...",
+			             	commentListsExpandAble : true,
+			                 commentLists:[{	id: 1,
+							    				commentAuthor:{
+							            	 		img : "../../images/selfPicture/1.png",
+							            	 		baseInfo:"李菲 | 药明康德新药开发有限公司 | 资深化学家"
+							            	 		},
+							    	        	 	commentContent:"亲测可以",
+							    				},{	id: 2,
+							    					commentAuthor:{
+							    	        	 		img : "../../images/selfPicture/3.jpg",
+							    	        	 		baseInfo:"静兰 | 药明康德新药开发有限公司 | 资深化学家"
+							    	        	 		},
+							    		        	 	commentContent:"经过高温更好",
+							    					},{	id: 3,
+							    						commentAuthor:{
+							    		        	 		img : "../../images/selfPicture/2.png",
 							    		        	 		baseInfo:"汪健 | 药明康德新药开发有限公司 | 资深化学家"
 							    		        	 		},
 							    			        	 	commentContent:"亲测可以",

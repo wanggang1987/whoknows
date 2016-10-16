@@ -14,11 +14,19 @@ var wkCommon = angular.module('wkCommon', ['ngRoute']).config(function($routePro
 		data: {
 			standalonePage: true
 		}
+	}).when('/topic', {
+		templateUrl: 'app/topic/topicPage.html',
+		controller: 'TopicCtrl',
+		data: {
+			standalonePage: true
+		}
 	}).when('/error', {
 		templateUrl: 'error',
 		data: {
 			standalonePage: true
 		}
-	});
+	}).otherwise({
+        redirectTo: '/'
+    });
 });
 
