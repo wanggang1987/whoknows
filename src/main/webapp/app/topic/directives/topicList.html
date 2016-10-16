@@ -1,0 +1,43 @@
+<div class="topic-list">
+	<div class="row" ng-repeat="topic in topicLists"> 
+		<div class="col-xs-20 col-sm-12">
+			<div class="topic-header"><a>{{topic.topicHeader}}</a></div>
+			<div class="topic-body">
+				<div class="topic-body-author">
+					<img alt="" ng-src="{{topic.topicAuthor.img}}" ></img>
+					<span >{{topic.topicAuthor.baseInfo}}</span>
+				</div>
+				<div class="topic-body-content">
+					{{topic.topicContent}}<a href="javascript:void(0);" ng-click="expandTopicContent(topic)" ng-if="expandTopicContentAble">显示全部</a>
+				</div>
+			</div>
+			<div class="topic-footer">
+				<ul>
+					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-heart"></span>关注问题</a></li>
+					<li><a href="javascript:void(0);" ng-click="expandCommentLists(topic)"><span class="glyphicon glyphicon-comment"></span>评论</a></li>
+					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> 点赞</a></li>
+					<li><a href="javascript:void(0);" ng-if="!expandTopicContentAble" ng-click="collapseTopicContent(topic)"><span class="glyphicon glyphicon-eject" ></span> 收起</a></li>
+				</ul>
+				<div class="topic-comment-lists" >
+					<div class="popover bottom topic-comment-list-{{topic.id}}" role="tooltip" style="width: 539px;">
+					      <div class="arrow"></div>
+					      <div class="popover-content">
+					      		<div class="topic-comment-list row" ng-repeat="comment in topic.commentLists">
+					      			<div class="topic-comment-body">
+										<div class="topic-comment-body-author">
+											<img alt="" ng-src="{{comment.commentAuthor.img}}" ></img>
+											<span >{{comment.commentAuthor.baseInfo}}</span>
+										</div>
+										<div class="topic-comment-body-content">
+											{{comment.commentContent}}
+										</div>
+									</div>
+					      		</div>
+					      		
+					      </div>
+					 </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html ng-app="WhoKnows">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<!-- 检测浏览器 -->
+<script type="text/javascript" src="app/commons/browserdcheck.js"></script>
+<title>who knows</title>
+<link href="bower_components/bootstrap/dist/css/bootstrap.css"rel="stylesheet">
+<link href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.css" rel="stylesheet">
+<link href="bower_components/bootstrap-datepicker/css/datepicker.css" rel="stylesheet">
+<link href="bower_components/odometer/themes/odometer-theme-train-station.css" rel="stylesheet">
+<link href="bower_components/pikaday/css/pikaday.css" rel="stylesheet">
+<link href="bower_components/textAngular/dist/textAngular.css" rel="stylesheet">
+<!--  -->
+<link href="styles/main.css" rel="stylesheet" media="screen" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="who knows" />
+<meta name="keywords" content="who knows,whoknows,whoKnows,WhoKnows,who,knows" />
+</head>
+<body ng-controller="wkCommon.appCtrl">
+	<nav class="navbar navbar-default" role="navigation" >
+        <div class="container-fluid">
+          <div class="navbar-header"  >
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" >Who Knows</a>
+          </div>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right" >
+            		<li ng-class="{ active: isActive('/') }"><a href="#/">首页</a></li>
+				<li ng-class="{ active: isActive('/topic') }"><a href="#/topic" >话题</a></li>
+				<li ng-class="{ active: isActive('/superStar') }"><a href="#/superStar"  >大咖</a></li>
+				<li ng-class="{ active: isActive('/message') }"><a href="#/message"  >消息</a></li>
+              	<li class="fill-maring-left" ng-hide="loginIn"><a href="#/login" >注册/登录</a></li>
+              	<li class="fill-maring-left" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }"><a href="#/selfPage" >个人主页</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+	<div class="header-fill"></div>
+
+	<div class="app-content">
+		<div ng-view autoScroll="true"></div>
+	</div>
+	<footer>
+      <div class="container">
+        <p class="text-muted">Who knows. © Company 2016</p>
+      </div>
+    </footer>
+
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="bower_components/jquery.placeholder/jquery.placeholder.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script type="text/javascript" src="bower_components/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/button.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/carousel.js"></script>
+	<script type="text/javascript" src="bower_components/lodash/lodash.js"></script>
+	<script type="text/javascript" src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+	<script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+	<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/collapse.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/dropdown.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/modal.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/tab.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/transition.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/tooltip.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap/js/popover.js"></script>
+	<script type="text/javascript" src="bower_components/seiyria-bootstrap-slider/js/bootstrap-slider.js"></script>
+	<script type="text/javascript" src="bower_components/moment/moment.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.zh-CN.js"></script>
+	<script type="text/javascript" src="bower_components/bootstrap-datepicker/js/locales/bootstrap-datepicker.de.js"></script>
+	<script type="text/javascript" src="bower_components/commonmark/dist/commonmark.js"></script>
+	<script type="text/javascript" src="bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
+	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
+	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular.min.js"></script>
+	
+	<!-- self app js  -->
+	<script type="text/javascript" src="app/app.js"></script>
+	<script type="text/javascript" src="app/commons/commonModule.js"></script>
+	<script type="text/javascript" src="app/commons/wkCommon.js"></script>
+	<script type="text/javascript" src="app/commons/services/localStorageService.js"></script>
+	<script type="text/javascript" src="app/commons/factories/permissionCheckInterceptor.js"></script>
+	<script type="text/javascript" src="app/homeCtrl.js"></script>
+	<script type="text/javascript" src="app/selfHomePage/selfHomeCtrl.js"></script>
+	<script type="text/javascript" src="app/topic/topicModule.js"></script>
+	<script type="text/javascript" src="app/topic/wkTopicCtrl.js"></script>
+	<script type="text/javascript" src="app/topic/directives/leftSidebarHotTopic.js"></script>
+	<script type="text/javascript" src="app/topic/directives/topicList.js"></script>
+	<script type="text/javascript" src="app/superstar/superstarModule.js"></script>
+	<script type="text/javascript" src="app/superstar/wkSuperstarCtrl.js"></script>
+	<script type="text/javascript" src="app/superstar/directives/leftSidebarHotSuperstar.js"></script>
+</body>
+</html>

@@ -1,1 +1,9 @@
 /target/
+.classpath
+.project
+bower.json.bk
+.metadata/**
+.mvn/**
+.settings/**
+Servers/**
+src/main/webapp/bower_components/**
