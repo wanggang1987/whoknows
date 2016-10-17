@@ -3,6 +3,59 @@ body{
 	word-wrap: break-word;
 	line-height: 1.7;
 }
+/*----------side bar page-------------*/
+.contact-side-bar {
+    position: fixed;
+    left: 10px;
+    top: 200px;
+    z-index: 1000;
+    overflow: hidden;
+}
+.contact-side-bar a.closed {
+    width: 32px;
+}
+.contact-side-bar a:hover {
+    background-color: #ee8505;
+}
+.contact-side-bar a {
+    display: block;
+    float: right;
+    clear: both;
+    margin-top: 10px;
+    padding-left: 32px;
+    height: 32px;
+    color: #fff;
+    cursor: pointer;
+    -webkit-transition-property: background-color,width;
+    transition-property: background-color,width;
+    -webkit-transition-duration: 1s;
+    transition-duration: 1s;
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-size: 32px 32px;
+}
+.contact-side-bar a.contact:hover{
+	background-image: url(../images/sidebar-contact-white.png);
+}
+.contact-side-bar a.contact{
+	background-image: url(../images/sidebar-contact.png);
+}
+.contact-side-bar a.setting{
+	background-image: url(../images/sidebar-setting.png);
+}
+.contact-side-bar a.setting:hover{
+	background-image: url(../images/sidebar-setting-white.png);
+}
+.contact-side-bar label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+}
+.contact-side-bar a label {
+    cursor: pointer;
+    padding-left: 5px;
+    margin-top: 5px;
+}
 /*----------index page-------------*/
 #navbar .active{
 	background-color: #e16e1e;
@@ -65,7 +118,7 @@ footer {
 /*----------homePage-------------*/
 .page-home{
 	background:url("../images/home-bg.png") no-repeat;
-	background-size:100% 100%;
+	background-size:1488px 768px;
 	min-height:768px;
 	margin : 0px auto;
 }
