@@ -8,18 +8,20 @@ package com.whoknows.picture;
 import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class Service {
 
+	@Autowired
+	Dao dao;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
-
-    public Long putPicture(InputStream in) {
-        
-        return null;
+	
+    public Long putPicture(InputStream pictureStream) {
+        return dao.putPicture(pictureStream);
     }
 
-    public Long getPicture() {
-        return null;
+    public InputStream getPicture(Long id) {
+        return dao.getPicture(id);
     }
 
 }
