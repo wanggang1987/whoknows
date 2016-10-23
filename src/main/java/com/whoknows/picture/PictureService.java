@@ -15,15 +15,15 @@ import org.springframework.stereotype.Service;
 public class PictureService {
 
 	@Autowired
-	private PictureDao pictureDao;
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
-    public Long putPicture(InputStream pictureStream) {
-        return pictureDao.putPicture(pictureStream);
-    }
+	private PictureRepository pictureRepository;
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public InputStream getPicture(Long id) {
-        return pictureDao.getPicture(id);
-    }
+	public Long putPicture(InputStream pictureStream) {
+		return pictureRepository.putPicture(pictureStream);
+	}
+
+	public InputStream getPicture(Long id) {
+		return pictureRepository.getPicture(id);
+	}
 
 }

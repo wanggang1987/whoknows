@@ -11,16 +11,16 @@ import java.io.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
-public class PictureDao {
+@Repository
+public class PictureRepository {
 
 	private JdbcTemplate jdbcTemplate;
 	private final SimpleJdbcInsert pictureInsert;
 
 	@Autowired
-	public PictureDao(JdbcTemplate jdbcTemplate) {
+	public PictureRepository(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 		pictureInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("picture").usingGeneratedKeyColumns("id");
 	}
