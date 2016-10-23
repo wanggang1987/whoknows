@@ -9,19 +9,21 @@ import java.io.InputStream;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class Service {
+@Service
+public class PictureService {
 
 	@Autowired
-	Dao dao;
+	private PictureDao pictureDao;
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 	
     public Long putPicture(InputStream pictureStream) {
-        return dao.putPicture(pictureStream);
+        return pictureDao.putPicture(pictureStream);
     }
 
     public InputStream getPicture(Long id) {
-        return dao.getPicture(id);
+        return pictureDao.getPicture(id);
     }
 
 }

@@ -11,19 +11,17 @@ import java.io.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Component;
 
-/**
- *
- * @author wanggang
- */
-public class Dao {
+@Component
+public class PictureDao {
 
-	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private final SimpleJdbcInsert pictureInsert;
 
 	@Autowired
-	public Dao() {
+	public PictureDao(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
 		pictureInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("picture").usingGeneratedKeyColumns("id");
 	}
 

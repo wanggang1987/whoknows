@@ -11,10 +11,6 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- *
- * @author wanggang
- */
 public class Values {
 
 	public static Map<String, Object> getValseMap(Object object) {
