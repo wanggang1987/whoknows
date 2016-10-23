@@ -14,16 +14,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PictureService {
 
-	@Autowired
-	private PictureRepository pictureRepository;
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+    @Autowired
+    private PictureRepository pictureRepository;
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	public Long putPicture(InputStream pictureStream) {
-		return pictureRepository.putPicture(pictureStream);
-	}
+    public Long putPicture(InputStream pictureStream) {
+        return pictureRepository.putPicture(pictureStream);
+    }
 
-	public InputStream getPicture(Long id) {
-		return pictureRepository.getPicture(id);
-	}
+    public InputStream getPicture(Long id) {
+        return pictureRepository.getPicture(id);
+    }
 
 }

@@ -19,16 +19,16 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/picture")
 public class PictureController {
 
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Autowired
-	private PictureService pictureService;
+    @Autowired
+    private PictureService pictureService;
 
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	InputStream getPicture(HttpServletRequest request) {
-		//url id
-		Long id = null;
-		return pictureService.getPicture(id);
-	}
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseBody
+    InputStream getPicture(HttpServletRequest request) {
+        //url id
+        Long id = null;
+        return pictureService.getPicture(id);
+    }
 }

@@ -16,28 +16,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class PictureRepository {
 
-	private JdbcTemplate jdbcTemplate;
-	private final SimpleJdbcInsert pictureInsert;
+    private JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert pictureInsert;
 
-	@Autowired
-	public PictureRepository(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-		pictureInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("picture").usingGeneratedKeyColumns("id");
-	}
+    @Autowired
+    public PictureRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+        pictureInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("picture").usingGeneratedKeyColumns("id");
+    }
 
-	public Long putPicture(InputStream pictureStream) {
-		Picture picture = new Picture();
-		picture.setString_mb(pictureStream.toString());
-		Number idVal = pictureInsert.executeAndReturnKey(Values.getValseMap(picture));
-		return idVal.longValue();
-	}
+    public Long putPicture(InputStream pictureStream) {
+        Picture picture = new Picture();
+        picture.setString_mb(pictureStream.toString());
+        Number idVal = pictureInsert.executeAndReturnKey(Values.getValseMap(picture));
+        return idVal.longValue();
+    }
 
-	public InputStream getPicture(Long id) {
-		return jdbcTemplate.query(
-				"select string_mb from picture where id = ? limit 1",
-				ps -> ps.setLong(1, id),
-				(rs, row) -> {
-					return rs.getBlob("string_mb").getBinaryStream();
-				}).stream().findAny().orElse(null);
-	}
+    public InputStream getPicture(Long id) {
+        return jdbcTemplate.query(
+                "select string_mb from picture where id = ? limit 1",
+                ps -> ps.setLong(1, id),
+                (rs, row) -> {
+                    return rs.getBlob("string_mb").getBinaryStream();
+                }).stream().findAny().orElse(null);
+    }
 }
