@@ -3,6 +3,24 @@ body{
 	word-wrap: break-word;
 	line-height: 1.7;
 }
+.dropdown-menu{
+	margin: 0px;
+	padding: 0px;
+	min-width:100%;
+	background-color: #e16e1e;
+	border:0px;
+}
+.dropdown-menu li{
+	height: 45px;
+	margin : 5px auto;
+	padding: 0px 0px 0px 0px;
+	border-bottom: 1px solid #FFF;
+}
+.dropdown-menu li a{
+	height: 45px;
+	margin: auto auto;
+	
+}
 /*----------side bar page-------------*/
 .contact-side-bar {
     position: fixed;
@@ -374,4 +392,96 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 	margin: 5px;
 	padding: 0px 5px 0px 0px;
 	font-size: 13px;
+}
+/*--login style---*/
+.login-page, .regist-page{
+	height : 568px;
+	padding-top: 100px;
+	margin : 0px auto;
+}
+.login-page .login-panel-parent{
+	max-width: 550px;
+}
+.login-page .login-panel{
+	border: 1px solid #e5e5e5;
+}
+.login-page .login-panel .panel-heading{
+	margin: 5px;
+	background-color:#1386ab
+}
+.login-page .login-panel .login-email-input{
+	max-width : 320px;
+}
+.login-page .login-panel .login-passwd-input{
+	max-width : 320px;
+}
+.login-page .login-panel .panel-footer{
+	margin : 30px auto 5px auto;
+	background-color:#EEF5F7;
+	border: 0px;
+}
+.login-page .login-panel .login-btn{
+	background-color: #E1872E;
+    width: 100px;
+    height: 40px;
+    color: #FFF;
+}
+.login-page .login-panel .panel-heading{
+	color:#FFF;
+	font-size: 16px;
+}
+.login-page .login-panel .regist-btn{
+    width: 100px;
+    height: 40px;
+    color: #1386ab;
+    border: 2px solid #1386ab;
+    margin: 20px auto;
+}
+.login-page .regist-panel-parent{
+	max-width: 450px;
+}
+
+#forgot-password-modal{
+	width:600px;
+	height:380px;
+	margin: 50px auto;
+}
+#forgot-password-modal .modal-header{
+	border:0px
+}
+#forgot-password-modal .modal-footer{
+    text-align: center;
+    background-color:#EEF5F7;
+    border: 0px;
+    margin: 5px;
+}
+#forgot-password-modal .modal-footer .reset-passwd-btn{
+	 background-color: #E1872E;
+	 width:134px;
+	 height:40px;
+}
+.cancel-btn{
+	margin-left: 40px;
+	background-color: #E2E2E2;
+	width:100px;
+	height:40px;
+}
+#forgot-password-modal .forget-passwd-email-input{
+	margin-left:0px;
+}
+#forgot-password-modal .modal-body{
+	height: 100px;
+	margin: 20px auto;
+	
+}
+/*--regist style---*/
+.regist-panel{
+	max-width: 650px;
+	margin : 5px auto;
+}
+/*--regist style---*/
+.setting-page {
+	height : 568px;
+	padding-top: 30px;
+	margin : 0px auto;
 }

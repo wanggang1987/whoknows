@@ -20,6 +20,12 @@ var wkCommon = angular.module('wkCommon', ['ngRoute']).config(function($routePro
 		data: {
 			standalonePage: true
 		}
+	}).when('/setting', {
+		templateUrl: 'app/setting/settingPage.html',
+		controller: 'SettingCtrl',
+		data: {
+			standalonePage: true
+		}
 	}).when('/error', {
 		templateUrl: 'error',
 		data: {
