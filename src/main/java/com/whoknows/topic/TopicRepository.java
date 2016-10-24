@@ -16,21 +16,21 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TopicRepository {
-    
+
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private final JdbcTemplate jdbcTemplate;
     private final SimpleJdbcInsert topiJdbcInsert;
-    
+
     @Autowired
     public TopicRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
         topiJdbcInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("topic").usingGeneratedKeyColumns("id");
     }
-    
+
     public void createTopic(Topic topic) {
         topiJdbcInsert.executeAndReturnKey(Values.getValseMap(topic));
     }
-    
+
     public void updateTopic(Topic topic) {
         jdbcTemplate.update("update topic set user_id = ?, title = ? , content = ? where id = ? ",
                 ps -> {
@@ -40,11 +40,11 @@ public class TopicRepository {
                     ps.setLong(4, topic.getId());
                 });
     }
-    
+
     public void deleteTopic(Topic topic) {
         jdbcTemplate.update("delete from topic where id = ? ", ps -> ps.setLong(1, topic.getId()));
     }
-    
+
     public Topic getTopic(Long id) {
         return jdbcTemplate.query("select * from topic where id = ? limit 1",
                 ps -> ps.setLong(1, id),
@@ -52,8 +52,11 @@ public class TopicRepository {
                     Topic topic = new Topic();
                     topic.setId(id);
                     topic.setAction(rs.getString("action"));
-                    topic.setTitle(rs.getString("title"));
-                    topic.setContent(rs.getString("content"));
+                    try {
+                        topic.setTitle(new String(rs.getBytes("title"), "UTF-8"));
+                        topic.setContent(new String(rs.getBytes("content"), "UTF-8"));
+                    } catch (Exception e) {
+                    }
                     topic.setCreate_time(rs.getTimestamp("create_time"));
                     topic.setUpdate_time(rs.getTimestamp("update_time"));
                     return topic;

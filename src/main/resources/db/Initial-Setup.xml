@@ -5,6 +5,11 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
+    <changeSet id="utf8" author="whoknows">
+        <sql>
+            ALTER DATABASE whoknows CHARACTER SET utf8 COLLATE utf8_general_ci;
+        </sql>
+    </changeSet>
 	
     <changeSet id="user" author="whoknows">
         <createTable tableName="user">
@@ -286,6 +291,5 @@
             <column name="target_type"/>
         </createIndex>
     </changeSet>
-    
     
 </databaseChangeLog>
