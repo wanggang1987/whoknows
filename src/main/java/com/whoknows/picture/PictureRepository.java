@@ -6,30 +6,21 @@
 package com.whoknows.picture;
 
 import com.whoknows.domain.Picture;
-import com.whoknows.domain.Values;
 import java.io.InputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class PictureRepository {
 
-    private JdbcTemplate jdbcTemplate;
-    private final SimpleJdbcInsert pictureInsert;
-
     @Autowired
-    public PictureRepository(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-        pictureInsert = new SimpleJdbcInsert(jdbcTemplate).withTableName("picture").usingGeneratedKeyColumns("id");
-    }
+    private JdbcTemplate jdbcTemplate;
 
     public Long putPicture(InputStream pictureStream) {
         Picture picture = new Picture();
         picture.setString_mb(pictureStream.toString());
-        Number idVal = pictureInsert.executeAndReturnKey(Values.getValseMap(picture));
-        return idVal.longValue();
+        return 0L;
     }
 
     public InputStream getPicture(Long id) {
