@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	private final Logger log = LoggerFactory.getLogger(SecurityConfiguration.class);
@@ -47,6 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/login*").permitAll()
 				.antMatchers("/images/**").permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("/app/**").permitAll()
 				.antMatchers("/styles/**").permitAll()
 				.antMatchers("/fronts/**").permitAll()
 				.antMatchers("/components/**").permitAll()
