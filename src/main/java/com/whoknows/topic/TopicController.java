@@ -52,7 +52,7 @@ public class TopicController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity deleteTopic(Long id) {
+    public ResponseEntity getTopic(Long id) {
         Topic topic = topicService.getTopic(id);
         log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
         if (topic != null) {

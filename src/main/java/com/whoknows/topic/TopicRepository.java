@@ -1,8 +1,6 @@
 package com.whoknows.topic;
 
 import com.whoknows.domain.Topic;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,10 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class TopicRepository {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
 
     public void createTopic(Topic topic) {
         jdbcTemplate.update("insert into topic(user_id, title, content, action) values (?, ?, ?, ?)",
@@ -46,11 +42,8 @@ public class TopicRepository {
                     Topic topic = new Topic();
                     topic.setId(id);
                     topic.setAction(rs.getString("action"));
-                    try {
-                        topic.setTitle(new String(rs.getBytes("title"), "UTF-8"));
-                        topic.setContent(new String(rs.getBytes("content"), "UTF-8"));
-                    } catch (Exception e) {
-                    }
+                    topic.setTitle(rs.getString("title"));
+                    topic.setContent(rs.getString("content"));
                     topic.setCreate_time(rs.getTimestamp("create_time"));
                     topic.setUpdate_time(rs.getTimestamp("update_time"));
                     return topic;

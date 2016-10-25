@@ -13,4 +13,16 @@
     <changeSet id="picture table 2" author="whoknows">
         <modifyDataType tableName="picture" columnName="stream" newDataType="MEDIUMBLOB"/>
     </changeSet>
+    
+    <changeSet id="tag table" author="whoknows">
+        <sql>
+            ALTER TABLE tag ADD UNIQUE (name);
+        </sql>
+    </changeSet>
+    
+    <changeSet id="modify content" author="whoknows">
+        <modifyDataType tableName="topic" columnName="content" newDataType="varchar(20000)"/>
+        <modifyDataType tableName="reply" columnName="content" newDataType="varchar(20000)"/>
+        <modifyDataType tableName="comment" columnName="content" newDataType="varchar(20000)"/>
+    </changeSet>
 </databaseChangeLog>
