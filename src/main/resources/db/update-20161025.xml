@@ -25,4 +25,8 @@
         <modifyDataType tableName="reply" columnName="content" newDataType="varchar(20000)"/>
         <modifyDataType tableName="comment" columnName="content" newDataType="varchar(20000)"/>
     </changeSet>
+    
+    <changeSet id="user table 1" author="whoknows">
+        <modifyDataType tableName="user" columnName="passwd" newDataType="varchar(250)"/>
+    </changeSet>
 </databaseChangeLog>

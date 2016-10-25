@@ -8,20 +8,20 @@ public class User {
     private String email;
     private String phone;
     private String passwd;
-    private String e_pass;
-    private String first_name;
-    private String last_name;
-    private String company_name;
+    private String ePass;
+    private String firstName;
+    private String lastName;
+    private String companyName;
     private String province;
     private String city;
     private String address;
-    private Timestamp create_time;
-    private Timestamp update_time;
+    private Timestamp createTime;
+    private Timestamp updateTime;
     private Boolean vip;
     private String picture;
     private String education;
-    private Long signature_id;
-    private Long role_id;
+    private Long signatureId;
+    private Long roleId;
     private String title;
     private String action;
 
@@ -57,37 +57,8 @@ public class User {
         this.passwd = passwd;
     }
 
-    public String getE_pass() {
-        return e_pass;
-    }
 
-    public void setE_pass(String e_pass) {
-        this.e_pass = e_pass;
-    }
 
-    public String getFirst_name() {
-        return first_name;
-    }
-
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
-    }
-
-    public String getLast_name() {
-        return last_name;
-    }
-
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
-    }
-
-    public String getCompany_name() {
-        return company_name;
-    }
-
-    public void setCompany_name(String company_name) {
-        this.company_name = company_name;
-    }
 
     public String getProvince() {
         return province;
@@ -113,21 +84,7 @@ public class User {
         this.address = address;
     }
 
-    public Timestamp getCreate_time() {
-        return create_time;
-    }
 
-    public void setCreate_time(Timestamp create_time) {
-        this.create_time = create_time;
-    }
-
-    public Timestamp getUpdate_time() {
-        return update_time;
-    }
-
-    public void setUpdate_time(Timestamp update_time) {
-        this.update_time = update_time;
-    }
 
     public Boolean getVip() {
         return vip;
@@ -153,21 +110,6 @@ public class User {
         this.education = education;
     }
 
-    public Long getSignature_id() {
-        return signature_id;
-    }
-
-    public void setSignature_id(Long signature_id) {
-        this.signature_id = signature_id;
-    }
-
-    public Long getRole_id() {
-        return role_id;
-    }
-
-    public void setRole_id(Long role_id) {
-        this.role_id = role_id;
-    }
 
     public String getTitle() {
         return title;
@@ -184,5 +126,82 @@ public class User {
     public void setAction(String action) {
         this.action = action;
     }
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", email=" + email + ", phone=" + phone
+				+ ", passwd=" + passwd + ", ePass=" + ePass + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", companyName="
+				+ companyName + ", province=" + province + ", city=" + city
+				+ ", address=" + address + ", createTime=" + createTime
+				+ ", updateTime=" + updateTime + ", vip=" + vip + ", picture="
+				+ picture + ", education=" + education + ", signatureId="
+				+ signatureId + ", roleId=" + roleId + ", title=" + title
+				+ ", action=" + action + "]";
+	}
+
+	public String getePass() {
+		return ePass;
+	}
+
+	public void setePass(String ePass) {
+		this.ePass = ePass;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public Timestamp getUpdateTime() {
+		return updateTime;
+	}
+
+	public void setUpdateTime(Timestamp updateTime) {
+		this.updateTime = updateTime;
+	}
+
+	public Long getSignatureId() {
+		return signatureId;
+	}
+
+	public void setSignatureId(Long signatureId) {
+		this.signatureId = signatureId;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
 
 }

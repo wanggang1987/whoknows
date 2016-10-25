@@ -5,7 +5,7 @@ angular.module('wkTopic').directive('hotTopicSiderbar', function ($location, $lo
 
 	return {
 		restrict: 'AE',
-		templateUrl: 'app/topic/directives/leftSidebarHotTopic.html',
+		templateUrl: 'app/topic/directives/HotTopicSidbar.html',
 		replace: true,
 		scope: {
 			topic: '='
