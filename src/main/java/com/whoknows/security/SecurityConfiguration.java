@@ -47,8 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/login*").permitAll()
 				.antMatchers("/images/**").permitAll()
-				.antMatchers("/").permitAll()
-				.antMatchers("/app/**").permitAll()
+				.antMatchers("/","/app/login/**", "/app/commons/**", "index.html", 
+						"/app/**").permitAll()
 				.antMatchers("/styles/**").permitAll()
 				.antMatchers("/fronts/**").permitAll()
 				.antMatchers("/components/**").permitAll()
@@ -56,8 +56,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()
-					.loginPage("/login").permitAll()
-					
 			.and()
 				.logout()
 					.permitAll()
