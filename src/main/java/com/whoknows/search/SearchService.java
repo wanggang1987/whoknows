@@ -15,9 +15,15 @@ public class SearchService {
     private SearchDAO searchDAO;
 
     public SearchResponse searchByKeyWord(String key) {
+        log.info("search:{}", key);
         if (StringUtils.isEmpty(key)) {
             return null;
         }
-        return searchDAO.searchByKeyWord(key);
+
+        SearchResponse searchResponse = new SearchResponse();
+        searchResponse.setTopics(searchDAO.searchTopicByKeyWord(key));
+        searchResponse.getTopics().addAll(searchDAO.searchTagByKeyWord(key));
+        searchResponse.setUser(searchDAO.searchUserByKeyWord(key));
+        return searchResponse;
     }
 }

@@ -17,14 +17,30 @@ public class SearchDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public SearchResponse searchByKeyWord(String key) {
-        SearchResponse searchResponse = new SearchResponse();
-        searchResponse.setTopics(searchTopicByKeyWord(key));
-        searchResponse.setUser(searchUserByKeyWord(key));
-        return searchResponse;
+    public List<Topic> searchTagByKeyWord(String key)
+    {
+        return jdbcTemplate.query("select * from topic "
+                + "where title like ? "
+                + "and id in (select topic_id from tag_topic "
+                + "             where tag_id = ( select id from tag where name = ? )"
+                + "           ) ",
+                ps -> {
+                    ps.setString(1, "%" + key + "%");
+                    ps.setString(2, key);
+                },
+                (rs, row) -> {
+                    Topic topic = new Topic();
+                    topic.setId(rs.getLong("id"));
+                    topic.setAction(rs.getString("action"));
+                    topic.setTitle(rs.getString("title"));
+                    topic.setContent(rs.getString("content"));
+                    topic.setCreate_time(rs.getTimestamp("create_time"));
+                    topic.setUpdate_time(rs.getTimestamp("update_time"));
+                    return topic;
+                });
     }
-
-    private List<Topic> searchTopicByKeyWord(String key) {
+    
+    public List<Topic> searchTopicByKeyWord(String key) {
         return jdbcTemplate.query("select * from topic "
                 + "where title like ? ",
                 ps -> {
@@ -42,7 +58,7 @@ public class SearchDAO {
                 });
     }
 
-    private List<User> searchUserByKeyWord(String key) {
+    public List<User> searchUserByKeyWord(String key) {
         return jdbcTemplate.query("select * from user "
                 + "where email like ? "
                 + "or phone like ? "
