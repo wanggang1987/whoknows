@@ -13,4 +13,7 @@
     <changeSet id="picture table 2" author="whoknows">
         <modifyDataType tableName="picture" columnName="stream" newDataType="MEDIUMBLOB"/>
     </changeSet>
+    <changeSet id="user table 1" author="whoknows">
+        <modifyDataType tableName="user" columnName="passwd" newDataType="varchar(250)"/>
+    </changeSet>
 </databaseChangeLog>
