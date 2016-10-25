@@ -44,6 +44,7 @@ public class TopicRepository {
                     topic.setAction(rs.getString("action"));
                     topic.setTitle(rs.getString("title"));
                     topic.setContent(rs.getString("content"));
+                    topic.setRank(rs.getLong("rank"));
                     topic.setCreate_time(rs.getTimestamp("create_time"));
                     topic.setUpdate_time(rs.getTimestamp("update_time"));
                     return topic;

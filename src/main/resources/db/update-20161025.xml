@@ -33,4 +33,14 @@
     <changeSet id="user table 2" author="whoknows">
         <renameColumn tableName="user" oldColumnName="comapny_name" newColumnName="company_name" columnDataType="varchar(1024)"/>
     </changeSet>
+    
+    <changeSet id="topic table" author="whoknows">
+        <addColumn tableName="topic">
+            <column name="rank" type="bigint"/>
+        </addColumn>
+        
+        <createIndex tableName="topic" indexName="rank">
+            <column name="rank"/>
+        </createIndex>
+    </changeSet>
 </databaseChangeLog>

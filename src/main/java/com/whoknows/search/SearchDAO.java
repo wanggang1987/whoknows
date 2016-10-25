@@ -17,8 +17,7 @@ public class SearchDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Topic> searchTagByKeyWord(String key)
-    {
+    public List<Topic> searchTagByKeyWord(String key) {
         return jdbcTemplate.query("select * from topic "
                 + "where title like ? "
                 + "and id in (select topic_id from tag_topic "
@@ -34,12 +33,13 @@ public class SearchDAO {
                     topic.setAction(rs.getString("action"));
                     topic.setTitle(rs.getString("title"));
                     topic.setContent(rs.getString("content"));
+                    topic.setRank(rs.getLong("rank"));
                     topic.setCreate_time(rs.getTimestamp("create_time"));
                     topic.setUpdate_time(rs.getTimestamp("update_time"));
                     return topic;
                 });
     }
-    
+
     public List<Topic> searchTopicByKeyWord(String key) {
         return jdbcTemplate.query("select * from topic "
                 + "where title like ? ",
@@ -52,6 +52,7 @@ public class SearchDAO {
                     topic.setAction(rs.getString("action"));
                     topic.setTitle(rs.getString("title"));
                     topic.setContent(rs.getString("content"));
+                    topic.setRank(rs.getLong("rank"));
                     topic.setCreate_time(rs.getTimestamp("create_time"));
                     topic.setUpdate_time(rs.getTimestamp("update_time"));
                     return topic;

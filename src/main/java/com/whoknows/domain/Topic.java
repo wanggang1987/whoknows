@@ -9,8 +9,17 @@ public class Topic {
     private String title;
     private String content;
     private String action;
+    private Long rank;
     private Timestamp create_time;
     private Timestamp update_time;
+
+    public Long getRank() {
+        return rank;
+    }
+
+    public void setRank(Long rank) {
+        this.rank = rank;
+    }
 
     public Long getId() {
         return id;
