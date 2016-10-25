@@ -40,7 +40,7 @@ public class TopicRepository {
                 ps -> ps.setLong(1, id),
                 (rs, row) -> {
                     Topic topic = new Topic();
-                    topic.setId(id);
+                    topic.setId(rs.getLong("id"));
                     topic.setAction(rs.getString("action"));
                     topic.setTitle(rs.getString("title"));
                     topic.setContent(rs.getString("content"));

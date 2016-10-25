@@ -29,4 +29,8 @@
     <changeSet id="user table 1" author="whoknows">
         <modifyDataType tableName="user" columnName="passwd" newDataType="varchar(250)"/>
     </changeSet>
+    
+    <changeSet id="user table 2" author="whoknows">
+        <renameColumn tableName="user" oldColumnName="comapny_name" newColumnName="company_name" columnDataType="varchar(1024)"/>
+    </changeSet>
 </databaseChangeLog>

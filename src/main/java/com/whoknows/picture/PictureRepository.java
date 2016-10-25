@@ -17,7 +17,7 @@ public class PictureRepository {
                 ps -> ps.setLong(1, id),
                 (rs, row) -> {
                     Picture picture = new Picture();
-                    picture.setId(id);
+                    picture.setId(rs.getLong("id"));
                     picture.setName(rs.getString("name"));
                     picture.setHeight(rs.getInt("height"));
                     picture.setWidth(rs.getInt("width"));
