@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.whoknows.topic;
 
 import com.whoknows.domain.ActionType;
@@ -76,6 +71,7 @@ public class TopicService {
         try {
             return topicRepository.getTopic(id);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return null;
         }
     }

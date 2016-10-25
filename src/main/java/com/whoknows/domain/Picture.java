@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.whoknows.domain;
 
 import java.sql.Timestamp;
@@ -11,12 +6,18 @@ public class Picture {
 
     private Long id;
     private String name;
-    private String width;
-    private String height;
-    private String stream_b;
-    private String string_mb;
+    private Integer width;
+    private Integer height;
+    private byte[] stream;
     private Timestamp create_time;
-    private Timestamp view_time;
+
+    public byte[] getStream() {
+        return stream;
+    }
+
+    public void setStream(byte[] stream) {
+        this.stream = stream;
+    }
 
     public Long getId() {
         return id;
@@ -34,36 +35,20 @@ public class Picture {
         this.name = name;
     }
 
-    public String getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(String width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
-    public String getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(String height) {
+    public void setHeight(Integer height) {
         this.height = height;
-    }
-
-    public String getStream_b() {
-        return stream_b;
-    }
-
-    public void setStream_b(String stream_b) {
-        this.stream_b = stream_b;
-    }
-
-    public String getString_mb() {
-        return string_mb;
-    }
-
-    public void setString_mb(String string_mb) {
-        this.string_mb = string_mb;
     }
 
     public Timestamp getCreate_time() {
@@ -74,11 +59,4 @@ public class Picture {
         this.create_time = create_time;
     }
 
-    public Timestamp getView_time() {
-        return view_time;
-    }
-
-    public void setView_time(Timestamp view_time) {
-        this.view_time = view_time;
-    }
 }
