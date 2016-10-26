@@ -2,9 +2,7 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
-
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

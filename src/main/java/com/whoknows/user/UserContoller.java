@@ -3,14 +3,9 @@ package com.whoknows.user;
 import com.whoknows.domain.User;
 import com.whoknows.framework.TopicView;
 import com.whoknows.framework.UserView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.websocket.server.PathParam;
-
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

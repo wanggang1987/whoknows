@@ -3,10 +3,8 @@ package com.whoknows.user;
 import com.whoknows.domain.User;
 import com.whoknows.framework.TopicView;
 import com.whoknows.framework.UserView;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
