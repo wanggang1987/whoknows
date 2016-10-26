@@ -1,27 +1,28 @@
 package com.whoknows.search;
 
-import com.whoknows.domain.Topic;
-import com.whoknows.domain.User;
+import com.whoknows.framework.TopicView;
+import com.whoknows.framework.UserView;
 import java.util.List;
 
 public class SearchResponse {
 
-	private List<User> user;
-	private List<Topic> topics;
+	private List<UserView> userViews;
+	private List<TopicView> topicViews;
 
-	public List<User> getUser() {
-		return user;
+	public List<UserView> getUserViews() {
+		return userViews;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUserViews(List<UserView> userViews) {
+		this.userViews = userViews;
 	}
 
-	public List<Topic> getTopics() {
-		return topics;
+	public List<TopicView> getTopicViews() {
+		return topicViews;
 	}
 
-	public void setTopics(List<Topic> topics) {
-		this.topics = topics;
+	public void setTopicViews(List<TopicView> topicViews) {
+		this.topicViews = topicViews;
 	}
+
 }

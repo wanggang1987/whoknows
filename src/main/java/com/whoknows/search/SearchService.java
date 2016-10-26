@@ -1,5 +1,8 @@
 package com.whoknows.search;
 
+import com.whoknows.framework.TopicView;
+import com.whoknows.framework.UserView;
+import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +24,25 @@ public class SearchService {
 		}
 
 		SearchResponse searchResponse = new SearchResponse();
-		searchResponse.setTopics(searchDAO.searchTopicByKeyWord(key));
-		searchResponse.getTopics().addAll(searchDAO.searchTagByKeyWord(key));
-		searchResponse.setUser(searchDAO.searchUserByKeyWord(key));
+
+		searchResponse.setTopicViews(searchDAO.searchTopicByKeyWord(key).stream().map(topic -> {
+			TopicView topicView = new TopicView();
+			topicView.setTopic(topic);
+			return topicView;
+		}).collect(Collectors.toList()));
+
+		searchResponse.getTopicViews().addAll(searchDAO.searchTagByKeyWord(key).stream().map(topic -> {
+			TopicView topicView = new TopicView();
+			topicView.setTopic(topic);
+			return topicView;
+		}).collect(Collectors.toList()));
+
+		searchResponse.setUserViews(searchDAO.searchUserByKeyWord(key).stream().map(user -> {
+			UserView userView = new UserView();
+			userView.setUser(user);
+			return userView;
+		}).collect(Collectors.toList()));
+
 		return searchResponse;
 	}
 }
