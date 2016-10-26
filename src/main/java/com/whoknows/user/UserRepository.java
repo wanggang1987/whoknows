@@ -1,6 +1,8 @@
 package com.whoknows.user;
 
+import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +44,19 @@ public class UserRepository {
 				}).stream().findAny().orElse(null);
 	}
 
+	public List<Topic> getUserTopic(Long id) {
+		return jdbcTemplate.query("select * from topic where user_id = ? ",
+				ps -> ps.setLong(1, id),
+				(rs,row)->{
+					Topic topic = new Topic();
+					topic.setId(rs.getLong("id"));
+					topic.setAction(rs.getString("action"));
+					topic.setTitle(rs.getString("title"));
+					topic.setContent(rs.getString("content"));
+					topic.setRank(rs.getLong("rank"));
+					topic.setCreate_time(rs.getTimestamp("create_time"));
+					topic.setUpdate_time(rs.getTimestamp("update_time"));
+					return topic;
+				});
+	}
 }
