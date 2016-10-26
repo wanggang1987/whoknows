@@ -23,7 +23,7 @@ public class PictureController {
     public ResponseEntity getPicture(Long id) {
         Picture picture = pictureService.getPicture(id);
         if (picture != null) {
-            return ResponseEntity.ok(pictureService.getPicture(id));
+            return ResponseEntity.ok(picture);
         } else {
             return ResponseEntity.notFound().build();
         }
