@@ -38,7 +38,7 @@
 				<li ng-class="{ active: isActive('/superStar') }"><a href="#/superStar"  >大咖</a></li>
 				<li ng-class="{ active: isActive('/message') }"><a href="#/message"  >消息</a></li>
               	<li class="fill-maring-left" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
-              	<li class="fill-maring-left dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
+              	<li class="fill-maring-left dropdown" ng-show="loginIn !=undefined && loginIn" ng-class="{ active: isActive('/selfPage') }">
 	              	<a href="#/selfPage" data-toggle="dropdown" >
 	              		<img alt="" class="img-20-size" src="../../images/selfPicture/ln.png"></img>陈雯婷
 	              		<span class="glyphicon glyphicon-chevron-down"></span>
@@ -46,7 +46,7 @@
 	              	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 					  	<li><a href="#/selfPage" ><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;我的主页</a></li>
 					  	<li><a href="#/setting" ><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;设置</a></li>
-					  	<li><a href="#/loginOut" ><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;退出</a></li>
+					  	<li><a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;退出</a></li>
 					</ul>
               	</li>
             		
@@ -105,7 +105,7 @@
 	<script type="text/javascript" src="app/commons/services/localStorageService.js"></script>
 	<script type="text/javascript" src="app/commons/factories/permissionCheckInterceptor.js"></script>
 	<script type="text/javascript" src="app/homeCtrl.js"></script>
-	<script type="text/javascript" src="app/selfHomePage/selfHomeCtrl.js"></script>
+	<script type="text/javascript" src="app/users/selfHomeCtrl.js"></script>
 	<script type="text/javascript" src="app/topic/topicModule.js"></script>
 	<script type="text/javascript" src="app/topic/wkTopicCtrl.js"></script>
 	<script type="text/javascript" src="app/topic/directives/hotTopicSiderbar.js"></script>
@@ -120,5 +120,7 @@
 	<script type="text/javascript" src="app/registration/registModule.js"></script>
 	<script type="text/javascript" src="app/registration/registCtrl.js"></script>
 	<script type="text/javascript" src="app/setting/settingCtrl.js"></script>
+	<script type="text/javascript" src="app/commons/services/userService.js"></script>
+	
 </body>
 </html>

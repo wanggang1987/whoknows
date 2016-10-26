@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.whoknows.domain.User;
+import com.whoknows.security.autoDao.AuthDao;
 
 @Component
 public class AuthProvider implements AuthenticationProvider{

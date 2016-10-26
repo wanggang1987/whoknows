@@ -1,9 +1,13 @@
 package com.whoknows.user;
 
+import com.whoknows.domain.User;
 import com.whoknows.framework.TopicView;
 import com.whoknows.framework.UserView;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +36,11 @@ public class UserService {
 		}
 	}
 
-	public List<TopicView> getUserTopic(Long id)
-	{
-		if (id==null) {
+	public List<TopicView> getUserTopic(Long id) {
+		if (id == null) {
 			return null;
 		}
-		
+
 		try {
 			return userRepository.getUserTopic(id).stream().map(topic -> {
 				TopicView topicView = new TopicView();
@@ -49,4 +52,18 @@ public class UserService {
 			return null;
 		}
 	}
+	
+	public boolean createUser(User user){
+		if(StringUtils.isEmpty(user.getEmail()) && StringUtils.isEmpty(user.getPasswd())){
+			return false;
+		}
+		try{
+			userRepository.createUser(user);
+			log.info("Create user :{} success.", user.getEmail());
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
 }

@@ -9,7 +9,7 @@ var wkCommon = angular.module('wkSuperstar', ['ngRoute']).config(function($route
 			standalonePage: true
 		}
 	}).when('/selfPage', {
-		templateUrl: 'app/selfHomePage/selfHomePage.html',
+		templateUrl: 'app/users/selfHomePage.html',
 		controller: 'SelfHomeCtrl',
 		data: {
 			standalonePage: true

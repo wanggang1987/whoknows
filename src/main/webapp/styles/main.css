@@ -3,6 +3,9 @@ body{
 	word-wrap: break-word;
 	line-height: 1.7;
 }
+.warn-color-font{
+	color:#FF0000
+}
 .icon.wechat{
 	background-image: url(../../images/commons/wechat.png);
 	background-size:cover;
@@ -416,7 +419,7 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 }
 /*--login style---*/
 .login-page, .regist-page{
-	height : 568px;
+	height : 668px;
 	padding-top: 100px;
 	margin : 0px auto;
 }
@@ -511,4 +514,7 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 	margin: 18px auto 18px;
 	min-width:100%;
 	border: 0px;
+}
+.get-us-by{
+	max-width: 320px
 }

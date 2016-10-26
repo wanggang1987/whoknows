@@ -54,7 +54,7 @@ public class AuthFilter  extends AbstractAuthenticationProcessingFilter {
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException,IOException, ServletException {
 		try {
 			log.error("Get username/password from request body.");
-
+			
 			JsonObject obj = retrieveJsonBody(req);
 			String user = obj.getString("username");
 			String password = obj.getString("password");

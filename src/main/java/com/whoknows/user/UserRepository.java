@@ -2,11 +2,14 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
+
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -16,6 +19,9 @@ public class UserRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	@Autowired
+	private PasswordEncoder encoder;
+	
 	public User getUserInfo(Long id) {
 		return jdbcTemplate.query("select * from user where id = ? limit 1",
 				ps -> ps.setLong(1, id),
@@ -59,4 +65,14 @@ public class UserRepository {
 					return topic;
 				});
 	}
+	
+	public void createUser(User user) {
+		jdbcTemplate.update("insert into user(email,phone,e_pass) values (?, ?, ?)",
+			ps -> {
+				ps.setString(1, user.getEmail());
+				ps.setString(2, "");
+				ps.setString(3, encoder.encode(user.getPasswd()));
+			});
+	}
+
 }

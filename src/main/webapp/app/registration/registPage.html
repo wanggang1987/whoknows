@@ -8,29 +8,30 @@
 						  <div class="form-group">
 						    <label for="inputEmail3" class="col-sm-3 control-label">邮箱地址</label>
 						    <div class="col-sm-9">
-						      <input type="email" required class="form-control login-email-input"  placeholder="Email">
+						      <input type="email" required class="form-control login-email-input"  ng-model="registInfo.email" placeholder="Email">
 						    </div>
 						  </div>
 						  
 						  <div class="form-group">
-						    <label for="inputPassword3" required class="col-sm-3 control-label">密码</label>
+						    <label for="inputPassword3" required class="col-sm-3 control-label" >密码</label>
 						    <div class="col-sm-9">
-						      <input type="password" class="form-control  login-passwd-input" id="inputPassword3" placeholder="Password">
+						      <input type="password" class="form-control  login-passwd-input" ng-model="registInfo.passwd" id="inputPassword3" placeholder="Password">
 						    </div>
 						  </div>
 						  
 						  <div class="form-group">
-						    <label for="inputPassword3" required class="col-sm-3 control-label">密码</label>
+						    <label for="inputPassword3" required class="col-sm-3 control-label">重复密码</label>
 						    <div class="col-sm-9">
-						      <input type="password" class="form-control  login-passwd-input" id="inputPassword3" placeholder="Password">
+						      <input type="password" class="form-control  login-passwd-input" ng-model="registInfo.passwordAgain" id="inputPassword3" placeholder="Password">
+						    		<p class="warn-color-font" ng-show="registInfo.passwordAgain != registInfo.passwd" >*两次密码不一致</p>
 						    </div>
 						  </div>
 						  
 						   <div class="form-group">
-						    <label for="inputPassword3" required class="col-sm-3 control-label">由朋友或同事推荐？</label>
+						    <label for="inputPassword3"  class="col-sm-3 control-label">由朋友或同事推荐？</label>
 						    <div class="col-sm-8">
 						      <div class="checkbox " >
-						      	<input type="checkbox"  required ng-model= "recommendByFriends"> 
+						      	<input type="checkbox"   ng-model= "recommendByFriends" ng-model="registInfo.recommendByFriends"> 
 						      </div>
 						    </div>
 						    <div class="col-sm-1"></div>
@@ -39,19 +40,19 @@
 						  <div class="form-group" ng-show = "recommendByFriends" >
 						    <label for="inputEmail3" class="col-sm-3 control-label">推荐人Email</label>
 						    <div class="col-sm-9">
-						      <input type="email" required class="form-control login-email-input"  placeholder="Email">
+						      <input type="email"  class="form-control login-email-input" ng-model="registInfo.recommendEmail" placeholder="Email">
 						    </div>
 						  </div>
 						  <div class="form-group" ng-show = "recommendByFriends" >
 						    <label for="inputEmail3" class="col-sm-3 control-label">推荐人姓名</label>
 						    <div class="col-sm-9">
-						      <input type="email" required class="form-control login-email-input"  placeholder="姓名">
+						      <input type=text  class="form-control login-email-input"  ng-model="registInfo.recommendName" placeholder="姓名">
 						    </div>
 						  </div>
 						  <div class="form-group">
 						    <label for="inputEmail3" class="col-sm-3 control-label">您是从什么渠道了解到我们的？</label>
 						    <div class="col-sm-7">
-						     <select class="form-control">
+						     <select class="form-control get-us-by">
 						     	<option selected="true" class="" selected="selected">--请选择--</option>
 						     	<option label="Facebook" value="string:registration.heardAboutUs.facebook">Facebook</option>
 						     	<option label="LinkedIn" value="string:registration.heardAboutUs.linkedIn">LinkedIn</option>
@@ -67,10 +68,13 @@
 						    </div>
 						    <div class="col-sm-2"></div>
 						  </div>
+						  <div class="row text-center" ng-hide="registSuccess">
+						  		<p class="warn-color-font"  >*注册失败。</p>
+						  </div>
 						  
 						  <div class="form-group panel-footer">
 						    <div class="col-sm-offset-4 col-sm-10">
-						      <button type="submit" class="btn btn-default login-btn">提交</button>
+						      <button type="submit" class="btn btn-default login-btn" ng-click="regist()">提交</button>
 						      <button type="submit" class="btn btn-default cancel-btn">取消</button>
 						    </div>
 						  </div>
