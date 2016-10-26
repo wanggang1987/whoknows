@@ -31,8 +31,8 @@ public class TopicRepository {
                 });
     }
 
-    public void deleteTopic(Topic topic) {
-        jdbcTemplate.update("delete from topic where id = ? ", ps -> ps.setLong(1, topic.getId()));
+    public void deleteTopic(Long id) {
+        jdbcTemplate.update("delete from topic where id = ? ", ps -> ps.setLong(1, id));
     }
 
     public Topic getTopic(Long id) {

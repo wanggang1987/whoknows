@@ -49,13 +49,13 @@ public class TopicService {
         return true;
     }
 
-    public boolean deleteTopic(Topic topic) {
-        if (topic.getId() == null) {
+    public boolean deleteTopic(Long id) {
+        if (id == null) {
             return false;
         }
 
         try {
-            topicRepository.deleteTopic(topic);
+            topicRepository.deleteTopic(id);
         } catch (Exception e) {
             log.error(e.getMessage());
             return false;

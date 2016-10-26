@@ -41,10 +41,9 @@ public class TopicController {
         }
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
-    public ResponseEntity deleteTopic(@RequestBody Topic topic) {
-        log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
-        if (topicService.deleteTopic(topic)) {
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity deleteTopic(Long id) {
+        if (topicService.deleteTopic(id)) {
             return ResponseEntity.ok().build();
         } else {
             return ResponseEntity.badRequest().build();
