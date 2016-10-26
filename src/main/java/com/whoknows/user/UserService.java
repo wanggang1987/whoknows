@@ -1,10 +1,13 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
+import com.whoknows.domain.message.ResetPasswdRequest;
 import com.whoknows.framework.TopicView;
 import com.whoknows.framework.UserView;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +29,7 @@ public class UserService {
 
 		try {
 			UserView userView = new UserView();
-			userView.setUser(userRepository.getUserInfo(id));
+			userView.setUser(userRepository.getUserById(id));
 			return userView;
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -60,6 +63,27 @@ public class UserService {
 			log.info("Create user :{} success.", user.getEmail());
 			return true;
 		}catch(Exception e){
+			return false;
+		}
+	}
+
+	public boolean resetPasswd(ResetPasswdRequest request) {
+		if(request == null || StringUtils.isEmpty(request.getEmail())
+				|| StringUtils.isEmpty(request.getOldPasswd())
+				|| StringUtils.isEmpty(request.getNewPasswd())
+				|| StringUtils.isEmpty(request.getRepeatNewPasswd())
+				|| !StringUtils.equals(request.getNewPasswd(), request.getRepeatNewPasswd())){
+			return false;
+		}
+		if(!userRepository.validUserByEmailAndPasswd(request.getEmail(), request.getOldPasswd())){
+			return false;
+		}
+		
+		try{
+			userRepository.resetPasswd(request);
+			return true;
+		}catch(Exception e){
+			log.error("Reset passwd error , username:{}, {}", request.getEmail(), e);
 			return false;
 		}
 	}

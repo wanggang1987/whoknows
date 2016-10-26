@@ -6,7 +6,8 @@ angular.module('WhoKnows', ['ngResource', 'ngCookies', 'ngRoute', 'ngSanitize',
 	'wkSuperstar',
 	'wkSearchResult',
 	'wkLogin',
-	'wkRegist'
+	'wkRegist',
+	'wkSetting'
 ]);
 
 angular.module('WhoKnows').config(['$httpProvider','$locationProvider', function ($httpProvider, $locationProvider) {

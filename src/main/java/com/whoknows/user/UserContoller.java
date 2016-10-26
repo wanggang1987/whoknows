@@ -81,6 +81,16 @@ public class UserContoller {
 		return ResponseEntity.ok(topicViews);
 	}
 
+	@RequestMapping(path="/password/reset", method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity resetPasswd(@RequestBody ResetPasswdRequest request) {
+		log.info("Try to reset passwd: {}", request == null ? "" : request);
+		if (userService.resetPasswd(request)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 	private User currentUser() {
 		if (SecurityContextHolder.getContext().getAuthentication()
 				.getPrincipal() instanceof User) {

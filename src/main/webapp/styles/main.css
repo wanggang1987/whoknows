@@ -518,3 +518,35 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 .get-us-by{
 	max-width: 320px
 }
+/*--reset-passwd-page style---*/
+#reset-password-modal {
+	width:600px;
+	height:480px;
+	margin: 50px auto;
+}
+#reset-password-modal  .modal-header{
+	border:0px
+}
+#reset-password-modal  .modal-footer{
+    text-align: center;
+    background-color:#EEF5F7;
+    border: 0px;
+    margin: 5px;
+}
+#reset-password-modal  .modal-footer .reset-passwd-btn{
+	 background-color: #E1872E;
+	 width:134px;
+	 height:40px;
+}
+}
+#reset-password-modal  .forget-passwd-email-input{
+	margin-left:0px;
+}
+#reset-password-modal  .modal-body{
+	height: 200px;
+	margin: 20px auto;
+	
+}
+#reset-password-modal  .modal-body input{
+	max-width: 340px;
+}
