@@ -9,33 +9,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class PictureService {
 
-    @Autowired
-    private PictureRepository pictureRepository;
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+	@Autowired
+	private PictureRepository pictureRepository;
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    public Picture getPicture(Long id) {
-        if (id == null) {
-            return null;
-        }
+	public Picture getPicture(Long id) {
+		if (id == null) {
+			return null;
+		}
 
-        try {
-            return pictureRepository.getPicture(id);
-        } catch (Exception e) {
-            return null;
-        }
-    }
+		try {
+			return pictureRepository.getPicture(id);
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
-    public boolean putPicture(Picture picture) {
-        if (picture.getStream() == null) {
-            return false;
-        }
+	public boolean putPicture(Picture picture) {
+		if (picture.getStream() == null) {
+			return false;
+		}
 
-        try {
-            pictureRepository.putPicture(picture);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return false;
-        }
-        return true;
-    }
+		try {
+			pictureRepository.putPicture(picture);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
+	}
 }

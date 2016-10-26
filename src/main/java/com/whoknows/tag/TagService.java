@@ -12,45 +12,45 @@ import org.springframework.stereotype.Service;
 @Service
 public class TagService {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private TagRepository tagRepository;
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	@Autowired
+	private TagRepository tagRepository;
 
-    public boolean addTag(Tag tag) {
-        if (StringUtils.isEmpty(tag.getName())) {
-            return false;
-        }
+	public boolean addTag(Tag tag) {
+		if (StringUtils.isEmpty(tag.getName())) {
+			return false;
+		}
 
-        tag.setAction(ActionType.active.toString());
-        try {
-            tagRepository.addTag(tag);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return false;
-        }
-        return true;
-    }
+		tag.setAction(ActionType.active.toString());
+		try {
+			tagRepository.addTag(tag);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
+	}
 
-    public boolean deleteTag(Tag tag) {
-        if (tag.getId() == null) {
-            return false;
-        }
+	public boolean deleteTag(Tag tag) {
+		if (tag.getId() == null) {
+			return false;
+		}
 
-        try {
-            tagRepository.deleteTag(tag);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return false;
-        }
-        return true;
-    }
+		try {
+			tagRepository.deleteTag(tag);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
+	}
 
-    public List<Tag> getTagList() {
-        try {
-            return tagRepository.getTagList();
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return null;
-        }
-    }
+	public List<Tag> getTagList() {
+		try {
+			return tagRepository.getTagList();
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return null;
+		}
+	}
 }

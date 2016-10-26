@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/search")
 public class SearchController {
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-    
-    @Autowired
-    private SearchService searchService;
-    
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity searchByKeyWord(String key) {
-        SearchResponse searchResponse = searchService.searchByKeyWord(key);
-        if (searchResponse != null) {
-            return ResponseEntity.ok(searchResponse);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+
+	@Autowired
+	private SearchService searchService;
+
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity searchByKeyWord(String key) {
+		SearchResponse searchResponse = searchService.searchByKeyWord(key);
+		if (searchResponse != null) {
+			return ResponseEntity.ok(searchResponse);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

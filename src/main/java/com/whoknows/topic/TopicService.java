@@ -11,68 +11,68 @@ import org.springframework.stereotype.Service;
 @Service
 public class TopicService {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
-    @Autowired
-    private TopicRepository topicRepository;
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	@Autowired
+	private TopicRepository topicRepository;
 
-    public boolean createTopic(Topic topic) {
-        topic.setAction(ActionType.pending.toString());
-        if (topic.getUser_id() == null
-                || StringUtils.isEmpty(topic.getTitle())
-                || StringUtils.isEmpty(topic.getContent())) {
-            return false;
-        }
+	public boolean createTopic(Topic topic) {
+		topic.setAction(ActionType.pending.toString());
+		if (topic.getUser_id() == null
+				|| StringUtils.isEmpty(topic.getTitle())
+				|| StringUtils.isEmpty(topic.getContent())) {
+			return false;
+		}
 
-        try {
-            topicRepository.createTopic(topic);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return false;
-        }
-        return true;
-    }
+		try {
+			topicRepository.createTopic(topic);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
+	}
 
-    public boolean updateTopic(Topic topic) {
-        if (topic.getId() == null
-                || topic.getUser_id() == null
-                || StringUtils.isEmpty(topic.getTitle())
-                || StringUtils.isEmpty(topic.getContent())) {
-            return false;
-        }
+	public boolean updateTopic(Topic topic) {
+		if (topic.getId() == null
+				|| topic.getUser_id() == null
+				|| StringUtils.isEmpty(topic.getTitle())
+				|| StringUtils.isEmpty(topic.getContent())) {
+			return false;
+		}
 
-        try {
-            topicRepository.updateTopic(topic);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return false;
-        }
-        return true;
-    }
+		try {
+			topicRepository.updateTopic(topic);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
+	}
 
-    public boolean deleteTopic(Long id) {
-        if (id == null) {
-            return false;
-        }
+	public boolean deleteTopic(Long id) {
+		if (id == null) {
+			return false;
+		}
 
-        try {
-            topicRepository.deleteTopic(id);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return false;
-        }
-        return true;
-    }
+		try {
+			topicRepository.deleteTopic(id);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
+	}
 
-    public Topic getTopic(Long id) {
-        if (id == null) {
-            return null;
-        }
+	public Topic getTopic(Long id) {
+		if (id == null) {
+			return null;
+		}
 
-        try {
-            return topicRepository.getTopic(id);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            return null;
-        }
-    }
+		try {
+			return topicRepository.getTopic(id);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return null;
+		}
+	}
 }

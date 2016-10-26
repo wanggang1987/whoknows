@@ -14,27 +14,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/picture")
 public class PictureController {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private PictureService pictureService;
+	@Autowired
+	private PictureService pictureService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getPicture(Long id) {
-        Picture picture = pictureService.getPicture(id);
-        if (picture != null) {
-            return ResponseEntity.ok(picture);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity getPicture(Long id) {
+		Picture picture = pictureService.getPicture(id);
+		if (picture != null) {
+			return ResponseEntity.ok(picture);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 
-    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-    public ResponseEntity putPicture(@RequestBody Picture picture) {
-        if (pictureService.putPicture(picture)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+	public ResponseEntity putPicture(@RequestBody Picture picture) {
+		if (pictureService.putPicture(picture)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

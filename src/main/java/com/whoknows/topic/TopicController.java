@@ -16,48 +16,48 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/topic")
 public class TopicController {
 
-    private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private TopicService topicService;
+	@Autowired
+	private TopicService topicService;
 
-    @RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-    public ResponseEntity createTopic(@RequestBody Topic topic) {
-        log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
-        if (topicService.createTopic(topic)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+	public ResponseEntity createTopic(@RequestBody Topic topic) {
+		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
+		if (topicService.createTopic(topic)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 
-    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity updateTopic(@RequestBody Topic topic) {
-        log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
-        if (topicService.updateTopic(topic)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity updateTopic(@RequestBody Topic topic) {
+		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
+		if (topicService.updateTopic(topic)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 
-    @RequestMapping(method = RequestMethod.DELETE)
-    public ResponseEntity deleteTopic(Long id) {
-        if (topicService.deleteTopic(id)) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+	@RequestMapping(method = RequestMethod.DELETE)
+	public ResponseEntity deleteTopic(Long id) {
+		if (topicService.deleteTopic(id)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity getTopic(Long id) {
-        Topic topic = topicService.getTopic(id);
-        log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
-        if (topic != null) {
-            return ResponseEntity.ok(topic);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity getTopic(Long id) {
+		Topic topic = topicService.getTopic(id);
+		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
+		if (topic != null) {
+			return ResponseEntity.ok(topic);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }
