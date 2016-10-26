@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/topic")
 public class TopicController {
-
+	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+	
 	@Autowired
 	private TopicService topicService;
-
+	
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity createTopic(@RequestBody Topic topic) {
 		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
@@ -30,7 +31,7 @@ public class TopicController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-
+	
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity updateTopic(@RequestBody Topic topic) {
 		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
@@ -40,18 +41,19 @@ public class TopicController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-
-	@RequestMapping(method = RequestMethod.DELETE)
-	public ResponseEntity deleteTopic(Long id) {
+	
+	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity deleteTopic(@PathVariable("id") Long id) {
 		if (topicService.deleteTopic(id)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity getTopic(Long id) {
+	
+	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity getTopic(@PathVariable("id") Long id) {
+		log.info("" + id);
 		Topic topic = topicService.getTopic(id);
 		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
 		if (topic != null) {
