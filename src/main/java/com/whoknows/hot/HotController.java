@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -20,8 +21,8 @@ public class HotController {
 	@Autowired
 	private HotService hotService;
 
-	@RequestMapping(path = "/vip", method = RequestMethod.GET)
-	public ResponseEntity listHotVip(int page) {
+	@RequestMapping(path = "/vip/{page}", method = RequestMethod.GET)
+	public ResponseEntity listHotVip(@PathVariable("page") int page) {
 		List<Vip> vips = hotService.listHotVip(page);
 		if (vips != null) {
 			return ResponseEntity.ok(vips);
@@ -30,8 +31,8 @@ public class HotController {
 		}
 	}
 
-	@RequestMapping(path = "/topic", method = RequestMethod.GET)
-	public ResponseEntity listHotTopic(int page) {
+	@RequestMapping(path = "/topic/{page}", method = RequestMethod.GET)
+	public ResponseEntity listHotTopic(@PathVariable("page") int page) {
 		List<Topic> topics = hotService.listHotTopic(page);
 		if (topics != null) {
 			return ResponseEntity.ok(topics);
