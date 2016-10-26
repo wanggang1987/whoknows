@@ -49,7 +49,7 @@ public class UserContoller {
 		}
 	}
 
-	@RequestMapping(path = "/id/{id}", method = RequestMethod.GET)
+	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getUserInfo(@PathVariable("id") Long id) {
 		UserView userView = userService.getUserInfo(id);
 		if (userView != null) {
