@@ -7,12 +7,6 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 			$scope.loginIn = UserService.isSignedIn();
 		});
 		
-		console.log(">>>>>>>>>><<<<<<<<<<<");
-		console.log(UserService.getCurrent());
-		console.log(UserService.isSignedIn());
-		console.log($scope.loginIn);
-		console.log(">>>>>>>>>><<<<<<<<<<<");
-		
 		$rootScope.$on('event:login:success', function () {
 			$scope.loginIn = true;
 			if (LocalStorageService.get('LastPage')) {
@@ -31,5 +25,8 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		     return active;
 		};
 		
+		$scope.createQuestion = function(){
+			$location.path('/creteTopic');
+		}
 		console.log("wkCommon- wkCommon.appCtrl load.")
 	});

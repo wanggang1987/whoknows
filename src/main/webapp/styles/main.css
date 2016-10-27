@@ -9,22 +9,22 @@ body{
 .icon.wechat{
 	background-image: url(../../images/commons/wechat.png);
 	background-size:cover;
-	height:15px;
-	width:15px;
+	height:13px;
+	width:13px;
 	display:inline-block
 }
 .icon.qq{
 	background-image: url(../../images/commons/qq.png);
 	background-size:cover;
-	height:15px;
-	width:15px;
+	height:13px;
+	width:13px;
 	display:inline-block
 }
 .icon.weibo{
 	background-image: url(../../images/commons/weibo.png);
 	background-size:cover;
-	height:15px;
-	width:15px;
+	height:13px;
+	width:13px;
 	display:inline-block
 }
 .dropdown-menu{
@@ -201,7 +201,17 @@ footer {
 .home-page-link a{
 	color:#fff;
 }
-
+.index-create-question-btn{
+	margin:0px;
+}
+.index-create-question-btn button{
+	width: 75px; 
+	height: 35px; 
+	border : 2px solid #FFF;
+	margin-top: 6px; 
+	background-color:#1386ab;
+	color:#FFF
+}
 /*----------self-home-page page-------------*/
 .self-home-page{
 	margin-top: 20px;
@@ -503,11 +513,17 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 	max-width: 650px;
 	margin : 5px auto;
 }
+.regise-friends-checkbox{
+	padding-left:35px
+}
 /*--regist style---*/
 .setting-page {
 	height : 568px;
 	padding-top: 30px;
 	margin : 0px auto;
+}
+#account-passwd-setting input{
+	width: 350px;
 }
 /*--setting-page style---*/
 .setting-page .tab-content .row{

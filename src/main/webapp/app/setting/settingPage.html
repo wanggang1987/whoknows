@@ -72,27 +72,25 @@
 			    </div> 
 			    <div class="tab-pane fade" id="account-passwd-setting">
 			   	 	<div class="row">
-			    			<div class="col-lg-6">
-			    				 <div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label">绑定邮箱</label>
-							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="email" >
-							    </div>
-						  	</div>
-			    			</div><!-- end-col -->
-			    			<div class="col-lg-6">
-			    				<div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label">手机</label>
+		    				 <div class="form-group">
+						    <label for="inputEmail3" class="col-sm-3 control-label text-right">绑定邮箱</label>
+						    <div class="col-sm-9">
+						      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="email" >
+						    </div>
+					  	</div>
+			    		</div><!-- end-row -->
+			    		<div class="row">
+			    			<div class="form-group">
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right">手机</label>
 							    <div class="col-sm-9">
 							      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="手机" >
 							    </div>
-						  	</div>
-			    			</div><!-- end-col -->
-			    		</div><!-- end-row -->
+						  </div>
+			    		</div>
 			    		<div class="row">
 			    			<div class="col-lg-12">
 			    				 <div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label">账号密码</label>
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right" >账号密码</label>
 							    <div class="col-sm-9">
 							      <a href="" ng-click="resetPasswd()">修改密码</a>
 							    </div>
@@ -102,18 +100,20 @@
 			    		<div class="row">
 			    			<div class="col-lg-12">
 			    				 <div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label">社交账号绑定</label>
-							    <div class="col-sm-3">
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right">社交账号绑定</label>
+							    <div class="col-sm-2">
 							       <span class="icon wechat"></span>
 							       <a href="javascript:void(0)">绑定微信</a>
 							    </div>
-							    <div class="col-sm-3">
+							    <div class="col-sm-2">
 							       <span class="icon weibo"></span>
 							       <a href="javascript:void(0)">绑定微博</a>
 							    </div>
-							    <div class="col-sm-3">
+							    <div class="col-sm-2">
 							       <span class="icon qq"></span>
 							       <a href="javascript:void(0)">绑定QQ</a>
+							    </div>
+							    <div class="col-sm-3">
 							    </div>
 						  	</div>
 			    			</div><!-- end-col -->
@@ -125,7 +125,7 @@
 			    </div>
 			    <div class="tab-pane fade" id="message-setting">
 			        <div class="row">
-			    			<div class="col-lg-6">
+			    			<div class="col-lg-3">
 			    				 <div class="form-group">
 							    <div class="radio">
 									<label>
@@ -135,7 +135,7 @@
 								</div>
 						  	</div>
 			    			</div><!-- end-col -->
-			    			<div class="col-lg-6">
+			    			<div class="col-lg-3">
 			    				 <div class="form-group">
 							    <div class="radio">
 									<label>
@@ -145,9 +145,7 @@
 								</div>
 						  	</div>
 			    			</div><!-- end-col -->
-			    		</div><!-- end-row -->
-			    		<div class="row">
-			    			<div class="col-lg-6">
+			    			<div class="col-lg-3">
 			    				 <div class="form-group">
 							    <div class="radio">
 									<label>
@@ -157,29 +155,37 @@
 								</div>
 						  	</div>
 			    			</div><!-- end-col -->
+			    			<div class="col-lg-3"></div>
+			    		</div><!-- end-row -->
+			    		<div class="row">
 			    			<div class="col-lg-6">
 			    				 <div class="form-group">
-							    <div class="radio">
+							    <div class="checkbox">
 									<label>
-									    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+									    <input type="checkbox" name="optionsRadios" id="optionsRadios1" value="option1" checked>
 									    设置消息提醒（与邮箱绑定）
 							  		</label>
 								</div>
 						  	</div>
 			    			</div><!-- end-col -->
-			    		</div><!-- end-row -->
+			    			<div class="col-lg-6"></div>
+			    		</div>
 			    		<div class="row">
 			    			<div class="col-lg-6">
 			    				 <div class="form-group">
-							    <div class="radio">
+							    <div class="checkbox">
 									<label>
-									    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+									    <input type="checkbox" name="optionsRadios" id="optionsRadios1" value="option1" checked>
 									    接受每周精选邮件
 							  		</label>
 								</div>
 						  	</div>
 			    			</div><!-- end-col -->
-			    			<div class="col-lg-6"> <button type="submit" class="btn btn-primary text-center">保存</button></div>
+			    			<div class="col-lg-6"></div>
+			    		</div><!-- end-row -->
+			    		<div class="row">
+			    			<div class="col-lg-10"></div>
+			    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center">保存</button></div>
 			    		</div><!-- end-row -->
 			    		</div><!-- end-row -->
 			    		

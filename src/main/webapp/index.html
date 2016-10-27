@@ -10,6 +10,7 @@
 <link href="bower_components/bootstrap-datepicker/css/datepicker.css" rel="stylesheet">
 <link href="bower_components/odometer/themes/odometer-theme-train-station.css" rel="stylesheet">
 <link href="bower_components/pikaday/css/pikaday.css" rel="stylesheet">
+
 <!--  -->
 <link href="styles/main.css" rel="stylesheet" media="screen" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -37,8 +38,13 @@
 				<li ng-class="{ active: isActive('/topic') }"><a href="#/topic" >话题</a></li>
 				<li ng-class="{ active: isActive('/superStar') }"><a href="#/superStar"  >大咖</a></li>
 				<li ng-class="{ active: isActive('/message') }"><a href="#/message"  >消息</a></li>
+				<li class="fill-maring-left" ng-show="loginIn">
+					<div class="form-group index-create-question-btn">
+						<button type="submit" class="btn btn-default " ng-click="createQuestion()">提问</button>
+					</div>
+				</li>
               	<li class="fill-maring-left" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
-              	<li class="fill-maring-left dropdown" ng-show="loginIn !=undefined && loginIn" ng-class="{ active: isActive('/selfPage') }">
+              	<li class="fill-maring-left dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
 	              	<a href="#/selfPage" data-toggle="dropdown" >
 	              		<img alt="" class="img-20-size" src="../../images/selfPicture/ln.png"></img>陈雯婷
 	              		<span class="glyphicon glyphicon-chevron-down"></span>
@@ -95,7 +101,8 @@
 	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
 	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
 	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular.min.js"></script>
-	
+	<script type="text/javascript" src="bower_components/tinymce/tinymce.js"></script>
+	<script type="text/javascript" src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
 	<!-- self app js  -->
 	<script type="text/javascript" src="app/app.js"></script>
 	<script type="text/javascript" src="app/commons/commonModule.js"></script>
@@ -123,6 +130,7 @@
 	<script type="text/javascript" src="app/setting/settingCtrl.js"></script>
 	<script type="text/javascript" src="app/commons/services/userService.js"></script>
 	<script type="text/javascript" src="app/setting/directives/resetPasswdDirective.js"></script>
+	<script type="text/javascript" src="app/topic/createTopicCtrl.js"></script>
 	
 	
 </body>
