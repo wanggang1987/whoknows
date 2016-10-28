@@ -53,7 +53,6 @@ public class TopicController {
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getTopic(@PathVariable("id") Long id) {
-		log.info("" + id);
 		Topic topic = topicService.getTopic(id);
 		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
 		if (topic != null) {
