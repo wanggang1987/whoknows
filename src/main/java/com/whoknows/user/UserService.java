@@ -1,7 +1,7 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
-import com.whoknows.domain.message.ResetPasswdRequest;
+import com.whoknows.framework.ResetPasswdRequest;
 import com.whoknows.framework.TopicView;
 import com.whoknows.framework.UserView;
 

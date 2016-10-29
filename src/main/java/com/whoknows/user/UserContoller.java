@@ -1,7 +1,7 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
-import com.whoknows.domain.message.ResetPasswdRequest;
+import com.whoknows.framework.ResetPasswdRequest;
 import com.whoknows.framework.TopicView;
 import com.whoknows.framework.UserView;
 import java.util.ArrayList;
@@ -82,7 +82,7 @@ public class UserContoller {
 		return ResponseEntity.ok(topicViews);
 	}
 
-	@RequestMapping(path="/password/reset", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(path = "/password/reset", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity resetPasswd(@RequestBody ResetPasswdRequest request) {
 		log.info("Try to reset passwd: {}", request == null ? "" : request);
 		if (userService.resetPasswd(request)) {

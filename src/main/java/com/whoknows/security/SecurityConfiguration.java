@@ -60,6 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .antMatchers("/user/current").permitAll()
 				.antMatchers("/hot/**").permitAll()
 				.antMatchers("/user/**").permitAll()
+				.antMatchers("/reply/**").permitAll()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()

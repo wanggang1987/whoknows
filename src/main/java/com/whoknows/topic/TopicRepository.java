@@ -22,12 +22,11 @@ public class TopicRepository {
 	}
 
 	public void updateTopic(Topic topic) {
-		jdbcTemplate.update("update topic set user_id = ?, title = ? , content = ? where id = ? ",
+		jdbcTemplate.update("update topic set title = ? , content = ? where id = ? ",
 				ps -> {
-					ps.setLong(1, topic.getUser_id());
-					ps.setString(2, topic.getTitle());
-					ps.setString(3, topic.getContent());
-					ps.setLong(4, topic.getId());
+					ps.setString(1, topic.getTitle());
+					ps.setString(2, topic.getContent());
+					ps.setLong(3, topic.getId());
 				});
 	}
 

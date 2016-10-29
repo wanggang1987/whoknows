@@ -1,4 +1,4 @@
-package com.whoknows.domain.message;
+package com.whoknows.framework;
 
 public class ResetPasswdRequest {
 

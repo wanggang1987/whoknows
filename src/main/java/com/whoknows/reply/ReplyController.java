@@ -1,6 +1,6 @@
-package com.whoknows.topic;
+package com.whoknows.reply;
 
-import com.whoknows.domain.Topic;
+import com.whoknows.domain.Reply;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/topic")
-public class TopicController {
+@RequestMapping("/reply")
+public class ReplyController {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private TopicService topicService;
+	private RelpyService relpyService;
 
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity createTopic(@RequestBody Topic topic) {
-		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
-		if (topicService.createTopic(topic)) {
+	public ResponseEntity createReply(@RequestBody Reply reply) {
+		log.info(ToStringBuilder.reflectionToString(reply, ToStringStyle.MULTI_LINE_STYLE));
+		if (relpyService.createReply(reply)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
@@ -33,9 +33,9 @@ public class TopicController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity updateTopic(@RequestBody Topic topic) {
-		log.info(ToStringBuilder.reflectionToString(topic, ToStringStyle.MULTI_LINE_STYLE));
-		if (topicService.updateTopic(topic)) {
+	public ResponseEntity updateReply(@RequestBody Reply reply) {
+		log.info(ToStringBuilder.reflectionToString(reply, ToStringStyle.MULTI_LINE_STYLE));
+		if (relpyService.updateReply(reply)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
@@ -43,9 +43,10 @@ public class TopicController {
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity deleteTopic(@PathVariable("id") Long id) {
-		log.info("delete topic : {}", id);
-		if (topicService.deleteTopic(id)) {
+	public ResponseEntity deleteReply(@PathVariable("id") Long id) {
+		log.info("delete reply id: {}", id);
+
+		if (relpyService.deleteReply(id)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
@@ -53,11 +54,11 @@ public class TopicController {
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity getTopic(@PathVariable("id") Long id) {
-		log.info("get topic : {}", id);
-		Topic topic = topicService.getTopic(id);
-		if (topic != null) {
-			return ResponseEntity.ok(topic);
+	public ResponseEntity getReply(@PathVariable("id") Long id) {
+		log.info("get reply id: {}", id);
+		Reply reply = relpyService.getReply(id);
+		if (reply != null) {
+			return ResponseEntity.ok(reply);
 		} else {
 			return ResponseEntity.notFound().build();
 		}
