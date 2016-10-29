@@ -10,14 +10,11 @@ angular.module('WhoKnows').directive('wkSideBar', function ($location, $window, 
 		link: function (scope, elem) {
 			
 			scope.sideBarSetting = function(){
-				console.log("<><>")
-				UserService.initialize().then(function () {
-					if(UserService.isSignedIn()){
-						$location.path("/setting");
-					}else{
-						$location.path("/");
-					}
-				});
+				if(UserService.isSignedIn()){
+					$location.path("/setting");
+				}else{
+					$location.path("/login");
+				}
 			}
 			
 		}

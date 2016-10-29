@@ -1,4 +1,4 @@
-package com.whoknows.framework;
+package com.whoknows.wkMessage;
 
 import com.whoknows.domain.User;
 import com.whoknows.domain.Vip;

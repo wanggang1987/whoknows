@@ -1,8 +1,10 @@
 package com.whoknows.search;
 
-import com.whoknows.framework.TopicView;
-import com.whoknows.framework.UserView;
+import com.whoknows.wkMessage.TopicView;
+import com.whoknows.wkMessage.UserView;
+
 import java.util.stream.Collectors;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

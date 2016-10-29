@@ -3,7 +3,7 @@ package com.whoknows.user;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.domain.autoMappingBean.UserRowMapper;
-import com.whoknows.framework.ResetPasswdRequest;
+import com.whoknows.wkMessage.ResetPasswdRequest;
 
 import java.util.List;
 

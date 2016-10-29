@@ -6,6 +6,31 @@ body{
 .warn-color-font{
 	color:#FF0000
 }
+.default-wk-blue-btn{
+	width: 100px;
+    height: 40px;
+    color: #1386ab;
+    border: 2px solid #1386ab;
+    margin: 20px auto;
+}
+
+.default-wk-blue-btn[disabled]:hover{
+	width: 100px;
+    height: 40px;
+    color: #1386ab;
+    border: 2px solid #1386ab;
+    margin: 20px auto;
+}
+.default-wk-blue-btn:hover,
+.default-wk-blue-btn:focus,
+.default-wk-blue-btn:active{
+	background-color:#1386ab;
+	width: 100px;
+    height: 40px;
+    color: #FFF;
+    border: 2px solid #1386ab;
+    margin: 20px auto;
+}
 .icon.wechat{
 	background-image: url(../../images/commons/wechat.png);
 	background-size:cover;
@@ -148,6 +173,7 @@ article.page-home{
 .app-content{
 	padding: 5px;
 	padding-bottom: 10px;
+	min-height: 670px;
 }
 footer {
     padding: 15px 0;

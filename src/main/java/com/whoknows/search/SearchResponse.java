@@ -1,7 +1,8 @@
 package com.whoknows.search;
 
-import com.whoknows.framework.TopicView;
-import com.whoknows.framework.UserView;
+import com.whoknows.wkMessage.TopicView;
+import com.whoknows.wkMessage.UserView;
+
 import java.util.List;
 
 public class SearchResponse {

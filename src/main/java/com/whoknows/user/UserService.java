@@ -1,9 +1,9 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
-import com.whoknows.framework.ResetPasswdRequest;
-import com.whoknows.framework.TopicView;
-import com.whoknows.framework.UserView;
+import com.whoknows.wkMessage.ResetPasswdRequest;
+import com.whoknows.wkMessage.TopicView;
+import com.whoknows.wkMessage.UserView;
 
 import java.util.List;
 import java.util.stream.Collectors;

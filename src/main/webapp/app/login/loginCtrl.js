@@ -19,7 +19,9 @@ angular.module('wkLogin').controller('LoginCtrl',
 			$http.post('/login', $scope.loginInfo).success(function (data) {
 				$log.debug('Got the following response.');
 				$scope.loggingIn = false;
+				console.log(data)
 				LocalStorageService.put("userName", data.username, true); 
+				LocalStorageService.put("userId", data.id, true); 
 				UserService.initialize(true).then(function () {
 					$rootScope.$broadcast('event:login:success');
 				});

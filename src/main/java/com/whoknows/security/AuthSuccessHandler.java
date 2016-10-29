@@ -37,6 +37,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler{
 		JsonObject userObj = Json.createObjectBuilder()
 				.add("username", user.getEmail())
 				.add("authenticated", true)
+				.add("id", user.getId())
 				.build();
 		Json.createWriter(hsrp.getWriter()).writeObject(userObj);
 		hsrp.getWriter().flush();

@@ -1,11 +1,13 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
-import com.whoknows.framework.ResetPasswdRequest;
-import com.whoknows.framework.TopicView;
-import com.whoknows.framework.UserView;
+import com.whoknows.wkMessage.ResetPasswdRequest;
+import com.whoknows.wkMessage.TopicView;
+import com.whoknows.wkMessage.UserView;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

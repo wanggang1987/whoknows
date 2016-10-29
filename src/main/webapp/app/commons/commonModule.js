@@ -26,6 +26,8 @@ var wkCommon = angular.module('wkCommon', ['ngRoute']).config(function($routePro
 		data: {
 			standalonePage: true
 		}
+	}).when('/contact', {
+		templateUrl: 'app/contact/contact.html',
 	}).when('/error', {
 		templateUrl: 'error',
 		data: {
