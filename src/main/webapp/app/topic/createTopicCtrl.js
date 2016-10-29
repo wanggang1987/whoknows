@@ -3,7 +3,8 @@
 angular.module('wkTopic').controller('CreateTopicCtrl',
 	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.");
-		
+		$('.dropdown-toggle').dropdown()
+
 		$scope.tinymceOptions1 = {
 			resize: false,
 			menubar: false,
@@ -11,6 +12,9 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 			height: 350,
 		}
 		
+		$scope.getTags = function(){
+			alert()
+		}
 		$scope.createQuestion = function(){
 			if(!UserService.isSignedIn()){
 				LocalStorageService.put('LastPage', '/creteTopic', true);

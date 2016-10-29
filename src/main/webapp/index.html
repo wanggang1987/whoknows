@@ -10,7 +10,7 @@
 <link href="bower_components/bootstrap-datepicker/css/datepicker.css" rel="stylesheet">
 <link href="bower_components/odometer/themes/odometer-theme-train-station.css" rel="stylesheet">
 <link href="bower_components/pikaday/css/pikaday.css" rel="stylesheet">
-
+<link rel="stylesheet" href="components/fastselect-master/dist/fastselect.min.css">
 <!--  -->
 <link href="styles/main.css" rel="stylesheet" media="screen" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +33,7 @@
             	</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right" >
+            <ul class="nav navbar-nav navbar-right wk-nav" >
             		<li ng-class="{ active: isActive('/') }"><a href="#/">首页</a></li>
 				<li ng-class="{ active: isActive('/topic') }"><a href="#/topic" >话题</a></li>
 				<li ng-class="{ active: isActive('/superStar') }"><a href="#/superStar"  >大咖</a></li>
@@ -102,6 +102,7 @@
 	<script type="text/javascript" src="bower_components/textAngular/dist/textAngular.min.js"></script>
 	<script type="text/javascript" src="bower_components/tinymce/tinymce.js"></script>
 	<script type="text/javascript" src="bower_components/angular-ui-tinymce/src/tinymce.js"></script>
+	<script type="text/javascript" src="components/fastselect-master/dist/fastselect.standalone.js"></script>
 	<!-- self app js  -->
 	<script type="text/javascript" src="app/app.js"></script>
 	<script type="text/javascript" src="app/commons/commonModule.js"></script>

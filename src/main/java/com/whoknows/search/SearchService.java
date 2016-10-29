@@ -1,7 +1,5 @@
 package com.whoknows.search;
 
-import com.whoknows.wkMessage.TopicView;
-import com.whoknows.wkMessage.UserView;
 
 import java.util.stream.Collectors;
 
@@ -11,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.whoknows.wkMessage.search.SearchResponse;
 @Service
 public class SearchService {
 
@@ -27,23 +26,23 @@ public class SearchService {
 
 		SearchResponse searchResponse = new SearchResponse();
 
-		searchResponse.setTopicViews(searchDAO.searchTopicByKeyWord(key).stream().map(topic -> {
-			TopicView topicView = new TopicView();
-			topicView.setTopic(topic);
-			return topicView;
-		}).collect(Collectors.toList()));
-
-		searchResponse.getTopicViews().addAll(searchDAO.searchTagByKeyWord(key).stream().map(topic -> {
-			TopicView topicView = new TopicView();
-			topicView.setTopic(topic);
-			return topicView;
-		}).collect(Collectors.toList()));
-
-		searchResponse.setUserViews(searchDAO.searchUserByKeyWord(key).stream().map(user -> {
-			UserView userView = new UserView();
-			userView.setUser(user);
-			return userView;
-		}).collect(Collectors.toList()));
+//		searchResponse.setTopicViews(searchDAO.searchTopicByKeyWord(key).stream().map(topic -> {
+//			TopicView topicView = new TopicView();
+//			topicView.setTopic(topic);
+//			return topicView;
+//		}).collect(Collectors.toList()));
+//
+//		searchResponse.getTopicViews().addAll(searchDAO.searchTagByKeyWord(key).stream().map(topic -> {
+//			TopicView topicView = new TopicView();
+//			topicView.setTopic(topic);
+//			return topicView;
+//		}).collect(Collectors.toList()));
+//
+//		searchResponse.setUserViews(searchDAO.searchUserByKeyWord(key).stream().map(user -> {
+//			UserView userView = new UserView();
+//			userView.setUser(user);
+//			return userView;
+//		}).collect(Collectors.toList()));
 
 		return searchResponse;
 	}

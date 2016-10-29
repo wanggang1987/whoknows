@@ -6,6 +6,7 @@ body{
 .warn-color-font{
 	color:#FF0000
 }
+.default-wk-blue-btn[disabled]:hover,
 .default-wk-blue-btn{
 	width: 100px;
     height: 40px;
@@ -14,13 +15,6 @@ body{
     margin: 20px auto;
 }
 
-.default-wk-blue-btn[disabled]:hover{
-	width: 100px;
-    height: 40px;
-    color: #1386ab;
-    border: 2px solid #1386ab;
-    margin: 20px auto;
-}
 .default-wk-blue-btn:hover,
 .default-wk-blue-btn:focus,
 .default-wk-blue-btn:active{

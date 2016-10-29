@@ -43,4 +43,14 @@
             <column name="rank"/>
         </createIndex>
     </changeSet>
+    <changeSet id="tag table-1" author="whoknows">
+    		<sql>
+    			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('有机催化',NULL,3);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('光氧化还原',NULL,2);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('糖化学',NULL,1);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('天然产物全合成',NULL,1);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('波谱解析',NULL,1);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('计算机辅助药物设计',NULL,NULL);
+    		</sql>
+    </changeSet>
 </databaseChangeLog>

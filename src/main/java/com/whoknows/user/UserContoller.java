@@ -1,9 +1,8 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
-import com.whoknows.wkMessage.ResetPasswdRequest;
-import com.whoknows.wkMessage.TopicView;
-import com.whoknows.wkMessage.UserView;
+import com.whoknows.wkMessage.password.ResetPasswdRequest;
+import com.whoknows.wkMessage.user.UserSummaryInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +53,7 @@ public class UserContoller {
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getUserInfo(@PathVariable("id") Long id) {
-		UserView userView = userService.getUserInfo(id);
+		UserSummaryInfo userView = userService.getUserInfo(id);
 		if (userView != null) {
 			return ResponseEntity.ok(userView);
 		} else {
@@ -62,27 +61,27 @@ public class UserContoller {
 		}
 	}
 
-	@RequestMapping(path = "/{id}/follow/topic", method = RequestMethod.GET)
-	public ResponseEntity getUserFollowTopic(@PathVariable("id") Long id) {
-		List<TopicView> topicViews = new ArrayList<>();
-		return ResponseEntity.ok(topicViews);
-	}
-
-	@RequestMapping(path = "/{id}/topic", method = RequestMethod.GET)
-	public ResponseEntity getUserTopic(@PathVariable("id") Long id) {
-		List<TopicView> topicViews = userService.getUserTopic(id);
-		if (topicViews != null) {
-			return ResponseEntity.ok(topicViews);
-		} else {
-			return ResponseEntity.badRequest().build();
-		}
-	}
-
-	@RequestMapping(path = "/{id}/reply/topic", method = RequestMethod.GET)
-	public ResponseEntity getUserReplyTopic(@PathVariable("id") Long id) {
-		List<TopicView> topicViews = new ArrayList<>();
-		return ResponseEntity.ok(topicViews);
-	}
+//	@RequestMapping(path = "/{id}/follow/topic", method = RequestMethod.GET)
+//	public ResponseEntity getUserFollowTopic(@PathVariable("id") Long id) {
+//		List<TopicView> topicViews = new ArrayList<>();
+//		return ResponseEntity.ok(topicViews);
+//	}
+//
+//	@RequestMapping(path = "/{id}/topic", method = RequestMethod.GET)
+//	public ResponseEntity getUserTopic(@PathVariable("id") Long id) {
+//		List<TopicView> topicViews = userService.getUserTopic(id);
+//		if (topicViews != null) {
+//			return ResponseEntity.ok(topicViews);
+//		} else {
+//			return ResponseEntity.badRequest().build();
+//		}
+//	}
+//
+//	@RequestMapping(path = "/{id}/reply/topic", method = RequestMethod.GET)
+//	public ResponseEntity getUserReplyTopic(@PathVariable("id") Long id) {
+//		List<TopicView> topicViews = new ArrayList<>();
+//		return ResponseEntity.ok(topicViews);
+//	}
 
 	@RequestMapping(path = "/password/reset", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity resetPasswd(@RequestBody ResetPasswdRequest request) {

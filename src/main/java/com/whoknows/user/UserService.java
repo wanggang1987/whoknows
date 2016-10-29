@@ -1,9 +1,8 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
-import com.whoknows.wkMessage.ResetPasswdRequest;
-import com.whoknows.wkMessage.TopicView;
-import com.whoknows.wkMessage.UserView;
+import com.whoknows.wkMessage.password.ResetPasswdRequest;
+import com.whoknows.wkMessage.user.UserSummaryInfo;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,14 +21,14 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public UserView getUserInfo(Long id) {
+	public UserSummaryInfo getUserInfo(Long id) {
 		if (id == null) {
 			return null;
 		}
 
 		try {
-			UserView userView = new UserView();
-			userView.setUser(userRepository.getUserById(id));
+			UserSummaryInfo userView = new UserSummaryInfo();
+			userView.setUser(userRepository.getUserById(id), userRepository.getUserRolesByUserId(id));
 			return userView;
 		} catch (Exception e) {
 			log.error(e.getMessage());
@@ -37,22 +36,22 @@ public class UserService {
 		}
 	}
 
-	public List<TopicView> getUserTopic(Long id) {
-		if (id == null) {
-			return null;
-		}
-
-		try {
-			return userRepository.getUserTopic(id).stream().map(topic -> {
-				TopicView topicView = new TopicView();
-				topicView.setTopic(topic);
-				return topicView;
-			}).collect(Collectors.toList());
-		} catch (Exception e) {
-			log.error(e.getMessage());
-			return null;
-		}
-	}
+//	public List<TopicView> getUserTopic(Long id) {
+//		if (id == null) {
+//			return null;
+//		}
+//
+//		try {
+//			return userRepository.getUserTopic(id).stream().map(topic -> {
+//				TopicView topicView = new TopicView();
+//				topicView.setTopic(topic);
+//				return topicView;
+//			}).collect(Collectors.toList());
+//		} catch (Exception e) {
+//			log.error(e.getMessage());
+//			return null;
+//		}
+//	}
 	
 	public boolean createUser(User user){
 		if(StringUtils.isEmpty(user.getEmail()) && StringUtils.isEmpty(user.getPasswd())){

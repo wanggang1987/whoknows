@@ -1,9 +1,10 @@
 package com.whoknows.user;
 
+import com.whoknows.domain.Role;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.domain.autoMappingBean.UserRowMapper;
-import com.whoknows.wkMessage.ResetPasswdRequest;
+import com.whoknows.wkMessage.password.ResetPasswdRequest;
 
 import java.util.List;
 
@@ -71,6 +72,17 @@ public class UserRepository {
 				ps -> {
 					ps.setString(1, encoder.encode(request.getNewPasswd()) );
 					ps.setString(2, request.getEmail());
+				});
+	}
+	
+	public List<Role> getUserRolesByUserId(Long id) {
+		return jdbcTemplate.query("select role.* from role left join user_role on role.id = user_role.role_id where user_role.user_id = ?",
+				ps -> ps.setLong(1, id),
+				(rs,row)->{
+					Role role = new Role();
+					role.setId(rs.getLong("id"));
+					role.setRole(rs.getString("role"));
+					return role;
 				});
 	}
 	

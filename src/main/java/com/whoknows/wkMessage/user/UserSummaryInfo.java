@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.whoknows.domain.Role;
+import com.whoknows.domain.User;
 
 public class UserSummaryInfo {
 
@@ -118,5 +119,24 @@ public class UserSummaryInfo {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public void setUser(User user, List<Role> roles) {
+		this.id = user.getId();
+		this.email = user.getEmail();
+		this.phone = user.getPhone();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.companyName = user.getCompanyName();
+		this.province = user.getProvince();
+		this.city = user.getCity();
+		this.address = user.getAddress();
+		this.createTime = user.getCreateTime();
+		this.vip = user.getVip();
+		this.picture = user.getPicture();
+		this.education = user.getEducation();
+		this.signatureId = user.getSignatureId();
+		this.roles = roles;
+		this.title = user.getTitle();
+		
 	}
 }
