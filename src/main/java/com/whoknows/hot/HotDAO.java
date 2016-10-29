@@ -17,7 +17,7 @@ public class HotDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	private final int pageSize = 20;
+	private final int pageSize = 5;
 
 	public List<Vip> listHotVip(int page) {
 		return jdbcTemplate.query("select * from vip order by rank LIMIT ? OFFSET ?",

@@ -1,11 +1,13 @@
 package com.whoknows.wkMessage.topic;
 
+import java.util.List;
+
 public class CreateTopicRequest {
 
 	private Integer userId;
 	private String content;
 	private String title;
-	private Integer tagId;
+	private List<Integer> tagId;
 	
 	public Integer getUserId() {
 		return userId;
@@ -25,10 +27,10 @@ public class CreateTopicRequest {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Integer getTagId() {
+	public List<Integer> getTagId() {
 		return tagId;
 	}
-	public void setTagId(Integer tagId) {
+	public void setTagId(List<Integer> tagId) {
 		this.tagId = tagId;
 	}
 }

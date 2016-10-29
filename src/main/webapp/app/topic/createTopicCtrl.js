@@ -3,7 +3,19 @@
 angular.module('wkTopic').controller('CreateTopicCtrl',
 	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.");
-		$('.dropdown-toggle').dropdown()
+		$scope.tagEmptyWarn = false;
+		
+		$scope.closeWarnPanel = function(){
+			$scope.tagEmptyWarn = false;
+		}
+		$http.get("/tag/list").then(function(data){
+			var html = '';
+			_.each(data.data, function(tag){
+				html += "<option value='" + tag.value + "'>" + tag.text + "</option>";
+			})
+			$(".multipleSelect").html(html);
+			$('.multipleSelect').fastselect({"maxItems":5,"placeholder":"请选择标签"});
+		})
 
 		$scope.tinymceOptions1 = {
 			resize: false,
@@ -12,15 +24,18 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 			height: 350,
 		}
 		
-		$scope.getTags = function(){
-			alert()
-		}
 		$scope.createQuestion = function(){
+			var tags = $('.multipleSelect').val();
+			if(tags == undefined || tags == null || tags.length == 0){
+				$scope.tagEmptyWarn = true;
+				return;
+			}
 			if(!UserService.isSignedIn()){
 				LocalStorageService.put('LastPage', '/creteTopic', true);
 				$location.path("/login");
 			}
 			var topic = {
+				tagId: $('.multipleSelect').val(),
 				user_id : UserService.getCurrent().id,
 				title : $scope.title,	
 				content: $scope.content

@@ -2,35 +2,22 @@
 			  <div class="panel-heading text-center">热门大咖</div>
 			  <div class="panel-body">
 				 <div class="input-group">
-				      <input type="text" class="form-control" placeholder="搜索您感兴趣的大咖">
+				      <input type="text" class="form-control" ng-model="keyWordTopic"  placeholder="搜索您感兴趣的大咖">
 				      <span class="input-group-btn">
-				        <button class="btn btn-default " type="button"><span class="glyphicon glyphicon-search"></span></button>
+				        <button class="btn btn-default " type="button" ng-click="searchHotTopic()"><span class="glyphicon glyphicon-search"></span></button>
 			     	  </span>
 			    	 </div>
 			    	 <div class="list-group">
-			    	 	<div class="list-group-item row">
+			    	 	<div class="list-group-item row" ng-repeat="vip in vips">
 			    	 		<div class="col-md-3"><img alt="" src="../../images/selfPicture/1.png"></img></div>
 			    	 		<div class="col-md-9">
-			    	 			<a href="#"><h5 class="list-group-item-heading">赵丽颖</h5></a>
+			    	 			<a href="#"><h5 class="list-group-item-heading">{{vip.user_id}}</h5></a>
 					    		<p class="list-group-item-text">关注人数:13</p>
 					    	</div>
 			    	 	</div>
-					<div class="list-group-item row">
-			    	 		<div class="col-md-3"><img alt="" src="../../images/selfPicture/3.jpg"></img></div>
-			    	 		<div class="col-md-9">
-			    	 			<a href="#"><h5 class="list-group-item-heading">李静</h5></a>
-					    		<p class="list-group-item-text">关注人数:34</p>
-					    	</div>
-			    	 	</div>
-			    	 	<div class="list-group-item row">
-			    	 		<div class="col-md-3"><img alt="" src="../../images/selfPicture/2.png"></img></div>
-			    	 		<div class="col-md-9">
-			    	 			<a href="#"><h5 class="list-group-item-heading">兰芳</h5></a>
-					    		<p class="list-group-item-text">关注人数:450</p>
-					    	</div>
-			    	 	</div>
 			    	 	<div class="list-group-item text-center see-more-topic">
-			    	 		<a href="#">查看更多</a>
+			    	 		<a href="javascrpit:void(0)" ng-click="prePage()" ng-hide="currentPage == 1">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	    	 				<a href="javascrpit:void(0)" ng-click="nextPage()"  >下一页</a>
 			    	 	</div>
 				  </div>
 			  </div>

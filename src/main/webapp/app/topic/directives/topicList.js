@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkTopic').directive('topicList', function ($location, $log) {
+angular.module('wkTopic').directive('topicList', function ($location, $log, $http, LocalStorageService) {
 
 	return {
 		restrict: 'AE',
@@ -13,8 +13,17 @@ angular.module('wkTopic').directive('topicList', function ($location, $log) {
 		link: function (scope, element, attr) {
 			//可以点击 显示全部
 			scope.expandTopicContentAble = true;
-			
-			
+			$http.get("/search/" + LocalStorageService.get("homeSearchKeyWord")).then(function(data){
+				scope.topicLists = data.data;
+			});
+			$("#topic-pag-div").jqPaginator({
+			    totalPages: 100,
+			    visiblePages: 10,
+			    currentPage: 1,
+			    onPageChange: function (num, type) {
+			        $('#text').html('当前第' + num + '页');
+			    }
+			});
 			scope.topicLists=[
 			             {	id: 1,
 			            	 	topicHeader:"C-N欧联有没有可能不用陪体呢?",

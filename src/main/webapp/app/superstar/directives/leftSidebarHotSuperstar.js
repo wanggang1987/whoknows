@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log) {
+angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log, $http) {
 
 	return {
 		restrict: 'AE',
@@ -11,7 +11,33 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 			star: '='
 		},
 		link: function (scope) {
-			console.log("wkSuperStar->directives->hotSuperStarSiderbar: star: " + scope.star);
+			scope.currentPage = 1;
+			
+			var getTopicLists = function(page , keyWord){
+				if(keyWord == undefined || keyWord == null){
+					keyWord = "";
+				}
+				$http.get("hot/vip/" + page +"?keyWord=" + keyWord).then(function(data){
+					scope.vips = data.data;
+				});
+			}
+			
+			
+			getTopicLists(1);
+			
+			scope.searchHotTopic = function(){
+				
+			}
+			
+			scope.prePage = function(){
+				scope.currentPage = scope.currentPage <= 1 ? 1 : scope.currentPage -1;
+				getTopicLists(scope.currentPage);
+			}
+			
+			scope.nextPage = function(){
+				scope.currentPage = scope.currentPage + 1;
+				getTopicLists(scope.currentPage);
+			}
 		}
 	};
 

@@ -3,6 +3,20 @@ body{
 	word-wrap: break-word;
 	line-height: 1.7;
 }
+.wk-a-disabled {
+  cursor: not-allowed;
+}
+.fstElement.fstMultipleMode,
+.fstElement.fstMultipleMode.fstNoneSelected,
+.fstElement.fstMultipleMode .fstControls{
+	width:100%
+}
+.wk-warn-panel{
+	margin: 10px;
+}
+.wk-default-blue{
+	 background-color: #1386ab;
+}
 .warn-color-font{
 	color:#FF0000
 }
@@ -295,6 +309,7 @@ footer {
 }
 .hot-topic-siderbar .input-group .form-control:first-child{
 	background-color: #e16e1e;
+	color:#FFF;
 	height: 35px;
 	width: 100%;
 	border: 0px;
