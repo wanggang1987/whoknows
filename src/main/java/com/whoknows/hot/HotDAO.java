@@ -1,6 +1,7 @@
 package com.whoknows.hot;
 
 import java.util.List;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +27,10 @@ public class HotDAO {
 				},
 				(rs, row) -> {
 					HotVip vip = new HotVip();
-					vip.setName(rs.getString("last_name") + rs.getString("first_name"));
-					if (vip.getName() == null) {
+					if (StringUtils.isEmpty(rs.getString("last_name")) && StringUtils.isEmpty(rs.getString("first_name"))) {
 						vip.setName(rs.getString("email"));
+					} else {
+						vip.setName(rs.getString("last_name") + rs.getString("first_name"));
 					}
 					vip.setPricture(rs.getString("picture"));
 					vip.setFollow(100L);
@@ -57,9 +59,10 @@ public class HotDAO {
 				},
 				(rs, row) -> {
 					HotVip vip = new HotVip();
-					vip.setName(rs.getString("last_name") + rs.getString("first_name"));
-					if (vip.getName() == null) {
+					if (StringUtils.isEmpty(rs.getString("last_name")) && StringUtils.isEmpty(rs.getString("first_name"))) {
 						vip.setName(rs.getString("email"));
+					} else {
+						vip.setName(rs.getString("last_name") + rs.getString("first_name"));
 					}
 					vip.setPricture(rs.getString("picture"));
 					vip.setFollow(100L);
