@@ -33,7 +33,6 @@ public class PictureController {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.IMAGE_PNG);
 			headers.setCacheControl("no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
-			headers.setPragma("no-cache");
 			return new ResponseEntity<byte[]>(picture.getStream(), headers, HttpStatus.OK);
 		} else {
 			return ResponseEntity.notFound().build();
