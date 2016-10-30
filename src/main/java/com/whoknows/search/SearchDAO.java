@@ -30,7 +30,7 @@ public class SearchDAO {
 					ps.setString(2, key);
 					ps.setString(3, type.name());
 					ps.setInt(4, pageSize);
-					ps.setInt(5, (page - 1) * pageSize);;
+					ps.setInt(5, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
 					Topic topic = new Topic();

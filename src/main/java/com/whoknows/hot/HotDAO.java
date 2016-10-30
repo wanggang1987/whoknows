@@ -11,28 +11,58 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class HotDAO {
-
+	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-
-	public List<Vip> listHotVip() {
-		return jdbcTemplate.query("select * from vip order by rank desc LIMIT 5",
+	
+	public List<HotVip> listHotVip(Integer page, int pageSize) {
+		return jdbcTemplate.query("select vip.*, user.first_name, user.last_name, user.picture from vip "
+				+ "left join user on user.id = vip.user_id "
+				+ "order by vip.rank desc "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setInt(1, pageSize);
+					ps.setInt(2, (page - 1) * pageSize);
+				},
 				(rs, row) -> {
-					Vip vip = new Vip();
-					vip.setId(rs.getLong("id"));
-					vip.setAction(rs.getString("action"));
-					vip.setPersonal_profile_id(rs.getLong("personal_profile_id"));
-					vip.setUser_id(rs.getLong("user_id"));
-					vip.setCreate_time(rs.getTimestamp("create_time"));
-					vip.setUpdate_time(rs.getTimestamp("update_time"));
+					HotVip vip = new HotVip();
+					vip.setName(rs.getString("last_name") + rs.getString("first_name"));
+					vip.setPricture(rs.getString("picture"));
+					vip.setRank(rs.getLong("rank"));
+					vip.setUserID(rs.getLong("user_id"));
+					vip.setVipID(rs.getLong("id"));
 					return vip;
 				});
 	}
-
-	public List<Topic> listHotTopic() {
-		return jdbcTemplate.query("select * from topic order by rank desc limit 5",
+	
+	public List<HotTag> listHotTag(Integer page, int pageSize) {
+		return jdbcTemplate.query("select * from tag "
+				+ "order by rank desc "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setInt(1, pageSize);
+					ps.setInt(2, (page - 1) * pageSize);
+				},
+				(rs, row) -> {
+					HotTag tag = new HotTag();
+					tag.setPicture(null);
+					tag.setTagID(rs.getLong("id"));
+					tag.setTagName(rs.getNString("name"));
+					tag.setRank(rs.getLong("rank"));
+					return tag;
+				});
+	}
+	
+	public List<Topic> listHotTopic(Integer page, int pageSize) {
+		return jdbcTemplate.query("select * from topic "
+				+ "order by rank desc "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setInt(1, pageSize);
+					ps.setInt(2, (page - 1) * pageSize);
+				},
 				(rs, row) -> {
 					Topic topic = new Topic();
 					topic.setId(rs.getLong("id"));

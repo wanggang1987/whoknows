@@ -3,10 +3,8 @@ package com.whoknows.user;
 import com.whoknows.domain.User;
 import com.whoknows.wkMessage.password.ResetPasswdRequest;
 import com.whoknows.wkMessage.user.UserSummaryInfo;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +54,16 @@ public class UserContoller {
 		UserSummaryInfo userView = userService.getUserSummaryInfo(id);
 		if (userView != null) {
 			return ResponseEntity.ok(userView);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
+	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
+	public ResponseEntity editUserInfo(@RequestBody User user) {
+		log.info(ToStringBuilder.reflectionToString(user, ToStringStyle.MULTI_LINE_STYLE));
+		if (userService.editUserInfo(user)) {
+			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
 		}

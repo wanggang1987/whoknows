@@ -15,4 +15,9 @@
 		</createIndex>
 		
 	</changeSet>
+	
+	<changeSet id="update user" author="whoknows">
+		
+	</changeSet>
+	
 </databaseChangeLog>

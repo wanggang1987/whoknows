@@ -25,7 +25,7 @@ public class UserRepository {
 
 	@Autowired
 	private PasswordEncoder encoder;
-	
+
 	public User getUserById(Long id) {
 		return jdbcTemplate.query("select * from user where id = ? limit 1",
 				ps -> ps.setLong(1, id), new UserRowMapper()).stream().findAny().orElse(null);
@@ -34,7 +34,7 @@ public class UserRepository {
 	public List<Topic> getUserTopic(Long id) {
 		return jdbcTemplate.query("select * from topic where user_id = ? ",
 				ps -> ps.setLong(1, id),
-				(rs,row)->{
+				(rs, row) -> {
 					Topic topic = new Topic();
 					topic.setId(rs.getLong("id"));
 					topic.setAction(rs.getString("action"));
@@ -46,22 +46,39 @@ public class UserRepository {
 					return topic;
 				});
 	}
-	
+
 	public void createUser(User user) {
 		jdbcTemplate.update("insert into user(email,phone,e_pass) values (?, ?, ?)",
-			ps -> {
-				ps.setString(1, user.getEmail());
-				ps.setString(2, "");
-				ps.setString(3, encoder.encode(user.getPasswd()));
-			});
+				ps -> {
+					ps.setString(1, user.getEmail());
+					ps.setString(2, "");
+					ps.setString(3, encoder.encode(user.getPasswd()));
+				});
+	}
+
+	public void editUserInfo(User user) {
+		jdbcTemplate.update("update user set phone = ?,  first_name = ? , last_name = ? , company_name = ? , province = ? , city = ? , address = ? , education = ?, title = ?  "
+				+ "where id = ? ",
+				ps -> {
+					ps.setString(1, user.getPhone());
+					ps.setString(2, user.getFirstName());
+					ps.setString(3, user.getLastName());
+					ps.setString(4, user.getCompanyName());
+					ps.setString(5, user.getProvince());
+					ps.setString(6, user.getCity());
+					ps.setString(7, user.getAddress());
+					ps.setString(8, user.getEducation());
+					ps.setString(9, user.getTitle());
+					ps.setLong(10, user.getId());
+				});
 	}
 
 	public boolean validUserByEmailAndPasswd(String email, String oldPasswd) {
-		try{
+		try {
 			String ePass = jdbcTemplate.queryForObject("select e_pass from user where email = ? limit 1",
 					new Object[]{email}, new SingleColumnRowMapper<String>(String.class));
 			return encoder.matches(oldPasswd, ePass);
-		}catch(Exception e){
+		} catch (Exception e) {
 			return false;
 		}
 	}
@@ -70,24 +87,22 @@ public class UserRepository {
 
 		jdbcTemplate.update("update user set e_pass = ? where email = ?",
 				ps -> {
-					ps.setString(1, encoder.encode(request.getNewPasswd()) );
+					ps.setString(1, encoder.encode(request.getNewPasswd()));
 					ps.setString(2, request.getEmail());
 				});
 	}
-	
+
 	public List<Role> getUserRolesByUserId(Long id) {
 		return jdbcTemplate.query("select role.* from role "
 				+ "left join user_role on role.id = user_role.role_id "
 				+ "where user_role.user_id = ?",
 				ps -> ps.setLong(1, id),
-				(rs,row)->{
+				(rs, row) -> {
 					Role role = new Role();
 					role.setId(rs.getLong("id"));
 					role.setRole(rs.getString("role"));
 					return role;
 				});
 	}
-	
-	
 
 }

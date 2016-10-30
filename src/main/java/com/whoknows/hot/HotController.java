@@ -1,9 +1,6 @@
 package com.whoknows.hot;
 
 import com.whoknows.search.SearchService;
-import com.whoknows.search.SearchType;
-import com.whoknows.wkMessage.search.SearchTopicResponse;
-import com.whoknows.wkMessage.search.SearchUserResponse;
 import com.whoknows.wkMessage.search.TopicResult;
 import com.whoknows.wkMessage.user.UserSummaryInfo;
 import java.util.List;
@@ -24,12 +21,10 @@ public class HotController {
 
 	@Autowired
 	private HotService hotService;
-	@Autowired
-	private SearchService searchService;
 
-	@RequestMapping(path = "/vip", method = RequestMethod.GET)
-	public ResponseEntity listHotVip() {
-		List<UserSummaryInfo> vips = hotService.listHotVip();
+	@RequestMapping(path = "/vip/{page}", method = RequestMethod.GET)
+	public ResponseEntity listHotVip(@PathVariable("page") Integer page) {
+		List<HotVip> vips = hotService.listHotVip(page);
 		if (vips != null) {
 			return ResponseEntity.ok(vips);
 		} else {
@@ -37,31 +32,11 @@ public class HotController {
 		}
 	}
 
-	@RequestMapping(path = "/topic", method = RequestMethod.GET)
-	public ResponseEntity listHotTopic() {
-		List<TopicResult> topics = hotService.listHotTopic();
+	@RequestMapping(path = "/tag/{page}", method = RequestMethod.GET)
+	public ResponseEntity listHotTag(@PathVariable("page") Integer page) {
+		List<HotTag> topics = hotService.listHotTags(page);
 		if (topics != null) {
 			return ResponseEntity.ok(topics);
-		} else {
-			return ResponseEntity.badRequest().build();
-		}
-	}
-	
-	@RequestMapping(path = "/topic/{page}", method = RequestMethod.GET)
-	public ResponseEntity searchTopicByKeyWord(String keyWord , @PathVariable("page") Integer page) {
-		SearchTopicResponse searchResponse = searchService.searchTopicByKeyWord(keyWord, page, SearchType.rank);
-		if (searchResponse != null) {
-			return ResponseEntity.ok(searchResponse);
-		} else {
-			return ResponseEntity.badRequest().build();
-		}
-	}
-	
-	@RequestMapping(path = "/vip/{page}", method = RequestMethod.GET)
-	public ResponseEntity searchVipyKeyWord(String keyWord , @PathVariable("page") Integer page) {
-		SearchUserResponse searchResponse = searchService.searchUserByKeyWord(keyWord, page, SearchType.rank, true);
-		if (searchResponse != null) {
-			return ResponseEntity.ok(searchResponse);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}

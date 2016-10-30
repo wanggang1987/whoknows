@@ -73,6 +73,7 @@ public class UserService {
 				|| !StringUtils.equals(request.getNewPasswd(), request.getRepeatNewPasswd())) {
 			return false;
 		}
+
 		if (!userRepository.validUserByEmailAndPasswd(request.getEmail(), request.getOldPasswd())) {
 			return false;
 		}
@@ -84,6 +85,20 @@ public class UserService {
 			log.error("Reset passwd error , username:{}, {}", request.getEmail(), e);
 			return false;
 		}
+	}
+
+	public boolean editUserInfo(User user) {
+		if (user.getId() == null) {
+			return false;
+		}
+
+		try {
+			userRepository.editUserInfo(user);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 }
