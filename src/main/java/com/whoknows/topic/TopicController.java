@@ -55,9 +55,9 @@ public class TopicController {
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getTopic(@PathVariable("id") Long id) {
 		log.info("get topic : {}", id);
-		Topic topic = topicService.getTopic(id);
-		if (topic != null) {
-			return ResponseEntity.ok(topic);
+		TopicDetail topicDetail = topicService.getTopic(id);
+		if (topicDetail != null) {
+			return ResponseEntity.ok(topicDetail);
 		} else {
 			return ResponseEntity.notFound().build();
 		}

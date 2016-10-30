@@ -2,6 +2,7 @@ package com.whoknows.topic;
 
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Topic;
+import com.whoknows.user.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,8 +13,11 @@ import org.springframework.stereotype.Service;
 public class TopicService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	private TopicRepository topicRepository;
+	@Autowired
+	private UserService userService;
 
 	public boolean createTopic(Topic topic) {
 		topic.setAction(ActionType.pending.toString());
@@ -62,16 +66,19 @@ public class TopicService {
 		}
 	}
 
-	public Topic getTopic(Long id) {
+	public TopicDetail getTopic(Long id) {
 		if (id == null) {
 			return null;
 		}
 
+		TopicDetail topicDetail= new TopicDetail();
 		try {
-			return topicRepository.getTopic(id);
+			topicDetail.setTopic( topicRepository.getTopic(id));
+			topicDetail.setUser(userService.getUserSummaryInfo(topicDetail.getTopic().getUser_id()));
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			return null;
 		}
+		return topicDetail;
 	}
 }
