@@ -6,7 +6,15 @@ public class HotVip {
 	private String name;
 	private Long userID;
 	private Long vipID;
-	private Long rank;
+	private Long follow;
+
+	public Long getFollow() {
+		return follow;
+	}
+
+	public void setFollow(Long follow) {
+		this.follow = follow;
+	}
 
 	public String getPricture() {
 		return pricture;
@@ -38,13 +46,5 @@ public class HotVip {
 
 	public void setVipID(Long vipID) {
 		this.vipID = vipID;
-	}
-
-	public Long getRank() {
-		return rank;
-	}
-
-	public void setRank(Long rank) {
-		this.rank = rank;
 	}
 }

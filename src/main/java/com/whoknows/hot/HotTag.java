@@ -1,17 +1,18 @@
 package com.whoknows.hot;
 
 public class HotTag {
+
 	private String picture;
 	private String tagName;
 	private Long tagID;
-	private Long rank;
+	private Long follow;
 
-	public Long getRank() {
-		return rank;
+	public Long getFollow() {
+		return follow;
 	}
 
-	public void setRank(Long rank) {
-		this.rank = rank;
+	public void setFollow(Long follow) {
+		this.follow = follow;
 	}
 
 	public Long getTagID() {
@@ -37,5 +38,5 @@ public class HotTag {
 	public void setTagName(String tagName) {
 		this.tagName = tagName;
 	}
-	
+
 }

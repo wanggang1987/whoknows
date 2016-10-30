@@ -1,7 +1,6 @@
 package com.whoknows.hot;
 
 import com.whoknows.domain.Topic;
-import com.whoknows.domain.Vip;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +29,7 @@ public class HotDAO {
 					HotVip vip = new HotVip();
 					vip.setName(rs.getString("last_name") + rs.getString("first_name"));
 					vip.setPricture(rs.getString("picture"));
-					vip.setRank(rs.getLong("rank"));
+					vip.setFollow(100L);
 					vip.setUserID(rs.getLong("user_id"));
 					vip.setVipID(rs.getLong("id"));
 					return vip;
@@ -50,7 +49,7 @@ public class HotDAO {
 					tag.setPicture(null);
 					tag.setTagID(rs.getLong("id"));
 					tag.setTagName(rs.getNString("name"));
-					tag.setRank(rs.getLong("rank"));
+					tag.setFollow(100L);
 					return tag;
 				});
 	}
