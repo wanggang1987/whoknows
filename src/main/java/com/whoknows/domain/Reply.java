@@ -12,6 +12,15 @@ public class Reply {
 	private Timestamp create_time;
 	private Timestamp update_time;
 	private Long reply_id;
+	private Long rank;
+
+	public Long getRank() {
+		return rank;
+	}
+
+	public void setRank(Long rank) {
+		this.rank = rank;
+	}
 
 	public Long getTopic_id() {
 		return topic_id;

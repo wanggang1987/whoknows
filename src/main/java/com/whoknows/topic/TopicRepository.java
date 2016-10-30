@@ -40,6 +40,7 @@ public class TopicRepository {
 				(rs, row) -> {
 					Topic topic = new Topic();
 					topic.setId(rs.getLong("id"));
+					topic.setUser_id(rs.getLong("user_id"));
 					topic.setAction(rs.getString("action"));
 					topic.setTitle(rs.getString("title"));
 					topic.setContent(rs.getString("content"));

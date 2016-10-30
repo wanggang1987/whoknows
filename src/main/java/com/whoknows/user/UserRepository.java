@@ -76,7 +76,9 @@ public class UserRepository {
 	}
 	
 	public List<Role> getUserRolesByUserId(Long id) {
-		return jdbcTemplate.query("select role.* from role left join user_role on role.id = user_role.role_id where user_role.user_id = ?",
+		return jdbcTemplate.query("select role.* from role "
+				+ "left join user_role on role.id = user_role.role_id "
+				+ "where user_role.user_id = ?",
 				ps -> ps.setLong(1, id),
 				(rs,row)->{
 					Role role = new Role();

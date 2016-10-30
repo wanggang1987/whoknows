@@ -16,6 +16,19 @@ public class RelpyService {
 	@Autowired
 	private ReplyRepository replyRepository;
 
+	public Reply getHotReplyForRopic(Long topicId) {
+		if (topicId == null) {
+			return null;
+		}
+
+		try {
+			return replyRepository.getHotReplyForRopic(topicId);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return null;
+		}
+	}
+
 	public boolean createReply(Reply reply) {
 		if (reply.getUser_id() == null
 				|| reply.getTopic_id() == null

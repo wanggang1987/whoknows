@@ -2,11 +2,10 @@ package com.whoknows.user;
 
 import com.whoknows.domain.User;
 import com.whoknows.wkMessage.password.ResetPasswdRequest;
+import com.whoknows.wkMessage.search.TopicResult;
 import com.whoknows.wkMessage.user.UserSummaryInfo;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public UserSummaryInfo getUserInfo(Long id) {
+	public UserSummaryInfo getUserSummaryInfo(Long id) {
 		if (id == null) {
 			return null;
 		}
@@ -36,55 +35,55 @@ public class UserService {
 		}
 	}
 
-//	public List<TopicView> getUserTopic(Long id) {
-//		if (id == null) {
-//			return null;
-//		}
-//
-//		try {
-//			return userRepository.getUserTopic(id).stream().map(topic -> {
-//				TopicView topicView = new TopicView();
-//				topicView.setTopic(topic);
-//				return topicView;
-//			}).collect(Collectors.toList());
-//		} catch (Exception e) {
-//			log.error(e.getMessage());
-//			return null;
-//		}
-//	}
-	
-	public boolean createUser(User user){
-		if(StringUtils.isEmpty(user.getEmail()) && StringUtils.isEmpty(user.getPasswd())){
+	public List<TopicResult> getUserTopic(Long id) {
+		if (id == null) {
+			return null;
+		}
+
+		try {
+			return userRepository.getUserTopic(id).stream().map(topic -> {
+				TopicResult topicView = new TopicResult();
+				topicView.setTopic(topic);
+				return topicView;
+			}).collect(Collectors.toList());
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return null;
+		}
+	}
+
+	public boolean createUser(User user) {
+		if (StringUtils.isEmpty(user.getEmail()) && StringUtils.isEmpty(user.getPasswd())) {
 			return false;
 		}
-		try{
+		try {
 			userRepository.createUser(user);
 			log.info("Create user :{} success.", user.getEmail());
 			return true;
-		}catch(Exception e){
+		} catch (Exception e) {
 			return false;
 		}
 	}
 
 	public boolean resetPasswd(ResetPasswdRequest request) {
-		if(request == null || StringUtils.isEmpty(request.getEmail())
+		if (request == null || StringUtils.isEmpty(request.getEmail())
 				|| StringUtils.isEmpty(request.getOldPasswd())
 				|| StringUtils.isEmpty(request.getNewPasswd())
 				|| StringUtils.isEmpty(request.getRepeatNewPasswd())
-				|| !StringUtils.equals(request.getNewPasswd(), request.getRepeatNewPasswd())){
+				|| !StringUtils.equals(request.getNewPasswd(), request.getRepeatNewPasswd())) {
 			return false;
 		}
-		if(!userRepository.validUserByEmailAndPasswd(request.getEmail(), request.getOldPasswd())){
+		if (!userRepository.validUserByEmailAndPasswd(request.getEmail(), request.getOldPasswd())) {
 			return false;
 		}
-		
-		try{
+
+		try {
 			userRepository.resetPasswd(request);
 			return true;
-		}catch(Exception e){
+		} catch (Exception e) {
 			log.error("Reset passwd error , username:{}, {}", request.getEmail(), e);
 			return false;
 		}
 	}
-	
+
 }

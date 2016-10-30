@@ -15,6 +15,24 @@ public class ReplyRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	public Reply getHotReplyForRopic(Long id)
+	{
+		return jdbcTemplate.query("select * from reply where topic_id = ? order by rank desc limit 1",
+				ps -> ps.setLong(1, id),
+				(rs, row) -> {
+					Reply reply = new Reply();
+					reply.setId(rs.getLong("id"));
+					reply.setAction(rs.getString("action"));
+					reply.setContent(rs.getString("content"));
+					reply.setCreate_time(rs.getTimestamp("create_time"));
+					reply.setReply_id(rs.getLong("reply_id"));
+					reply.setTopic_id(rs.getLong("topic_id"));
+					reply.setUpdate_time(rs.getTimestamp("update_time"));
+					reply.setUser_id(rs.getLong("user_id"));
+					return reply;
+				}).stream().findAny().orElse(null);
+	}
+	
 	public void createReply(Reply reply) {
 		jdbcTemplate.update("insert into reply (user_id, topic_id, content, action, reply_id) values (?, ?, ?, ?, ?)",
 				ps -> {

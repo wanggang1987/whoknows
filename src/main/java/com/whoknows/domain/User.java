@@ -21,10 +21,9 @@ public class User {
 	private String picture;
 	private String education;
 	private Long signatureId;
-	private Long roleId;
 	private String title;
 	private String action;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -121,19 +120,6 @@ public class User {
 		this.action = action;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", phone=" + phone
-				+ ", passwd=" + passwd + ", ePass=" + ePass + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", companyName="
-				+ companyName + ", province=" + province + ", city=" + city
-				+ ", address=" + address + ", createTime=" + createTime
-				+ ", updateTime=" + updateTime + ", vip=" + vip + ", picture="
-				+ picture + ", education=" + education + ", signatureId="
-				+ signatureId + ", roleId=" + roleId + ", title=" + title
-				+ ", action=" + action + "]";
-	}
-
 	public String getePass() {
 		return ePass;
 	}
@@ -188,14 +174,6 @@ public class User {
 
 	public void setSignatureId(Long signatureId) {
 		this.signatureId = signatureId;
-	}
-
-	public Long getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
 	}
 
 }

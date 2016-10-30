@@ -18,7 +18,7 @@ public class TagService {
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private TagRepository tagRepository;
-
+	
 	public boolean addTag(Tag tag) {
 		if (StringUtils.isEmpty(tag.getName())) {
 			return false;

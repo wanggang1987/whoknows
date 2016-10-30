@@ -2,10 +2,9 @@ package com.whoknows.wkMessage.search;
 
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Topic;
-import com.whoknows.domain.User;
 import com.whoknows.wkMessage.user.UserSummaryInfo;
 
-public class TopicSearchResult {
+public class TopicResult {
 
 	private Topic topic;
 	private UserSummaryInfo topicUser;
@@ -16,8 +15,9 @@ public class TopicSearchResult {
 	private Integer replyFollowCount;
 	private Integer replyLikeCount;
 	private Integer replyCommentCount;
+	
 	public Topic getTopic() {
-		return topic;
+		return topic;	
 	}
 	public void setTopic(Topic topic) {
 		this.topic = topic;
@@ -58,6 +58,4 @@ public class TopicSearchResult {
 	public void setReplyCommentCount(Integer replyCommentCount) {
 		this.replyCommentCount = replyCommentCount;
 	}
-	
-	
 }

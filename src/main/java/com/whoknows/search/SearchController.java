@@ -18,9 +18,9 @@ public class SearchController {
 	@Autowired
 	private SearchService searchService;
 
-	@RequestMapping(path = "/{key}", method = RequestMethod.GET)
-	public ResponseEntity searchByKeyWord(@PathVariable("key") String key) {
-		SearchResponse searchResponse = searchService.searchByKeyWord(key);
+	@RequestMapping(path = "/{page}", method = RequestMethod.GET)
+	public ResponseEntity searchByKeyWord(String keyWord , @PathVariable("page") Integer page) {
+		SearchResponse searchResponse = searchService.searchByKeyWord(keyWord, page);
 		if (searchResponse != null) {
 			return ResponseEntity.ok(searchResponse);
 		} else {
