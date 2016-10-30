@@ -46,7 +46,7 @@
               	<li class="fill-maring-left" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
               	<li class="fill-maring-left dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
 	              	<a href="#/selfPage" data-toggle="dropdown" >
-	              		<img alt="" class="img-20-size" src="{{user.picture}}"></img>{{user.email}}
+	              		<img alt="" class="img-20-size" src="{{user.picture}}" ng-cloak></img> {{user.email}}
 	              		<span class="glyphicon glyphicon-chevron-down"></span>
 	              	</a>
 	              	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -133,6 +133,6 @@
 	<script type="text/javascript" src="app/commons/services/userService.js"></script>
 	<script type="text/javascript" src="app/setting/directives/resetPasswdDirective.js"></script>
 	<script type="text/javascript" src="app/topic/createTopicCtrl.js"></script>
-	
+	<script type="text/javascript" src="app/topic/topicDetailCtrl.js"></script>
 </body>
 </html>

@@ -11,14 +11,13 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			topic: '='
 		}, 
 		link: function (scope, element, attr) {
-			//可以点击 显示全部
-			scope.expandTopicContentAble = true;
-			if(LocalStorageService.get("homeSearchKeyWord") != undefined && LocalStorageService.get("homeSearchKeyWord") != null){
-				$http.get("/search/1?keyWord=" + LocalStorageService.get("homeSearchKeyWord")).then(function(data){
+			
+			function loadTopic(page, keyWord){
+				$http.get("/search/" + page + "?keyWord=" + keyWord).then(function(data){
 					scope.topicLists = data.data.topicResults;
 					_.each(scope.topicLists, function(result){
 						if(result.topic.content.length > 100){
-							result.topic.displayContent = result.topic.content.substr(0, 100);
+							result.topic.displayContent = result.topic.content.substr(0, 100) + "...";
 							result.topic.commentListsExpandAble = true;
 						}else{
 							result.topic.displayContent = result.topic.content;
@@ -32,13 +31,25 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 				});
 			}
 			
+			
+			
+			
+			//可以点击 显示全部
+			scope.expandTopicContentAble = true;
+			if(LocalStorageService.get("homeSearchKeyWord") != undefined 
+					&& LocalStorageService.get("homeSearchKeyWord") != null){
+				loadTopic(1, LocalStorageService.get("homeSearchKeyWord"));
+			}else{
+				loadTopic(1, 'a');
+			}
+			
 			scope.expandTopicContent = function(topic){
 				scope.expandTopicContentAble = false;
-				topic.topicContent = _.map([1, 2, 3], function(num){ return topic.topicContent + topic.topicContent });
+				result.topic.displayContent = topic.content;
 			}
 			scope.collapseTopicContent = function(topic){
 				scope.expandTopicContentAble = true;
-				topic.topicContent = topic.topicContent.toString().substr(0,89);
+				topic.topicContent = topic.content.substr(0, 100) +"...";
 			}
 			
 			scope.expandCommentLists = function(topic){

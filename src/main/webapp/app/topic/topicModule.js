@@ -8,6 +8,12 @@ var wkCommon = angular.module('wkTopic', ['ngRoute', 'ui.tinymce']).config(funct
 		data: {
 			standalonePage: true
 		}
+	}).when('/topicDetail', {
+		templateUrl: 'app/topic/topicDetail.html',
+		controller: 'TopicDetailCtrl',
+		data: {
+			standalonePage: true
+		}
 	})
 });
 
