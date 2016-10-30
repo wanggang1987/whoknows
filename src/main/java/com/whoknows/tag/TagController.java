@@ -2,9 +2,7 @@ package com.whoknows.tag;
 
 import com.whoknows.domain.Tag;
 import com.whoknows.wkMessage.topic.TopicSelectResponse;
-
 import java.util.List;
-
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -39,7 +37,7 @@ public class TagController {
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity deleteTopic(@RequestBody Tag tag) {
 		log.info(ToStringBuilder.reflectionToString(tag, ToStringStyle.MULTI_LINE_STYLE));
-		if (tagService.deleteTag(tag)) {
+			if (tagService.deleteTag(tag)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();

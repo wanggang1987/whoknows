@@ -1,16 +1,16 @@
 package com.whoknows.wkMessage.search;
 
+import com.whoknows.wkMessage.user.UserSummaryInfo;
 import java.util.List;
 
-
-public class SearchResponse {
+public class SearchUserResponse {
 
 	private String keyWord;
 	private Integer currentPage;
 	private Integer pageSize;
 	private Integer totalPage;
-	
-	private List<TopicResult> topicResults;
+
+	private List<UserSummaryInfo> users;
 
 	public String getKeyWord() {
 		return keyWord;
@@ -44,12 +44,11 @@ public class SearchResponse {
 		this.totalPage = totalPage;
 	}
 
-	public List<TopicResult> getTopicResults() {
-		return topicResults;
+	public List<UserSummaryInfo> getUsers() {
+		return users;
 	}
 
-	public void setTopicResults(List<TopicResult> topicResults) {
-		this.topicResults = topicResults;
+	public void setUsers(List<UserSummaryInfo> users) {
+		this.users = users;
 	}
-	
 }

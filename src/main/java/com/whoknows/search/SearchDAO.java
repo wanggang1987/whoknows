@@ -17,18 +17,20 @@ public class SearchDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	public List<Topic> searchTagByKeyWord(String key, int page, int pageSize) {
+	public List<Topic> searchTagByKeyWord(String key, int page, int pageSize, SearchType type) {
 		return jdbcTemplate.query("select * from topic "
 				+ "where title like ? "
 				+ "and id in (select topic_id from tag_topic "
 				+ "		where tag_id = ( select id from tag where name = ? ) "
 				+ "		) "
+				+ "order by ? "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setString(1, "%" + key + "%");
 					ps.setString(2, key);
-					ps.setInt(3, pageSize);
-					ps.setInt(4, (page - 1) * pageSize);;
+					ps.setString(3, type.name());
+					ps.setInt(4, pageSize);
+					ps.setInt(5, (page - 1) * pageSize);;
 				},
 				(rs, row) -> {
 					Topic topic = new Topic();
@@ -44,13 +46,16 @@ public class SearchDAO {
 				});
 	}
 
-	public List<Topic> searchTopicByKeyWord(String key, int page, int pageSize) {
+	public List<Topic> searchTopicByKeyWord(String key, int page, int pageSize, SearchType type) {
 		return jdbcTemplate.query("select * from topic "
-				+ "where title like ? limit ? OFFSET ? ",
+				+ "where title like ? "
+				+ "order by ? "
+				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setString(1, "%" + key + "%");
-					ps.setInt(2, pageSize);
-					ps.setInt(3, (page - 1) * pageSize);
+					ps.setString(2, type.name());
+					ps.setInt(3, pageSize);
+					ps.setInt(4, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
 					Topic topic = new Topic();
@@ -66,17 +71,24 @@ public class SearchDAO {
 				});
 	}
 
-	public List<User> searchUserByKeyWord(String key) {
+	public List<User> searchUserByKeyWord(String key, int page, int pageSize, SearchType type, boolean vip) {
 		return jdbcTemplate.query("select * from user "
-				+ "where email like ? "
+				+ "where ( email like ? "
 				+ "or phone like ? "
 				+ "or first_name like ? "
-				+ "or last_name like ? ",
+				+ "or last_name like ? ) "
+				+ "and vip = ? "
+				+ "order by ? "
+				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setString(1, "%" + key + "%");
 					ps.setString(2, "%" + key + "%");
 					ps.setString(3, "%" + key + "%");
 					ps.setString(4, "%" + key + "%");
+					ps.setBoolean(5, vip);
+					ps.setString(6, type.name());
+					ps.setInt(7, pageSize);
+					ps.setInt(8, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
 					User user = new User();

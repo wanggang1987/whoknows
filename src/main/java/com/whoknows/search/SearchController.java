@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.whoknows.wkMessage.search.SearchResponse;
+import com.whoknows.wkMessage.search.SearchTopicResponse;
 @Controller
 @RequestMapping("/search")
 public class SearchController {
@@ -19,8 +19,8 @@ public class SearchController {
 	private SearchService searchService;
 
 	@RequestMapping(path = "/{page}", method = RequestMethod.GET)
-	public ResponseEntity searchByKeyWord(String keyWord , @PathVariable("page") Integer page) {
-		SearchResponse searchResponse = searchService.searchByKeyWord(keyWord, page);
+	public ResponseEntity searchTopicByKeyWord(String keyWord , @PathVariable("page") Integer page) {
+		SearchTopicResponse searchResponse = searchService.searchTopicByKeyWord(keyWord, page, SearchType.time);
 		if (searchResponse != null) {
 			return ResponseEntity.ok(searchResponse);
 		} else {

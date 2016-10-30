@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.whoknows.domain.Role;
 import com.whoknows.domain.User;
+import com.whoknows.domain.Vip;
 
 public class UserSummaryInfo {
 
@@ -25,6 +26,15 @@ public class UserSummaryInfo {
 	private String title;
 
 	private List<Role> roles;
+	private Vip vipInfo;
+
+	public Vip getVipInfo() {
+		return vipInfo;
+	}
+
+	public void setVipInfo(Vip vipInfo) {
+		this.vipInfo = vipInfo;
+	}
 
 	public Long getId() {
 		return id;

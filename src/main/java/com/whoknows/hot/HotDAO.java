@@ -17,14 +17,8 @@ public class HotDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	private final int pageSize = 5;
-
-	public List<Vip> listHotVip(int page) {
-		return jdbcTemplate.query("select * from vip order by rank LIMIT ? OFFSET ?",
-				ps -> {
-					ps.setInt(1, pageSize);
-					ps.setInt(2, (page - 1) * pageSize);
-				},
+	public List<Vip> listHotVip() {
+		return jdbcTemplate.query("select * from vip order by rank desc LIMIT 5",
 				(rs, row) -> {
 					Vip vip = new Vip();
 					vip.setId(rs.getLong("id"));
@@ -37,12 +31,8 @@ public class HotDAO {
 				});
 	}
 
-	public List<Topic> listHotTopic(int page) {
-		return jdbcTemplate.query("select * from topic order by rank limit ? OFFSET ?",
-				ps -> {
-					ps.setInt(1, pageSize);
-					ps.setInt(2, (page - 1) * pageSize);
-				},
+	public List<Topic> listHotTopic() {
+		return jdbcTemplate.query("select * from topic order by rank desc limit 5",
 				(rs, row) -> {
 					Topic topic = new Topic();
 					topic.setId(rs.getLong("id"));
