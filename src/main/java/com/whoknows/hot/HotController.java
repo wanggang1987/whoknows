@@ -1,8 +1,5 @@
 package com.whoknows.hot;
 
-import com.whoknows.search.SearchService;
-import com.whoknows.wkMessage.search.TopicResult;
-import com.whoknows.wkMessage.user.UserSummaryInfo;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +20,14 @@ public class HotController {
 	private HotService hotService;
 
 	@RequestMapping(path = "/vip/{page}", method = RequestMethod.GET)
-	public ResponseEntity listHotVip(@PathVariable("page") Integer page) {
-		List<HotVip> vips = hotService.listHotVip(page);
+	public ResponseEntity searchVipyKeyWordOnRank(String keyWord, @PathVariable("page") Integer page) {
+		List<HotVip> vips = null;
+		if (keyWord == null) {
+			vips = hotService.listHotVip(page);
+		} else {
+			vips = hotService.listHotVip(keyWord, page);
+		}
+
 		if (vips != null) {
 			return ResponseEntity.ok(vips);
 		} else {
@@ -33,8 +36,14 @@ public class HotController {
 	}
 
 	@RequestMapping(path = "/tag/{page}", method = RequestMethod.GET)
-	public ResponseEntity listHotTag(@PathVariable("page") Integer page) {
-		List<HotTag> topics = hotService.listHotTags(page);
+	public ResponseEntity listHotTag(String keyWord, @PathVariable("page") Integer page) {
+		List<HotTag> topics = null;
+		if (keyWord == null) {
+			topics = hotService.listHotTags(page);
+		} else {
+			topics = hotService.listHotTags(keyWord, page);
+		}
+
 		if (topics != null) {
 			return ResponseEntity.ok(topics);
 		} else {

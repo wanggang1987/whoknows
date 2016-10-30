@@ -16,8 +16,11 @@
 		
 	</changeSet>
 	
-	<changeSet id="update user" author="whoknows">
-		
+	<changeSet id="update user2" author="whoknows">
+		<dropColumn tableName="user" columnName="phone"/>
+		<addColumn tableName="user">
+			<column name="phone" type="varchar(20)"/>
+		</addColumn>
 	</changeSet>
 	
 </databaseChangeLog>

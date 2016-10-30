@@ -12,17 +12,12 @@ import org.springframework.stereotype.Service;
 public class HotService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	private final int pageSize = 20;
+	private final int pageSize = 5;
 
 	@Autowired
 	private HotDAO hotDAO;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private RelpyService relpyService;
 
 	public List<HotVip> listHotVip(Integer page) {
-
 		try {
 			return hotDAO.listHotVip(page, pageSize);
 		} catch (Exception e) {
@@ -34,6 +29,24 @@ public class HotService {
 	public List<HotTag> listHotTags(Integer page) {
 		try {
 			return hotDAO.listHotTag(page, pageSize);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return null;
+		}
+	}
+
+	public List<HotVip> listHotVip(String key, Integer page) {
+		try {
+			return hotDAO.listHotVip(key, page, pageSize);
+		} catch (Exception e) {
+			log.error(e.getMessage());
+			return null;
+		}
+	}
+
+	public List<HotTag> listHotTags(String key, Integer page) {
+		try {
+			return hotDAO.listHotTag(key, page, pageSize);
 		} catch (Exception e) {
 			log.error(e.getMessage());
 			return null;
