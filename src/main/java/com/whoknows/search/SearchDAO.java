@@ -17,19 +17,23 @@ public class SearchDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
-	public List<Topic> searchTagByKeyWord(String key) {
+	public List<Topic> searchTagByKeyWord(String key, int page, int pageSize) {
 		return jdbcTemplate.query("select * from topic "
 				+ "where title like ? "
 				+ "and id in (select topic_id from tag_topic "
-				+ "             where tag_id = ( select id from tag where name = ? )"
-				+ "           ) ",
+				+ "		where tag_id = ( select id from tag where name = ? ) "
+				+ "		) "
+				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setString(1, "%" + key + "%");
 					ps.setString(2, key);
+					ps.setInt(3, pageSize);
+					ps.setInt(4, (page - 1) * pageSize);;
 				},
 				(rs, row) -> {
 					Topic topic = new Topic();
 					topic.setId(rs.getLong("id"));
+					topic.setUser_id(rs.getLong("user_id"));
 					topic.setAction(rs.getString("action"));
 					topic.setTitle(rs.getString("title"));
 					topic.setContent(rs.getString("content"));
@@ -40,15 +44,18 @@ public class SearchDAO {
 				});
 	}
 
-	public List<Topic> searchTopicByKeyWord(String key) {
+	public List<Topic> searchTopicByKeyWord(String key, int page, int pageSize) {
 		return jdbcTemplate.query("select * from topic "
-				+ "where title like ? ",
+				+ "where title like ? limit ? OFFSET ? ",
 				ps -> {
 					ps.setString(1, "%" + key + "%");
+					ps.setInt(2, pageSize);
+					ps.setInt(3, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
 					Topic topic = new Topic();
 					topic.setId(rs.getLong("id"));
+					topic.setUser_id(rs.getLong("user_id"));
 					topic.setAction(rs.getString("action"));
 					topic.setTitle(rs.getString("title"));
 					topic.setContent(rs.getString("content"));

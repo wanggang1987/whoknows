@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class SearchService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private final int pageSize = 20;
 
 	@Autowired
 	private SearchDAO searchDAO;
@@ -31,18 +32,18 @@ public class SearchService {
 
 		SearchResponse searchResponse = new SearchResponse();
 		searchResponse.setKeyWord(key);
-		searchResponse.setPageSize(20);
+		searchResponse.setPageSize(pageSize);
 		searchResponse.setTotalPage(100);
 		searchResponse.setCurrentPage(page);
 		searchResponse.setTopicResults(new ArrayList<>());
 
-		searchDAO.searchTopicByKeyWord(key).stream().forEach(topic -> {
+		searchDAO.searchTopicByKeyWord(key, page, pageSize).stream().forEach(topic -> {
 			TopicResult topicResult = new TopicResult();
 			topicResult.setTopic(topic);
 			searchResponse.getTopicResults().add(topicResult);
 		});
 
-		searchDAO.searchTagByKeyWord(key).parallelStream().forEach(topic -> {
+		searchDAO.searchTagByKeyWord(key, page, pageSize).parallelStream().forEach(topic -> {
 			TopicResult topicResult = new TopicResult();
 			topicResult.setTopic(topic);
 			searchResponse.getTopicResults().add(topicResult);
