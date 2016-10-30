@@ -15,7 +15,7 @@
 			    				 <div class="form-group">
 							    <label for="inputEmail3" class="col-sm-3 control-label text-right">姓名</label>
 							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="姓名" >
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.firstName" placeholder="姓名" >
 							    </div>
 						  	</div>
 			    			</div><!-- end-col -->
@@ -23,7 +23,7 @@
 			    				<div class="form-group">
 							    <label for="inputEmail3" class="col-sm-3 control-label text-right">职位名称</label>
 							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="职位" >
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.title" placeholder="职位" >
 							    </div>
 						  	</div>
 			    			</div><!-- end-col -->
@@ -33,7 +33,7 @@
 			    				 <div class="form-group">
 							    <label for="inputEmail3" class="col-sm-3 control-label text-right">目前就职</label>
 							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="目前就职" >
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.companyName" placeholder="目前就职" >
 							    </div>
 						  	</div>
 			    			</div><!-- end-col -->
@@ -41,7 +41,7 @@
 			    				<div class="form-group">
 							    <label for="inputEmail3" class="col-sm-3 control-label text-right" >教育信息</label>
 							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="教育信息" >
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.education" placeholder="教育信息" >
 							    </div>
 						  	</div>
 			    			</div><!-- end-col -->
@@ -66,8 +66,18 @@
 			    			</div>
 			    		</div><!-- end-row -->
 			    		<div class="row">
+			    			<div class="alert alert-success alert-dismissible fade in wk-warn-panel" role="alert" ng-show="showSaveBaseInfoSuccess">
+						      <button type="button" class="close" data-dismiss="alert" ng-click="closeBaseInfoSuccessPanel()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						      <strong>基本信息保存成功！</strong>
+						    </div>
+						    <div class="alert alert-danger alert-dismissible fade in wk-warn-panel" role="alert" ng-show="showSaveBaseInfoError">
+						      <button type="button" class="close" data-dismiss="alert" ng-click="closeBaseInfoWarnPanel()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						      <strong>基本信息保存失败！</strong>
+						 </div>
+			    		</div>
+			    		<div class="row">
 			    			<div class="col-lg-10"></div>
-			    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center">保存</button></div>
+			    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center" ng-click="saveBaseInfo()">保存</button></div>
 			    		</div><!-- end-row -->
 			    </div> 
 			    <div class="tab-pane fade" id="account-passwd-setting">
@@ -75,7 +85,7 @@
 		    				 <div class="form-group">
 						    <label for="inputEmail3" class="col-sm-3 control-label text-right">绑定邮箱</label>
 						    <div class="col-sm-9">
-						      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="email" >
+						      <input type="text" required disabled class="form-control login-email-input"  ng-model = "setUser.email" placeholder="email" >
 						    </div>
 					  	</div>
 			    		</div><!-- end-row -->
@@ -83,7 +93,7 @@
 			    			<div class="form-group">
 							    <label for="inputEmail3" class="col-sm-3 control-label text-right">手机</label>
 							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-moldel = "" placeholder="手机" >
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.phone" placeholder="手机" >
 							    </div>
 						  </div>
 			    		</div>
@@ -119,8 +129,18 @@
 			    			</div><!-- end-col -->
 			    		</div>
 			    		<div class="row">
+			    			<div class="alert alert-success alert-dismissible fade in wk-warn-panel" role="alert" ng-show="showSavePassInfoSuccess">
+						      <button type="button" class="close" data-dismiss="alert" ng-click="closePassInfoSuccessPanel()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						      <strong>基本信息保存成功！</strong>
+						    </div>
+						    <div class="alert alert-danger alert-dismissible fade in wk-warn-panel" role="alert" ng-show="showSavePassInfoError">
+						      <button type="button" class="close" data-dismiss="alert" ng-click="closePassInfoWarnPanel()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						      <strong>基本信息保存失败！</strong>
+						 </div>
+			    		</div>
+			    		<div class="row">
 			    			<div class="col-lg-10"></div>
-			    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center">保存</button></div>
+			    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center" ng-click="savePassInfo()">保存</button></div>
 			    		</div><!-- end-row -->
 			    </div>
 			    <div class="tab-pane fade" id="message-setting">

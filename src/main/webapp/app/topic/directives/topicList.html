@@ -1,14 +1,14 @@
 <div class="topic-list">
-	<div class="row" ng-repeat="topic in topicLists"> 
-		<div class="col-xs-20 col-sm-12">
-			<div class="topic-header"><a>{{topic.topicHeader}}</a></div>
+	<div class="row" ng-repeat="result in topicLists"> 
+		<div class="col-xs-20 col-sm-12"> 
+			<div class="topic-header"><a>{{result.topic.title}}</a></div>
 			<div class="topic-body">
 				<div class="topic-body-author">
-					<img alt="" ng-src="{{topic.topicAuthor.img}}" ></img>
-					<span >{{topic.topicAuthor.baseInfo}}</span>
+					<img alt="" ng-src="{{result.topicUser.picture}}" ></img>
+					<span >{{result.topicUser.email}}</span>
 				</div>
 				<div class="topic-body-content">
-					{{topic.topicContent}}<a href="javascript:void(0);" ng-click="expandTopicContent(topic)" ng-if="expandTopicContentAble">显示全部</a>
+					<p ng-bind-html="result.topic.displayContent | to_trusted"></p><a href="javascript:void(0);" ng-click="expandTopicContent(topic)" ng-if="topic.topic.displayContent">显示全部</a>
 				</div>
 			</div>
 			<div class="topic-footer">

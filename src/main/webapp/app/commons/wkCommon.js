@@ -5,10 +5,15 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		$scope.loginIn = false;
 		UserService.initialize().then(function () {
 			$scope.loginIn = UserService.isSignedIn();
+			if($scope.loginIn){
+				initUser();
+			}
 		});
+		
 		
 		$rootScope.$on('event:login:success', function () {
 			$scope.loginIn = true;
+			initUser();
 			if (LocalStorageService.get('LastPage')) {
 				var lastPage = LocalStorageService.get('LastPage');
 				if (lastPage) {
@@ -18,8 +23,16 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 			} else {
 				$location.path('/');
 			}
+			
 		});
 		
+		
+		function initUser(){
+			$scope.user = UserService.getCurrent();
+			if($scope.user.picture == undefined || $scope.user.picture == null){
+				$scope.user.picture = "../../images/people-no-img-default.png";
+			}
+		}
 		$scope.isActive = function (viewLocation) {
 		     var active = (viewLocation === $location.path());
 		     return active;

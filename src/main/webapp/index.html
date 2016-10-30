@@ -46,7 +46,7 @@
               	<li class="fill-maring-left" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
               	<li class="fill-maring-left dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
 	              	<a href="#/selfPage" data-toggle="dropdown" >
-	              		<img alt="" class="img-20-size" src="../../images/selfPicture/ln.png"></img>陈雯婷
+	              		<img alt="" class="img-20-size" src="{{user.picture}}"></img>{{user.email}}
 	              		<span class="glyphicon glyphicon-chevron-down"></span>
 	              	</a>
 	              	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
