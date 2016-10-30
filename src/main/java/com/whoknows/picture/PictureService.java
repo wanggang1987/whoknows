@@ -17,7 +17,7 @@ public class PictureService {
 		if (id == null) {
 			return null;
 		}
-
+		
 		try {
 			return pictureRepository.getPicture(id);
 		} catch (Exception e) {
@@ -25,17 +25,16 @@ public class PictureService {
 		}
 	}
 
-	public boolean putPicture(Picture picture) {
+	public Long putPicture(Picture picture) {
 		if (picture.getStream() == null) {
-			return false;
+			return null;
 		}
 
 		try {
-			pictureRepository.putPicture(picture);
+			return pictureRepository.putPicture(picture);
 		} catch (Exception e) {
 			log.error(e.getMessage());
-			return false;
+			return null;
 		}
-		return true;
 	}
 }
