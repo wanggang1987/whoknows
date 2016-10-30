@@ -8,6 +8,7 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 		$scope.closeWarnPanel = function(){
 			$scope.tagEmptyWarn = false;
 		}
+		
 		$http.get("/tag/list").then(function(data){
 			var html = '';
 			_.each(data.data, function(tag){
@@ -22,6 +23,10 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 			menubar: false,
 			statusbar: false,
 			height: 350,
+			plugins: ["image"],
+		    file_browser_callback: function(field_name, url, type, win) {
+		            if(type=='image') alert(url +"->" + field_name +"->" + type +"->" + win);
+		    }
 		}
 		
 		$scope.createQuestion = function(){
