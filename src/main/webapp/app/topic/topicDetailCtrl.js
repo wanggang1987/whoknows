@@ -6,6 +6,6 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		$scope.tagEmptyWarn = false;
 		
 		$http.get("/topic/" + $location.search().id).then(function(data){
-			$scope.topic = data.data;
+			$scope.topic = data.data.topic;
 		});
 	});
