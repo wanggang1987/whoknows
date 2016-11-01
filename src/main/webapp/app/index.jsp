@@ -88,7 +88,7 @@
 	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultCtrl.js"></script>
-	<script type="text/javascript" src="/app/commons/wkCommon.js"></script>
+	<script type="text/javascript" src="/app/commons/appCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/services/localStorageService.js"></script>
 	<script type="text/javascript" src="/app/commons/factories/permissionCheckInterceptor.js"></script>
 	<script type="text/javascript" src="/app/homeCtrl.js"></script>

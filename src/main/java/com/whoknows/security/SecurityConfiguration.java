@@ -1,5 +1,7 @@
 package com.whoknows.security;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -47,7 +57,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/login*").permitAll()
 				.antMatchers("/images/**").permitAll()
-				.antMatchers("index.html", "/app/**", "/**", "login*").permitAll()
+				.antMatchers("index.html", "/app/**", "/p/**", "login*").permitAll()
 				.antMatchers("/styles/**").permitAll()
 				.antMatchers("/fronts/**").permitAll()
 				.antMatchers("/components/**").permitAll()
@@ -68,8 +78,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.logoutUrl("/logout")
 				.logoutSuccessUrl("/")
 			.and()
-				.addFilterBefore(authFilter(),UsernamePasswordAuthenticationFilter.class).csrf().disable();
+				.addFilterBefore(authFilter(),UsernamePasswordAuthenticationFilter.class).csrf().disable()
+				.exceptionHandling().authenticationEntryPoint(authEntryPoint());
 			
 	}
+	
+	@Bean
+	public AuthenticationEntryPoint authEntryPoint() {
+		return new Http403ForbiddenEntryPoint();
+	}
+
 	
 }

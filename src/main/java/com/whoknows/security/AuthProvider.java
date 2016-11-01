@@ -1,6 +1,8 @@
 package com.whoknows.security;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,7 +47,8 @@ public class AuthProvider implements AuthenticationProvider{
 					log.info("Password do not match.");
 					throw new BadCredentialsException("Invalid username/password given.");
 				}
-				return new UsernamePasswordAuthenticationToken(user, null, Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+				List<String> roles = authDao.getRolesByUserId(user.getId());
+				return new UsernamePasswordAuthenticationToken(user, null, roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
 			} catch (EmptyResultDataAccessException ex) {
 				log.warn("Could not find username : {}", username);
 				throw new UsernameNotFoundException("User " + username + " not found.");

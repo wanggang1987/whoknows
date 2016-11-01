@@ -9,14 +9,6 @@ angular.module('WhoKnows').directive('wkSideBar', function ($location, $window, 
 		replace: true,
 		link: function (scope, elem) {
 			
-			scope.sideBarSetting = function(){
-				if(UserService.isSignedIn()){
-					$location.path("/setting");
-				}else{
-					$location.path("/login");
-				}
-			}
-			
 		}
 	};
 });

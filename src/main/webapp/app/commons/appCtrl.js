@@ -26,6 +26,11 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 			
 		});
 		
+		$rootScope.$on('event:loginRequired', function () {
+			if (!$location.path('/login')) {
+				$location.path('/login');
+			}
+		});
 		
 		function initUser(){
 			$scope.user = UserService.getCurrent();

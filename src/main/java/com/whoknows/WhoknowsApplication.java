@@ -11,7 +11,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @SpringBootApplication
-@EnableGlobalMethodSecurity
 public class WhoknowsApplication extends WebMvcConfigurerAdapter{
 
 	

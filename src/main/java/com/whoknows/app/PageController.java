@@ -18,7 +18,7 @@ public class PageController {
 	
 	@RequestMapping("/p/")
 	public String direct() {
-		return "index";
+		return "app/index";
 	}
 
 	@RequestMapping("/p/{page}")

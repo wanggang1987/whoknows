@@ -8,7 +8,7 @@
 		</label>
 	</a>
 	
-	<a class="setting closed"  href="" ng-click="sideBarSetting()">
+	<a class="setting closed"  href="#/setting" >
 		<label class="closed">
 			 设置 
 		</label>
