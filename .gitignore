@@ -8,3 +8,4 @@ bower.json.bk
 Servers/**
 node/**
 :
+database.properties
