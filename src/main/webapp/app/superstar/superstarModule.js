@@ -3,13 +3,13 @@
 
 var wkCommon = angular.module('wkSuperstar', ['ngRoute']).config(function($routeProvider, $logProvider){
 	$routeProvider.when('/', {
-		templateUrl: 'app/home.html',
+		templateUrl: 'app/home',
 		controller: 'HomeCtrl',
 		data: {
 			standalonePage: true
 		}
 	}).when('/selfPage', {
-		templateUrl: 'app/users/selfHomePage.html',
+		templateUrl: 'app/users/selfHomePage',
 		controller: 'SelfHomeCtrl',
 		data: {
 			standalonePage: true

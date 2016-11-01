@@ -2,7 +2,7 @@ angular.module('wkLogin').directive('wkForgotPassword',
 		function($log, $http, $timeout) {
 
 			return {
-				templateUrl: 'app/login/directives/forgetPasswd.html',
+				templateUrl: 'app/login/directives/forgetPasswd',
 				scope: {
 					activateResetPassword : '='
 				},

@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="modal fade" id="reset-password-modal">
   <div class="modal-dialog">
     <div class="modal-content">

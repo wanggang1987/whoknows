@@ -10,11 +10,12 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 		}
 		
 		$http.get("/tag/list").then(function(data){
-			var html = '';
-			_.each(data.data, function(tag){
-				html += "<option value='" + tag.value + "'>" + tag.text + "</option>";
-			})
-			$(".multipleSelect").html(html);
+			$scope.tags = data.data;
+//			var html = '';
+//			_.each(data.data, function(tag){
+//				html += "<option value='" + tag.value + "'>" + tag.text + "</option>";
+//			})
+//			$(".multipleSelect").html(html);
 			$('.multipleSelect').fastselect({"maxItems":5,"placeholder":"请选择标签"});
 		})
 

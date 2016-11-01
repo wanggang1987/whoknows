@@ -5,7 +5,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 
 	return {
 		restrict: 'AE',
-		templateUrl: 'app/topic/directives/topicList.html',
+		templateUrl: 'app/topic/directives/topicList',
 		replace: true,
 		scope: {
 			topic: '='

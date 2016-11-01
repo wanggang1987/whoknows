@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="panel panel-default hot-topic-siderbar">
 			  <div class="panel-heading text-center">热门大咖</div>
 			  <div class="panel-body">
@@ -9,7 +11,7 @@
 			    	 </div>
 			    	 <div class="list-group">
 			    	 	<div class="list-group-item row" ng-repeat="vip in vips">
-			    	 		<div class="col-md-3"><img alt="" src="{{vip.picture}}" ng-cloak></img></div>
+			    	 		<div class="col-md-3"><img alt="" ng-src="{{vip.picture}}" ng-cloak></img></div>
 			    	 		<div class="col-md-9">
 			    	 			<a href="#"><h5 class="list-group-item-heading">{{vip.name}}</h5></a>
 					    		<p class="list-group-item-text">关注人数:{{vip.follow}}</p>

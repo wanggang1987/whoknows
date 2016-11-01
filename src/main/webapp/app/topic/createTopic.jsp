@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="container create-topic-page"> 
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
@@ -5,6 +7,7 @@
         		<h4>请选择标签<span class="small">&nbsp;&nbsp;&nbsp;(最多支持选择5个标签)</span></h4>
 	        <form class="attireCodeToggleBlock" action="" style="width: 100%">
 	            <select class="multipleSelect" multiple name="language" >
+	            		<option ng-repeat="tag in tags" value="{{tag.value}}" >{{tag.text}}</option>
 	            </select>
 	        </form>
         		<hr/>
