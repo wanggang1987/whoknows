@@ -2,7 +2,7 @@ angular.module('wkSetting').directive('wkResetPassword',
 		function($log, $http, $timeout, LocalStorageService) {
 
 			return {
-				templateUrl: 'app/setting/directives/resetPasswd.html',
+				templateUrl: 'app/setting/directives/resetPasswd',
 				scope: {
 					activateResetPassword : '='
 				},

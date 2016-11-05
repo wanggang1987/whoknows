@@ -1,4 +1,5 @@
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="contact-us-page">
 	<div class="row">
 		<div class="col-lg-2"></div>

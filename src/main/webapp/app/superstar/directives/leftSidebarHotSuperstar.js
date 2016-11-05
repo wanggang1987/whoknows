@@ -5,7 +5,7 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 
 	return {
 		restrict: 'AE',
-		templateUrl: 'app/superstar/directives/leftSidebarHotSuperstar.html',
+		templateUrl: 'app/superstar/directives/leftSidebarHotSuperstar',
 		replace: true,
 		scope: {
 			star: '='
@@ -14,7 +14,7 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 			scope.currentPage = 1;
 			scope.lastPage = false;
 			var getVipLists = function(page , keyWord){
-				var vipListUrl = "hot/vip/" + page;
+				var vipListUrl = "/hot/vip/" + page;
 				if(keyWord != undefined && keyWord != null && $.trim(keyWord) != ''){
 					vipListUrl = vipListUrl + "?keyWord=" + keyWord;
 				}

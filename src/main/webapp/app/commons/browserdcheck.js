@@ -36,5 +36,5 @@ var getBrowserVersion = function() {
 	return M[1];
 };
 if (getBrowser().toLowerCase() == 'msie' && (getBrowserVersion() < 10 ) ) {
-	window.location = ('/frontend-app/unsupported.html');
+	window.location = ('/frontend-app/unsupported');
 }

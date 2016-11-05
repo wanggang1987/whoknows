@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="topic-list">
 	<div class="row" ng-repeat="result in topicLists"> 
 		<div class="col-xs-20 col-sm-12"> 

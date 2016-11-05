@@ -5,7 +5,7 @@ angular.module('wkTopic').directive('hotTopicSiderbar', function ($location, $lo
 
 	return {
 		restrict: 'AE',
-		templateUrl: 'app/topic/directives/HotTopicSidbar.html',
+		templateUrl: 'app/topic/directives/HotTopicSidbar',
 		replace: true,
 		scope: {
 		},
@@ -14,7 +14,7 @@ angular.module('wkTopic').directive('hotTopicSiderbar', function ($location, $lo
 			scope.lastPage = false;
 			
 			var getTagLists = function(page, keyWord){
-				var tagListUrl = "hot/tag/" + page;
+				var tagListUrl = "/hot/tag/" + page;
 				if(keyWord != undefined && keyWord != null && $.trim(keyWord) != ''){
 					tagListUrl = tagListUrl + "?keyWord=" + keyWord;
 				}
