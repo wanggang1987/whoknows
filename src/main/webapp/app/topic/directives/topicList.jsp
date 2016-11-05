@@ -13,32 +13,43 @@
 				</div>
 			</div>
 			<div class="topic-footer">
-				<ul>
+				<ul class="topic-footer-ul">
 					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-heart"></span>关注问题</a></li>
-					<li><a href="javascript:void(0);" ng-click="expandCommentLists(topic)"><span class="glyphicon glyphicon-comment"></span>评论</a></li>
+					<li><a href="javascript:void(0);" ng-click="expandCommentLists(result.topic)"><span class="glyphicon glyphicon-comment"></span>评论</a></li>
 					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> 点赞</a></li>
 					<li><a href="javascript:void(0);" ng-if="!result.topic.commentListsExpandAble" ng-click="collapseTopicContent(result.topic)"><span class="glyphicon glyphicon-eject" ></span> 收起</a></li>
 				</ul>
 				<div class="topic-comment-lists" >
-					<div class="popover bottom topic-comment-list-{{topic.id}}" role="tooltip"  >
+					<div class="popover bottom topic-comment-list-{{result.topic.id}}" role="tooltip"  style="display:none">
 					      <div class="arrow"></div>
 					      <div class="popover-content">
-					      		<div class="topic-comment-list row" ng-repeat="comment in topic.commentLists">
+					      		<div class="text-center" ng-hide="result.topic.loadCommentsSuccess">评论加载中...</div>
+					      		<div class="topic-comment-list row" ng-repeat="comment in result.topic.commentLists.data" ng-show="result.topic.loadCommentsSuccess">
 					      			<div class="topic-comment-body">
 										<div class="topic-comment-body-author">
-											<img alt="" ng-src="{{comment.commentAuthor.img}}" ></img>
-											<span >{{comment.commentAuthor.baseInfo}}</span>
+											<img alt="" ng-src="{{comment.author.img}}" ></img>
+											<span >{{comment.author.firstName}}</span>
 										</div>
 										<div class="topic-comment-body-content">
-											{{comment.commentContent}}
+											{{comment.content}}
+										</div>
+										<div class="topic-comment-body-attach-info">
+											{{ comment.create_time | date : "y-dd-MM HH:mm:ss" }}
 										</div>
 									</div>
 					      		</div>
-					      		 <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-link-numbers="true"></ul>
+					      		<wk-pagination ng-if="result.topic.loadCommentsSuccess" pagination-info="result.topic.commentLists.paging"  load-data="loadComments(result.topic)"></wk-pagination>
+					      		<div class="">
+					      			<textarea class="form-control" maxlength="1024" rows="3" required ng-model="title" ></textarea>
+						        		<p>还可以输入个{{20000 - title.length}}字</p>
+						        		<div class="text-right">
+							        		<button type="submit" class="btn btn-default  " ng-click="createQuestion()">取消</button>
+							        		<button type="submit" class="btn btn-default  " ng-click="createQuestion()">评论</button>
+					      			</div>
+					      		</div>
 					      </div>
 					 </div>
 				</div>
-				<div id="topic-pag-div"></div>
 			</div>
 		</div>
 	</div>

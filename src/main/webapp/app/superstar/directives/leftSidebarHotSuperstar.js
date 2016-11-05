@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log, $http) {
+angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log, $http, DEFAULT_IMG) {
 
 	return {
 		restrict: 'AE',
@@ -10,7 +10,7 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 		scope: {
 			star: '='
 		},
-		link: function (scope) {
+		link: function (scope, DEFAULT_IMG) {
 			scope.currentPage = 1;
 			scope.lastPage = false;
 			var getVipLists = function(page , keyWord){
@@ -22,7 +22,7 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 				$http.get(vipListUrl).then(function(data){
 					_.each(data.data, function(tag){
 						if(tag.picture == undefined || tag.picture == null) {
-							tag.picture = "../../images/people-no-img-default.png";
+							tag.picture = DEFAULT_IMG.PEOPLE_NO_IMG;
 						}
 					})
 					scope.vips = data.data;

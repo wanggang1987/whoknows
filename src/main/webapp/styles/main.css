@@ -39,6 +39,70 @@ body{
     border: 2px solid #1386ab;
     margin: 20px auto;
 }
+.default-wk-blue-btn[disabled]:hover,
+.default-wk-blue-btn{
+	width: 100px;
+    height: 40px;
+    color: #1386ab;
+    border: 2px solid #1386ab;
+    margin: 20px auto;
+}
+
+.default-wk-blue-btn:hover,
+.default-wk-blue-btn:focus,
+.default-wk-blue-btn:active{
+	background-color:#1386ab;
+	width: 100px;
+    height: 40px;
+    color: #FFF;
+    border: 2px solid #1386ab;
+    margin: 20px auto;
+}
+
+.default-wk-cancel-btn[disabled]:hover,
+.default-wk-cancel-btn{
+	background-color:#fff;
+	width: 50px;
+    height: 40px;
+    color: #b5b5b5;
+    border: 0px;
+    margin: 10px auto;
+}
+
+.default-wk-cancel-btn:hover,
+.default-wk-cancel-btn:focus,
+.default-wk-cancel-btn:active{
+	background-color:#fff;
+	width: 50px;
+    height: 40px;
+    color: #b5b5b5;
+    border: 0px;
+    margin: 10px auto;
+}
+
+.default-wk-submit-btn[disabled]:hover,
+.default-wk-submit-btn{
+	width: 50px;
+    height: 40px;
+    color: #1386ab;
+    border: 2px solid #1386ab;
+    margin: 10px auto;
+    padding:0px;
+}
+
+.default-wk-submit-btn:hover,
+.default-wk-submit-btn:focus,
+.default-wk-submit-btn:active{
+	background-color:#1386ab;
+	width: 50px;
+    height: 40px;
+    border: 2px solid #1386ab;
+    color: #FFF;
+    border: 0;
+    margin: 10px auto;
+    padding:0px;
+}
+
 .icon.wechat{
 	background-image: url(../../images/commons/wechat.png);
 	background-size:cover;
@@ -387,7 +451,7 @@ footer {
 	margin:0px;
 	padding:0px;
 }
-.topic-list .topic-footer ul{
+.topic-list .topic-footer-ul{
 	margin:0px;
 	padding:0px;
 }
@@ -399,19 +463,19 @@ footer {
 	position: relative;
     float: left;
     max-width: 740px !important;
-    margin: 20px;
+    margin: 10px 20px 20px 20px;
     width: 90%;
     min-width: 354px;
     box-shadow:none;
     -webkit-box-shadow:none;
 }
-.topic-list .topic-footer ul li{
+.topic-list .topic-footer-ul li{
 	margin:0px;
 	padding:0px 45px 0px 0px;
 	float:left;
 	list-style-type:none;
 }
-.topic-list .topic-footer ul li a{
+.topic-list .topic-footer-ul li a{
 	font-size:13px;
 	color:#b5b5b5;
 }
@@ -438,7 +502,7 @@ footer {
 }
 /*--comment list style---*/
 topic-comment-list .topic-comment-body .topic-comment-body-author{
-	margin:0px;
+	margin:5px 5px 5px 10px;
 	padding: 0px 0px 5px 45px;
 }
 .popover.bottom .arrow{
@@ -458,9 +522,15 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 	color:#b5b5b5;
 }
 .topic-comment-list .topic-comment-body .topic-comment-body-content{
-	margin: 5px;
-	padding: 0px 5px 0px 0px;
+	margin: 5px 5px 5px 15px;
+	padding: 0px 5px 0px 15px;
 	font-size: 13px;
+}
+.topic-comment-list .topic-comment-body .topic-comment-body-attach-info{
+	font-size: 12px;
+	color:#b5b5b5;
+	margin: 5px 5px 5px 15px;
+	padding: 0px 5px 0px 15px;
 }
 /*--login style---*/
 .login-page, .regist-page{
@@ -600,4 +670,21 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 }
 #reset-password-modal  .modal-body input{
 	max-width: 340px;
+}
+/***pagging***/
+.wk-pagination{
+	margin: 10px auto 10px auto;
+	width: 60%;
+}
+.wk-pagination li{
+	margin:0px;
+	padding:0px 15px 0px 0px;
+	float:left;
+	list-style-type:none;
+}
+.wk-pagination li a{
+	font-size:13px;
+}
+.wk-pagination li.disabled a{
+	color: #000;
 }

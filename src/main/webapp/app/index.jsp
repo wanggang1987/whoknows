@@ -9,6 +9,7 @@
 <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <!--  -->
 <link href="/styles/main.css" rel="stylesheet" media="screen" />
+<link rel="stylesheet" href="/components/fastselect-master/dist/fastselect.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content="who knows" />
 <meta name="keywords" content="who knows,whoknows,whoKnows,WhoKnows,who,knows" />
@@ -28,34 +29,8 @@
             		<span style="font-size:12px">Labnetwork</span><br> <span style="font-size:20px">Knows</span>
             	</a>
           </div>
-          <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right wk-nav" >
-            		<li ng-class="{ active: isActive('/') }"><a href="#/">首页</a></li>
-				<li ng-class="{ active: isActive('/topic') }"><a href="#/topic" >话题</a></li>
-				<li ng-class="{ active: isActive('/superStar') }"><a href="#/superStar"  >大咖</a></li>
-				<li ng-class="{ active: isActive('/message') }"><a href="#/message"  >消息</a></li>
-				<sec:authorize access="isFullyAuthenticated()">
-					<li class="fill-maring-left" ng-show="loginIn">
-						<div class="form-group index-create-question-btn">
-							<button type="submit" class="btn btn-default " ng-click="createQuestion()">提问</button>
-						</div>
-					</li>
-				</sec:authorize>
-              	<li class="fill-maring-left" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
-              	<sec:authorize access="isFullyAuthenticated()">
-	              	<li class="fill-maring-left dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
-		              	<a href="#/selfPage" data-toggle="dropdown" >
-		              		<img alt="" class="img-20-size" ng-src="{{user.picture}}" ng-cloak></img> {{user.email}}
-		              		<span class="glyphicon glyphicon-chevron-down"></span>
-		              	</a>
-		              	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-						  	<li><a href="#/selfPage" ><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;我的主页</a></li>
-						  	<li><a href="#/setting" ><span class="glyphicon glyphicon-cog"></span>&nbsp;&nbsp;设置</a></li>
-						  	<li><a href="/logout" ><span class="glyphicon glyphicon-log-out"></span>&nbsp;&nbsp;退出</a></li>
-						</ul>
-	              	</li>
-            		</sec:authorize>
-            </ul>
+          <div id="navbar" class="navbar-collapse collapse" ng-include="'app/header/_nav'">
+            
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
       </nav>
@@ -84,9 +59,11 @@
 	<script type="text/javascript" src="/bower_components/bootstrap/js/modal.js"></script>
 	<script type="text/javascript" src="/bower_components/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-ui-tinymce/dist/tinymce.min.js"></script>
+	<script type="text/javascript" src="/components/fastselect-master/dist/fastselect.standalone.min.js"></script>
 	<!-- self app js  -->
 	<script type="text/javascript" src="/app/app.js"></script>
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>
 	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
@@ -114,5 +91,6 @@
 	<script type="text/javascript" src="/app/setting/directives/resetPasswdDirective.js"></script>
 	<script type="text/javascript" src="/app/topic/createTopicCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/topicDetailCtrl.js"></script>
+	
 </body>
 </html>

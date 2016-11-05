@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkCommon').controller('wkCommon.appCtrl',
-	function ($scope, $rootScope, $location, $route, $window, LocalStorageService, UserService) {
+	function ($scope, $rootScope, $location, $route, $window, LocalStorageService, UserService, DEFAULT_IMG) {
 		$scope.loginIn = false;
 		UserService.initialize().then(function () {
 			$scope.loginIn = UserService.isSignedIn();
@@ -14,6 +14,9 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		$rootScope.$on('event:login:success', function () {
 			$scope.loginIn = true;
 			initUser();
+			$rootScope.$on('$locationChangeSuccess', function () {
+				$window.location.reload();
+			});
 			if (LocalStorageService.get('LastPage')) {
 				var lastPage = LocalStorageService.get('LastPage');
 				if (lastPage) {
@@ -35,7 +38,7 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		function initUser(){
 			$scope.user = UserService.getCurrent();
 			if($scope.user.picture == undefined || $scope.user.picture == null){
-				$scope.user.picture = "../../images/people-no-img-default.png";
+				$scope.user.picture = DEFAULT_IMG.PEOPLE_NO_IMG ;
 			}
 		}
 		$scope.isActive = function (viewLocation) {

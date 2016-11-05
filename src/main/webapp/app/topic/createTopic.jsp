@@ -12,7 +12,7 @@
         		<hr/>
         		
         		<h4>标题</h4>
-        		<textarea class="form-control" maxlength="1024" rows="2" required ng-model="title" ></textarea>
+        		<textarea class="form-control" maxlength="1024" rows="3" required ng-model="title" ></textarea>
         		<p>还可以输入个{{1024 - title.length}}字</p>
        		<hr/>
        		<h4>内容</h4>
