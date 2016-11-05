@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <div class="panel panel-default hot-topic-siderbar">
 			  <div class="panel-heading text-center">热门大咖</div>
 			  <div class="panel-body">
