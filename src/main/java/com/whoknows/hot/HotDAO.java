@@ -1,7 +1,7 @@
 package com.whoknows.hot;
 
+import com.whoknows.func.CommonFunction;
 import java.util.List;
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ public class HotDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private CommonFunction commonFunction;
 
 	public List<HotVip> listHotVip(Integer page, int pageSize) {
 		return jdbcTemplate.query("select vip.*, user.email, user.phone, user.first_name, user.last_name, user.picture from vip "
@@ -27,11 +29,7 @@ public class HotDAO {
 				},
 				(rs, row) -> {
 					HotVip vip = new HotVip();
-					if (StringUtils.isEmpty(rs.getString("last_name")) && StringUtils.isEmpty(rs.getString("first_name"))) {
-						vip.setName(rs.getString("email"));
-					} else {
-						vip.setName(rs.getString("last_name") + rs.getString("first_name"));
-					}
+					vip.setName(commonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setFollow(100L);
 					vip.setUserID(rs.getLong("user_id"));
@@ -59,11 +57,7 @@ public class HotDAO {
 				},
 				(rs, row) -> {
 					HotVip vip = new HotVip();
-					if (StringUtils.isEmpty(rs.getString("last_name")) && StringUtils.isEmpty(rs.getString("first_name"))) {
-						vip.setName(rs.getString("email"));
-					} else {
-						vip.setName(rs.getString("last_name") + rs.getString("first_name"));
-					}
+					vip.setName(commonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setFollow(100L);
 					vip.setUserID(rs.getLong("user_id"));
