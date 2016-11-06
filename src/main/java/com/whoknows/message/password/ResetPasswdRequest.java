@@ -1,4 +1,4 @@
-package com.whoknows.wkMessage.password;
+package com.whoknows.message.password;
 
 public class ResetPasswdRequest {
 

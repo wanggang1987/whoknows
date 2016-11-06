@@ -1,4 +1,4 @@
-package com.whoknows.wkMessage.topic;
+package com.whoknows.message.topic;
 
 public class TopicSelectResponse {
 

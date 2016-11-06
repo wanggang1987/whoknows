@@ -1,7 +1,7 @@
-package com.whoknows.wkMessage.comment;
+package com.whoknows.message.comment;
 import java.util.List;
 
-import com.whoknows.wkMessage.common.Paging;
+import com.whoknows.message.common.Paging;
 
 public class CommentResponse {
 

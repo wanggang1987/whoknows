@@ -3,7 +3,7 @@ package com.whoknows.tag;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.autoMappingBean.TagRowMapper;
 import com.whoknows.utils.CharacterConvert;
-import com.whoknows.wkMessage.topic.TopicSelectResponse;
+import com.whoknows.message.topic.TopicSelectResponse;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.whoknows.topic;
 
 import com.whoknows.domain.Topic;
-import com.whoknows.wkMessage.user.UserSummaryInfo;
+import com.whoknows.message.user.UserSummaryInfo;
 
 public class TopicDetail {
 

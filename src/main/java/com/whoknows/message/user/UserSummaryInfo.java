@@ -1,4 +1,4 @@
-package com.whoknows.wkMessage.user;
+package com.whoknows.message.user;
 
 import java.sql.Timestamp;
 import java.util.List;

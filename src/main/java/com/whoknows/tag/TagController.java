@@ -1,7 +1,7 @@
 package com.whoknows.tag;
 
 import com.whoknows.domain.Tag;
-import com.whoknows.wkMessage.topic.TopicSelectResponse;
+import com.whoknows.message.topic.TopicSelectResponse;
 import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;

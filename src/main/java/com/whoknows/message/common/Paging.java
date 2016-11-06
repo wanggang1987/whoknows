@@ -1,4 +1,4 @@
-package com.whoknows.wkMessage.common;
+package com.whoknows.message.common;
 
 public class Paging {
 

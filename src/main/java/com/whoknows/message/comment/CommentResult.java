@@ -1,8 +1,8 @@
-package com.whoknows.wkMessage.comment;
+package com.whoknows.message.comment;
 
 import java.sql.Timestamp;
 
-import com.whoknows.wkMessage.user.UserSummaryInfo;
+import com.whoknows.message.user.UserSummaryInfo;
 
 public class CommentResult {
 

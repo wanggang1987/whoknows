@@ -7,10 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.whoknows.wkMessage.search.SearchTopicResponse;
-import com.whoknows.wkMessage.search.SearchUserResponse;
-import com.whoknows.wkMessage.search.TopicResult;
-import com.whoknows.wkMessage.user.UserSummaryInfo;
+import com.whoknows.message.search.SearchTopicResponse;
+import com.whoknows.message.search.SearchUserResponse;
+import com.whoknows.message.search.TopicResult;
+import com.whoknows.message.user.UserSummaryInfo;
 import java.util.ArrayList;
 
 @Service

@@ -1,6 +1,6 @@
-package com.whoknows.wkMessage.search;
+package com.whoknows.message.search;
 
-import com.whoknows.wkMessage.user.UserSummaryInfo;
+import com.whoknows.message.user.UserSummaryInfo;
 import java.util.List;
 
 public class SearchUserResponse {

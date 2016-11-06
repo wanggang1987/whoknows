@@ -1,4 +1,4 @@
-package com.whoknows.wkMessage.search;
+package com.whoknows.message.search;
 
 import java.util.List;
 

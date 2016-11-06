@@ -1,8 +1,8 @@
 package com.whoknows.user;
 
 import com.whoknows.domain.User;
-import com.whoknows.wkMessage.password.ResetPasswdRequest;
-import com.whoknows.wkMessage.user.UserSummaryInfo;
+import com.whoknows.message.password.ResetPasswdRequest;
+import com.whoknows.message.user.UserSummaryInfo;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;

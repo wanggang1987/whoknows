@@ -4,7 +4,7 @@ import com.whoknows.domain.Role;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.domain.autoMappingBean.UserRowMapper;
-import com.whoknows.wkMessage.password.ResetPasswdRequest;
+import com.whoknows.message.password.ResetPasswdRequest;
 
 import java.util.List;
 

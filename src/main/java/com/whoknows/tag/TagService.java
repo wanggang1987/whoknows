@@ -2,7 +2,7 @@ package com.whoknows.tag;
 
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Tag;
-import com.whoknows.wkMessage.topic.TopicSelectResponse;
+import com.whoknows.message.topic.TopicSelectResponse;
 
 import java.util.List;
 

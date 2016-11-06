@@ -1,8 +1,8 @@
-package com.whoknows.wkMessage.search;
+package com.whoknows.message.search;
 
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Topic;
-import com.whoknows.wkMessage.user.UserSummaryInfo;
+import com.whoknows.message.user.UserSummaryInfo;
 
 public class TopicResult {
 
