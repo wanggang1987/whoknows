@@ -1,6 +1,7 @@
 package com.whoknows.reply;
 
 import com.whoknows.domain.Reply;
+import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -63,9 +64,14 @@ public class ReplyController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
-//	@RequestMapping(path = "/list/{topic_id}/{page}}", method = RequestMethod.GET)
-//	public ResponseEntity getReplyList(@PathVariable("topic_id") Long topicId, @PathVariable("page") Long page, ){
-//		
-//	}
+
+	@RequestMapping(path = "/list/{topic_id}/{page}}", method = RequestMethod.GET)
+	public ResponseEntity getReplyList(@PathVariable("topic_id") Long topicId, @PathVariable("page") Integer page) {
+		List<ReplyDetail> list = relpyService.getReplyDetails(topicId, page);
+		if (list != null) {
+			return ResponseEntity.ok(list);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

@@ -1,13 +1,25 @@
 package com.whoknows.topic;
 
 import com.whoknows.domain.Topic;
+import com.whoknows.reply.ReplyDetail;
 import com.whoknows.user.UserDetail;
+import java.util.List;
 
 public class TopicDetail {
 
 	private Topic topic;
 	private UserDetail author;
 	private Integer followCount;
+	
+	private List<ReplyDetail> replys;
+
+	public List<ReplyDetail> getReplys() {
+		return replys;
+	}
+
+	public void setReplys(List<ReplyDetail> replys) {
+		this.replys = replys;
+	}
 
 	public Integer getFollowCount() {
 		return followCount;

@@ -1,7 +1,10 @@
 package com.whoknows.topic;
 
 import com.whoknows.domain.ActionType;
+import com.whoknows.domain.TargetType;
 import com.whoknows.domain.Topic;
+import com.whoknows.follow.FollowService;
+import com.whoknows.reply.RelpyService;
 import com.whoknows.user.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -18,6 +21,10 @@ public class TopicService {
 	private TopicRepository topicRepository;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private RelpyService relpyService;
+	@Autowired
+	private FollowService followService;
 
 	public boolean createTopic(Topic topic) {
 		topic.setAction(ActionType.pending.toString());
@@ -76,6 +83,8 @@ public class TopicService {
 			topicDetail.setTopic(topicRepository.getTopic(id));
 			if (topicDetail.getTopic() != null) {
 				topicDetail.setAuthor(userService.getUser(topicDetail.getTopic().getUser_id()));
+				topicDetail.setReplys(relpyService.getReplyDetails(id, 1));
+				topicDetail.setFollowCount(followService.followCount(topicDetail.getTopic().getId(), TargetType.topic));
 			}
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

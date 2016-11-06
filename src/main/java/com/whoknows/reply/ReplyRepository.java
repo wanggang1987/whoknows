@@ -1,6 +1,7 @@
 package com.whoknows.reply;
 
 import com.whoknows.domain.Reply;
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,20 @@ public class ReplyRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	public List<Long> getTopicReplys(Long topicId, int page, int pageSize) {
+		return jdbcTemplate.query("select id from reply where topic_id = ? "
+				+ "order by create_time "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setLong(1, topicId);
+					ps.setInt(2, pageSize);
+					ps.setInt(3, (page - 1) * pageSize);
+				},
+				(rs, row) -> {
+					return rs.getLong("id");
+				});
+	}
 
 	public Reply getHotReplyForRopic(Long topicId) {
 		return jdbcTemplate.query("select * from reply where topic_id = ? order by rank desc limit 1",

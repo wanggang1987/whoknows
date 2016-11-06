@@ -6,6 +6,8 @@ import com.whoknows.domain.Reply;
 import com.whoknows.domain.TargetType;
 import com.whoknows.like.LikeService;
 import com.whoknows.user.UserService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class RelpyService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private final int pageSize = 10;
 
 	@Autowired
 	private ReplyRepository replyRepository;
@@ -99,8 +102,8 @@ public class RelpyService {
 	}
 
 	public ReplyDetail getReplyDetail(Long id) {
-		ReplyDetail replyDetail = new ReplyDetail();
 		try {
+			ReplyDetail replyDetail = new ReplyDetail();
 			replyDetail.setReply(replyRepository.getReply(id));
 			if (replyDetail.getReply() != null) {
 				replyDetail.setAuthor(userService.getUser(replyDetail.getReply().getUser_id()));
@@ -108,6 +111,19 @@ public class RelpyService {
 				replyDetail.setCommentCount(commentService.commentCount(replyDetail.getReply().getId()));
 			}
 			return replyDetail;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	public List<ReplyDetail> getReplyDetails(Long topicId, Integer page) {
+		if (topicId ==null || page == null) {
+			return null;
+		}
+		
+		try {
+			return replyRepository.getTopicReplys(topicId, page, pageSize).parallelStream().map(id -> getReplyDetail(id)).collect(Collectors.toList());
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
