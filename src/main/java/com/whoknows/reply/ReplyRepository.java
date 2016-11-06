@@ -15,8 +15,7 @@ public class ReplyRepository {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public Reply getHotReplyForRopic(Long id)
-	{
+	public Reply getHotReplyForRopic(Long id) {
 		return jdbcTemplate.query("select * from reply where topic_id = ? order by rank desc limit 1",
 				ps -> ps.setLong(1, id),
 				(rs, row) -> {
@@ -32,16 +31,26 @@ public class ReplyRepository {
 					return reply;
 				}).stream().findAny().orElse(null);
 	}
-	
+
 	public void createReply(Reply reply) {
-		jdbcTemplate.update("insert into reply (user_id, topic_id, content, action, reply_id) values (?, ?, ?, ?, ?)",
-				ps -> {
-					ps.setLong(1, reply.getUser_id());
-					ps.setLong(2, reply.getTopic_id());
-					ps.setString(3, reply.getContent());
-					ps.setString(4, reply.getAction());
-					ps.setLong(5, reply.getReply_id());
-				});
+		if (reply.getReply_id() == null) {
+			jdbcTemplate.update("insert into reply (user_id, topic_id, content, action) values (?, ?, ?, ?)",
+					ps -> {
+						ps.setLong(1, reply.getUser_id());
+						ps.setLong(2, reply.getTopic_id());
+						ps.setString(3, reply.getContent());
+						ps.setString(4, reply.getAction());
+					});
+		} else {
+			jdbcTemplate.update("insert into reply (user_id, topic_id, content, action, reply_id) values (?, ?, ?, ?, ?)",
+					ps -> {
+						ps.setLong(1, reply.getUser_id());
+						ps.setLong(2, reply.getTopic_id());
+						ps.setString(3, reply.getContent());
+						ps.setString(4, reply.getAction());
+						ps.setLong(5, reply.getReply_id());
+					});
+		}
 	}
 
 	public void updateReply(Reply reply) {

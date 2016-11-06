@@ -43,9 +43,9 @@ public class SearchService {
 		SearchTopicResponse searchResponse = new SearchTopicResponse();
 		try {
 			searchResponse.setKeyWord(key);
-			searchResponse.setPageSize(pageSize);
-			searchResponse.setTotalPage(100);
-			searchResponse.setCurrentPage(page);
+			searchResponse.setPaging(new Paging());
+			searchResponse.getPaging().setCurrentPage(page);
+			searchResponse.getPaging().setPerPage(pageSize);
 			searchResponse.setTopicResults(new ArrayList<>());
 
 			searchDAO.searchTopicByKeyWord(key, page, pageSize, type).stream().forEach(topic -> {

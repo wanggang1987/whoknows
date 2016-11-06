@@ -1,7 +1,7 @@
 package com.whoknows.message.comment;
 import java.util.List;
 
-import com.whoknows.message.common.Paging;
+import com.whoknows.search.Paging;
 
 public class CommentResponse {
 

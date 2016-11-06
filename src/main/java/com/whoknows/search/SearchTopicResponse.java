@@ -3,15 +3,19 @@ package com.whoknows.search;
 import com.whoknows.topic.TopicResult;
 import java.util.List;
 
-
 public class SearchTopicResponse {
 
 	private String keyWord;
-	private Integer currentPage;
-	private Integer pageSize;
-	private Integer totalPage;
-	
+	private Paging paging;
 	private List<TopicResult> topicResults;
+
+	public Paging getPaging() {
+		return paging;
+	}
+
+	public void setPaging(Paging paging) {
+		this.paging = paging;
+	}
 
 	public String getKeyWord() {
 		return keyWord;
@@ -21,30 +25,6 @@ public class SearchTopicResponse {
 		this.keyWord = keyWord;
 	}
 
-	public Integer getCurrentPage() {
-		return currentPage;
-	}
-
-	public void setCurrentPage(Integer currentPage) {
-		this.currentPage = currentPage;
-	}
-
-	public Integer getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public Integer getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(Integer totalPage) {
-		this.totalPage = totalPage;
-	}
-
 	public List<TopicResult> getTopicResults() {
 		return topicResults;
 	}
@@ -52,5 +32,5 @@ public class SearchTopicResponse {
 	public void setTopicResults(List<TopicResult> topicResults) {
 		this.topicResults = topicResults;
 	}
-	
+
 }

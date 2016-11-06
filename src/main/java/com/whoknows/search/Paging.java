@@ -1,10 +1,9 @@
-package com.whoknows.message.common;
+package com.whoknows.search;
 
 public class Paging {
 
 	private int currentPage;
 	private int perPage;
-	private int totalCount;
 	
 	public int getCurrentPage() {
 		return currentPage;
@@ -18,11 +17,4 @@ public class Paging {
 	public void setPerPage(int perPage) {
 		this.perPage = perPage;
 	}
-	public int getTotalCount() {
-		return totalCount;
-	}
-	public void setTotalCount(int totalCount) {
-		this.totalCount = totalCount;
-	}
-	
 }
