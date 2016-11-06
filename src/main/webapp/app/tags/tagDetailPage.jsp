@@ -2,15 +2,13 @@
 <div class="container topic-page"> 
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
-        		<div class="have-follow-topic">
-        			<h4>已关注话题动态</h4>
-        			<hr/>
-        			<a href="javascript:void(0)" class="active">有机催化</a>	
-        			<a href="javascript:void(0)">光氧化还原</a>	
-        			<a href="javascript:void(0)">糖化学</a>	
-        			<a href="javascript:void(0)">天然产物全合成</a>	
-        			<a href="javascript:void(0)">波谱解析</a>	
-        			<a href="javascript:void(0)">计算机辅助药物设计</a>	
+        		<div class="row">
+        			<img alt="" ng-src="{{tag.img}}" style="width:75px; float:left"/>
+        			<h4>有机催化</h4>
+        			<h5 class="font-gray-color">创建时间： 2016-10-1 &nbsp;&nbsp;|&nbsp;&nbsp; 关注人数： 100人</h5>
+        			<br />
+        			
+        			<hr class="wk-orign-hr"/>
         		</div>
        	 	<topic-list></topic-list>
         </div><!--/.col-xs-12.col-sm-9-->

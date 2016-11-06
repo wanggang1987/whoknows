@@ -8,6 +8,12 @@ var wkCommon = angular.module('wkRegist', ['ngRoute']).config(function($routePro
 		data: {
 			standalonePage: true
 		}
+	}).when('/registTagSelect', {
+		templateUrl: 'app/registration/registTagSelectPage',
+		controller: 'RegistTagSelectCtrl',
+		data: {
+			standalonePage: true
+		}
 	});
 });
 

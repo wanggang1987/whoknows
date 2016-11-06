@@ -9,10 +9,18 @@ angular.module('wkRegist').controller('RegistCtrl',
 			$http.put("/user", $scope.registInfo).success(function(){
 				console.log("regist success");
 				$scope.registSuccess = true;
-				$location.path("/login")
+				$location.path("/registTagSelect");
+				$rootScope.regist={
+						"userName" : $scope.registInfo.email,
+						"s" :  $scope.registInfo.passwordAgain
+				}
 			}).error(function(){
 				console.log("regist error");
-				$scope.registSuccess = true;
+				$scope.registSuccess = false;
 			});
+		}
+		
+		$scope.closeWarn = function(){
+			$scope.registSuccess = true;
 		}
 	});

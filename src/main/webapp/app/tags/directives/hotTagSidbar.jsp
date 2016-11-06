@@ -12,7 +12,7 @@
 	    	 	<div class="list-group-item row" ng-repeat="tag in tags">
 	    	 		<div class="col-md-3"><img alt="" ng-src="{{tag.picture}}" ng-cloak></img></div>
 	    	 		<div class="col-md-9">
-	    	 			<a href="#"><h5 class="list-group-item-heading" ng-bind-html="tag.tagName | to_trusted"></h5></a>
+	    	 			<a href="#/tagDetail"><h5 class="list-group-item-heading" ng-bind-html="tag.tagName | to_trusted"></h5></a>
 			    		<p class="list-group-item-text">关注人数:{{tag.follow}}</p>
 			    	</div>
 	    	 	</div>

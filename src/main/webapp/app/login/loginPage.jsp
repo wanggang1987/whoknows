@@ -6,6 +6,10 @@
 				  <div class="panel-heading text-center">老客户</div>
 				  <div class="panel-body">
 					 <h5>如果您已创建过账号，请在此登录：</h5>
+					 <div class="alert alert-danger alert-dismissible" role="alert" ng-show="loggingError">
+						  <button type="button" class="close" data-dismiss="alert" ng-click="closeWarn()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						  <strong>登录失败! 用户名或密码错误</strong> 
+					 </div>
 					 <form class="form-horizontal" role="form">
 						  <div class="form-group">
 						    <label for="inputEmail3" class="col-sm-3 control-label">邮箱地址</label>
