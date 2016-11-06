@@ -2,7 +2,6 @@ package com.whoknows.user;
 
 import com.whoknows.domain.User;
 import com.whoknows.message.password.ResetPasswdRequest;
-import com.whoknows.message.user.UserSummaryInfo;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -51,7 +50,7 @@ public class UserContoller {
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getUserInfo(@PathVariable("id") Long id) {
-		UserSummaryInfo userView = userService.getUserSummaryInfo(id);
+		UserDetail userView = userService.getUser(id);
 		if (userView != null) {
 			return ResponseEntity.ok(userView);
 		} else {

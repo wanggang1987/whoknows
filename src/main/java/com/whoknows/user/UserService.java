@@ -2,8 +2,8 @@ package com.whoknows.user;
 
 import com.whoknows.domain.User;
 import com.whoknows.message.password.ResetPasswdRequest;
-import com.whoknows.message.search.TopicResult;
-import com.whoknows.message.user.UserSummaryInfo;
+import com.whoknows.search.TopicRusult;
+import com.whoknows.topic.TopicResult;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
@@ -20,13 +20,13 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public UserSummaryInfo getUserSummaryInfo(Long id) {
+	public UserDetail getUser(Long id) {
 		if (id == null) {
 			return null;
 		}
 
 		try {
-			UserSummaryInfo userView = new UserSummaryInfo();
+			UserDetail userView = new UserDetail();
 			userView.setUser(userRepository.getUserById(id), userRepository.getUserRolesByUserId(id));
 			return userView;
 		} catch (Exception e) {
@@ -42,9 +42,10 @@ public class UserService {
 
 		try {
 			return userRepository.getUserTopic(id).stream().map(topic -> {
-				TopicResult topicView = new TopicResult();
-				topicView.setTopic(topic);
-				return topicView;
+				TopicResult topicResult = new TopicResult();
+				topicResult.setTopicDetail(new TopicRusult());
+				topicResult.getTopicDetail().setTopic(topic);
+				return topicResult;
 			}).collect(Collectors.toList());
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

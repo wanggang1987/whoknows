@@ -1,13 +1,13 @@
 package com.whoknows.message.comment;
 
+import com.whoknows.user.UserDetail;
 import java.sql.Timestamp;
 
-import com.whoknows.message.user.UserSummaryInfo;
 
 public class CommentResult {
 
 	private Long id ;
-	private UserSummaryInfo author;
+	private UserDetail author;
 	private Long reply_id;
 	private String content;
 	private String action;

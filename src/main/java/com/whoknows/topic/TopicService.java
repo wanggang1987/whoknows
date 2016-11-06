@@ -1,5 +1,6 @@
 package com.whoknows.topic;
 
+import com.whoknows.search.TopicRusult;
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Topic;
 import com.whoknows.user.UserService;
@@ -66,16 +67,16 @@ public class TopicService {
 		}
 	}
 
-	public TopicDetail getTopic(Long id) {
+	public TopicRusult getTopic(Long id) {
 		if (id == null) {
 			return null;
 		}
 
-		TopicDetail topicDetail = new TopicDetail();
+		TopicRusult topicDetail = new TopicRusult();
 		try {
 			topicDetail.setTopic(topicRepository.getTopic(id));
 			if (topicDetail.getTopic() != null) {
-				topicDetail.setUser(userService.getUserSummaryInfo(topicDetail.getTopic().getUser_id()));
+				topicDetail.setAuthor(userService.getUser(topicDetail.getTopic().getUser_id()));
 			}
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

@@ -1,8 +1,8 @@
 package com.whoknows.search;
 
-import com.whoknows.comment.CommentRepository;
+import com.whoknows.comment.CommentService;
 import com.whoknows.domain.TargetType;
-import com.whoknows.follow.FollowRepository;
+import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.user.UserService;
@@ -11,10 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.whoknows.message.search.SearchTopicResponse;
-import com.whoknows.message.search.SearchUserResponse;
-import com.whoknows.message.search.TopicResult;
-import com.whoknows.message.user.UserSummaryInfo;
+import com.whoknows.topic.TopicResult;
 import java.util.ArrayList;
 
 @Service
@@ -32,38 +29,9 @@ public class SearchService {
 	@Autowired
 	private LikeService likeService;
 	@Autowired
-	private FollowRepository followRepository;
+	private FollowService followService;
 	@Autowired
-	private CommentRepository commentRepository;
-
-	public SearchUserResponse searchUserByKeyWord(String key, Integer page, SearchType type, boolean vip) {
-		log.info("search user:{}", key);
-		if (StringUtils.isEmpty(key)
-				|| page == null) {
-			return null;
-		}
-
-		SearchUserResponse searchUserResponse = new SearchUserResponse();
-
-		try {
-			searchUserResponse.setKeyWord(key);
-			searchUserResponse.setPageSize(pageSize);
-			searchUserResponse.setTotalPage(100);
-			searchUserResponse.setCurrentPage(page);
-			searchUserResponse.setUsers(new ArrayList<>());
-
-			searchDAO.searchUserByKeyWord(key, page, pageSize, type, vip).parallelStream().forEach(user -> {
-				UserSummaryInfo userSummaryInfo = new UserSummaryInfo();
-				userSummaryInfo = userService.getUserSummaryInfo(user.getId());
-				searchUserResponse.getUsers().add(userSummaryInfo);
-			});
-		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
-			return null;
-		}
-
-		return searchUserResponse;
-	}
+	private CommentService commentService;
 
 	public SearchTopicResponse searchTopicByKeyWord(String key, Integer page, SearchType type) {
 		log.info("search topic:{}", key);
@@ -82,24 +50,27 @@ public class SearchService {
 
 			searchDAO.searchTopicByKeyWord(key, page, pageSize, type).stream().forEach(topic -> {
 				TopicResult topicResult = new TopicResult();
-				topicResult.setTopic(topic);
+				topicResult.setTopicDetail(new TopicRusult());
+				topicResult.getTopicDetail().setTopic(topic);
 				searchResponse.getTopicResults().add(topicResult);
 			});
 
 			searchDAO.searchTagByKeyWord(key, page, pageSize, type).stream().forEach(topic -> {
 				TopicResult topicResult = new TopicResult();
-				topicResult.setTopic(topic);
+				topicResult.setTopicDetail(new TopicRusult());
+				topicResult.getTopicDetail().setTopic(topic);
 				searchResponse.getTopicResults().add(topicResult);
 			});
 
 			searchResponse.getTopicResults().parallelStream().forEach(topicResult -> {
-				topicResult.setTopicUser(userService.getUserSummaryInfo(topicResult.getTopic().getUser_id()));
-				topicResult.setTopicFollowCount(followRepository.followCount(topicResult.getTopic().getId(), TargetType.topic));
-				topicResult.setReply(relpyService.getHotReplyForRopic(topicResult.getTopic().getId()));
-				if (topicResult.getReply() != null) {
-					topicResult.setReplyUser(userService.getUserSummaryInfo(topicResult.getReply().getUser_id()));
-					topicResult.setReplyLikeCount(likeService.likeCount(topicResult.getReply().getId(), TargetType.reply));
-					topicResult.setReplyCommentCount(commentRepository.commentCount(topicResult.getReply().getId()));
+				topicResult.getTopicDetail().setAuthor(userService.getUser(topicResult.getTopicDetail().getTopic().getId()));
+				topicResult.getTopicDetail().setFollowCount(followService.followCount(topicResult.getTopicDetail().getTopic().getId(), TargetType.topic));
+				topicResult.setReplyDetail(new ReplyResult());
+				topicResult.getReplyDetail().setReply(relpyService.getHotReplyForRopic(topicResult.getTopicDetail().getTopic().getId()));
+				if (topicResult.getReplyDetail().getReply()!= null) {
+					topicResult.getReplyDetail().setAuthor(userService.getUser(topicResult.getReplyDetail().getReply().getUser_id()));
+					topicResult.getReplyDetail().setLikeCount(likeService.likeCount(topicResult.getReplyDetail().getReply().getId(), TargetType.reply));
+					topicResult.getReplyDetail().setCommentCount(commentService.commentCount(topicResult.getReplyDetail().getReply().getId()));
 				}
 			});
 		} catch (Exception e) {

@@ -1,13 +1,12 @@
-package com.whoknows.message.user;
-
-import java.sql.Timestamp;
-import java.util.List;
+package com.whoknows.user;
 
 import com.whoknows.domain.Role;
 import com.whoknows.domain.User;
 import com.whoknows.domain.Vip;
+import java.sql.Timestamp;
+import java.util.List;
 
-public class UserSummaryInfo {
+public class UserDetail {
 
 	private Long id;
 	private String email;
@@ -27,14 +26,6 @@ public class UserSummaryInfo {
 
 	private List<Role> roles;
 	private Vip vipInfo;
-
-	public Vip getVipInfo() {
-		return vipInfo;
-	}
-
-	public void setVipInfo(Vip vipInfo) {
-		this.vipInfo = vipInfo;
-	}
 
 	public Long getId() {
 		return id;
@@ -148,6 +139,14 @@ public class UserSummaryInfo {
 		this.signatureId = signatureId;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 	public List<Role> getRoles() {
 		return roles;
 	}
@@ -156,12 +155,12 @@ public class UserSummaryInfo {
 		this.roles = roles;
 	}
 
-	public String getTitle() {
-		return title;
+	public Vip getVipInfo() {
+		return vipInfo;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setVipInfo(Vip vipInfo) {
+		this.vipInfo = vipInfo;
 	}
 
 	public void setUser(User user, List<Role> roles) {
@@ -182,4 +181,5 @@ public class UserSummaryInfo {
 		this.roles = roles;
 		this.title = user.getTitle();
 	}
+
 }
