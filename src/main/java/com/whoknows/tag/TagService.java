@@ -14,9 +14,7 @@ import com.whoknows.search.TopicResult;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.user.UserService;
 import java.util.ArrayList;
-
 import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

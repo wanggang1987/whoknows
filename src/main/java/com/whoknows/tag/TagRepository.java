@@ -57,9 +57,13 @@ public class TagRepository {
 	public List<Topic> getTopicByTag(Long tagId, int page, int pageSize) {
 		return jdbcTemplate.query("SELECT topic.* FROM topic "
 				+ "left join tag_topic on tag_topic.topic_id = topic.id "
-				+ "where tag_topic.tag_id = ? ",
+				+ "where tag_topic.tag_id = ? "
+				+ "order by topic.id desc "
+				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, tagId);
+					ps.setInt(2, pageSize);
+					ps.setInt(3, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
 					Topic topic = new Topic();

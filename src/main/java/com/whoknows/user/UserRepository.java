@@ -105,4 +105,7 @@ public class UserRepository {
 				});
 	}
 
+	public List<Topic> getUserCreateTopics() {
+		return null;
+	}
 }

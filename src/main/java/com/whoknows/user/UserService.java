@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private final int pageSize = 20;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -103,4 +104,15 @@ public class UserService {
 		return true;
 	}
 
+	public UserTopicResponse getUserCreateTopics() {
+		return null;
+	}
+
+	public UserTopicResponse getUserFollowTopics() {
+		return null;
+	}
+
+	public UserTopicResponse getUserReplyTopics() {
+		return null;
+	}
 }
