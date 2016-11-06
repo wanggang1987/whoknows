@@ -1,6 +1,6 @@
 package com.whoknows.hot;
 
-import com.whoknows.func.CommonFunction;
+import com.whoknows.utils.CommonFunction;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

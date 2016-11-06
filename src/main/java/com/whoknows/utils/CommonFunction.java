@@ -1,4 +1,4 @@
-package com.whoknows.func;
+package com.whoknows.utils;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;

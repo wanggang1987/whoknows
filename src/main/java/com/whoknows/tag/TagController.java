@@ -37,7 +37,7 @@ public class TagController {
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
 	public ResponseEntity deleteTopic(@RequestBody Tag tag) {
 		log.info(ToStringBuilder.reflectionToString(tag, ToStringStyle.MULTI_LINE_STYLE));
-			if (tagService.deleteTag(tag)) {
+		if (tagService.deleteTag(tag)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
@@ -53,7 +53,7 @@ public class TagController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/list/{tagName}", method = RequestMethod.GET)
 	public ResponseEntity getTagList(@PathVariable("tagName") String tagName) {
 		List<Tag> tags = tagService.getTagList(tagName);
@@ -63,5 +63,14 @@ public class TagController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
+	@RequestMapping(path = "/home/{tagId}/{page}", method = RequestMethod.GET)
+	public ResponseEntity getTagHome(@PathVariable("tagId") Long tagId, @PathVariable("page") Integer page) {
+		TagHomeRespone tagHomeRespone = tagService.getTagHome(tagId, page);
+		if (tagHomeRespone != null) {
+			return ResponseEntity.ok(tagHomeRespone);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

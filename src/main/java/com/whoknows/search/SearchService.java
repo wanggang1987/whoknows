@@ -33,7 +33,7 @@ public class SearchService {
 	private FollowService followService;
 	@Autowired
 	private CommentService commentService;
-
+	
 	public SearchTopicResponse searchTopicByKeyWord(String key, Integer page, SearchType type) {
 		log.info("search topic:{}", key);
 		if (StringUtils.isEmpty(key)
@@ -41,8 +41,8 @@ public class SearchService {
 			return null;
 		}
 
-		SearchTopicResponse searchResponse = new SearchTopicResponse();
 		try {
+			SearchTopicResponse searchResponse = new SearchTopicResponse();
 			searchResponse.setKeyWord(key);
 			searchResponse.setPaging(new Paging());
 			searchResponse.getPaging().setCurrentPage(page);
@@ -68,17 +68,17 @@ public class SearchService {
 				topicResult.getTopicDetail().setFollowCount(followService.followCount(topicResult.getTopicDetail().getTopic().getId(), TargetType.topic));
 				topicResult.setReplyDetail(new ReplyDetail());
 				topicResult.getReplyDetail().setReply(relpyService.getHotReplyForRopic(topicResult.getTopicDetail().getTopic().getId()));
-				if (topicResult.getReplyDetail().getReply()!= null) {
+				if (topicResult.getReplyDetail().getReply() != null) {
 					topicResult.getReplyDetail().setAuthor(userService.getUser(topicResult.getReplyDetail().getReply().getUser_id()));
 					topicResult.getReplyDetail().setLikeCount(likeService.likeCount(topicResult.getReplyDetail().getReply().getId(), TargetType.reply));
 					topicResult.getReplyDetail().setCommentCount(commentService.commentCount(topicResult.getReplyDetail().getReply().getId()));
 				}
 			});
+			return searchResponse;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
 		}
 
-		return searchResponse;
 	}
 }
