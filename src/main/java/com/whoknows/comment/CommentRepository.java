@@ -49,4 +49,14 @@ public class CommentRepository {
 					return comment;
 				}).stream().findAny().orElse(null);
 	}
+	
+	public Integer commentCount(Long reply_id){
+		return jdbcTemplate.query("select count(1) from comment where reply_id = ? ",
+				ps -> {
+					ps.setLong(1, reply_id);
+				},
+				(rs, row) -> {
+					return rs.getInt("count(1)");
+				}).stream().findAny().orElse(null);
+	}
 }

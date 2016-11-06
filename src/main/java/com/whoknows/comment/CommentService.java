@@ -73,4 +73,13 @@ public class CommentService {
 			return null;
 		}
 	}
+	
+	public Integer commentCount(Long reply_id){
+		try {
+			return commentRepository.commentCount(reply_id);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
 }

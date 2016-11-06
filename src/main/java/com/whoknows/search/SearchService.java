@@ -1,6 +1,8 @@
 package com.whoknows.search;
 
+import com.whoknows.comment.CommentRepository;
 import com.whoknows.domain.TargetType;
+import com.whoknows.follow.FollowRepository;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.user.UserService;
@@ -29,6 +31,10 @@ public class SearchService {
 	private RelpyService relpyService;
 	@Autowired
 	private LikeService likeService;
+	@Autowired
+	private FollowRepository followRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 
 	public SearchUserResponse searchUserByKeyWord(String key, Integer page, SearchType type, boolean vip) {
 		log.info("search user:{}", key);
@@ -88,12 +94,13 @@ public class SearchService {
 
 			searchResponse.getTopicResults().parallelStream().forEach(topicResult -> {
 				topicResult.setTopicUser(userService.getUserSummaryInfo(topicResult.getTopic().getUser_id()));
+				topicResult.setTopicFollowCount(followRepository.followCount(topicResult.getTopic().getId(), TargetType.topic));
 				topicResult.setReply(relpyService.getHotReplyForRopic(topicResult.getTopic().getId()));
 				if (topicResult.getReply() != null) {
 					topicResult.setReplyUser(userService.getUserSummaryInfo(topicResult.getReply().getUser_id()));
+					topicResult.setReplyLikeCount(likeService.likeCount(topicResult.getReply().getId(), TargetType.reply));
+					topicResult.setReplyCommentCount(commentRepository.commentCount(topicResult.getReply().getId()));
 				}
-				topicResult.setReplyLikeCount(likeService.likeNum(topicResult.getReply().getId(), TargetType.reply));
-				
 			});
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

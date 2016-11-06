@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class TopicService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private TopicRepository topicRepository;
 	@Autowired
@@ -71,10 +71,12 @@ public class TopicService {
 			return null;
 		}
 
-		TopicDetail topicDetail= new TopicDetail();
+		TopicDetail topicDetail = new TopicDetail();
 		try {
-			topicDetail.setTopic( topicRepository.getTopic(id));
-			topicDetail.setUser(userService.getUserSummaryInfo(topicDetail.getTopic().getUser_id()));
+			topicDetail.setTopic(topicRepository.getTopic(id));
+			if (topicDetail.getTopic() != null) {
+				topicDetail.setUser(userService.getUserSummaryInfo(topicDetail.getTopic().getUser_id()));
+			}
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;

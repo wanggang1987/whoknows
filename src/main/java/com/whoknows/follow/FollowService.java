@@ -23,8 +23,8 @@ public class FollowService {
 			return false;
 		}
 	}
-	
-	public boolean followRecommed(Long userId, HotRecommend hotRecommend){
+
+	public boolean followRecommed(Long userId, HotRecommend hotRecommend) {
 		try {
 			hotRecommend.getTags().parallelStream().forEach(tag -> {
 				followRepository.follow(userId, tag.getTagID(), TargetType.tag);
@@ -36,6 +36,15 @@ public class FollowService {
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return false;
+		}
+	}
+
+	public Integer followCount(Long tartgetId, TargetType type) {
+		try {
+			return followRepository.followCount(tartgetId, type);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
 		}
 	}
 }

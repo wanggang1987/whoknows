@@ -10,7 +10,7 @@ public class FollowRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	public boolean isFollow(Long userId, Long tartgetId, TargetType type) {
 		return jdbcTemplate.query("select id from follow where user_id = ? and target_type = ? and target_id = ? ",
 				ps -> {
@@ -37,5 +37,15 @@ public class FollowRepository {
 					});
 		}
 	}
-}
 
+	public Integer followCount(Long tartgetId, TargetType type) {
+		return jdbcTemplate.query("select count(1) from follow where target_type = ? and target_id = ? ",
+				ps -> {
+					ps.setString(1, type.name());
+					ps.setLong(2, tartgetId);
+				},
+				(rs, row) -> {
+					return rs.getInt("count(1)");
+				}).stream().findAny().orElse(null);
+	}
+}

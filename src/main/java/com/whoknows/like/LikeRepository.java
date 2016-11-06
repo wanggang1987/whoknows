@@ -42,7 +42,7 @@ public class LikeRepository {
 		}
 	}
 
-	public Integer likeNum(Long tartgetId, TargetType type) {
+	public Integer likeCount(Long tartgetId, TargetType type) {
 		return jdbcTemplate.query("select count(1) from `like` where target_type = ? and target_id = ? ",
 				ps -> {
 					ps.setString(1, type.name());

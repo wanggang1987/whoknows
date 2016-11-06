@@ -23,9 +23,9 @@ public class LikeService {
 		}
 	}
 	
-	public Integer likeNum(Long targetId, TargetType type){
+	public Integer likeCount(Long targetId, TargetType type){
 		try {
-			return likeRepository.likeNum(targetId, type);
+			return likeRepository.likeCount(targetId, type);
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
