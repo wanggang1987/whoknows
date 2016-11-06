@@ -1,5 +1,7 @@
 package com.whoknows.search;
 
+import com.whoknows.reply.ReplyDetail;
+import com.whoknows.topic.TopicDetail;
 import com.whoknows.comment.CommentService;
 import com.whoknows.domain.TargetType;
 import com.whoknows.follow.FollowService;
@@ -11,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.whoknows.topic.TopicResult;
 import java.util.ArrayList;
 
 @Service
@@ -50,14 +51,14 @@ public class SearchService {
 
 			searchDAO.searchTopicByKeyWord(key, page, pageSize, type).stream().forEach(topic -> {
 				TopicResult topicResult = new TopicResult();
-				topicResult.setTopicDetail(new TopicRusult());
+				topicResult.setTopicDetail(new TopicDetail());
 				topicResult.getTopicDetail().setTopic(topic);
 				searchResponse.getTopicResults().add(topicResult);
 			});
 
 			searchDAO.searchTagByKeyWord(key, page, pageSize, type).stream().forEach(topic -> {
 				TopicResult topicResult = new TopicResult();
-				topicResult.setTopicDetail(new TopicRusult());
+				topicResult.setTopicDetail(new TopicDetail());
 				topicResult.getTopicDetail().setTopic(topic);
 				searchResponse.getTopicResults().add(topicResult);
 			});
@@ -65,7 +66,7 @@ public class SearchService {
 			searchResponse.getTopicResults().parallelStream().forEach(topicResult -> {
 				topicResult.getTopicDetail().setAuthor(userService.getUser(topicResult.getTopicDetail().getTopic().getId()));
 				topicResult.getTopicDetail().setFollowCount(followService.followCount(topicResult.getTopicDetail().getTopic().getId(), TargetType.topic));
-				topicResult.setReplyDetail(new ReplyResult());
+				topicResult.setReplyDetail(new ReplyDetail());
 				topicResult.getReplyDetail().setReply(relpyService.getHotReplyForRopic(topicResult.getTopicDetail().getTopic().getId()));
 				if (topicResult.getReplyDetail().getReply()!= null) {
 					topicResult.getReplyDetail().setAuthor(userService.getUser(topicResult.getReplyDetail().getReply().getUser_id()));

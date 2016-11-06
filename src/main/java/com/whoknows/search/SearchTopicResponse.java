@@ -1,6 +1,5 @@
 package com.whoknows.search;
 
-import com.whoknows.topic.TopicResult;
 import java.util.List;
 
 public class SearchTopicResponse {

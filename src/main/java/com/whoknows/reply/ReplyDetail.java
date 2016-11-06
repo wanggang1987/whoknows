@@ -1,9 +1,9 @@
-package com.whoknows.search;
+package com.whoknows.reply;
 
 import com.whoknows.domain.Reply;
 import com.whoknows.user.UserDetail;
 
-public class ReplyResult {
+public class ReplyDetail {
 	private Reply reply;
 	private UserDetail author;
 	private Integer likeCount;

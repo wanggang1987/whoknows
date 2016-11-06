@@ -2,8 +2,8 @@ package com.whoknows.user;
 
 import com.whoknows.domain.User;
 import com.whoknows.message.password.ResetPasswdRequest;
-import com.whoknows.search.TopicRusult;
-import com.whoknows.topic.TopicResult;
+import com.whoknows.topic.TopicDetail;
+import com.whoknows.search.TopicResult;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
@@ -43,7 +43,7 @@ public class UserService {
 		try {
 			return userRepository.getUserTopic(id).stream().map(topic -> {
 				TopicResult topicResult = new TopicResult();
-				topicResult.setTopicDetail(new TopicRusult());
+				topicResult.setTopicDetail(new TopicDetail());
 				topicResult.getTopicDetail().setTopic(topic);
 				return topicResult;
 			}).collect(Collectors.toList());

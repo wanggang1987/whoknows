@@ -1,6 +1,5 @@
 package com.whoknows.topic;
 
-import com.whoknows.search.TopicRusult;
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Topic;
 import com.whoknows.user.UserService;
@@ -67,12 +66,12 @@ public class TopicService {
 		}
 	}
 
-	public TopicRusult getTopic(Long id) {
+	public TopicDetail getTopic(Long id) {
 		if (id == null) {
 			return null;
 		}
 
-		TopicRusult topicDetail = new TopicRusult();
+		TopicDetail topicDetail = new TopicDetail();
 		try {
 			topicDetail.setTopic(topicRepository.getTopic(id));
 			if (topicDetail.getTopic() != null) {

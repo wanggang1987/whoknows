@@ -4,6 +4,15 @@ public class Paging {
 
 	private int currentPage;
 	private int perPage;
+	private int totalPage;
+
+	public int getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(int totalPage) {
+		this.totalPage = totalPage;
+	}
 	
 	public int getCurrentPage() {
 		return currentPage;

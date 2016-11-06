@@ -1,6 +1,5 @@
 package com.whoknows.topic;
 
-import com.whoknows.search.TopicRusult;
 import com.whoknows.domain.Topic;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -56,7 +55,7 @@ public class TopicController {
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getTopic(@PathVariable("id") Long id) {
 		log.info("get topic : {}", id);
-		TopicRusult topicDetail = topicService.getTopic(id);
+		TopicDetail topicDetail = topicService.getTopic(id);
 		if (topicDetail != null) {
 			return ResponseEntity.ok(topicDetail);
 		} else {

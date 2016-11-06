@@ -1,9 +1,9 @@
-package com.whoknows.search;
+package com.whoknows.topic;
 
 import com.whoknows.domain.Topic;
 import com.whoknows.user.UserDetail;
 
-public class TopicRusult {
+public class TopicDetail {
 
 	private Topic topic;
 	private UserDetail author;
