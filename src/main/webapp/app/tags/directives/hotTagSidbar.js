@@ -1,11 +1,11 @@
 
 'use strict';
 
-angular.module('wkTopic').directive('hotTopicSiderbar', function ($location, $log, $http) {
+angular.module('wkTag').directive('hotTagSiderbar', function ($location, $log, $http, DEFAULT_IMG) {
 
 	return {
 		restrict: 'AE',
-		templateUrl: 'app/topic/directives/HotTopicSidbar',
+		templateUrl: 'app/tags/directives/hotTagSidbar',
 		replace: true,
 		scope: {
 		},
@@ -22,7 +22,7 @@ angular.module('wkTopic').directive('hotTopicSiderbar', function ($location, $lo
 				$http.get(tagListUrl).then(function(data){
 					_.each(data.data, function(tag){
 						if(tag.picture == undefined || tag.picture == null) {
-							tag.picture = "../../images/tag-no-img-default.png";
+							tag.picture = DEFAULT_IMG.TAG_NO_IMG;
 						}
 					})
 					scope.tags = data.data;

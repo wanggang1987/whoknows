@@ -6,7 +6,7 @@
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
-          <hot-topic-siderbar topic="ttttopic"></hot-topic-siderbar>
+          <hot-tag-siderbar topic="ttttopic"></hot-tag-siderbar>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
 

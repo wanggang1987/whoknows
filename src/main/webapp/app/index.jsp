@@ -60,6 +60,7 @@
 	<script type="text/javascript" src="/bower_components/tinymce/tinymce.min.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-ui-tinymce/dist/tinymce.min.js"></script>
 	<script type="text/javascript" src="/components/fastselect-master/dist/fastselect.standalone.min.js"></script>
+	<script type="text/javascript" src="/bower_components/bootstrap/js/tab.js"></script>
 	<!-- self app js  -->
 	<script type="text/javascript" src="/app/app.js"></script>
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
@@ -75,7 +76,6 @@
 	<script type="text/javascript" src="/app/users/selfHomeCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/topicModule.js"></script>
 	<script type="text/javascript" src="/app/topic/wkTopicCtrl.js"></script>
-	<script type="text/javascript" src="/app/topic/directives/hotTopicSiderbar.js"></script>
 	<script type="text/javascript" src="/app/topic/directives/topicList.js"></script>
 	<script type="text/javascript" src="/app/superstar/superstarModule.js"></script>
 	<script type="text/javascript" src="/app/superstar/wkSuperstarCtrl.js"></script>
@@ -86,11 +86,14 @@
 	<script type="text/javascript" src="/app/login/directives/forgetPasswdDirective.js"></script>
 	<script type="text/javascript" src="/app/registration/registModule.js"></script>
 	<script type="text/javascript" src="/app/registration/registCtrl.js"></script>
+	<script type="text/javascript" src="/app/registration/registTagSelectCtrl.js"></script>
 	<script type="text/javascript" src="/app/setting/settingCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/services/userService.js"></script>
 	<script type="text/javascript" src="/app/setting/directives/resetPasswdDirective.js"></script>
 	<script type="text/javascript" src="/app/topic/createTopicCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/topicDetailCtrl.js"></script>
-	
+	<script type="text/javascript" src="/app/tags/tagModule.js"></script>
+	<script type="text/javascript" src="/app/tags/directives/hotTagSidbar.js"></script>
+	<script type="text/javascript" src="/app/tags/tagDetailCtrl.js"></script>
 </body>
 </html>

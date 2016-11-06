@@ -1,7 +1,24 @@
+/*********color constant start**********/
+/* #E1872E juse**********/
+/* #EEF5F7 qianlan**********/
+/* #e5e5e5 border huise**********/
+/* #1386ab nav back-ground**********/
+/* #b5b5b5 font color gray**********/
+/*********color constant end**********/
 body{
 	font-size: 13px;
 	word-wrap: break-word;
 	line-height: 1.7;
+}
+.wk-orign-hr {
+	clear:both;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    border: 0;
+    border-top: 2px solid #e16e1e ;
+}
+.font-gray-color{
+	color: #b5b5b5
 }
 .wk-a-disabled {
   cursor: not-allowed;
@@ -687,4 +704,14 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 }
 .wk-pagination li.disabled a{
 	color: #000;
+}
+/**regist hot topic***/
+.regist-topic-select-page h5{
+	color:#b5b5b5;
+}
+.regist-topic-select-page .hot-topic-list img,
+.regist-topic-select-page .hot-superstar-list img{
+	width:155px; 
+	border: 1px solid #e5e5e5 ; 
+	border-radius: 4px;
 }

@@ -5,7 +5,10 @@
 				  <div class="panel-heading text-center">注册</div>
 				  <div class="panel-body">
 					 <form class="form-horizontal" role="form">
-					 
+					 	  <div class="alert alert-danger alert-dismissible" role="alert" ng-show="!registSuccess">
+							  <button type="button" class="close" data-dismiss="alert" ng-click="closeWarn()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							  <strong>注册失败!</strong> 
+						  </div>
 						  <div class="form-group">
 						    <label for="inputEmail3" class="col-sm-3 control-label">邮箱地址</label>
 						    <div class="col-sm-9">
