@@ -48,7 +48,7 @@ public class SearchService {
 				searchUserResponse.getUsers().add(userSummaryInfo);
 			});
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 
@@ -90,7 +90,7 @@ public class SearchService {
 				}
 			});
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 

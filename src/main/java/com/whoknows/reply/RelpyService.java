@@ -24,7 +24,7 @@ public class RelpyService {
 		try {
 			return replyRepository.getHotReplyForRopic(topicId);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -41,7 +41,7 @@ public class RelpyService {
 			replyRepository.createReply(reply);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}
@@ -56,7 +56,7 @@ public class RelpyService {
 			replyRepository.updateReply(reply);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}
@@ -70,7 +70,7 @@ public class RelpyService {
 			replyRepository.deleteReply(id);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}
@@ -83,7 +83,7 @@ public class RelpyService {
 		try {
 			return replyRepository.getReply(id);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}

@@ -18,7 +18,7 @@ public class LikeService {
 			likeRepository.like(userId, tartgetId, type);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}

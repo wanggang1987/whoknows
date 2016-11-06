@@ -31,7 +31,7 @@ public class TopicService {
 			topicRepository.createTopic(topic);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}
@@ -47,7 +47,7 @@ public class TopicService {
 			topicRepository.updateTopic(topic);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}
@@ -61,7 +61,7 @@ public class TopicService {
 			topicRepository.deleteTopic(id);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}
@@ -76,7 +76,7 @@ public class TopicService {
 			topicDetail.setTopic( topicRepository.getTopic(id));
 			topicDetail.setUser(userService.getUserSummaryInfo(topicDetail.getTopic().getUser_id()));
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 		return topicDetail;

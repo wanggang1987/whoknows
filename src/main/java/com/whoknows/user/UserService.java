@@ -30,7 +30,7 @@ public class UserService {
 			userView.setUser(userRepository.getUserById(id), userRepository.getUserRolesByUserId(id));
 			return userView;
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -47,7 +47,7 @@ public class UserService {
 				return topicView;
 			}).collect(Collectors.toList());
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -61,6 +61,7 @@ public class UserService {
 			log.info("Create user :{} success.", user.getEmail());
 			return true;
 		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 	}
@@ -95,7 +96,7 @@ public class UserService {
 		try {
 			userRepository.editUserInfo(user);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 		return true;

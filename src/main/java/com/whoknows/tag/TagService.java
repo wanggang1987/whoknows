@@ -28,7 +28,7 @@ public class TagService {
 		try {
 			tagRepository.addTag(tag);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 		return true;
@@ -42,7 +42,7 @@ public class TagService {
 		try {
 			tagRepository.deleteTag(tag);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return false;
 		}
 		return true;
@@ -52,7 +52,7 @@ public class TagService {
 		try {
 			return tagRepository.getTagList();
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}
@@ -61,7 +61,7 @@ public class TagService {
 		try {
 			return tagRepository.getTagList(tagName);
 		} catch (Exception e) {
-			log.error(e.getMessage());
+			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}
