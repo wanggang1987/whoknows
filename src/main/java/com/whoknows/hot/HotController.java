@@ -51,7 +51,6 @@ public class HotController {
 		}
 	}
 	
-	
 	@RequestMapping(path = "/recommend", method = RequestMethod.GET)
 	public ResponseEntity getRecommed()
 	{
