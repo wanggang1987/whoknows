@@ -53,7 +53,7 @@ public class HotController {
 	
 	
 	@RequestMapping(path = "/recommend", method = RequestMethod.GET)
-	private ResponseEntity getRecommed()
+	public ResponseEntity getRecommed()
 	{
 		HotIndex hotIndex = new HotIndex();
 		hotIndex.setTags(hotService.listHotTags(1));
