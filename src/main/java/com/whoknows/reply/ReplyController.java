@@ -65,7 +65,7 @@ public class ReplyController {
 		}
 	}
 
-	@RequestMapping(path = "/list/{topic_id}/{page}}", method = RequestMethod.GET)
+	@RequestMapping(path = "/list/{topic_id}/{page}", method = RequestMethod.GET)
 	public ResponseEntity getReplyList(@PathVariable("topic_id") Long topicId, @PathVariable("page") Integer page) {
 		List<ReplyDetail> list = relpyService.getReplyDetails(topicId, page);
 		if (list != null) {
