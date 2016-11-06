@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import com.whoknows.hot.HotVip;
+
 @Controller
 @RequestMapping("/hot")
 public class HotController {
@@ -49,5 +49,16 @@ public class HotController {
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
+	}
+	
+	
+	@RequestMapping(path = "/recommend", method = RequestMethod.GET)
+	private ResponseEntity getRecommed()
+	{
+		HotIndex hotIndex = new HotIndex();
+		hotIndex.setTags(hotService.listHotTags(1));
+		hotIndex.setVips(hotService.listHotVip(1));
+		
+		return ResponseEntity.ok(hotIndex);
 	}
 }
