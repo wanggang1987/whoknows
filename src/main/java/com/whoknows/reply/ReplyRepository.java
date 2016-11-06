@@ -18,7 +18,7 @@ public class ReplyRepository {
 
 	public List<Long> getTopicReplys(Long topicId, int page, int pageSize) {
 		return jdbcTemplate.query("select id from reply where topic_id = ? "
-				+ "order by create_time "
+				+ "order by create_time desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, topicId);

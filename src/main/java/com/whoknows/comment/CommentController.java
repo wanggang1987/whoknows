@@ -1,6 +1,7 @@
 package com.whoknows.comment;
 
 import com.whoknows.domain.Comment;
+import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -56,11 +57,21 @@ public class CommentController {
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getComment(@PathVariable("id") Long id) {
 		log.info("get comment id: {}", id);
-		Comment comment = commentService.getComment(id);
-		if (comment != null) {
-			return ResponseEntity.ok(comment);
+		CommentDetail commentDetail = commentService.getComment(id);
+		if (commentDetail != null) {
+			return ResponseEntity.ok(commentDetail);
 		} else {
 			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@RequestMapping(path = "/list/{reply_id}/{page}", method = RequestMethod.GET)
+	public ResponseEntity getReplyList(@PathVariable("reply_id") Long replyId, @PathVariable("page") Integer page) {
+		List<CommentDetail> list = commentService.getCommentDetails(replyId, page);
+		if (list != null) {
+			return ResponseEntity.ok(list);
+		} else {
+			return ResponseEntity.badRequest().build();
 		}
 	}
 }

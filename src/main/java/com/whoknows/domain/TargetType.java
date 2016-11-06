@@ -5,4 +5,5 @@ public enum TargetType {
 	tag,
 	topic,
 	reply,
+	comment,
 }

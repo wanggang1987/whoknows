@@ -1,6 +1,7 @@
 package com.whoknows.comment;
 
 import com.whoknows.domain.Comment;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -10,6 +11,20 @@ public class CommentRepository {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	public List<Long> getReplyComments(Long replyId, int page, int pageSize) {
+		return jdbcTemplate.query("select id from comment where reply_id = ? "
+				+ "order by create_time desc "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setLong(1, replyId);
+					ps.setInt(2, pageSize);
+					ps.setInt(3, (page - 1) * pageSize);
+				},
+				(rs, row) -> {
+					return rs.getLong("id");
+				});
+	}
 
 	public void createComment(Comment comment) {
 		jdbcTemplate.update("insert into comment ( user_id, reply_id, content, action ) values ( ?, ?, ?, ? ) ",
@@ -49,8 +64,8 @@ public class CommentRepository {
 					return comment;
 				}).stream().findAny().orElse(null);
 	}
-	
-	public Integer commentCount(Long reply_id){
+
+	public Integer commentCount(Long reply_id) {
 		return jdbcTemplate.query("select count(1) from comment where reply_id = ? ",
 				ps -> {
 					ps.setLong(1, reply_id);

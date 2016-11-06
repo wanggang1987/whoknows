@@ -2,6 +2,11 @@ package com.whoknows.comment;
 
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Comment;
+import com.whoknows.domain.TargetType;
+import com.whoknows.like.LikeService;
+import com.whoknows.user.UserService;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,9 +17,14 @@ import org.springframework.stereotype.Service;
 public class CommentService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
+	private final int pageSize = 10;
 
 	@Autowired
 	private CommentRepository commentRepository;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private LikeService likeService;
 
 	public boolean createComment(Comment comment) {
 		if (comment.getUser_id() == null
@@ -61,13 +71,32 @@ public class CommentService {
 		}
 	}
 
-	public Comment getComment(Long id) {
+	public CommentDetail getComment(Long id) {
 		if (id == null) {
 			return null;
 		}
 
 		try {
-			return commentRepository.getComment(id);
+			CommentDetail commentDetail = new CommentDetail();
+			commentDetail.setComment(commentRepository.getComment(id));
+			if (commentDetail.getComment() != null) {
+				commentDetail.setUserDtail(userService.getUser(commentDetail.getComment().getUser_id()));
+				commentDetail.setLikeCount(likeService.likeCount(commentDetail.getComment().getId(), TargetType.comment));
+			}
+			return commentDetail;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
+	
+	public List<CommentDetail> getCommentDetails(Long replyId, Integer page) {
+		if (replyId ==null || page == null) {
+			return null;
+		}
+		
+		try {
+			return commentRepository.getReplyComments(replyId, page, pageSize).parallelStream().map(id -> getComment(id)).collect(Collectors.toList());
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;

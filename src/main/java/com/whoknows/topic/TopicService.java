@@ -83,8 +83,8 @@ public class TopicService {
 			topicDetail.setTopic(topicRepository.getTopic(id));
 			if (topicDetail.getTopic() != null) {
 				topicDetail.setAuthor(userService.getUser(topicDetail.getTopic().getUser_id()));
-				topicDetail.setReplys(relpyService.getReplyDetails(id, 1));
 				topicDetail.setFollowCount(followService.followCount(topicDetail.getTopic().getId(), TargetType.topic));
+				topicDetail.setReplys(relpyService.getReplyDetails(topicDetail.getTopic().getId(), 1));
 			}
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
