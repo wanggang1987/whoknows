@@ -12,9 +12,17 @@ public class TopicResult {
 	private Reply reply;
 	private UserSummaryInfo replyUser;
 	
-	private Integer replyFollowCount;
+	private Integer topicFollowCount;
 	private Integer replyLikeCount;
 	private Integer replyCommentCount;
+
+	public Integer getTopicFollowCount() {
+		return topicFollowCount;
+	}
+
+	public void setTopicFollowCount(Integer topicFollowCount) {
+		this.topicFollowCount = topicFollowCount;
+	}
 	
 	public Topic getTopic() {
 		return topic;	
@@ -39,12 +47,6 @@ public class TopicResult {
 	}
 	public void setReplyUser(UserSummaryInfo replyUser) {
 		this.replyUser = replyUser;
-	}
-	public Integer getReplyFollowCount() {
-		return replyFollowCount;
-	}
-	public void setReplyFollowCount(Integer replyFollowCount) {
-		this.replyFollowCount = replyFollowCount;
 	}
 	public Integer getReplyLikeCount() {
 		return replyLikeCount;

@@ -1,5 +1,7 @@
 package com.whoknows.search;
 
+import com.whoknows.domain.TargetType;
+import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.user.UserService;
 import org.apache.commons.lang.StringUtils;
@@ -25,6 +27,8 @@ public class SearchService {
 	private UserService userService;
 	@Autowired
 	private RelpyService relpyService;
+	@Autowired
+	private LikeService likeService;
 
 	public SearchUserResponse searchUserByKeyWord(String key, Integer page, SearchType type, boolean vip) {
 		log.info("search user:{}", key);
@@ -88,6 +92,8 @@ public class SearchService {
 				if (topicResult.getReply() != null) {
 					topicResult.setReplyUser(userService.getUserSummaryInfo(topicResult.getReply().getUser_id()));
 				}
+				topicResult.setReplyLikeCount(likeService.likeNum(topicResult.getReply().getId(), TargetType.reply));
+				
 			});
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

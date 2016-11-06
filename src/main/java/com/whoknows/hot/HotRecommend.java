@@ -2,8 +2,9 @@ package com.whoknows.hot;
 
 import java.util.List;
 
-public class HotIndex {
-	private List<HotVip>  vips;
+public class HotRecommend {
+
+	private List<HotVip> vips;
 	private List<HotTag> tags;
 
 	public List<HotVip> getVips() {

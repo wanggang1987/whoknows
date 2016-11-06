@@ -50,4 +50,16 @@ public class HotService {
 			return null;
 		}
 	}
+
+	public HotRecommend getRecommed() {
+		HotRecommend hotIndex = new HotRecommend();
+		try {
+			hotIndex.setTags(hotDAO.listHotTag(1, pageSize));
+			hotIndex.setVips(hotDAO.listHotVip(1, pageSize));
+			return hotIndex;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
 }

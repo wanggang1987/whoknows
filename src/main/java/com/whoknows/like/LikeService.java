@@ -22,4 +22,13 @@ public class LikeService {
 			return false;
 		}
 	}
+	
+	public Integer likeNum(Long targetId, TargetType type){
+		try {
+			return likeRepository.likeNum(targetId, type);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
 }

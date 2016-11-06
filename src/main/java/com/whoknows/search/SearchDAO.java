@@ -49,7 +49,7 @@ public class SearchDAO {
 	public List<Topic> searchTopicByKeyWord(String key, int page, int pageSize, SearchType type) {
 		return jdbcTemplate.query("select * from topic "
 				+ "where title like ? "
-				+ "or  content like ? "
+				+ "or content like ? "
 				+ "order by ? "
 				+ "limit ? OFFSET ? ",
 				ps -> {

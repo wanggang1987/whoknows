@@ -1,13 +1,14 @@
 package com.whoknows.follow;
 
 import com.whoknows.domain.TargetType;
+import com.whoknows.hot.HotRecommend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -48,5 +49,14 @@ public class FollowController {
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
+	}
+	
+	@RequestMapping(path = "/recommend/{userId}", method = RequestMethod.POST)
+	public  ResponseEntity followRecommend(@PathVariable("userId") Long userId, @RequestBody HotRecommend hotRecommend){
+		log.info("{} follow recommend ", userId);
+		if (followService.followRecommed(userId, hotRecommend)) {
+			return ResponseEntity.ok().build();
+		}else
+			return ResponseEntity.badRequest().build();
 	}
 }

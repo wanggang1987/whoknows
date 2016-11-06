@@ -50,14 +50,14 @@ public class HotController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/recommend", method = RequestMethod.GET)
-	public ResponseEntity getRecommed()
-	{
-		HotIndex hotIndex = new HotIndex();
-		hotIndex.setTags(hotService.listHotTags(1));
-		hotIndex.setVips(hotService.listHotVip(1));
-		
-		return ResponseEntity.ok(hotIndex);
+	public ResponseEntity getRecommed() {
+		HotRecommend hotIndex = hotService.getRecommed();
+		if (hotIndex != null) {
+			return ResponseEntity.ok(hotIndex);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 }

@@ -41,4 +41,14 @@ public class LikeRepository {
 					});
 		}
 	}
+
+	public Integer likeNum(Long tartgetId, TargetType type) {
+		return jdbcTemplate.query("select count(1) from `like` where target_type = ? and target_id = ? ",
+				ps -> {
+					ps.setString(1, type.name());
+					ps.setLong(2, tartgetId);
+				}, (rs, row) -> {
+					return rs.getInt("count(1)");
+				}).stream().findAny().orElse(null);
+	}
 }

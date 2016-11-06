@@ -1,6 +1,7 @@
 package com.whoknows.follow;
 
 import com.whoknows.domain.TargetType;
+import com.whoknows.hot.HotRecommend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,21 @@ public class FollowService {
 	public boolean follow(Long userId, Long tartgetId, TargetType type) {
 		try {
 			followRepository.follow(userId, tartgetId, type);
+			return true;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return false;
+		}
+	}
+	
+	public boolean followRecommed(Long userId, HotRecommend hotRecommend){
+		try {
+			hotRecommend.getTags().parallelStream().forEach(tag -> {
+				followRepository.follow(userId, tag.getTagID(), TargetType.tag);
+			});
+			hotRecommend.getVips().parallelStream().forEach(vip -> {
+				followRepository.follow(userId, vip.getUserID(), TargetType.user);
+			});
 			return true;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
