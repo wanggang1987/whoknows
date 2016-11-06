@@ -56,11 +56,16 @@ public class ReplyController {
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity getReply(@PathVariable("id") Long id) {
 		log.info("get reply id: {}", id);
-		Reply reply = relpyService.getReply(id);
-		if (reply != null) {
-			return ResponseEntity.ok(reply);
+		ReplyDetail replyDetail = relpyService.getReplyDetail(id);
+		if (replyDetail != null) {
+			return ResponseEntity.ok(replyDetail);
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
+	
+//	@RequestMapping(path = "/list/{topic_id}/{page}}", method = RequestMethod.GET)
+//	public ResponseEntity getReplyList(@PathVariable("topic_id") Long topicId, @PathVariable("page") Long page, ){
+//		
+//	}
 }

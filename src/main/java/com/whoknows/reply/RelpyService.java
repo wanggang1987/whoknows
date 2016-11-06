@@ -1,7 +1,11 @@
 package com.whoknows.reply;
 
+import com.whoknows.comment.CommentService;
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Reply;
+import com.whoknows.domain.TargetType;
+import com.whoknows.like.LikeService;
+import com.whoknows.user.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +19,12 @@ public class RelpyService {
 
 	@Autowired
 	private ReplyRepository replyRepository;
+	@Autowired
+	private UserService userService;
+	@Autowired
+	private LikeService likeService;
+	@Autowired
+	private CommentService commentService;
 
 	public Reply getHotReplyForRopic(Long topicId) {
 		if (topicId == null) {
@@ -82,6 +92,22 @@ public class RelpyService {
 
 		try {
 			return replyRepository.getReply(id);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	public ReplyDetail getReplyDetail(Long id) {
+		ReplyDetail replyDetail = new ReplyDetail();
+		try {
+			replyDetail.setReply(replyRepository.getReply(id));
+			if (replyDetail.getReply() != null) {
+				replyDetail.setAuthor(userService.getUser(replyDetail.getReply().getUser_id()));
+				replyDetail.setLikeCount(likeService.likeCount(replyDetail.getReply().getId(), TargetType.reply));
+				replyDetail.setCommentCount(commentService.commentCount(replyDetail.getReply().getId()));
+			}
+			return replyDetail;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
