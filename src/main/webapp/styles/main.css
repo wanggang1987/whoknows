@@ -10,6 +10,19 @@ body{
 	word-wrap: break-word;
 	line-height: 1.7;
 }
+.wk-add-more-btn{
+	outline:none;
+	width:100%;
+	outline:none;
+	height: 35px; 
+	padding-top: 5px;
+	margin-bottom: 35px;
+	margin-top: 35px;
+}
+
+.wk-img-25{
+	width: 25px;
+}
 .wk-orign-hr {
 	clear:both;
     margin-top: 0px;

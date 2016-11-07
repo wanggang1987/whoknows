@@ -8,7 +8,7 @@
       	<h4>热门话题</h4>
       	<div class="row">
       		<div class="col-lg-2" ng-repeat="tag in tags">
-      			<img alt="" ng-src="{{tag.picture}}" />
+      			<img alt="" ng-src="{{tag.picture || defaultTagImg}}" />
 	      		<label class="checkbox-inline" >
 			  		<input type="checkbox"  ng-model="regist.tags[tag.tagID]" value="tag.tagID" class="ng-cloak"> {{tag.tagName}}<br/><span class="font-gray-color">(关注人数：{{tag.follow}})</span>
 				</label>
@@ -20,7 +20,7 @@
       	<h4>热门大咖</h4>
       	<div class="row">
       		<div class="col-lg-2" ng-repeat="vip in vips">
-      			<img alt="" ng-src="{{vip.picture}}" />
+      			<img alt="" ng-src="{{vip.picture || defaultPeopleImg}}" />
       			<label class="checkbox-inline" >
 				  <input type="checkbox"  ng-model="regist.vips[vip.vipID]"  value="vip.vipID" class="ng-cloak">{{vip.name}}<span class="font-gray-color"><br/>(关注人数：{{vip.follow}})</span>
 				</label>

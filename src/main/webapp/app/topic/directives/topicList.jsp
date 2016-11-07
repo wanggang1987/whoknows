@@ -1,15 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="topic-list">
-	<div class="row" ng-repeat="result in topicLists"> 
+	<div class="row" ng-repeat="topic in topicLists"> 
 		<div class="col-xs-20 col-sm-12"> 
-			<div class="topic-header"><a href="#/topicDetail?id={{result.topic.id}}">{{result.topic.title}}</a></div>
+			<div class="topic-header"><a href="#/topicDetail?id={{topic.topicDetail.topic.id}}">{{topic.topicDetail.topic.title}}</a></div>
 			<div class="topic-body">
 				<div class="topic-body-author">
-					<img alt="" ng-src="{{result.topicUser.picture}}" ng-cloak></img>
-					<span >{{result.topicUser.email}}</span>
+					<img alt="" ng-src="{{topic.topicDetail.author.picture || defaultPeopleImg}}" class="ng-cloak"></img>
+					<span >{{topic.topicDetail.author.email}}</span>
 				</div>
 				<div class="topic-body-content">
-					<p ng-bind-html="result.topic.displayContent | to_trusted"></p><a href="javascript:void(0);" ng-click="expandTopicContent(result.topic)" ng-if="result.topic.commentListsExpandAble">显示全部</a>
+					<p ng-bind-html="topic.topicDetail.replyDetail.reply.content | to_trusted"></p>
+					<!-- <a href="javascript:void(0);" ng-click="expandTopicContent(result.topic)" ng-if="result.topic.commentListsExpandAble">显示全部</a> -->
 				</div>
 			</div>
 			<div class="topic-footer">
@@ -17,7 +18,7 @@
 					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-heart"></span>关注问题</a></li>
 					<li><a href="javascript:void(0);" ng-click="expandCommentLists(result.topic)"><span class="glyphicon glyphicon-comment"></span>评论</a></li>
 					<li><a href="javascript:void(0);"><span class="glyphicon glyphicon-thumbs-up"></span> 点赞</a></li>
-					<li><a href="javascript:void(0);" ng-if="!result.topic.commentListsExpandAble" ng-click="collapseTopicContent(result.topic)"><span class="glyphicon glyphicon-eject" ></span> 收起</a></li>
+					<!-- <li><a href="javascript:void(0);" ng-if="!result.topic.commentListsExpandAble" ng-click="collapseTopicContent(result.topic)"><span class="glyphicon glyphicon-eject" ></span> 收起</a></li> -->
 				</ul>
 				<div class="topic-comment-lists" >
 					<div class="popover bottom topic-comment-list-{{result.topic.id}}" role="tooltip"  style="display:none">
@@ -27,7 +28,7 @@
 					      		<div class="topic-comment-list row" ng-repeat="comment in result.topic.commentLists.data" ng-show="result.topic.loadCommentsSuccess">
 					      			<div class="topic-comment-body">
 										<div class="topic-comment-body-author">
-											<img alt="" ng-src="{{comment.author.img}}" ></img>
+											<img alt="" ng-src="{{comment.author.img || defaultPeopleImg}}" ></img>
 											<span >{{comment.author.firstName}}</span>
 										</div>
 										<div class="topic-comment-body-content">

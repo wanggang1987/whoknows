@@ -11,28 +11,25 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			topic: '='
 		}, 
 		link: function (scope, element, attr) {
-			
+			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 			function loadTopic(page, keyWord){
 				$http.get("/search/" + page + "?keyWord=" + keyWord).then(function(data){
 					scope.topicLists = data.data.topicResults;
-					_.each(scope.topicLists, function(result){
-						if(result.topic.content.length > 100){
-							result.topic.displayContent = result.topic.content.substr(0, 100) + "...";
-							result.topic.commentListsExpandAble = true;
-						}else{
-							result.topic.displayContent = result.topic.content;
-							result.topic.commentListsExpandAble = false;
-						}
-						
-						if(result.topicUser.picture == null){
-							result.topicUser.picture = DEFAULT_IMG.PEOPLE_NO_IMG;
-						}
+					console.log(scope.topicLists)
+					_.each(scope.topicLists, function(topic){
+//						if(result.topic.content.length > 100){
+//							result.topic.displayContent = result.topic.content.substr(0, 100) + "...";
+//							result.topic.commentListsExpandAble = true;
+//						}else{
+//							result.topic.displayContent = result.topic.content;
+//							result.topic.commentListsExpandAble = false;
+//						}
+//						if(result.topicUser.picture == null){
+//							result.topicUser.picture = DEFAULT_IMG.PEOPLE_NO_IMG;
+//						}
 					})
 				});
 			}
-			
-			
-			
 			
 			//可以点击 显示全部
 			scope.expandTopicContentAble = true;

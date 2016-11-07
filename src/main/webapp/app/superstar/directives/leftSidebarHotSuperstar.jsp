@@ -10,7 +10,7 @@
 			    	 </div>
 			    	 <div class="list-group">
 			    	 	<div class="list-group-item row" ng-repeat="vip in vips">
-			    	 		<div class="col-md-3"><img alt="" ng-src="{{vip.picture}}" ng-cloak></img></div>
+			    	 		<div class="col-md-3"><img alt="" ng-src="{{vip.picture || defaultPeopleImg}}" ng-cloak></img></div>
 			    	 		<div class="col-md-9">
 			    	 			<a href="#"><h5 class="list-group-item-heading">{{vip.name}}</h5></a>
 					    		<p class="list-group-item-text">关注人数:{{vip.follow}}</p>

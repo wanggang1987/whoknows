@@ -12,7 +12,7 @@ angular.module('wkTag').directive('hotTagSiderbar', function ($location, $log, $
 		link: function (scope) {
 			scope.currentPage = 1;
 			scope.lastPage = false;
-			
+			scope.defaultPeopleIMg = DEFAULT_IMG.TAG_NO_IMG;
 			var getTagLists = function(page, keyWord){
 				var tagListUrl = "/hot/tag/" + page;
 				if(keyWord != undefined && keyWord != null && $.trim(keyWord) != ''){
@@ -20,11 +20,6 @@ angular.module('wkTag').directive('hotTagSiderbar', function ($location, $log, $
 				}
 				
 				$http.get(tagListUrl).then(function(data){
-					_.each(data.data, function(tag){
-						if(tag.picture == undefined || tag.picture == null) {
-							tag.picture = DEFAULT_IMG.TAG_NO_IMG;
-						}
-					})
 					scope.tags = data.data;
 					scope.lastPage = scope.tags.length < 5;
 				});

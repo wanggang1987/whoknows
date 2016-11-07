@@ -13,6 +13,7 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 		link: function (scope, DEFAULT_IMG) {
 			scope.currentPage = 1;
 			scope.lastPage = false;
+			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 			var getVipLists = function(page , keyWord){
 				var vipListUrl = "/hot/vip/" + page;
 				if(keyWord != undefined && keyWord != null && $.trim(keyWord) != ''){
@@ -20,11 +21,6 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 				}
 				
 				$http.get(vipListUrl).then(function(data){
-					_.each(data.data, function(tag){
-						if(tag.picture == undefined || tag.picture == null) {
-							tag.picture = DEFAULT_IMG.PEOPLE_NO_IMG;
-						}
-					})
 					scope.vips = data.data;
 					scope.lastPage = scope.vips.length < 5;
 				});

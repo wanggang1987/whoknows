@@ -3,6 +3,8 @@
 angular.module('wkCommon').controller('wkCommon.appCtrl',
 	function ($scope, $rootScope, $location, $route, $window, LocalStorageService, UserService, DEFAULT_IMG) {
 		$scope.loginIn = false;
+		$scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
+		
 		UserService.initialize().then(function () {
 			$scope.loginIn = UserService.isSignedIn();
 			if($scope.loginIn){
@@ -37,9 +39,6 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		
 		function initUser(){
 			$scope.user = UserService.getCurrent();
-			if($scope.user.picture == undefined || $scope.user.picture == null){
-				$scope.user.picture = DEFAULT_IMG.PEOPLE_NO_IMG ;
-			}
 		}
 		$scope.isActive = function (viewLocation) {
 		     var active = (viewLocation === $location.path());

@@ -3,6 +3,10 @@
 angular.module('wkRegist').controller('RegistTagSelectCtrl',
 	function ($scope, $rootScope, $location, $http, DEFAULT_IMG, LocalStorageService, UserService) {
 		console.log("wkCommon- wkRegist.RegistTagSelectCtrl  load.");
+		
+		$scope.defaultTagImg = DEFAULT_IMG.TAG_NO_IMG;
+		$scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
+		
 		$scope.regist ={
 			"tags" : [],
 			"vips" : []
@@ -26,18 +30,6 @@ angular.module('wkRegist').controller('RegistTagSelectCtrl',
 			$http.get("/hot/recommend").success(function(data){
 				$scope.vips = data.vips;
 				$scope.tags = data.tags;
-				
-				_.each($scope.vips, function(vip){
-					if(vip.picture == undefined || vip.picture == null){
-						vip.picture = DEFAULT_IMG.PEOPLE_NO_IMG;
-					}
-				})
-				
-				_.each($scope.tags, function(tag){
-					if(tag.picture == undefined || tag.picture == null){
-						tag.picture = DEFAULT_IMG.TAG_NO_IMG;
-					}
-				})
 			});
 		}
 		

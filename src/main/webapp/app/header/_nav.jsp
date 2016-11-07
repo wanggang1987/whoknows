@@ -16,7 +16,7 @@
               	<sec:authorize access="isAuthenticated()">
 	              	<li class="fill-maring-left dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
 		              	<a href="#/selfPage" data-toggle="dropdown" >
-		              		<img alt="" class="img-20-size" ng-src="{{user.picture}}"></img> <span class="ng-cloak">{{user.email}}</span>
+		              		<img alt="" class="img-20-size" ng-src="{{user.picture || defaultPeopleImg}}"></img> <span class="ng-cloak">{{user.email}}</span>
 		              		<span class="glyphicon glyphicon-chevron-down"></span>
 		              	</a>
 		              	<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
