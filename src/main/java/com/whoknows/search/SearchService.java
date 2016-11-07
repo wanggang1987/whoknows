@@ -3,6 +3,7 @@ package com.whoknows.search;
 import com.whoknows.reply.ReplyDetail;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.comment.CommentService;
+import com.whoknows.domain.Reply;
 import com.whoknows.domain.TargetType;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
@@ -49,30 +50,24 @@ public class SearchService {
 			searchResponse.getPaging().setPerPage(pageSize);
 			searchResponse.setTopicResults(new ArrayList<>());
 
-			searchDAO.searchTopicByKeyWord(key, page, pageSize, type).stream().forEach(topic -> {
+			searchDAO.searchTopicByKeyWord(key, page, pageSize, type).parallelStream().forEach(topic -> {
 				TopicResult topicResult = new TopicResult();
-				topicResult.setTopicDetail(new TopicDetail());
-				topicResult.getTopicDetail().setTopic(topic);
-				searchResponse.getTopicResults().add(topicResult);
-			});
+				TopicDetail topicDetail = new TopicDetail();
+				topicDetail.setTopic(topic);
+				topicDetail.setAuthor(userService.getUser(topic.getId()));
+				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				topicResult.setTopicDetail(topicDetail);
 
-			searchDAO.searchTagByKeyWord(key, page, pageSize, type).stream().forEach(topic -> {
-				TopicResult topicResult = new TopicResult();
-				topicResult.setTopicDetail(new TopicDetail());
-				topicResult.getTopicDetail().setTopic(topic);
-				searchResponse.getTopicResults().add(topicResult);
-			});
-
-			searchResponse.getTopicResults().parallelStream().forEach(topicResult -> {
-				topicResult.getTopicDetail().setAuthor(userService.getUser(topicResult.getTopicDetail().getTopic().getId()));
-				topicResult.getTopicDetail().setFollowCount(followService.followCount(topicResult.getTopicDetail().getTopic().getId(), TargetType.topic));
-				topicResult.setReplyDetail(new ReplyDetail());
-				topicResult.getReplyDetail().setReply(relpyService.getHotReplyForRopic(topicResult.getTopicDetail().getTopic().getId()));
-				if (topicResult.getReplyDetail().getReply() != null) {
-					topicResult.getReplyDetail().setAuthor(userService.getUser(topicResult.getReplyDetail().getReply().getUser_id()));
-					topicResult.getReplyDetail().setLikeCount(likeService.likeCount(topicResult.getReplyDetail().getReply().getId(), TargetType.reply));
-					topicResult.getReplyDetail().setCommentCount(commentService.commentCount(topicResult.getReplyDetail().getReply().getId()));
+				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
+				if (reply != null) {
+					ReplyDetail replyDetail = new ReplyDetail();
+					replyDetail.setReply(reply);
+					replyDetail.setAuthor(userService.getUser(reply.getUser_id()));
+					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
+					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					topicResult.setReplyDetail(replyDetail);
 				}
+				searchResponse.getTopicResults().add(topicResult);
 			});
 			return searchResponse;
 		} catch (Exception e) {

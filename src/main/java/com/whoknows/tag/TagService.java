@@ -2,6 +2,7 @@ package com.whoknows.tag;
 
 import com.whoknows.comment.CommentService;
 import com.whoknows.domain.ActionType;
+import com.whoknows.domain.Reply;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.TargetType;
 import com.whoknows.follow.FollowService;
@@ -102,23 +103,24 @@ public class TagService {
 			tagHomeRespone.getPaging().setPerPage(pageSize);
 			tagHomeRespone.setTopicResults(new ArrayList<>());
 
-			tagRepository.getTopicByTag(tagId, page, pageSize).stream().forEach(topic -> {
+			tagRepository.getTopicByTag(tagId, page, pageSize).parallelStream().forEach(topic -> {
 				TopicResult topicResult = new TopicResult();
-				topicResult.setTopicDetail(new TopicDetail());
-				topicResult.getTopicDetail().setTopic(topic);
-				tagHomeRespone.getTopicResults().add(topicResult);
-			});
+				TopicDetail topicDetail = new TopicDetail();
+				topicDetail.setTopic(topic);
+				topicDetail.setAuthor(userService.getUser(topic.getId()));
+				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				topicResult.setTopicDetail(topicDetail);
 
-			tagHomeRespone.getTopicResults().parallelStream().forEach(topicResult -> {
-				topicResult.getTopicDetail().setAuthor(userService.getUser(topicResult.getTopicDetail().getTopic().getId()));
-				topicResult.getTopicDetail().setFollowCount(followService.followCount(topicResult.getTopicDetail().getTopic().getId(), TargetType.topic));
-				topicResult.setReplyDetail(new ReplyDetail());
-				topicResult.getReplyDetail().setReply(relpyService.getHotReplyForRopic(topicResult.getTopicDetail().getTopic().getId()));
-				if (topicResult.getReplyDetail().getReply() != null) {
-					topicResult.getReplyDetail().setAuthor(userService.getUser(topicResult.getReplyDetail().getReply().getUser_id()));
-					topicResult.getReplyDetail().setLikeCount(likeService.likeCount(topicResult.getReplyDetail().getReply().getId(), TargetType.reply));
-					topicResult.getReplyDetail().setCommentCount(commentService.commentCount(topicResult.getReplyDetail().getReply().getId()));
+				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
+				if (reply != null) {
+					ReplyDetail replyDetail = new ReplyDetail();
+					replyDetail.setReply(reply);
+					replyDetail.setAuthor(userService.getUser(reply.getUser_id()));
+					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
+					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					topicResult.setReplyDetail(replyDetail);
 				}
+				tagHomeRespone.getTopicResults().add(topicResult);
 			});
 			return tagHomeRespone;
 		} catch (Exception e) {
