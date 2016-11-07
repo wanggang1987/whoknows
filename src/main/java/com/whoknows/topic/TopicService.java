@@ -73,23 +73,36 @@ public class TopicService {
 		}
 	}
 
-	public TopicDetail getTopic(Long id) {
+	public Topic getTopic(Long id) {
 		if (id == null) {
 			return null;
 		}
 
-		TopicDetail topicDetail = new TopicDetail();
 		try {
+			return topicRepository.getTopic(id);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	public TopicDetail getTopicDetail(Long id) {
+		if (id == null) {
+			return null;
+		}
+
+		try {
+			TopicDetail topicDetail = new TopicDetail();
 			topicDetail.setTopic(topicRepository.getTopic(id));
 			if (topicDetail.getTopic() != null) {
 				topicDetail.setAuthor(userService.getUser(topicDetail.getTopic().getUser_id()));
 				topicDetail.setFollowCount(followService.followCount(topicDetail.getTopic().getId(), TargetType.topic));
 				topicDetail.setReplys(relpyService.getReplyDetails(topicDetail.getTopic().getId(), 1));
 			}
+			return topicDetail;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
 		}
-		return topicDetail;
 	}
 }

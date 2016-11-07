@@ -1,9 +1,18 @@
 package com.whoknows.user;
 
+import com.whoknows.comment.CommentService;
+import com.whoknows.domain.Reply;
+import com.whoknows.domain.TargetType;
+import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
+import com.whoknows.follow.FollowService;
+import com.whoknows.like.LikeService;
 import com.whoknows.message.password.ResetPasswdRequest;
+import com.whoknows.reply.RelpyService;
+import com.whoknows.reply.ReplyDetail;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.search.TopicResult;
+import com.whoknows.topic.TopicService;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
@@ -20,6 +29,16 @@ public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private TopicService topicService;
+	@Autowired
+	private RelpyService relpyService;
+	@Autowired
+	private LikeService likeService;
+	@Autowired
+	private FollowService followService;
+	@Autowired
+	private CommentService commentService;
 
 	public UserDetail getUser(Long id) {
 		if (id == null) {
@@ -104,15 +123,86 @@ public class UserService {
 		return true;
 	}
 
-	public UserTopicResponse getUserCreateTopics() {
-		return null;
+	public List<TopicResult> getUserCreateTopics(Long userID, int page) {
+		try {
+			return userRepository.getUserCreateTopics(userID, page, pageSize).parallelStream().map(topic -> {
+				TopicResult topicResult = new TopicResult();
+				TopicDetail topicDetail = new TopicDetail();
+				topicDetail.setTopic(topic);
+				topicDetail.setAuthor(getUser(topic.getId()));
+				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				topicResult.setTopicDetail(topicDetail);
+
+				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
+				if (reply != null) {
+					ReplyDetail replyDetail = new ReplyDetail();
+					replyDetail.setReply(reply);
+					replyDetail.setAuthor(getUser(reply.getUser_id()));
+					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
+					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					topicResult.setReplyDetail(replyDetail);
+				}
+				return topicResult;
+			}).collect(Collectors.toList());
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
 	}
 
-	public UserTopicResponse getUserFollowTopics() {
-		return null;
+	public List<TopicResult> getUserFollowTopics(Long userID, int page) {
+		try {
+			return userRepository.getUserFollowTopics(userID, page, pageSize).parallelStream().map(topic -> {
+				TopicResult topicResult = new TopicResult();
+				TopicDetail topicDetail = new TopicDetail();
+				topicDetail.setTopic(topic);
+				topicDetail.setAuthor(getUser(topic.getId()));
+				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				topicResult.setTopicDetail(topicDetail);
+
+				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
+				if (reply != null) {
+					ReplyDetail replyDetail = new ReplyDetail();
+					replyDetail.setReply(reply);
+					replyDetail.setAuthor(getUser(reply.getUser_id()));
+					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
+					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					topicResult.setReplyDetail(replyDetail);
+				}
+				return topicResult;
+			}).collect(Collectors.toList());
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
 	}
 
-	public UserTopicResponse getUserReplyTopics() {
-		return null;
+	public List<TopicResult> getUserReplyTopics(Long userID, int page) {
+		try {
+			return userRepository.getUserReplys(userID, page, pageSize).parallelStream().map(reply -> {
+				TopicResult topicResult = new TopicResult();
+				Topic topic = topicService.getTopic(reply.getTopic_id());
+				if (topic != null) {
+					TopicDetail topicDetail = new TopicDetail();
+					topicDetail.setTopic(topic);
+					topicDetail.setAuthor(getUser(topic.getId()));
+					topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+					topicResult.setTopicDetail(topicDetail);
+				} else {
+					return null;
+				}
+
+				ReplyDetail replyDetail = new ReplyDetail();
+				replyDetail.setReply(reply);
+				replyDetail.setAuthor(getUser(reply.getUser_id()));
+				replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
+				replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+				topicResult.setReplyDetail(replyDetail);
+				return topicResult;
+			}).filter(topicResult -> topicResult != null).collect(Collectors.toList());
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
 	}
 }

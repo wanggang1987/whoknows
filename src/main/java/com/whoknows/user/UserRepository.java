@@ -1,5 +1,6 @@
 package com.whoknows.user;
 
+import com.whoknows.domain.Reply;
 import com.whoknows.domain.Role;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
@@ -105,7 +106,71 @@ public class UserRepository {
 				});
 	}
 
-	public List<Topic> getUserCreateTopics() {
-		return null;
+	public List<Topic> getUserCreateTopics(Long user_id, int page, int pageSize) {
+		return jdbcTemplate.query("select * from topic where user_id = ? "
+				+ "order by id desc "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setLong(1, user_id);
+					ps.setInt(2, pageSize);
+					ps.setInt(3, (page - 1) * pageSize);
+				}, (rs, row) -> {
+					Topic topic = new Topic();
+					topic.setId(rs.getLong("id"));
+					topic.setUser_id(rs.getLong("user_id"));
+					topic.setAction(rs.getString("action"));
+					topic.setTitle(rs.getString("title"));
+					topic.setContent(rs.getString("content"));
+					topic.setRank(rs.getLong("rank"));
+					topic.setCreate_time(rs.getTimestamp("create_time"));
+					topic.setUpdate_time(rs.getTimestamp("update_time"));
+					return topic;
+				});
+	}
+
+	public List<Topic> getUserFollowTopics(Long user_id, int page, int pageSize) {
+		return jdbcTemplate.query("select * from topic where id in (	"
+				+ "select target_id from follow where user_id = ? and target_type = 'topic' ) "
+				+ "order by id desc "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setLong(1, user_id);
+					ps.setInt(2, pageSize);
+					ps.setInt(3, (page - 1) * pageSize);
+				}, (rs, row) -> {
+					Topic topic = new Topic();
+					topic.setId(rs.getLong("id"));
+					topic.setUser_id(rs.getLong("user_id"));
+					topic.setAction(rs.getString("action"));
+					topic.setTitle(rs.getString("title"));
+					topic.setContent(rs.getString("content"));
+					topic.setRank(rs.getLong("rank"));
+					topic.setCreate_time(rs.getTimestamp("create_time"));
+					topic.setUpdate_time(rs.getTimestamp("update_time"));
+					return topic;
+				});
+	}
+
+	public List<Reply> getUserReplys(Long user_id, int page, int pageSize) {
+		return jdbcTemplate.query("select * from reply where user_id = ? "
+				+ "order by id desc "
+				+ "limit ? OFFSET ? ",
+				ps -> {
+					ps.setLong(1, user_id);
+					ps.setInt(2, pageSize);
+					ps.setInt(3, (page - 1) * pageSize);
+				},
+				(rs, row) -> {
+					Reply reply = new Reply();
+					reply.setId(rs.getLong("id"));
+					reply.setAction(rs.getString("action"));
+					reply.setContent(rs.getString("content"));
+					reply.setCreate_time(rs.getTimestamp("create_time"));
+					reply.setReply_id(rs.getLong("reply_id"));
+					reply.setTopic_id(rs.getLong("topic_id"));
+					reply.setUpdate_time(rs.getTimestamp("update_time"));
+					reply.setUser_id(rs.getLong("user_id"));
+					return reply;
+				});
 	}
 }

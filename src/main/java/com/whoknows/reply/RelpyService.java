@@ -124,7 +124,8 @@ public class RelpyService {
 		}
 		
 		try {
-			return replyRepository.getTopicReplys(topicId, page, pageSize).parallelStream().map(id -> getReplyDetail(id)).collect(Collectors.toList());
+			return replyRepository.getTopicReplys(topicId, page, pageSize).parallelStream().map(id -> 
+					getReplyDetail(id)).collect(Collectors.toList());
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;

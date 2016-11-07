@@ -2,6 +2,8 @@ package com.whoknows.user;
 
 import com.whoknows.domain.User;
 import com.whoknows.message.password.ResetPasswdRequest;
+import com.whoknows.search.TopicResult;
+import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -85,6 +87,36 @@ public class UserContoller {
 					.getAuthentication().getPrincipal();
 		} else {
 			return null;
+		}
+	}
+
+	@RequestMapping(path = "/create/{userId}/{page}", method = RequestMethod.GET)
+	public ResponseEntity getUserCreateTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
+		List<TopicResult> list = userService.getUserCreateTopics(userId, page);
+		if (list != null) {
+			return ResponseEntity.ok(list);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@RequestMapping(path = "/follow/{userId}/{page}", method = RequestMethod.GET)
+	public ResponseEntity getUserFollowTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
+		List<TopicResult> list = userService.getUserFollowTopics(userId, page);
+		if (list != null) {
+			return ResponseEntity.ok(list);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
+	@RequestMapping(path = "/reply/{userId}/{page}", method = RequestMethod.GET)
+	public ResponseEntity getUserReplyTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
+		List<TopicResult> list = userService.getUserReplyTopics(userId, page);
+		if (list != null) {
+			return ResponseEntity.ok(list);
+		} else {
+			return ResponseEntity.badRequest().build();
 		}
 	}
 }
