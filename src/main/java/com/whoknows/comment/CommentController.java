@@ -32,7 +32,7 @@ public class CommentController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity updateComment(@RequestBody Comment comment) {
 		log.info(ToStringBuilder.reflectionToString(comment, ToStringStyle.MULTI_LINE_STYLE));
@@ -64,12 +64,12 @@ public class CommentController {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/list/{reply_id}/{page}", method = RequestMethod.GET)
 	public ResponseEntity getReplyList(@PathVariable("reply_id") Long replyId, @PathVariable("page") Integer page) {
-		List<CommentDetail> list = commentService.getCommentDetails(replyId, page);
-		if (list != null) {
-			return ResponseEntity.ok(list);
+		CommentListResponse commentListResponse = commentService.getCommentListResponse(replyId, page);
+		if (commentListResponse != null) {
+			return ResponseEntity.ok(commentListResponse);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}

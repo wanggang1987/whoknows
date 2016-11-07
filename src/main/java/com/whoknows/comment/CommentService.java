@@ -4,6 +4,7 @@ import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Comment;
 import com.whoknows.domain.TargetType;
 import com.whoknows.like.LikeService;
+import com.whoknows.search.Paging;
 import com.whoknows.user.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -89,12 +90,12 @@ public class CommentService {
 			return null;
 		}
 	}
-	
+
 	public List<CommentDetail> getCommentDetails(Long replyId, Integer page) {
-		if (replyId ==null || page == null) {
+		if (replyId == null || page == null) {
 			return null;
 		}
-		
+
 		try {
 			return commentRepository.getReplyComments(replyId, page, pageSize).parallelStream().map(id -> getComment(id)).collect(Collectors.toList());
 		} catch (Exception e) {
@@ -102,8 +103,27 @@ public class CommentService {
 			return null;
 		}
 	}
-	
-	public Integer commentCount(Long reply_id){
+
+	public CommentListResponse getCommentListResponse(Long replyId, Integer page) {
+		if (replyId == null || page == null) {
+			return null;
+		}
+
+		try {
+			CommentListResponse commentListResponse = new CommentListResponse();
+			commentListResponse.setPaging(new Paging());
+			commentListResponse.getPaging().setCurrentPage(page);
+			commentListResponse.getPaging().setPerPage(pageSize);
+			commentListResponse.setComments(commentRepository.getReplyComments(replyId, page, pageSize)
+					.parallelStream().map(id -> getComment(id)).collect(Collectors.toList()));
+			return commentListResponse;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	public Integer commentCount(Long reply_id) {
 		try {
 			return commentRepository.commentCount(reply_id);
 		} catch (Exception e) {
