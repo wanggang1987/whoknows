@@ -9,30 +9,40 @@ angular.module('WhoKnows').directive('wkPagination', function ($location, $windo
 		scope: {
 			paginationInfo : '=',
 			displayAble : '@',
-			loadData : '&'
+			loadData : '&',
+			cacheData : '='
 		},
 		replace: true,
 		link: function (scope, elem) {
 			scope.PAGE_MIDDLE_SHOW = 3;
+			scope.$watch('paginationInfo', function (value) {
+				console.log(">>>>>>>>>>>>>>")
+//				console.log(value)
+				calcShowPage();
+//				console.log(scope.paginationInfo)
+				console.log(">>>>>>>>>>>>>>")
+			});
 			
-			console.log("> pag directive : " + scope.paginationInfo);
-			
+			console.log("> pag directive : " );
+			console.log(scope.paginationInfo)
 			
 			scope.setPage = function(page){
 				scope.paginationInfo.currentPage = page;
 				calcShowPage();
-				alert("pag directive-" + scope.paginationInfo.currentPage);
-				scope.loadData({page:page});
+				console.log("pag directive-++++" );
+				console.log(scope.cacheData)
+				console.log(scope.paginationInfo)
+				scope.loadData({cacheData : scope.cacheData, paging : scope.paginationInfo});
 			}
 			
 			var calcShowPage = function(){
 				scope.showPageArray = [];
 				scope.showLeftDo = false;
 				scope.showRightDo = false;
-				if(scope.paginationInfo.totalCount <= 2){// 1 ... 6 7 8 9 
+				if(scope.paginationInfo.totalPage <= 2){// 1 ... 6 7 8 9 
 					//do nothing
-				}else if(scope.paginationInfo.totalCount <= 5){
-					for( var i = 2; i < scope.paginationInfo.totalCount ; i++){
+				}else if(scope.paginationInfo.totalPage <= 5){
+					for( var i = 2; i < scope.paginationInfo.totalPage ; i++){
 						scope.showPageArray.push(i);
 					}
 				}else {
@@ -41,8 +51,8 @@ angular.module('WhoKnows').directive('wkPagination', function ($location, $windo
 							scope.showPageArray.push(i);
 						}
 						scope.showRightDo = true;
-					}else if(scope.paginationInfo.currentPage > scope.paginationInfo.totalCount - scope.PAGE_MIDDLE_SHOW){
-						for( var i = scope.paginationInfo.totalCount - scope.PAGE_MIDDLE_SHOW; i < scope.paginationInfo.totalCount ; i++){
+					}else if(scope.paginationInfo.currentPage > scope.paginationInfo.totalPage - scope.PAGE_MIDDLE_SHOW){
+						for( var i = scope.paginationInfo.totalPage - scope.PAGE_MIDDLE_SHOW; i < scope.paginationInfo.totalPage ; i++){
 							scope.showPageArray.push(i);
 						}
 						scope.showLeftDo = true;

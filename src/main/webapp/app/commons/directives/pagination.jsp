@@ -16,12 +16,12 @@
        </li>
        
        <li ng-if ="showRightDo">...</li>                
-       <li ng-if ="paginationInfo.totalCount > 1" ng-class="{disabled:paginationInfo.currentPage === paginationInfo.totalCount}">
-           <a ng-if="paginationInfo.currentPage !== paginationInfo.totalCount" ng-click="setPage(paginationInfo.totalCount)" href="javascript:void(0)">{{paginationInfo.totalCount}}</a>
-           <span ng-if="paginationInfo.currentPage == paginationInfo.totalCount">{{paginationInfo.totalCount}}</span>
+       <li ng-if ="paginationInfo.totalPage > 1" ng-class="{disabled:paginationInfo.currentPage === paginationInfo.totalPage}">
+           <a ng-if="paginationInfo.currentPage !== paginationInfo.totalPage" ng-click="setPage(paginationInfo.totalPage)" href="javascript:void(0)">{{paginationInfo.totalPage}}</a>
+           <span ng-if="paginationInfo.currentPage == paginationInfo.totalPage">{{paginationInfo.totalPage}}</span>
        </li> 
-       <li ng-class="{disabled:paginationInfo.currentPage === paginationInfo.totalCount}">
-           <a ng-if="paginationInfo.currentPage !== paginationInfo.totalCount" ng-click="setPage(paginationInfo.currentPage + 1)" href="javascript:void(0)">下页</a>
-           <span ng-if="paginationInfo.currentPage == paginationInfo.totalCount">下页</span>
+       <li ng-class="{disabled:paginationInfo.currentPage === paginationInfo.totalPage}">
+           <a ng-if="paginationInfo.currentPage !== paginationInfo.totalPage" ng-click="setPage(paginationInfo.currentPage + 1)" href="javascript:void(0)">下页</a>
+           <span ng-if="paginationInfo.currentPage == paginationInfo.totalPage">下页</span>
        </li>
 </ul>
