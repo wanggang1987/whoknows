@@ -25,7 +25,7 @@ public class CommentRepository {
 					return rs.getLong("id");
 				});
 	}
-
+	
 	public void createComment(Comment comment) {
 		jdbcTemplate.update("insert into comment ( user_id, reply_id, content, action ) values ( ?, ?, ?, ? ) ",
 				ps -> {

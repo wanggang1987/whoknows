@@ -111,9 +111,12 @@ public class CommentService {
 
 		try {
 			CommentListResponse commentListResponse = new CommentListResponse();
-			commentListResponse.setPaging(new Paging());
-			commentListResponse.getPaging().setCurrentPage(page);
-			commentListResponse.getPaging().setPerPage(pageSize);
+			Paging paging = new Paging();
+			paging.setCurrentPage(page);
+			paging.setPerPage(pageSize);
+			paging.setTotalPage(commentRepository.commentCount(replyId) / pageSize + 1);
+			commentListResponse.setPaging(paging);
+
 			commentListResponse.setComments(commentRepository.getReplyComments(replyId, page, pageSize)
 					.parallelStream().map(id -> getComment(id)).collect(Collectors.toList()));
 			return commentListResponse;
