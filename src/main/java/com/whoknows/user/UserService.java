@@ -62,7 +62,11 @@ public class UserService {
 
 		try {
 			UserDetail userView = new UserDetail();
-			userView.setUser(userRepository.getUserById(id), userRepository.getUserRolesByUserId(id));
+			User user = userRepository.getUserById(id);
+			if (user == null) {
+				return null;
+			}
+			userView.setUser(user, userRepository.getUserRolesByUserId(id));
 			return userView;
 		} catch (Exception e) {
 			e.printStackTrace();

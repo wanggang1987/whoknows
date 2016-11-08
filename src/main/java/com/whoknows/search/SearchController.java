@@ -20,6 +20,7 @@ public class SearchController {
 
 	@RequestMapping(path = "/{page}", method = RequestMethod.GET)
 	public ResponseEntity searchByKeyWord(String keyWord, @PathVariable("page") Integer page) {
+		log.info("search :{}", keyWord);
 		SearchTopicResponse searchResponse = searchService.searchTopicByKeyWord(keyWord, page, SearchType.time);
 		if (searchResponse != null) {
 			return ResponseEntity.ok(searchResponse);
