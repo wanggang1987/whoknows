@@ -27,20 +27,20 @@ public class CommentService {
 	@Autowired
 	private LikeService likeService;
 
-	public boolean createComment(Comment comment) {
+	public Integer createComment(Comment comment) {
 		if (comment.getUser_id() == null
 				|| comment.getReply_id() == null
 				|| StringUtils.isEmpty(comment.getContent())) {
-			return false;
+			return null;
 		}
 		comment.setAction(ActionType.pending.name());
 
 		try {
 			commentRepository.createComment(comment);
-			return true;
+			return commentRepository.getCommentCount(comment.getReply_id());
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
-			return false;
+			return null;
 		}
 	}
 
@@ -114,7 +114,7 @@ public class CommentService {
 			Paging paging = new Paging();
 			paging.setCurrentPage(page);
 			paging.setPerPage(pageSize);
-			int commentCount = commentRepository.commentCount(replyId) ;
+			int commentCount = commentRepository.getCommentCount(replyId) ;
 			paging.setTotalPage(commentCount % pageSize == 0 ?  commentCount/ pageSize  : commentCount/ pageSize + 1);
 			commentListResponse.setPaging(paging);
 
@@ -129,7 +129,7 @@ public class CommentService {
 
 	public Integer commentCount(Long reply_id) {
 		try {
-			return commentRepository.commentCount(reply_id);
+			return commentRepository.getCommentCount(reply_id);
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;

@@ -2,6 +2,7 @@ package com.whoknows.user;
 
 import com.whoknows.comment.CommentService;
 import com.whoknows.domain.Reply;
+import com.whoknows.domain.Tag;
 import com.whoknows.domain.TargetType;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
@@ -51,7 +52,7 @@ public class UserService {
 			return null;
 		}
 	}
-	
+
 	public UserDetail getUser(Long id) {
 		if (id == null) {
 			return null;
@@ -248,6 +249,19 @@ public class UserService {
 				return topicResult;
 			}).filter(topicResult -> topicResult != null).collect(Collectors.toList()));
 			return userTopicResponse;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	public List<Tag> getUserTagList() {
+		try {
+			User user = currentUser();
+			if (user != null && user.getId() != null) {
+				return userRepository.getUserTagList(user.getId());
+			}
+			return null;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;

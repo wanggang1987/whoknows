@@ -1,8 +1,8 @@
 package com.whoknows.user;
 
+import com.whoknows.domain.Tag;
 import com.whoknows.domain.User;
 import com.whoknows.message.password.ResetPasswdRequest;
-import com.whoknows.search.TopicResult;
 import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -109,4 +108,14 @@ public class UserContoller {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+	
+	@RequestMapping(path = "/tag", method = RequestMethod.GET)
+	public ResponseEntity getUserTagList() {
+		List<Tag> tags = userService.getUserTagList();
+		if (tags != null) {
+			return ResponseEntity.ok(tags);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	} 
 }

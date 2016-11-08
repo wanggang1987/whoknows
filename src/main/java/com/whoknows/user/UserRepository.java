@@ -2,6 +2,7 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Role;
+import com.whoknows.domain.Tag;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.domain.autoMappingBean.UserRowMapper;
@@ -203,5 +204,25 @@ public class UserRepository {
 				(rs, row) -> {
 					return rs.getInt("count(1)");
 				}).stream().findAny().orElse(null);
+	}
+
+	public List<Tag> getUserTagList(Long userId) {
+		return jdbcTemplate.query("select * from tag where id in "
+				+ "( select target_id from follow "
+				+ "left join user on follow.user_id = user.id "
+				+ "where follow.target_type = 'tag' "
+				+ "and user.id = ? ) "
+				+ "order by rank desc;",
+				ps -> {
+					ps.setLong(1, userId);
+				},
+				(rs, row) -> {
+					Tag tag = new Tag();
+					tag.setId(rs.getLong("id"));
+					tag.setName(rs.getString("name"));
+					tag.setAction(rs.getString("action"));
+					tag.setRank(rs.getLong("rank"));
+					return tag;
+				});
 	}
 }

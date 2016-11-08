@@ -26,8 +26,9 @@ public class CommentController {
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity createComment(@RequestBody Comment comment) {
 		log.info(ToStringBuilder.reflectionToString(comment, ToStringStyle.MULTI_LINE_STYLE));
-		if (commentService.createComment(comment)) {
-			return ResponseEntity.ok().build();
+		Integer cnt = commentService.createComment(comment);
+		if (cnt != null) {
+			return ResponseEntity.ok(cnt);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
