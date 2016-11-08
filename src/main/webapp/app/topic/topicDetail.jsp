@@ -4,6 +4,7 @@
         <div class="col-xs-12 col-sm-9">
         		<h2 class="text-center"><p ng-bind-html="topic.topic.title | to_trusted"></p> </h2>
         		<h5 class="font-gray-color">{{topic.topic.create_time | date : "y-dd-MM HH:mm:ss"}}&nbsp;&nbsp;{{topic.author.email}}, {{topic.author.companyName}},{{topic.author.title}}</h5>
+        		<h5 class="font-gray-color"> <a class="font-gray-color" href="javascript:void(0);" ng-click="fllowTopic(topic)"><span class="glyphicon glyphicon-heart"></span><span ng-hide="topic.currentFollowed">关注问题</span><span ng-show="topic.currentFollowed">取消关注</span></a>({{topic.followCount}})</h5>
         		<p ng-bind-html="topic.topic.content | to_trusted"></p>
         		<hr />
         		
@@ -20,9 +21,8 @@
 						</div>
 						<div class="topic-footer">
 							<ul class="topic-footer-ul">
-								<li><a href="javascript:void(0);" ng-click="fllowTopic(topic)"><span class="glyphicon glyphicon-heart"></span><span ng-hide="topic.cancelFllow">关注问题</span><span ng-show="topic.cancelFllow">取消关注</span></a>({{topic.followCount}})</li>
+								<li><a href="javascript:void(0);" ng-click="likeReply(reply)"><span class="glyphicon glyphicon-thumbs-up"></span><span ng-hide="reply.currentLiked">点赞</span><span ng-show="reply.currentLiked">取消点赞</span></a>({{reply.likeCount}})</li>
 								<li><a href="javascript:void(0);" ng-click="expandCommentLists(reply)"><span class="glyphicon glyphicon-comment"></span>评论</a>({{reply.commentCount}})</li>
-								<li><a href="javascript:void(0);" ng-click="likeReply(reply)"><span class="glyphicon glyphicon-thumbs-up"></span><span ng-hide="reply.cancelLike">点赞</span><span ng-show="reply.cancelLike">取消点赞</span></a>({{reply.likeCount}})</li>
 							</ul>
 							<div class="topic-comment-lists" >
 								<div class="popover bottom topic-comment-list-{{reply.reply.id}}" role="tooltip"  style="display:none">
