@@ -4,11 +4,20 @@ import com.whoknows.domain.Reply;
 import com.whoknows.user.UserDetail;
 
 public class ReplyDetail {
+
 	private Reply reply;
 	private UserDetail author;
 	private Integer likeCount;
 	private Integer commentCount;
+	private Boolean currentLiked;
 
+	public Boolean getCurrentLiked() {
+		return currentLiked;
+	}
+
+	public void setCurrentLiked(Boolean currentLiked) {
+		this.currentLiked = currentLiked;
+	}
 
 	public Integer getLikeCount() {
 		return likeCount;

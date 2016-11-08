@@ -4,7 +4,6 @@ import com.whoknows.domain.Tag;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.autoMappingBean.TagRowMapper;
 import com.whoknows.utils.CharacterConvert;
-import com.whoknows.message.topic.TopicSelectResponse;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,10 +11,18 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TagRepository {
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
+	public void addTagRelation(Long topicId, Long tagId) {
+		jdbcTemplate.update("insert into tag_topic (topic_id, tag_id) values (?, ?) ",
+				ps -> {
+					ps.setLong(1, topicId);
+					ps.setLong(2, tagId);
+				});
+	}
+
 	public void addTag(Tag tag) {
 		jdbcTemplate.update("insert into tag(name, action) values (? , ?) ",
 				ps -> {
@@ -23,11 +30,11 @@ public class TagRepository {
 					ps.setString(2, tag.getAction());
 				});
 	}
-	
+
 	public void deleteTag(Tag tag) {
 		jdbcTemplate.update("delete from tag where id = ? ", ps -> ps.setLong(1, tag.getId()));
 	}
-	
+
 	public Tag getTag(Long id) {
 		return jdbcTemplate.query("select * from tag where id = ? ", ps -> ps.setLong(1, id),
 				(rs, row) -> {
@@ -39,21 +46,33 @@ public class TagRepository {
 					return tag;
 				}).stream().findAny().orElse(null);
 	}
-	
-	public List<TopicSelectResponse> getTagList() {
+
+	public List<TagSelect> getTagList() {
 		return jdbcTemplate.query("select * from tag", (rs, row) -> {
-			TopicSelectResponse tag = new TopicSelectResponse();
+			TagSelect tag = new TagSelect();
 			tag.setText(rs.getString("name"));
 			tag.setValue(rs.getLong("id"));
 			return tag;
 		});
-		
+
 	}
-	
+
 	public List<Tag> getTagList(String tagName) {
 		return jdbcTemplate.query("SELECT * FROM whoknows.tag where name like '%" + CharacterConvert.translateSqlConvert(tagName) + "%' order by rank desc  limit 5", new TagRowMapper());
 	}
-	
+
+	public Integer getTopicByTagCount(Long tagId) {
+		return jdbcTemplate.query("SELECT count(1) FROM topic "
+				+ "left join tag_topic on tag_topic.topic_id = topic.id "
+				+ "where tag_topic.tag_id = ? ",
+				ps -> {
+					ps.setLong(1, tagId);
+				},
+				(rs, row) -> {
+					return rs.getInt("count(1)");
+				}).stream().findAny().orElse(null);
+	}
+
 	public List<Topic> getTopicByTag(Long tagId, int page, int pageSize) {
 		return jdbcTemplate.query("SELECT topic.* FROM topic "
 				+ "left join tag_topic on tag_topic.topic_id = topic.id "

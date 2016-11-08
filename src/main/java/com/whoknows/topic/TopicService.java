@@ -5,6 +5,7 @@ import com.whoknows.domain.TargetType;
 import com.whoknows.domain.Topic;
 import com.whoknows.follow.FollowService;
 import com.whoknows.reply.RelpyService;
+import com.whoknows.tag.TagService;
 import com.whoknows.user.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -20,22 +21,30 @@ public class TopicService {
 	@Autowired
 	private TopicRepository topicRepository;
 	@Autowired
+	private TagService tagService;
+	@Autowired
 	private UserService userService;
 	@Autowired
 	private RelpyService relpyService;
 	@Autowired
 	private FollowService followService;
 
-	public boolean createTopic(Topic topic) {
-		topic.setAction(ActionType.pending.toString());
-		if (topic.getUser_id() == null
-				|| StringUtils.isEmpty(topic.getTitle())
-				|| StringUtils.isEmpty(topic.getContent())) {
+	public boolean createTopic(TopicCreate topicCreate) {
+		if (topicCreate.getTopic() == null
+				|| topicCreate.getTopic().getUser_id() == null
+				|| StringUtils.isEmpty(topicCreate.getTopic().getTitle())
+				|| StringUtils.isEmpty(topicCreate.getTopic().getContent())) {
 			return false;
 		}
+		topicCreate.getTopic().setAction(ActionType.pending.toString());
 
 		try {
-			topicRepository.createTopic(topic);
+			Long topicId = topicRepository.createTopic(topicCreate.getTopic());
+			if(topicCreate.getTags() != null){
+				topicCreate.getTags().parallelStream().forEach(tag -> {
+					tagService.addTagRelation(topicId, tag.getValue());
+				});
+			}
 			return true;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

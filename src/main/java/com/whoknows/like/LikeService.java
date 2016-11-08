@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LikeService {
-	
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private LikeRepository likeRepository;
-	
+
 	public boolean like(Long userId, Long tartgetId, TargetType type) {
 		try {
 			likeRepository.like(userId, tartgetId, type);
@@ -22,7 +22,7 @@ public class LikeService {
 			return false;
 		}
 	}
-	
+
 	public boolean disLike(Long userId, Long tartgetId, TargetType type) {
 		try {
 			likeRepository.disLike(userId, tartgetId, type);
@@ -32,10 +32,19 @@ public class LikeService {
 			return false;
 		}
 	}
-	
-	public Integer likeCount(Long targetId, TargetType type){
+
+	public Integer likeCount(Long targetId, TargetType type) {
 		try {
 			return likeRepository.likeCount(targetId, type);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	public Boolean isLiked(Long userId, Long tartgetId, TargetType type) {
+		try {
+			return likeRepository.isLike(userId, tartgetId, type);
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;

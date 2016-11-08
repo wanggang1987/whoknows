@@ -10,6 +10,7 @@ import com.whoknows.like.LikeService;
 import com.whoknows.message.password.ResetPasswdRequest;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.reply.ReplyDetail;
+import com.whoknows.search.Paging;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.search.TopicResult;
 import com.whoknows.topic.TopicService;
@@ -19,6 +20,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,6 +42,16 @@ public class UserService {
 	@Autowired
 	private CommentService commentService;
 
+	public User currentUser() {
+		if (SecurityContextHolder.getContext().getAuthentication()
+				.getPrincipal() instanceof User) {
+			return (User) SecurityContextHolder.getContext()
+					.getAuthentication().getPrincipal();
+		} else {
+			return null;
+		}
+	}
+	
 	public UserDetail getUser(Long id) {
 		if (id == null) {
 			return null;
@@ -123,14 +135,24 @@ public class UserService {
 		return true;
 	}
 
-	public List<TopicResult> getUserCreateTopics(Long userID, int page) {
+	public UserTopicResponse getUserCreateTopics(Long userID, int page) {
 		try {
-			return userRepository.getUserCreateTopics(userID, page, pageSize).parallelStream().map(topic -> {
+			UserTopicResponse userTopicResponse = new UserTopicResponse();
+			Paging paging = new Paging();
+			paging.setCurrentPage(page);
+			paging.setPerPage(pageSize);
+			int commentCount = userRepository.getUserCreateTopicCount(userID);
+			paging.setTotalPage(commentCount % pageSize == 0 ? commentCount / pageSize : commentCount / pageSize + 1);
+			userTopicResponse.setPaging(paging);
+
+			userTopicResponse.setTopicResults(userRepository.getUserCreateTopics(userID, page, pageSize).parallelStream().map(topic -> {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
 				topicDetail.setAuthor(getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
+				topicDetail.setCurrentLiked(likeService.isLiked(userID, topic.getId(), TargetType.topic));
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -140,24 +162,36 @@ public class UserService {
 					replyDetail.setAuthor(getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					replyDetail.setCurrentLiked(likeService.isLiked(userID, reply.getId(), TargetType.reply));
 					topicResult.setReplyDetail(replyDetail);
 				}
 				return topicResult;
-			}).collect(Collectors.toList());
+			}).collect(Collectors.toList()));
+			return userTopicResponse;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}
 
-	public List<TopicResult> getUserFollowTopics(Long userID, int page) {
+	public UserTopicResponse getUserFollowTopics(Long userID, int page) {
 		try {
-			return userRepository.getUserFollowTopics(userID, page, pageSize).parallelStream().map(topic -> {
+			UserTopicResponse userTopicResponse = new UserTopicResponse();
+			Paging paging = new Paging();
+			paging.setCurrentPage(page);
+			paging.setPerPage(pageSize);
+			int commentCount = userRepository.getUserFollowTopicCount(userID);
+			paging.setTotalPage(commentCount % pageSize == 0 ? commentCount / pageSize : commentCount / pageSize + 1);
+			userTopicResponse.setPaging(paging);
+
+			userTopicResponse.setTopicResults(userRepository.getUserFollowTopics(userID, page, pageSize).parallelStream().map(topic -> {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
 				topicDetail.setAuthor(getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
+				topicDetail.setCurrentLiked(likeService.isLiked(userID, topic.getId(), TargetType.topic));
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -167,19 +201,29 @@ public class UserService {
 					replyDetail.setAuthor(getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					replyDetail.setCurrentLiked(likeService.isLiked(userID, reply.getId(), TargetType.reply));
 					topicResult.setReplyDetail(replyDetail);
 				}
 				return topicResult;
-			}).collect(Collectors.toList());
+			}).collect(Collectors.toList()));
+			return userTopicResponse;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
 		}
 	}
 
-	public List<TopicResult> getUserReplyTopics(Long userID, int page) {
+	public UserTopicResponse getUserReplyTopics(Long userID, int page) {
 		try {
-			return userRepository.getUserReplys(userID, page, pageSize).parallelStream().map(reply -> {
+			UserTopicResponse userTopicResponse = new UserTopicResponse();
+			Paging paging = new Paging();
+			paging.setCurrentPage(page);
+			paging.setPerPage(pageSize);
+			int commentCount = userRepository.getUserReplyCount(userID);
+			paging.setTotalPage(commentCount % pageSize == 0 ? commentCount / pageSize : commentCount / pageSize + 1);
+			userTopicResponse.setPaging(paging);
+
+			userTopicResponse.setTopicResults(userRepository.getUserReplys(userID, page, pageSize).parallelStream().map(reply -> {
 				TopicResult topicResult = new TopicResult();
 				Topic topic = topicService.getTopic(reply.getTopic_id());
 				if (topic != null) {
@@ -187,6 +231,8 @@ public class UserService {
 					topicDetail.setTopic(topic);
 					topicDetail.setAuthor(getUser(topic.getId()));
 					topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+					topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
+					topicDetail.setCurrentLiked(likeService.isLiked(userID, topic.getId(), TargetType.topic));
 					topicResult.setTopicDetail(topicDetail);
 				} else {
 					return null;
@@ -197,9 +243,11 @@ public class UserService {
 				replyDetail.setAuthor(getUser(reply.getUser_id()));
 				replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 				replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+				replyDetail.setCurrentLiked(likeService.isLiked(userID, reply.getId(), TargetType.reply));
 				topicResult.setReplyDetail(replyDetail);
 				return topicResult;
-			}).filter(topicResult -> topicResult != null).collect(Collectors.toList());
+			}).filter(topicResult -> topicResult != null).collect(Collectors.toList()));
+			return userTopicResponse;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;

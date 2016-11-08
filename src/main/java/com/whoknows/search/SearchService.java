@@ -5,6 +5,7 @@ import com.whoknows.topic.TopicDetail;
 import com.whoknows.comment.CommentService;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.TargetType;
+import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
@@ -14,7 +15,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
+import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang.builder.ToStringStyle;
 
 @Service
 public class SearchService {
@@ -34,7 +37,7 @@ public class SearchService {
 	private FollowService followService;
 	@Autowired
 	private CommentService commentService;
-	
+
 	public SearchTopicResponse searchTopicByKeyWord(String key, Integer page, SearchType type) {
 		log.info("search topic:{}", key);
 		if (StringUtils.isEmpty(key)
@@ -43,19 +46,23 @@ public class SearchService {
 		}
 
 		try {
+			User user = userService.currentUser();
+
 			SearchTopicResponse searchResponse = new SearchTopicResponse();
 			searchResponse.setKeyWord(key);
 			searchResponse.setPaging(new Paging());
 			searchResponse.getPaging().setCurrentPage(page);
 			searchResponse.getPaging().setPerPage(pageSize);
-			searchResponse.setTopicResults(new ArrayList<>());
-
-			searchDAO.searchTopicByKeyWord(key, page, pageSize, type).parallelStream().forEach(topic -> {
+			searchResponse.setTopicResults(searchDAO.searchTopicByKeyWord(key, page, pageSize, type).parallelStream().map(topic -> {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
 				topicDetail.setAuthor(userService.getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				if (user != null && user.getId() != null) {
+					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
+					topicDetail.setCurrentLiked(likeService.isLiked(user.getId(), topic.getId(), TargetType.topic));
+				}
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -65,10 +72,13 @@ public class SearchService {
 					replyDetail.setAuthor(userService.getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					if (user != null && user.getId() != null) {
+						replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), reply.getId(), TargetType.reply));
+					}
 					topicResult.setReplyDetail(replyDetail);
 				}
-				searchResponse.getTopicResults().add(topicResult);
-			});
+				return topicResult;
+			}).collect(Collectors.toList()));
 			return searchResponse;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());

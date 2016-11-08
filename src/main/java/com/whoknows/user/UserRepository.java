@@ -128,6 +128,16 @@ public class UserRepository {
 				});
 	}
 
+	public Integer getUserCreateTopicCount(Long user_id) {
+		return jdbcTemplate.query("select count(1) from topic where user_id = ? ",
+				ps -> {
+					ps.setLong(1, user_id);
+				},
+				(rs, row) -> {
+					return rs.getInt("count(1)");
+				}).stream().findAny().orElse(null);
+	}
+
 	public List<Topic> getUserFollowTopics(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from topic where id in (	"
 				+ "select target_id from follow where user_id = ? and target_type = 'topic' ) "
@@ -151,6 +161,17 @@ public class UserRepository {
 				});
 	}
 
+	public Integer getUserFollowTopicCount(Long user_id) {
+		return jdbcTemplate.query("select count(1) from topic where id in (	"
+				+ "select target_id from follow where user_id = ? and target_type = 'topic' ) ",
+				ps -> {
+					ps.setLong(1, user_id);
+				},
+				(rs, row) -> {
+					return rs.getInt("count(1)");
+				}).stream().findAny().orElse(null);
+	}
+
 	public List<Reply> getUserReplys(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from reply where user_id = ? "
 				+ "order by id desc "
@@ -172,5 +193,15 @@ public class UserRepository {
 					reply.setUser_id(rs.getLong("user_id"));
 					return reply;
 				});
+	}
+
+	public Integer getUserReplyCount(Long user_id) {
+		return jdbcTemplate.query("select count(1) from reply where user_id = ?  ",
+				ps -> {
+					ps.setLong(1, user_id);
+				},
+				(rs, row) -> {
+					return rs.getInt("count(1)");
+				}).stream().findAny().orElse(null);
 	}
 }

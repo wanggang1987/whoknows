@@ -5,17 +5,17 @@ import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.TargetType;
+import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
-import com.whoknows.message.topic.TopicSelectResponse;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.reply.ReplyDetail;
 import com.whoknows.search.Paging;
 import com.whoknows.search.TopicResult;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.user.UserService;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -70,7 +70,7 @@ public class TagService {
 		return true;
 	}
 
-	public List<TopicSelectResponse> getTagList() {
+	public List<TagSelect> getTagList() {
 		try {
 			return tagRepository.getTagList();
 		} catch (Exception e) {
@@ -94,21 +94,29 @@ public class TagService {
 		}
 
 		try {
+			User user = userService.currentUser();
+
 			TagHomeRespone tagHomeRespone = new TagHomeRespone();
 			tagHomeRespone.setTag(tagRepository.getTag(tagId));
 			tagHomeRespone.setTagFollowCount(followService.followCount(tagId, TargetType.tag));
-			
-			tagHomeRespone.setPaging(new Paging());
-			tagHomeRespone.getPaging().setCurrentPage(page);
-			tagHomeRespone.getPaging().setPerPage(pageSize);
-			tagHomeRespone.setTopicResults(new ArrayList<>());
 
-			tagRepository.getTopicByTag(tagId, page, pageSize).parallelStream().forEach(topic -> {
+			Paging paging = new Paging();
+			paging.setCurrentPage(page);
+			paging.setPerPage(pageSize);
+			int commentCount = tagRepository.getTopicByTagCount(tagId);
+			paging.setTotalPage(commentCount % pageSize == 0 ? commentCount / pageSize : commentCount / pageSize + 1);
+			tagHomeRespone.setPaging(paging);
+
+			tagHomeRespone.setTopicResults(tagRepository.getTopicByTag(tagId, page, pageSize).parallelStream().map(topic -> {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
 				topicDetail.setAuthor(userService.getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+				if (user != null && user.getId() != null) {
+					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
+					topicDetail.setCurrentLiked(likeService.isLiked(user.getId(), topic.getId(), TargetType.topic));
+				}
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -118,14 +126,27 @@ public class TagService {
 					replyDetail.setAuthor(userService.getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
+					if (user != null && user.getId() != null) {
+						replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), reply.getId(), TargetType.reply));
+					}
 					topicResult.setReplyDetail(replyDetail);
 				}
-				tagHomeRespone.getTopicResults().add(topicResult);
-			});
+				return topicResult;
+			}).collect(Collectors.toList()));
 			return tagHomeRespone;
 		} catch (Exception e) {
 			log.error(e.getLocalizedMessage());
 			return null;
+		}
+	}
+
+	public boolean addTagRelation(Long topicId, Long tagId) {
+		try {
+			tagRepository.addTagRelation(topicId, tagId);
+			return true;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return false;
 		}
 	}
 

@@ -29,7 +29,7 @@ public class UserContoller {
 	@RequestMapping(path = "/current", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity current() {
 		try {
-			User currentUser = currentUser();
+			User currentUser = userService.currentUser();
 			if (currentUser != null) {
 				return ResponseEntity.ok(currentUser);
 			} else {
@@ -80,41 +80,31 @@ public class UserContoller {
 		}
 	}
 
-	private User currentUser() {
-		if (SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal() instanceof User) {
-			return (User) SecurityContextHolder.getContext()
-					.getAuthentication().getPrincipal();
+	@RequestMapping(path = "/topic/{userId}/{page}", method = RequestMethod.GET)
+	public ResponseEntity getUserCreateTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
+		UserTopicResponse userTopicResponse = userService.getUserCreateTopics(userId, page);
+		if (userTopicResponse != null) {
+			return ResponseEntity.ok(userTopicResponse);
 		} else {
-			return null;
+			return ResponseEntity.badRequest().build();
 		}
 	}
 
-	@RequestMapping(path = "/topic/{userId}/{page}", method = RequestMethod.GET)
-	public ResponseEntity getUserCreateTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
-		List<TopicResult> list = userService.getUserCreateTopics(userId, page);
-		if (list != null) {
-			return ResponseEntity.ok(list);
-		} else {
-			return ResponseEntity.badRequest().build();
-		}
-	}
-	
 	@RequestMapping(path = "/follow/{userId}/{page}", method = RequestMethod.GET)
 	public ResponseEntity getUserFollowTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
-		List<TopicResult> list = userService.getUserFollowTopics(userId, page);
-		if (list != null) {
-			return ResponseEntity.ok(list);
+		UserTopicResponse userTopicResponse = userService.getUserFollowTopics(userId, page);
+		if (userTopicResponse != null) {
+			return ResponseEntity.ok(userTopicResponse);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/reply/{userId}/{page}", method = RequestMethod.GET)
 	public ResponseEntity getUserReplyTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
-		List<TopicResult> list = userService.getUserReplyTopics(userId, page);
-		if (list != null) {
-			return ResponseEntity.ok(list);
+		UserTopicResponse userTopicResponse = userService.getUserReplyTopics(userId, page);
+		if (userTopicResponse != null) {
+			return ResponseEntity.ok(userTopicResponse);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}

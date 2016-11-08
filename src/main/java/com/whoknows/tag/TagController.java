@@ -1,7 +1,6 @@
 package com.whoknows.tag;
 
 import com.whoknows.domain.Tag;
-import com.whoknows.message.topic.TopicSelectResponse;
 import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -33,7 +32,7 @@ public class TagController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity addTag(@RequestBody Tag tag) {
 		log.info(ToStringBuilder.reflectionToString(tag, ToStringStyle.MULTI_LINE_STYLE));
@@ -56,7 +55,7 @@ public class TagController {
 
 	@RequestMapping(path = "/list", method = RequestMethod.GET)
 	public ResponseEntity getTagList() {
-		List<TopicSelectResponse> tags = tagService.getTagList();
+		List<TagSelect> tags = tagService.getTagList();
 		if (tags != null) {
 			return ResponseEntity.ok(tags);
 		} else {
