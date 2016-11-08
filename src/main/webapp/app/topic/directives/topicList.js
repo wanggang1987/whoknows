@@ -10,7 +10,8 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 		scope: {
 			topicLists : '=',
 			loadMoreData : '&',
-			hideReadMore : '='
+			hideReadMore : '=',
+			refreshFollowCount : '&'
 		}, 
 		link: function (scope, element, attr) {
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
@@ -58,12 +59,19 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 					$http.post("/follow/topic/disable/" + UserService.getCurrent().id + "/" + topicDetail.topic.id).success(function(data){
 						topicDetail.followCount = topicDetail.followCount - 1;
 						topicDetail.currentFollowed = false;
+						if(scope.refreshFollowCount){
+							scope.refreshFollowCount();
+						}
+						
 					});
 					
 				}else{
 					$http.post("/follow/topic/" + UserService.getCurrent().id + "/" + topicDetail.topic.id).success(function(data){
 						topicDetail.followCount += 1;
 						topicDetail.currentFollowed = true;
+						if(scope.refreshFollowCount){
+							scope.refreshFollowCount();
+						}
 					});
 				}
 			}

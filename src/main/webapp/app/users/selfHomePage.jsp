@@ -28,13 +28,13 @@
 			</ul>
 			<div id="myTabContent" class="tab-content">
 			    <div class="tab-pane fade in active" id="attention-question">
-			    		<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
+			    		<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()" refresh-follow-count ="loadCountInfo()"></topic-list>
 			    </div>
 			    <div class="tab-pane fade" id="my-question">
-			   	 	<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
+			   	 	<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()" refresh-follow-count ="loadCountInfo()"></topic-list>
 			    </div>
 			    <div class="tab-pane fade" id="my-answer">
-			        <topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
+			        <topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()" refresh-follow-count ="loadCountInfo()"></topic-list>
 			    </div>
 			</div>
           </div><!--/row-->
