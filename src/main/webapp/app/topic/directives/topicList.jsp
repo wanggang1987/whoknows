@@ -14,7 +14,7 @@
 			<div class="topic-footer">
 				<ul class="topic-footer-ul">
 					<li><a href="javascript:void(0);" ng-click="fllowTopic(topic.topicDetail)"><span class="glyphicon glyphicon-heart"></span><span ng-hide="topic.topicDetail.cancelFllow">关注问题</span><span ng-show="topic.topicDetail.cancelFllow">取消关注</span></a>({{topic.topicDetail.followCount}})</li>
-					<li ng-show="topic.replyDetail.reply != null"><a href="javascript:void(0);" ng-click="expandCommentLists(topic.replyDetail)"><span class="glyphicon glyphicon-comment"></span>评论</a></li>
+					<li ng-show="topic.replyDetail.reply != null"><a href="javascript:void(0);" ng-click="expandCommentLists(topic.replyDetail)"><span class="glyphicon glyphicon-comment"></span>评论</a>({{topic.replyDetail.commentCount}})</li>
 					<li ng-show="topic.replyDetail.reply != null"><a href="javascript:void(0);" ng-click="likeReply(topic.replyDetail)"><span class="glyphicon glyphicon-thumbs-up"></span><span ng-hide="topic.replyDetail.cancelLike">点赞</span><span ng-show="topic.replyDetail.cancelLike">取消点赞</span></a>({{topic.replyDetail.likeCount}})</li>
 				</ul>
 				<div class="topic-comment-lists" >

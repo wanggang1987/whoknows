@@ -16,11 +16,7 @@ angular.module('WhoKnows').directive('wkPagination', function ($location, $windo
 		link: function (scope, elem) {
 			scope.PAGE_MIDDLE_SHOW = 3;
 			scope.$watch('paginationInfo', function (value) {
-				console.log(">>>>>>>>>>>>>>")
-//				console.log(value)
 				calcShowPage();
-//				console.log(scope.paginationInfo)
-				console.log(">>>>>>>>>>>>>>")
 			});
 			
 			console.log("> pag directive : " );
