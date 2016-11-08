@@ -90,7 +90,7 @@ public class UserContoller {
 		}
 	}
 
-	@RequestMapping(path = "/create/{userId}/{page}", method = RequestMethod.GET)
+	@RequestMapping(path = "/topic/{userId}/{page}", method = RequestMethod.GET)
 	public ResponseEntity getUserCreateTopics(@PathVariable("userId") Long userId, @PathVariable("page") Integer page) {
 		List<TopicResult> list = userService.getUserCreateTopics(userId, page);
 		if (list != null) {
