@@ -56,5 +56,5 @@
 			</div>
 		</div>
 	</div>
-	<button class="btn btn-default btn-lg wk-add-more-btn"  ng-click="loadMore()" ng-hide="hideReadMore || ( topicLists != undefined && topicLists != null && topicLists.length < defaultPerPage)">更多</button>
+	<button class="btn btn-default btn-lg wk-add-more-btn"  ng-click="loadMore()" ng-hide="hideReadMore || topicLists == undefined || topicLists == null || topicLists.length < defaultPerPage">更多</button>
 </div>
