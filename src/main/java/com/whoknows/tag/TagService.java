@@ -128,4 +128,14 @@ public class TagService {
 			return null;
 		}
 	}
+
+	public Tag getTagByID(Long tagId) {
+		try {
+			return tagRepository.getTag(tagId);
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return null;
+		}
+		
+	}
 }

@@ -24,6 +24,16 @@ public class TagController {
 	@Autowired
 	private TagService tagService;
 
+	@RequestMapping(path = "/{tagId}", method = RequestMethod.GET)
+	public ResponseEntity getTag(@PathVariable("tagId") Long tagId) {
+		Tag tags = tagService.getTagByID(tagId);
+		if (tags != null) {
+			return ResponseEntity.ok(tags);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity addTag(@RequestBody Tag tag) {
 		log.info(ToStringBuilder.reflectionToString(tag, ToStringStyle.MULTI_LINE_STYLE));
