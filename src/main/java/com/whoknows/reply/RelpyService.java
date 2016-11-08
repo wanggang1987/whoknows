@@ -4,6 +4,7 @@ import com.whoknows.comment.CommentService;
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.TargetType;
+import com.whoknows.domain.User;
 import com.whoknows.like.LikeService;
 import com.whoknows.user.UserService;
 import java.util.List;
@@ -118,13 +119,13 @@ public class RelpyService {
 	}
 
 	public List<ReplyDetail> getReplyDetails(Long topicId, Integer page) {
-		if (topicId ==null || page == null) {
+		if (topicId == null || page == null) {
 			return null;
 		}
-		
+
 		try {
-			return replyRepository.getTopicReplys(topicId, page, pageSize).parallelStream().map(id -> 
-					getReplyDetail(id)).collect(Collectors.toList());
+			return replyRepository.getTopicReplys(topicId, page, pageSize).parallelStream().map(id
+					-> getReplyDetail(id)).collect(Collectors.toList());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
