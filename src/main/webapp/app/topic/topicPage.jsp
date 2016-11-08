@@ -2,7 +2,7 @@
 <div class="container topic-page"> 
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
-        		<div class="have-follow-topic">
+        		<div class="row have-follow-topic">
         			<h4>已关注话题动态</h4>
         			<hr/>
         			<div class="alert alert-danger alert-dismissable" ng-show="noTagWarn">
