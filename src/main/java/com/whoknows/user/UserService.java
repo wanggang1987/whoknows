@@ -15,8 +15,10 @@ import com.whoknows.search.Paging;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.search.TopicResult;
 import com.whoknows.topic.TopicService;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -267,4 +269,13 @@ public class UserService {
 			return null;
 		}
 	}
+
+	public UserConutInfoResponse getUserCountInfo(Long userId) {
+		UserConutInfoResponse userConutInfoResponse = new UserConutInfoResponse();
+		userConutInfoResponse.setReplyCount(userRepository.getUserReplyCount(userId));
+		userConutInfoResponse.setCreateTopicCount(userRepository.getUserCreateTopicCount(userId));
+		userConutInfoResponse.setFollowCount(userRepository.getUserFollowTopicCount(userId));
+		return userConutInfoResponse;
+	}
+
 }

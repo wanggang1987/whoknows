@@ -37,7 +37,7 @@
 						      <span class="form-instructions hint">
 									<a href="javascript:void(0)" ng-click="forgotPasswordRequest()"><span >忘记密码</span>?</a>
 									<br>
-									<span data-prop-message="" title="login.help">如果您还需要其他帮助，<a href="#!/contactus">请联系我们的客服</a>。</span>
+									<span data-prop-message="" title="login.help">如果您还需要其他帮助，<a href="#/contact">请联系我们的客服</a>。</span>
 								</span>
 						    </div>
 						  </div>
@@ -61,7 +61,7 @@
 						      <button type="submit" class="btn btn-default regist-btn" ng-click="regist()">注册</button>
 						    </div>
 						  </div>
-					<p><span data-prop-message="" title="login.newCustRegComp">如果您还需要其他帮助，请<a href="#!/contactus">联系我们的客服</a>。</span></p>
+					<p><span data-prop-message="" title="login.newCustRegComp">如果您还需要其他帮助，请<a href="#/contact">联系我们的客服</a>。</span></p>
 			  </div>
 	 
  			</div>

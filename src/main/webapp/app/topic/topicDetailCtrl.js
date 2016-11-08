@@ -111,13 +111,16 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 				$location.path("/login");
 				return;
 			}
-			if(topicDetail.cancelFllow){
-				topicDetail.followCount = topicDetail.followCount - 1;
-				topicDetail.cancelFllow = false;
+			if(topicDetail.currentFollowed){
+				$http.post("/follow/topic/disable/" + UserService.getCurrent().id + "/" + topicDetail.topic.id).success(function(data){
+					topicDetail.followCount = topicDetail.followCount - 1;
+					topicDetail.currentFollowed = false;
+				});
+				
 			}else{
 				$http.post("/follow/topic/" + UserService.getCurrent().id + "/" + topicDetail.topic.id).success(function(data){
 					topicDetail.followCount += 1;
-					topicDetail.cancelFllow = true;
+					topicDetail.currentFollowed = true;
 				});
 			}
 		}
@@ -130,13 +133,16 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 				$location.path("/login");
 				return;
 			}
-			if(replyDetail.cancelLike){
-				replyDetail.likeCount -= 1;
-				replyDetail.cancelLike = false;
+			if(replyDetail.currentLiked){
+				$http.post("/like/reply/disable/" + UserService.getCurrent().id + "/" + replyDetail.reply.id).success(function(data){
+					replyDetail.likeCount -= 1;
+					replyDetail.currentLiked = false;
+				});
+				
 			}else{
 				$http.post("/like/reply/" + UserService.getCurrent().id + "/" + replyDetail.reply.id).success(function(data){
 					replyDetail.likeCount += 1;
-					replyDetail.cancelLike = true;
+					replyDetail.currentLiked = true;
 				});
 			}
 		}
