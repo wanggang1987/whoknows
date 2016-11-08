@@ -10,7 +10,16 @@ public class TagHomeRespone {
 	private Tag tag;
 	private Paging paging;
 	private Integer tagFollowCount;
+	private Boolean currentFollowed;
 	private List<TopicResult> topicResults;
+
+	public Boolean getCurrentFollowed() {
+		return currentFollowed;
+	}
+
+	public void setCurrentFollowed(Boolean currentFollowed) {
+		this.currentFollowed = currentFollowed;
+	}
 
 	public Integer getTagFollowCount() {
 		return tagFollowCount;

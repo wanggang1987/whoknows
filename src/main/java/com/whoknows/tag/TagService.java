@@ -99,6 +99,9 @@ public class TagService {
 			TagHomeRespone tagHomeRespone = new TagHomeRespone();
 			tagHomeRespone.setTag(tagRepository.getTag(tagId));
 			tagHomeRespone.setTagFollowCount(followService.followCount(tagId, TargetType.tag));
+			if (user != null && user.getId() != null) {
+				tagHomeRespone.setCurrentFollowed(followService.isFollowed(user.getId(), tagId, TargetType.tag));
+			}
 
 			Paging paging = new Paging();
 			paging.setCurrentPage(page);
@@ -157,6 +160,6 @@ public class TagService {
 			e.printStackTrace();
 			return null;
 		}
-		
+
 	}
 }
