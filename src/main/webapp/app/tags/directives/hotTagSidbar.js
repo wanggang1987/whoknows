@@ -19,8 +19,8 @@ angular.module('wkTag').directive('hotTagSiderbar', function ($location, UserSer
 					tagListUrl = tagListUrl + "?keyWord=" + keyWord;
 				}
 				
-				$http.get(tagListUrl).then(function(data){
-					scope.tags = data.data;
+				$http.get(tagListUrl).success(function(data){
+					scope.tags = data;
 					scope.lastPage = scope.tags.length < 5;
 				});
 			}
@@ -48,13 +48,15 @@ angular.module('wkTag').directive('hotTagSiderbar', function ($location, UserSer
 					$location.path("/login");
 					return;
 				}
-				if(tag.cancelFllow){
+				if(tag.currentFollowed){
 					$http.post("/follow/tag/disable/" + UserService.getCurrent().id + "/" + tag.tagID).success(function(data){
-						tag.cancelFllow = false;
+						tag.currentFollowed = false;
+						tag.followCount -= 1;
 					});
 				}else{
 					$http.post("/follow/tag/" + UserService.getCurrent().id + "/" + tag.tagID).success(function(data){
-						tag.cancelFllow = true;
+						tag.currentFollowed = true;
+						tag.followCount += 1;
 					});
 				}
 				

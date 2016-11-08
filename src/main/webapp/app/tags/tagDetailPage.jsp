@@ -5,7 +5,7 @@
         		<div class="row">
         			<img alt="" ng-src="{{defaultTagImg}}" style="width:75px; float:left"/>
         			<h4>{{tag.name}}</h4>
-        			<h5 class="font-gray-color">关注人数：{{tagFollowCount}}</h5>
+        			<h5 class="font-gray-color"><a href="javascript:void(0);" ng-click="fllowTag(tag)" class="font-gray-color"><span class="glyphicon glyphicon-heart"></span><span ng-hide="tag.currentFollowed">关注</span><span ng-show="tag.currentFollowed">取消关注</span></a>({{tag.tagFollowCount}})</h5>
         			<br />
         			<hr class="wk-orign-hr"/>
         		</div>

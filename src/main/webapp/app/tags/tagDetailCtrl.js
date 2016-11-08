@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkTag').controller('TagDetailCtrl',
-	function ($scope, $rootScope, $location, $route, $http, $routeParams, DEFAULT_IMG) {
+	function ($scope, $rootScope, $location, $route, $http, $routeParams, DEFAULT_IMG, UserService) {
 		console.log("wkTag->TagDetailCtrl")
 		
 		var currentPage = 1;
@@ -10,8 +10,11 @@ angular.module('wkTag').controller('TagDetailCtrl',
 		
 		function loadTopic(){
 			$http.get("/tag/home/" + $routeParams.tagId + "/" + currentPage).success(function(data){
-				$scope.tagFollowCount = data.tagFollowCount
-				
+				if(data.tag != null){
+					$scope.tag = data.tag;
+					$scope.tag.tagFollowCount = data.tagFollowCount;
+					$scope.tag.currentFollowed = data.currentFollowed;
+				}
 				if(data.topicResults != null && data.topicResults.length > 0){
 					_.each(data.topicResults, function(result){
 						$scope.topicLists.push(result);
@@ -25,15 +28,31 @@ angular.module('wkTag').controller('TagDetailCtrl',
 			});
 		}
 		
+		$scope.fllowTag = function(tag){
+			if(!UserService.isSignedIn()){
+				$location.path("/login");
+				return;
+			}
+			if(tag.currentFollowed){
+				$http.post("/follow/tag/disable/" + UserService.getCurrent().id + "/" + tag.id).success(function(data){
+					tag.currentFollowed = false;
+					tag.tagFollowCount -= 1;
+				});
+			}else{
+				$http.post("/follow/tag/" + UserService.getCurrent().id + "/" + tag.id).success(function(data){
+					tag.currentFollowed = true;
+					tag.tagFollowCount += 1;
+				});
+			}
+			
+		}
+		
 		$scope.loadMore = function(){
 			loadTopic();
 		}
 		
 		var init = function(){
 			$scope.defaultTagImg = DEFAULT_IMG.TAG_NO_IMG;
-			$http.get("/tag/" + $routeParams.tagId).success(function(data){
-				$scope.tag = data;
-			})
 			loadTopic();
 		}
 		
