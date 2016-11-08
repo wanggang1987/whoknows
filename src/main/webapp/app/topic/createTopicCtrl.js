@@ -8,26 +8,25 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 		$scope.closeWarnPanel = function(){
 			$scope.tagEmptyWarn = false;
 		}
-		
-		$http.get("/tag/list").then(function(data){
-			$scope.tags = data.data;
-//			var html = '';
-//			_.each(data.data, function(tag){
-//				html += "<option value='" + tag.value + "'>" + tag.text + "</option>";
-//			})
-//			$(".multipleSelect").html(html);
-			$('.multipleSelect').fastselect({"maxItems":5,"placeholder":"请选择标签"});
-		})
-
-		$scope.tinymceOptions1 = {
-			resize: false,
-			menubar: false,
-			statusbar: false,
-			height: 350,
-			plugins: ["image"],
-		    file_browser_callback: function(field_name, url, type, win) {
-		            if(type=='image') alert(url +"->" + field_name +"->" + type +"->" + win);
-		    }
+		var init = function(){
+			if(!UserService.isSignedIn()){
+				LocalStorageService.put('LastPage', '/creteTopic', true);
+				$location.path("/login");
+			}
+			$http.get("/tag/list").then(function(data){
+				$scope.tags = data.data;
+				$('.multipleSelect').fastselect({"maxItems":5,"placeholder":"请选择标签"});
+			})
+			$scope.tinymceOptions1 = {
+					resize: false,
+					menubar: false,
+					statusbar: false,
+					height: 350,
+					plugins: ["image"],
+				    file_browser_callback: function(field_name, url, type, win) {
+				            if(type=='image') alert(url +"->" + field_name +"->" + type +"->" + win);
+				    }
+				}
 		}
 		
 		$scope.createQuestion = function(){
@@ -36,22 +35,26 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 				$scope.tagEmptyWarn = true;
 				return;
 			}
-			if(!UserService.isSignedIn()){
-				LocalStorageService.put('LastPage', '/creteTopic', true);
-				$location.path("/login");
-			}
-			var topic = {
-				tagId: $('.multipleSelect').val(),
-				user_id : UserService.getCurrent().id,
-				title : $scope.title,	
-				content: $scope.content
-			};
+			var reqTags = [];
+			_.each(tags, function(tag){
+				reqTags.push({"value" : tag});
+			})
+			var req ={ "topic" : {
+						tagId: $('.multipleSelect').val(),
+						user_id : UserService.getCurrent().id,
+						title : $scope.title,	
+						content: $scope.content
+						}, 
+						"tags" : reqTags
+					};
 			
-			$http.put("/topic", topic).success(function(){
+			$http.put("/topic", req).success(function(){
 				console.log("create topic success");
 				$location.path("/");
 			}).error(function(){
 				console.log("crete topic error")
 			});
 		}
+		
+		init();
 	});

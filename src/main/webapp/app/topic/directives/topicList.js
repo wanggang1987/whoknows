@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkTopic').directive('topicList', function ($location, $log, $http, DEFAULT_IMG, UserService) {
+angular.module('wkTopic').directive('topicList', function ($location, $log, $http, DEFAULT_IMG, UserService, DEFAULT_PAGE) {
 
 	return {
 		restrict: 'AE',
@@ -14,6 +14,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 		}, 
 		link: function (scope, element, attr) {
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
+			scope.defaultPerPage = DEFAULT_PAGE.TOPIC_PER_PAGE
 			scope.request ={};
 			
 			scope.loadComments = function(cacheData, paging){

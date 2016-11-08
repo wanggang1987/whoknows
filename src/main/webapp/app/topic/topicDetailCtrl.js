@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkTopic').controller('TopicDetailCtrl',
-	function ($scope, $rootScope, $location, $http, UserService, DEFAULT_IMG) {
+	function ($scope, $rootScope, $location, $http, UserService, DEFAULT_IMG, DEFAULT_PAGE) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.");
 		
 		$scope.tagEmptyWarn = false;
@@ -10,21 +10,23 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		
 		var topicId = $location.search().id;
 		
-		
-		$http.get("/topic/" + topicId).then(function(data){
-			$scope.topic = data.data;
+		$http.get("/topic/" + topicId).success(function(data){
+			$scope.topic = data;
+			$scope.hideReadMore = $scope.topic.replys == null || $scope.topic.replys.length < DEFAULT_PAGE.TOPIC_REPLY_PER_PAGE;
+			
+		}).error(function(){
+			
 		});
-		
 		
 		$scope.tinymceOptions1 = {
 				resize: false,
 				menubar: false,
 				statusbar: false,
-				height: 350,
-				plugins: ["image"],
-			    file_browser_callback: function(field_name, url, type, win) {
-			            if(type=='image') alert(url +"->" + field_name +"->" + type +"->" + win);
-			    }
+				height: 200
+//				plugins: ["image"],
+//			    file_browser_callback: function(field_name, url, type, win) {
+//			            if(type=='image') alert(url +"->" + field_name +"->" + type +"->" + win);
+//			    }
 		}
 		
 		var loadReplyByPage = function(page){
@@ -34,10 +36,13 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 					_.each(data, function(reply){
 						$scope.topic.replys.push(reply)
 					})
+					$scope.hideReadMore = data.length < DEFAULT_PAGE.TOPIC_REPLY_PER_PAGE;
 				}else{
 					$scope.hideReadMore = true;
 				}
 				
+			}).error(function(){
+				$scope.hideReadMore = true;
 			})
 		}
 		

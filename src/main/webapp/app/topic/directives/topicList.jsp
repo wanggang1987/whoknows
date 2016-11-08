@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="topic-list">
-	<div class=" margin-top-70 alert alert-danger alert-dismissable" ng-show="topicLists == undefined || topicLists == null || topicLists.length == 0">
+	<div class=" margin-top-70 alert alert-warning alert-dismissable" ng-show="topicLists == undefined || topicLists == null || topicLists.length == 0">
 		暂时没有相应的话题，您可以点击创建话题按钮创建话题。
 	</div>
 	<div class="row" ng-repeat="topic in topicLists"> 
@@ -56,5 +56,5 @@
 			</div>
 		</div>
 	</div>
-	<button class="btn btn-default btn-lg wk-add-more-btn"  ng-click="loadMore()" ng-hide="hideReadMore">更多</button>
+	<button class="btn btn-default btn-lg wk-add-more-btn"  ng-click="loadMore()" ng-hide="hideReadMore || ( topicLists != undefined && topicLists != null && topicLists.length < defaultPerPage)">更多</button>
 </div>

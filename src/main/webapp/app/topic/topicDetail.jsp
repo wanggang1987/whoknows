@@ -66,12 +66,14 @@
         		<div class="row">
         			<button class="btn btn-default btn-lg wk-add-more-btn"  ng-click="loadMore()" ng-hide="hideReadMore">更多</button>
         		</div>
-        		<div class="row">
-        			<textarea ui-tinymce="tinymceOptions1" required ng-model="content"   class="tea"/></textarea>
-        		</div>
-        		<div class="form-group text-right">
-				<button type="submit" class="btn btn-default default-wk-blue-btn" ng-disabled=" content == undefined || content == null && content.length == 0" ng-click="replyQuestion()">回答</button>
-			</div>
+        		<sec:authorize access="isAuthenticated()">
+	        		<div class="row margin-top-70">
+	        			<textarea ui-tinymce="tinymceOptions1" required ng-model="content"   class="tea"/></textarea>
+	        		</div>
+	        		<div class="form-group text-right">
+					<button type="submit" class="btn btn-default default-wk-blue-btn" ng-disabled=" content == undefined || content == null && content.length == 0" ng-click="replyQuestion()">回答</button>
+				</div>
+		 	</sec:authorize>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
