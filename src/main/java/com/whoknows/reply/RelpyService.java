@@ -109,7 +109,6 @@ public class RelpyService {
 				replyDetail.setAuthor(userService.getUser(replyDetail.getReply().getUser_id()));
 				replyDetail.setLikeCount(likeService.likeCount(replyDetail.getReply().getId(), TargetType.reply));
 				replyDetail.setCommentCount(commentService.commentCount(replyDetail.getReply().getId()));
-				replyDetail.setComments(commentService.getCommentDetails(replyDetail.getReply().getId(), 1));
 			}
 			return replyDetail;
 		} catch (Exception e) {
