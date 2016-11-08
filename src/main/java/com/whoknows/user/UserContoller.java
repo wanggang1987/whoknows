@@ -109,6 +109,16 @@ public class UserContoller {
 		}
 	}
 	
+	@RequestMapping(path = "/home/count/into/{userId}", method = RequestMethod.GET)
+	public ResponseEntity getUserCountInfo(@PathVariable("userId") Long userId) {
+		UserConutInfoResponse userConutInfoResponse = userService.getUserCountInfo(userId);
+		if (userConutInfoResponse != null) {
+			return ResponseEntity.ok(userConutInfoResponse);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	
 	@RequestMapping(path = "/tag", method = RequestMethod.GET)
 	public ResponseEntity getUserTagList() {
 		List<Tag> tags = userService.getUserTagList();
