@@ -44,7 +44,7 @@ public class TagController {
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, produces = "application/json")
-	public ResponseEntity deleteTopic(@RequestBody Tag tag) {
+	public ResponseEntity deleteTag(@RequestBody Tag tag) {
 		log.info(ToStringBuilder.reflectionToString(tag, ToStringStyle.MULTI_LINE_STYLE));
 		if (tagService.deleteTag(tag)) {
 			return ResponseEntity.ok().build();

@@ -6,8 +6,16 @@ public class HotVip {
 	private String name;
 	private Long userID;
 	private Long vipID;
-	private Long follow;
+	private Integer followCount;
 	private Boolean currentFollowed;
+
+	public Integer getFollowCount() {
+		return followCount;
+	}
+
+	public void setFollowCount(Integer followCount) {
+		this.followCount = followCount;
+	}
 
 	public Boolean getCurrentFollowed() {
 		return currentFollowed;
@@ -15,14 +23,6 @@ public class HotVip {
 
 	public void setCurrentFollowed(Boolean currentFollowed) {
 		this.currentFollowed = currentFollowed;
-	}
-
-	public Long getFollow() {
-		return follow;
-	}
-
-	public void setFollow(Long follow) {
-		this.follow = follow;
 	}
 
 	public String getPricture() {

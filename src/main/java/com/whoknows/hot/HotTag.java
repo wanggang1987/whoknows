@@ -5,8 +5,16 @@ public class HotTag {
 	private String picture;
 	private String tagName;
 	private Long tagID;
-	private Long follow;
+	private Integer followCount;
 	private Boolean currentFollowed;
+
+	public Integer getFollowCount() {
+		return followCount;
+	}
+
+	public void setFollowCount(Integer followCount) {
+		this.followCount = followCount;
+	}
 
 	public Boolean getCurrentFollowed() {
 		return currentFollowed;
@@ -14,14 +22,6 @@ public class HotTag {
 
 	public void setCurrentFollowed(Boolean currentFollowed) {
 		this.currentFollowed = currentFollowed;
-	}
-
-	public Long getFollow() {
-		return follow;
-	}
-
-	public void setFollow(Long follow) {
-		this.follow = follow;
 	}
 
 	public Long getTagID() {
