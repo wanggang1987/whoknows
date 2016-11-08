@@ -4,13 +4,12 @@
         <div class="col-xs-12 col-sm-9">
         		<div class="row">
         			<img alt="" ng-src="{{defaultTagImg}}" style="width:75px; float:left"/>
-        			<h4>有机催化</h4>
-        			<h5 class="font-gray-color">创建时间： 2016-10-1 &nbsp;&nbsp;|&nbsp;&nbsp; 关注人数： 100人</h5>
+        			<h4>{{tag.name}}</h4>
+        			<h5 class="font-gray-color">关注人数：{{tagFollowCount}}</h5>
         			<br />
-        			
         			<hr class="wk-orign-hr"/>
         		</div>
-       	 	<topic-list></topic-list>
+       	 	<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">

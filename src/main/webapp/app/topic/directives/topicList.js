@@ -18,8 +18,6 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			
 			scope.loadComments = function(cacheData, paging){
 				console.log("-->>>>>>>>topic id:   reply-id:");
-				console.log(cacheData)
-				console.log(paging)
 				$http.get("/comment/list/" + cacheData.reply.id + '/' + paging.currentPage).success(function(data){
 					cacheData.commentLists.comments = data.comments;
 					cacheData.commentLists.paging = data.paging;
@@ -46,6 +44,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 				}).success(function(){
 					scope.loadComments(replyDetail, {"currentPage" : 1});
 					scope.request.commentContent = '';
+					replyDetail.commentCount += 1;
 				});
 			}
 			
