@@ -67,6 +67,7 @@
 	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>
 	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/nameSpan.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/appCtrl.js"></script>
