@@ -10,7 +10,7 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 		scope: {
 			star: '='
 		},
-		link: function (scope, DEFAULT_IMG) {
+		link: function (scope) {
 			scope.currentPage = 1;
 			scope.lastPage = false;
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
