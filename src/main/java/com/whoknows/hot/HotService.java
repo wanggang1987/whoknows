@@ -19,7 +19,7 @@ public class HotService {
 		try {
 			return hotDAO.listHotVip(page, pageSize);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -28,7 +28,7 @@ public class HotService {
 		try {
 			return hotDAO.listHotTag(page, pageSize);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -37,7 +37,7 @@ public class HotService {
 		try {
 			return hotDAO.listHotVip(key, page, pageSize);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -46,7 +46,7 @@ public class HotService {
 		try {
 			return hotDAO.listHotTag(key, page, pageSize);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -58,7 +58,7 @@ public class HotService {
 			hotIndex.setVips(hotDAO.listHotVip(1, pageSize));
 			return hotIndex;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -81,7 +81,7 @@ public class SearchService {
 			}).collect(Collectors.toList()));
 			return searchResponse;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 

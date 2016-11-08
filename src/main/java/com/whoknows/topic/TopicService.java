@@ -47,7 +47,7 @@ public class TopicService {
 			}
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -63,7 +63,7 @@ public class TopicService {
 			topicRepository.updateTopic(topic);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -77,7 +77,7 @@ public class TopicService {
 			topicRepository.deleteTopic(id);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -90,7 +90,7 @@ public class TopicService {
 		try {
 			return topicRepository.getTopic(id);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -110,7 +110,7 @@ public class TopicService {
 			}
 			return topicDetail;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}

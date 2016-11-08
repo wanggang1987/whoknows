@@ -63,7 +63,7 @@ public class UserService {
 			userView.setUser(userRepository.getUserById(id), userRepository.getUserRolesByUserId(id));
 			return userView;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -81,7 +81,7 @@ public class UserService {
 				return topicResult;
 			}).collect(Collectors.toList());
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -95,7 +95,7 @@ public class UserService {
 			log.info("Create user :{} success.", user.getEmail());
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -130,7 +130,7 @@ public class UserService {
 		try {
 			userRepository.editUserInfo(user);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -170,7 +170,7 @@ public class UserService {
 			}).collect(Collectors.toList()));
 			return userTopicResponse;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -209,7 +209,7 @@ public class UserService {
 			}).collect(Collectors.toList()));
 			return userTopicResponse;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -250,7 +250,7 @@ public class UserService {
 			}).filter(topicResult -> topicResult != null).collect(Collectors.toList()));
 			return userTopicResponse;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -263,7 +263,7 @@ public class UserService {
 			}
 			return null;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}

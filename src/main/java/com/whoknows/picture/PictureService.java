@@ -33,7 +33,7 @@ public class PictureService {
 		try {
 			return pictureRepository.putPicture(picture);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}

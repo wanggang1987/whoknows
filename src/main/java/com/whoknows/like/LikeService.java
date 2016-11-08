@@ -18,7 +18,7 @@ public class LikeService {
 			likeRepository.like(userId, tartgetId, type);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -28,7 +28,7 @@ public class LikeService {
 			likeRepository.disLike(userId, tartgetId, type);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -37,7 +37,7 @@ public class LikeService {
 		try {
 			return likeRepository.likeCount(targetId, type);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -46,7 +46,7 @@ public class LikeService {
 		try {
 			return likeRepository.isLike(userId, tartgetId, type);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}

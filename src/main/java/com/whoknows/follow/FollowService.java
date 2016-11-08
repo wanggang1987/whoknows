@@ -19,7 +19,7 @@ public class FollowService {
 			followRepository.follow(userId, tartgetId, type);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -29,7 +29,7 @@ public class FollowService {
 			followRepository.disFollow(userId, tartgetId, type);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -44,7 +44,7 @@ public class FollowService {
 			});
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -53,7 +53,7 @@ public class FollowService {
 		try {
 			return followRepository.followCount(tartgetId, type);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -62,7 +62,7 @@ public class FollowService {
 		try {
 			return followRepository.isFollow(userId, tartgetId, type);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -50,7 +50,7 @@ public class TagService {
 		try {
 			tagRepository.addTag(tag);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -64,7 +64,7 @@ public class TagService {
 		try {
 			tagRepository.deleteTag(tag);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 		return true;
@@ -74,7 +74,7 @@ public class TagService {
 		try {
 			return tagRepository.getTagList();
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -83,7 +83,7 @@ public class TagService {
 		try {
 			return tagRepository.getTagList(tagName);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -111,7 +111,7 @@ public class TagService {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
-				topicDetail.setAuthor(userService.getUser(topic.getId()));
+				topicDetail.setAuthor(userService.getUser(topic.getUser_id()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				if (user != null && user.getId() != null) {
 					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
@@ -135,7 +135,7 @@ public class TagService {
 			}).collect(Collectors.toList()));
 			return tagHomeRespone;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -145,7 +145,7 @@ public class TagService {
 			tagRepository.addTagRelation(topicId, tagId);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -154,7 +154,7 @@ public class TagService {
 		try {
 			return tagRepository.getTag(tagId);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 		

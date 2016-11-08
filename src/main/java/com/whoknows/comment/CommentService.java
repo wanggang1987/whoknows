@@ -39,7 +39,7 @@ public class CommentService {
 			commentRepository.createComment(comment);
 			return commentRepository.getCommentCount(comment.getReply_id());
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -53,7 +53,7 @@ public class CommentService {
 			commentRepository.updateComment(comment);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -67,7 +67,7 @@ public class CommentService {
 			commentRepository.deleteComment(id);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -86,7 +86,7 @@ public class CommentService {
 			}
 			return commentDetail;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -99,7 +99,7 @@ public class CommentService {
 		try {
 			return commentRepository.getReplyComments(replyId, page, pageSize).parallelStream().map(id -> getComment(id)).collect(Collectors.toList());
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -122,7 +122,7 @@ public class CommentService {
 					.parallelStream().map(id -> getComment(id)).collect(Collectors.toList()));
 			return commentListResponse;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -131,7 +131,7 @@ public class CommentService {
 		try {
 			return commentRepository.getCommentCount(reply_id);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -6,6 +6,15 @@ public class HotTag {
 	private String tagName;
 	private Long tagID;
 	private Long follow;
+	private Boolean currentFollowed;
+
+	public Boolean getCurrentFollowed() {
+		return currentFollowed;
+	}
+
+	public void setCurrentFollowed(Boolean currentFollowed) {
+		this.currentFollowed = currentFollowed;
+	}
 
 	public Long getFollow() {
 		return follow;

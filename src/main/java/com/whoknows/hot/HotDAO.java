@@ -31,7 +31,6 @@ public class HotDAO {
 					HotVip vip = new HotVip();
 					vip.setName(commonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
-					vip.setFollow(100L);
 					vip.setUserID(rs.getLong("user_id"));
 					vip.setVipID(rs.getLong("id"));
 					return vip;
@@ -59,7 +58,6 @@ public class HotDAO {
 					HotVip vip = new HotVip();
 					vip.setName(commonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
-					vip.setFollow(100L);
 					vip.setUserID(rs.getLong("user_id"));
 					vip.setVipID(rs.getLong("id"));
 					return vip;
@@ -79,7 +77,6 @@ public class HotDAO {
 					tag.setPicture(null);
 					tag.setTagID(rs.getLong("id"));
 					tag.setTagName(rs.getNString("name"));
-					tag.setFollow(100L);
 					return tag;
 				});
 	}
@@ -99,7 +96,6 @@ public class HotDAO {
 					tag.setPicture(null);
 					tag.setTagID(rs.getLong("id"));
 					tag.setTagName(rs.getNString("name"));
-					tag.setFollow(100L);
 					return tag;
 				});
 	}

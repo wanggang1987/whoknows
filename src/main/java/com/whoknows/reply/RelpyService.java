@@ -37,7 +37,7 @@ public class RelpyService {
 		try {
 			return replyRepository.getHotReplyForRopic(topicId);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -54,7 +54,7 @@ public class RelpyService {
 			replyRepository.createReply(reply);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -69,7 +69,7 @@ public class RelpyService {
 			replyRepository.updateReply(reply);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -83,7 +83,7 @@ public class RelpyService {
 			replyRepository.deleteReply(id);
 			return true;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -96,7 +96,7 @@ public class RelpyService {
 		try {
 			return replyRepository.getReply(id);
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -112,7 +112,7 @@ public class RelpyService {
 			}
 			return replyDetail;
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -126,7 +126,7 @@ public class RelpyService {
 			return replyRepository.getTopicReplys(topicId, page, pageSize).parallelStream().map(id -> 
 					getReplyDetail(id)).collect(Collectors.toList());
 		} catch (Exception e) {
-			log.error(e.getLocalizedMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
