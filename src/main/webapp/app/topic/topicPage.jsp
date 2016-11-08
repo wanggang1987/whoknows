@@ -12,7 +12,7 @@
         			<a href="javascript:void(0)">波谱解析</a>	
         			<a href="javascript:void(0)">计算机辅助药物设计</a>	
         		</div>
-       	 	<topic-list></topic-list>
+       	 	<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">

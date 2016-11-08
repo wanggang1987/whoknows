@@ -11,9 +11,6 @@ angular.module('WhoKnows').directive('wkNameSpan', function ($location, $window,
 		},
 		link: function (scope, elem) {
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
-			console.log("|||||||||||||||")
-			console.log(scope.user)
-			console.log("|||||||||||||||")
 		}
 	};
 });

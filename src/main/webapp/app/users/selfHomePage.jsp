@@ -21,20 +21,20 @@
           <div class="row">
           	<ul id="self-home-page-tab" class="nav nav-tabs">
 			    <li class="active">
-			    		<a data-target="#attention-question" data-toggle="tab">关注的问题 <span class="badge">3</span></a>
+			    		<a data-target="#attention-question" ng-click="myFllowTopic()" data-toggle="tab">关注的问题 <span class="badge">3</span></a>
 			    </li>
-			    <li><a data-target="#my-question" data-toggle="tab">我的提问 <span class="badge">1万+</span></a></li>
-			    <li><a data-target="#my-answer" data-toggle="tab">我的问答 <span class="badge">7</span></a></li>
+			    <li><a data-target="#my-question" data-toggle="tab" ng-click="myTopic()">我的提问 <span class="badge">1万+</span></a></li>
+			    <li><a data-target="#my-answer" data-toggle="tab" ng-click="myReply()">我的问答 <span class="badge">7</span></a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
 			    <div class="tab-pane fade in active" id="attention-question">
-			    		<topic-list></topic-list>
+			    		<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
 			    </div>
 			    <div class="tab-pane fade" id="my-question">
-			   	 	<topic-list></topic-list>
+			   	 	<topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
 			    </div>
 			    <div class="tab-pane fade" id="my-answer">
-			        <topic-list></topic-list>
+			        <topic-list topic-lists="topicLists" hide-read-more="hideReadMore" load-more-data="loadMore()"></topic-list>
 			    </div>
 			</div>
           </div><!--/row-->
