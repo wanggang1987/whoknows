@@ -8,19 +8,21 @@ angular.module('wkTopic').controller('TopicCtrl',
 			return;
 		}
 		
-		var keyWord = LocalStorageService.get("homeSearchKeyWord") != undefined && LocalStorageService.get("homeSearchKeyWord") != null ? LocalStorageService.get("homeSearchKeyWord") : 'd';
 		var currentPage = 1;
 		$scope.topicLists = [];
 		$scope.hideReadMore = false;
+		$scope.noTagWarn = false;
 		
-		function loadTopic(page, keyWord){
-			$http.get("/search/" + page + "?keyWord=" + keyWord).success(function(data){
-				console.log(page + "-" + keyWord )
-				console.log(data)
+		var initData = function(){
+			currentPage = 1;
+			$scope.topicLists = [];
+			$scope.hideReadMore = false;
+		}
+		var loadTopic = function(){
+			$http.get("/tag/home/" + $scope.currentTag.id + "/" + currentPage).success(function(data){
 				if(data.topicResults != null && data.topicResults.length > 0){
 					_.each(data.topicResults, function(result){
 						$scope.topicLists.push(result);
-						console.log($scope.topicLists.length)
 					})
 					currentPage += 1;
 				}else{
@@ -31,9 +33,35 @@ angular.module('wkTopic').controller('TopicCtrl',
 			});
 		}
 		
-		loadTopic(currentPage, keyWord);
-		
 		$scope.loadMore = function(){
-			loadTopic(currentPage, keyWord);
+			loadTopic();
 		}
+		
+		$scope.loadTopicByTag = function(tag){
+			$scope.currentTag = tag;
+			initData();
+			loadTopic();
+		} 
+		
+		$scope.closeNoTagWarn = function(){
+			$scope.noTagWarn = false;
+		}
+		
+		var init = function(){
+			$http.get("/user/tag").success(function(data){
+				if(data != null && data.length > 0){
+					$scope.tags = data;
+					$scope.loadTopicByTag($scope.tags[0])
+				}else{
+					$scope.hideReadMore = true;
+					$scope.noTagWarn = true;
+				}
+			}).error(function(){
+				$scope.hideReadMore = true;
+				$scope.noTagWarn = true;
+			});
+		}
+		
+		init();
+		
 	});

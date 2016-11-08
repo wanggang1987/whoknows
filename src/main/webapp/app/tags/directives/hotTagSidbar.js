@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkTag').directive('hotTagSiderbar', function ($location, $log, $http, DEFAULT_IMG) {
+angular.module('wkTag').directive('hotTagSiderbar', function ($location, UserService, $http, DEFAULT_IMG) {
 
 	return {
 		restrict: 'AE',
@@ -43,6 +43,22 @@ angular.module('wkTag').directive('hotTagSiderbar', function ($location, $log, $
 				getTagLists(scope.currentPage, scope.hotTagSearchKeyWord);
 			}
 			
+			scope.fllowTag = function(tag){
+				if(!UserService.isSignedIn()){
+					$location.path("/login");
+					return;
+				}
+				if(tag.cancelFllow){
+					$http.post("/follow/tag/disable/" + UserService.getCurrent().id + "/" + tag.tagID).success(function(data){
+						tag.cancelFllow = false;
+					});
+				}else{
+					$http.post("/follow/tag/" + UserService.getCurrent().id + "/" + tag.tagID).success(function(data){
+						tag.cancelFllow = true;
+					});
+				}
+				
+			}
 			
 		}
 	};

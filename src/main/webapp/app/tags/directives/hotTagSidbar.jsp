@@ -13,7 +13,8 @@
 	    	 		<div class="col-md-3"><img alt="" ng-src="{{tag.picture || defaultPeopleIMg}}" ng-cloak></img></div>
 	    	 		<div class="col-md-9">
 	    	 			<a ng-href="#/tagDetail/{{tag.tagID}}" ><h5 class="list-group-item-heading" ng-bind-html="tag.tagName | to_trusted"></h5></a>
-			    		<p class="list-group-item-text">关注人数:{{tag.follow}}</p>
+			    		<p class="list-group-item-text">关注人数:{{tag.follow}} &nbsp;&nbsp;&nbsp;<a href="javascript:void(0);" ng-click="fllowTag(tag)" class="font-gray-color"><span class="glyphicon glyphicon-heart"></span><span ng-hide="tag.cancelFllow">关注</span><span ng-show="tag.cancelFllow">取消关注</span></a></p>
+			    		
 			    	</div>
 	    	 	</div>
 	    	 	<div class="list-group-item text-center see-more-topic">

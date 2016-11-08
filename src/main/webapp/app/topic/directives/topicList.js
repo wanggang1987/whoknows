@@ -54,8 +54,11 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 					return;
 				}
 				if(topicDetail.cancelFllow){
-					topicDetail.followCount = topicDetail.followCount - 1;
-					topicDetail.cancelFllow = false;
+					$http.post("/follow/topic/disable/" + UserService.getCurrent().id + "/" + topicDetail.topic.id).success(function(data){
+						topicDetail.followCount = topicDetail.followCount - 1;
+						topicDetail.cancelFllow = false;
+					});
+					
 				}else{
 					$http.post("/follow/topic/" + UserService.getCurrent().id + "/" + topicDetail.topic.id).success(function(data){
 						topicDetail.followCount += 1;
@@ -67,14 +70,18 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			scope.calcelComment = function(){
 				scope.request.commentContent = ''
 			}
+			
 			scope.likeReply = function(replyDetail){
 				if(!UserService.isSignedIn()){
 					$location.path("/login");
 					return;
 				}
 				if(replyDetail.cancelLike){
-					replyDetail.likeCount -= 1;
-					replyDetail.cancelLike = false;
+					$http.post("/like/reply/disable/" + UserService.getCurrent().id + "/" + replyDetail.reply.id).success(function(data){
+						replyDetail.likeCount -= 1;
+						replyDetail.cancelLike = false;
+					});
+					
 				}else{
 					$http.post("/like/reply/" + UserService.getCurrent().id + "/" + replyDetail.reply.id).success(function(data){
 						replyDetail.likeCount += 1;

@@ -61,7 +61,6 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		
 		$scope.loadMore = function(){
 			currentPage = currentPage + 1;
-			console.log(currentPage)
 			loadReplyByPage(currentPage);
 		}
 		

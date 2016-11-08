@@ -1,5 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="topic-list">
+	<div class=" margin-top-70 alert alert-danger alert-dismissable" ng-show="topicLists == undefined || topicLists == null || topicLists.length == 0">
+		暂时没有相应的话题，您可以点击创建话题按钮创建话题。
+	</div>
 	<div class="row" ng-repeat="topic in topicLists"> 
 		<div class="col-xs-20 col-sm-12"> 
 			<div class="topic-header"><a href="#/topicDetail?id={{topic.topicDetail.topic.id}}">{{topic.topicDetail.topic.title}}</a></div>

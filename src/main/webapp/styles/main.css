@@ -10,6 +10,9 @@ body{
 	word-wrap: break-word;
 	line-height: 1.7;
 }
+.margin-top-70{
+	margin-top:70px;
+}
 .wk-add-more-btn{
 	outline:none;
 	width:100%;
@@ -31,6 +34,9 @@ body{
     border-top: 2px solid #e16e1e ;
 }
 .font-gray-color{
+	color: #b5b5b5
+}
+.font-gray-color:hover{
 	color: #b5b5b5
 }
 .wk-a-disabled {
