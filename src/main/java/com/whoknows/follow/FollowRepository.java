@@ -27,6 +27,15 @@ public class FollowRepository {
 		return isFollow(userId, tartgetId, type) ? false : true;
 	}
 
+	public void disFollow(Long userId, Long tartgetId, TargetType type) {
+		jdbcTemplate.update("delete from follow where user_id = ? and target_type = ? and target_id = ?  ",
+				ps -> {
+					ps.setLong(1, userId);
+					ps.setString(2, type.name());
+					ps.setLong(3, tartgetId);
+				});
+	}
+
 	public void follow(Long userId, Long tartgetId, TargetType type) {
 		if (notFollow(userId, tartgetId, type)) {
 			jdbcTemplate.update("insert into follow (user_id, target_type, target_id) values (?, ?, ?) ",

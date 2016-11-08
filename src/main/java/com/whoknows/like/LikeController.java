@@ -27,4 +27,14 @@ public class LikeController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+	
+	@RequestMapping(path = "/reply/disable/{userId}/{replyId}", method = RequestMethod.POST)
+	public ResponseEntity disLikeReply(@PathVariable("userId") Long userId, @PathVariable("replyId") Long replyId) {
+		log.info("{} like reply {}.", userId, replyId);
+		if (likeService.disLike(userId, replyId, TargetType.reply)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

@@ -23,6 +23,16 @@ public class LikeService {
 		}
 	}
 	
+	public boolean disLike(Long userId, Long tartgetId, TargetType type) {
+		try {
+			likeRepository.disLike(userId, tartgetId, type);
+			return true;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return false;
+		}
+	}
+	
 	public Integer likeCount(Long targetId, TargetType type){
 		try {
 			return likeRepository.likeCount(targetId, type);

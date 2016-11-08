@@ -31,6 +31,15 @@ public class LikeRepository {
 		return isLike(userId, tartgetId, type) ? false : true;
 	}
 
+	public void disLike(Long userId, Long tartgetId, TargetType type) {
+		jdbcTemplate.update("delete from `like` where user_id = ? and target_type = ? and target_id = ? ",
+				ps -> {
+					ps.setLong(1, userId);
+					ps.setString(2, type.name());
+					ps.setLong(3, tartgetId);
+				});
+	}
+
 	public void like(Long userId, Long tartgetId, TargetType type) {
 		if (notLike(userId, tartgetId, type)) {
 			jdbcTemplate.update("insert into `like` (user_id, target_type, target_id) values (?, ?, ?) ",

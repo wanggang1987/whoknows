@@ -24,6 +24,16 @@ public class FollowService {
 		}
 	}
 
+	public boolean disFollow(Long userId, Long tartgetId, TargetType type) {
+		try {
+			followRepository.disFollow(userId, tartgetId, type);
+			return true;
+		} catch (Exception e) {
+			log.error(e.getLocalizedMessage());
+			return false;
+		}
+	}
+	
 	public boolean followRecommed(Long userId, HotRecommend hotRecommend) {
 		try {
 			hotRecommend.getTags().parallelStream().forEach(tag -> {
