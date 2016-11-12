@@ -10,6 +10,7 @@ import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.user.UserDetail;
 import com.whoknows.user.UserService;
+import com.whoknows.utils.CommonFunction;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -18,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
-
 
 @Service
 public class SearchService {
@@ -57,6 +57,8 @@ public class SearchService {
 			searchResponse.setTopicResults(searchDAO.searchTopicByKeyWord(key, page, pageSize, type).parallelStream().map(topic -> {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
+				topic.setTitle(CommonFunction.highLight(key, topic.getTitle()));
+				topic.setContent(CommonFunction.highLight(key, topic.getContent()));
 				topicDetail.setTopic(topic);
 				topicDetail.setAuthor(userService.getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
@@ -68,6 +70,7 @@ public class SearchService {
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
 				if (reply != null) {
 					ReplyDetail replyDetail = new ReplyDetail();
+					reply.setContent(CommonFunction.highLight(key, reply.getContent()));
 					replyDetail.setReply(reply);
 					replyDetail.setAuthor(userService.getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));

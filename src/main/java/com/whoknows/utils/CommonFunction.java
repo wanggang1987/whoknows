@@ -19,4 +19,8 @@ public class CommonFunction {
 		}
 		return name;
 	}
+
+	public static String highLight(String key, String html) {
+		return Highlighter.getHighlightedHtml(key, html);
+	}
 }
