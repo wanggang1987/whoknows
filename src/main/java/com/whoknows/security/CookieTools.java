@@ -1,4 +1,4 @@
-package com.whoknows.security.tools;
+package com.whoknows.security;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

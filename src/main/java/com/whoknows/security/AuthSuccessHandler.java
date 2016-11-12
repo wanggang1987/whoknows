@@ -16,7 +16,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.whoknows.domain.User;
-import com.whoknows.security.tools.CookieTools;
 import com.whoknows.user.UserDetail;
 
 
