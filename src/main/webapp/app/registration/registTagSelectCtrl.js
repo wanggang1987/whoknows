@@ -40,7 +40,7 @@ angular.module('wkRegist').controller('RegistTagSelectCtrl',
 						"tags":[]};
 				
 				_.each($scope.vips , function(vip){
-					if($scope.regist.vips[vip.vipID]){
+					if($scope.regist.vips[vip.userID]){
 						parm.vips.push(vip);
 					}
 				});

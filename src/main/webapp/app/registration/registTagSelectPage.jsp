@@ -22,7 +22,7 @@
       		<div class="col-lg-2 col-md-2" ng-repeat="vip in vips">
       			<img alt="" ng-src="{{vip.picture || defaultPeopleImg}}" />
       			<label class="checkbox-inline" >
-				  <input type="checkbox"  ng-model="regist.vips[vip.vipID]"  value="vip.vipID" class="ng-cloak">{{vip.name}}<span class="font-gray-color"><br/>(关注人数：{{vip.followCount}})</span>
+				  <input type="checkbox"  ng-model="regist.vips[vip.userID]"  value="vip.userID" class="ng-cloak">{{vip.name}}<span class="font-gray-color"><br/>(关注人数：{{vip.followCount}})</span>
 				</label>
       		</div>
       	</div>
