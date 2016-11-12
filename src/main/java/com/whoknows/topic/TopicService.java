@@ -3,7 +3,6 @@ package com.whoknows.topic;
 import com.whoknows.domain.ActionType;
 import com.whoknows.domain.TargetType;
 import com.whoknows.domain.Topic;
-import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
@@ -117,7 +116,6 @@ public class TopicService {
 				topicDetail.setReplys(relpyService.getReplyDetails(topicDetail.getTopic().getId(), 1));
 				if (user != null && user.getId() != null) {
 					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topicDetail.getTopic().getId(), TargetType.topic));
-					topicDetail.setCurrentLiked(likeService.isLiked(user.getId(), topicDetail.getTopic().getId(), TargetType.topic));
 					topicDetail.getReplys().parallelStream().forEach(replyDetail -> {
 						replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), replyDetail.getReply().getId(), TargetType.reply));
 					});

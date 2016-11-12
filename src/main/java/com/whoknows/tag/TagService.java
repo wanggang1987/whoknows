@@ -125,7 +125,6 @@ public class TagService {
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				if (user != null && user.getId() != null) {
 					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
-					topicDetail.setCurrentLiked(likeService.isLiked(user.getId(), topic.getId(), TargetType.topic));
 				}
 				topicResult.setTopicDetail(topicDetail);
 

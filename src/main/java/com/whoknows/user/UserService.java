@@ -161,7 +161,6 @@ public class UserService {
 				topicDetail.setAuthor(getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
-				topicDetail.setCurrentLiked(likeService.isLiked(userID, topic.getId(), TargetType.topic));
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -200,7 +199,6 @@ public class UserService {
 				topicDetail.setAuthor(getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
-				topicDetail.setCurrentLiked(likeService.isLiked(userID, topic.getId(), TargetType.topic));
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -241,7 +239,6 @@ public class UserService {
 					topicDetail.setAuthor(getUser(topic.getId()));
 					topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 					topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
-					topicDetail.setCurrentLiked(likeService.isLiked(userID, topic.getId(), TargetType.topic));
 					topicResult.setTopicDetail(topicDetail);
 				} else {
 					return null;

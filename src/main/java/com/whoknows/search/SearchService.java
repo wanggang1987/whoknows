@@ -5,7 +5,6 @@ import com.whoknows.topic.TopicDetail;
 import com.whoknows.comment.CommentService;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.TargetType;
-import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
@@ -20,8 +19,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
 
 @Service
 public class SearchService {
@@ -65,7 +62,6 @@ public class SearchService {
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				if (user != null && user.getId() != null) {
 					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
-					topicDetail.setCurrentLiked(likeService.isLiked(user.getId(), topic.getId(), TargetType.topic));
 				}
 				topicResult.setTopicDetail(topicDetail);
 
