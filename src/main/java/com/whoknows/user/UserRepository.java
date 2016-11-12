@@ -6,9 +6,9 @@ import com.whoknows.domain.RoleType;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
-
+import com.whoknows.hot.VipDetail;
+import com.whoknows.utils.CommonFunction;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserRepository {
-	
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	@Autowired
 	private PasswordEncoder encoder;
-	
+
 	public User getUserById(Long id) {
 		return jdbcTemplate.query("select * from user where id = ? limit 1",
 				ps -> ps.setLong(1, id),
@@ -55,7 +55,7 @@ public class UserRepository {
 					return user;
 				}).stream().findAny().orElse(null);
 	}
-	
+
 	public List<Topic> getUserTopic(Long id) {
 		return jdbcTemplate.query("select * from topic where user_id = ? ",
 				ps -> ps.setLong(1, id),
@@ -71,7 +71,7 @@ public class UserRepository {
 					return topic;
 				});
 	}
-	
+
 	public void createUser(User user) {
 		jdbcTemplate.update("insert into user(email,e_pass) values (?, ?)",
 				ps -> {
@@ -85,7 +85,7 @@ public class UserRepository {
 				+ "values (? , ( select id from role where role = '" + RoleType.SITE_USER.toString() + "' limit 1 )) ",
 				ps -> ps.setLong(1, id));
 	}
-	
+
 	public void editUserInfo(User user) {
 		jdbcTemplate.update("update user set phone = ?,  first_name = ? , last_name = ? , company_name = ? , "
 				+ "province = ? , city = ? , address = ? , education = ?, title = ? , signature = ? "
@@ -104,7 +104,7 @@ public class UserRepository {
 					ps.setString(11, user.getSignature());
 				});
 	}
-	
+
 	public boolean validUserByEmailAndPasswd(String email, String oldPasswd) {
 		try {
 			String ePass = jdbcTemplate.queryForObject("select e_pass from user where email = ? limit 1",
@@ -114,16 +114,16 @@ public class UserRepository {
 			return false;
 		}
 	}
-	
+
 	public void resetPasswd(ResetPasswdRequest request) {
-		
+
 		jdbcTemplate.update("update user set e_pass = ? where email = ?",
 				ps -> {
 					ps.setString(1, encoder.encode(request.getNewPasswd()));
 					ps.setString(2, request.getEmail());
 				});
 	}
-	
+
 	public List<Role> getUserRolesByUserId(Long id) {
 		return jdbcTemplate.query("select role.* from role "
 				+ "left join user_role on role.id = user_role.role_id "
@@ -136,7 +136,7 @@ public class UserRepository {
 					return role;
 				});
 	}
-	
+
 	public List<Topic> getUserCreateTopics(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from topic where user_id = ? "
 				+ "order by id desc "
@@ -158,7 +158,7 @@ public class UserRepository {
 					return topic;
 				});
 	}
-	
+
 	public Integer getUserCreateTopicCount(Long user_id) {
 		return jdbcTemplate.query("select count(1) from topic where user_id = ? ",
 				ps -> {
@@ -168,7 +168,7 @@ public class UserRepository {
 					return rs.getInt("count(1)");
 				}).stream().findAny().orElse(null);
 	}
-	
+
 	public List<Topic> getUserFollowTopics(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from topic where id in (	"
 				+ "select target_id from follow where user_id = ? and target_type = 'topic' ) "
@@ -191,7 +191,7 @@ public class UserRepository {
 					return topic;
 				});
 	}
-	
+
 	public Integer getUserFollowTopicCount(Long user_id) {
 		return jdbcTemplate.query("select count(1) from topic where id in (	"
 				+ "select target_id from follow where user_id = ? and target_type = 'topic' ) ",
@@ -202,7 +202,7 @@ public class UserRepository {
 					return rs.getInt("count(1)");
 				}).stream().findAny().orElse(null);
 	}
-	
+
 	public List<Reply> getUserReplys(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from reply where user_id = ? "
 				+ "order by id desc "
@@ -225,7 +225,7 @@ public class UserRepository {
 					return reply;
 				});
 	}
-	
+
 	public Integer getUserReplyCount(Long user_id) {
 		return jdbcTemplate.query("select count(1) from reply where user_id = ?  ",
 				ps -> {
@@ -235,13 +235,12 @@ public class UserRepository {
 					return rs.getInt("count(1)");
 				}).stream().findAny().orElse(null);
 	}
-	
-	public List<Tag> getUserTagList(Long userId) {
+
+	public List<Tag> getUserFollowTagList(Long userId) {
 		return jdbcTemplate.query("select * from tag where id in "
 				+ "( select target_id from follow "
-				+ "left join user on follow.user_id = user.id "
 				+ "where follow.target_type = 'tag' "
-				+ "and user.id = ? ) "
+				+ "and user_id = ? ) "
 				+ "order by rank desc;",
 				ps -> {
 					ps.setLong(1, userId);
@@ -253,6 +252,24 @@ public class UserRepository {
 					tag.setAction(rs.getString("action"));
 					tag.setRank(rs.getLong("rank"));
 					return tag;
+				});
+	}
+
+	public List<VipDetail> getUserFollowVipList(Long userId) {
+		return jdbcTemplate.query("select * from user where id in "
+				+ "( select target_id from follow "
+				+ "where follow.target_type = 'user' "
+				+ "and user_id = ? ) "
+				+ "order by rank desc ",
+				ps -> {
+					ps.setLong(1, userId);
+				},
+				(rs, row) -> {
+					VipDetail vip = new VipDetail();
+					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
+					vip.setPricture(rs.getString("picture"));
+					vip.setUserID(rs.getLong("id"));
+					return vip;
 				});
 	}
 }

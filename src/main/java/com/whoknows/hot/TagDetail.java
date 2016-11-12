@@ -1,10 +1,10 @@
 package com.whoknows.hot;
 
-public class HotVip {
+public class TagDetail {
 
-	private String pricture;
-	private String name;
-	private Long userID;
+	private String picture;
+	private String tagName;
+	private Long tagID;
 	private Integer followCount;
 	private Boolean currentFollowed;
 
@@ -24,27 +24,28 @@ public class HotVip {
 		this.currentFollowed = currentFollowed;
 	}
 
-	public String getPricture() {
-		return pricture;
+	public Long getTagID() {
+		return tagID;
 	}
 
-	public void setPricture(String pricture) {
-		this.pricture = pricture;
+	public void setTagID(Long tagID) {
+		this.tagID = tagID;
 	}
 
-	public String getName() {
-		return name;
+	public String getPicture() {
+		return picture;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
-	public Long getUserID() {
-		return userID;
+	public String getTagName() {
+		return tagName;
 	}
 
-	public void setUserID(Long userID) {
-		this.userID = userID;
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
+
 }

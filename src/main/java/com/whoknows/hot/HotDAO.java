@@ -2,9 +2,7 @@ package com.whoknows.hot;
 
 import com.whoknows.domain.RoleType;
 import com.whoknows.utils.CommonFunction;
-
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ public class HotDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	public List<HotVip> listHotVip(Integer page, int pageSize) {
+	public List<VipDetail> listHotVip(Integer page, int pageSize) {
 		return jdbcTemplate.query("select user.* from user "
 				+ "left join user_role on user_role.user_id = user.id "
 				+ "where user_role.role_id = ( select id from role where role = '" + RoleType.SITE_VIP.toString() + "' limit 1 ) "
@@ -30,7 +28,7 @@ public class HotDAO {
 					ps.setInt(2, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
-					HotVip vip = new HotVip();
+					VipDetail vip = new VipDetail();
 					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("id"));
@@ -38,7 +36,7 @@ public class HotDAO {
 				});
 	}
 
-	public List<HotVip> listHotVip(String key, int page, int pageSize) {
+	public List<VipDetail> listHotVip(String key, int page, int pageSize) {
 		return jdbcTemplate.query("select user.* from user "
 				+ "left join user_role on user_role.user_id = user.id "
 				+ "where user_role.role_id = ( select id from role where role = '" + RoleType.SITE_VIP.toString() + "' limit 1 ) "
@@ -57,7 +55,7 @@ public class HotDAO {
 					ps.setInt(6, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
-					HotVip vip = new HotVip();
+					VipDetail vip = new VipDetail();
 					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("id"));
@@ -65,7 +63,7 @@ public class HotDAO {
 				});
 	}
 
-	public List<HotTag> listHotTag(Integer page, int pageSize) {
+	public List<TagDetail> listHotTag(Integer page, int pageSize) {
 		return jdbcTemplate.query("select * from tag "
 				+ "order by rank desc "
 				+ "limit ? OFFSET ? ",
@@ -74,7 +72,7 @@ public class HotDAO {
 					ps.setInt(2, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
-					HotTag tag = new HotTag();
+					TagDetail tag = new TagDetail();
 					tag.setPicture(null);
 					tag.setTagID(rs.getLong("id"));
 					tag.setTagName(rs.getNString("name"));
@@ -82,7 +80,7 @@ public class HotDAO {
 				});
 	}
 
-	public List<HotTag> listHotTag(String key, Integer page, int pageSize) {
+	public List<TagDetail> listHotTag(String key, Integer page, int pageSize) {
 		return jdbcTemplate.query("select * from tag "
 				+ "where name like ? "
 				+ "order by rank desc "
@@ -93,7 +91,7 @@ public class HotDAO {
 					ps.setInt(3, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
-					HotTag tag = new HotTag();
+					TagDetail tag = new TagDetail();
 					tag.setPicture(null);
 					tag.setTagID(rs.getLong("id"));
 					tag.setTagName(rs.getNString("name"));

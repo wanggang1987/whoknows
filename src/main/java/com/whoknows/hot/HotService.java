@@ -1,14 +1,11 @@
 package com.whoknows.hot;
 
 import com.whoknows.domain.TargetType;
-import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.user.UserDetail;
 import com.whoknows.user.UserService;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +24,7 @@ public class HotService {
 	@Autowired
 	private FollowService followService;
 
-	public List<HotVip> listHotVip(Integer page) {
+	public List<VipDetail> listHotVip(Integer page) {
 		try {
 			UserDetail user = userService.currentUser();
 
@@ -44,7 +41,7 @@ public class HotService {
 		}
 	}
 
-	public List<HotVip> listHotVip(String key, Integer page) {
+	public List<VipDetail> listHotVip(String key, Integer page) {
 		try {
 			UserDetail user = userService.currentUser();
 
@@ -61,7 +58,7 @@ public class HotService {
 		}
 	}
 
-	public List<HotTag> listHotTags(Integer page) {
+	public List<TagDetail> listHotTags(Integer page) {
 		try {
 			UserDetail user = userService.currentUser();
 
@@ -78,7 +75,7 @@ public class HotService {
 		}
 	}
 
-	public List<HotTag> listHotTags(String key, Integer page) {
+	public List<TagDetail> listHotTags(String key, Integer page) {
 		try {
 			UserDetail user = userService.currentUser();
 
@@ -95,7 +92,7 @@ public class HotService {
 		}
 	}
 
-	public HotRecommend getRecommed() {
+	public HotRecommend getRecommend() {
 		HotRecommend hotIndex = new HotRecommend();
 		try {
 			hotIndex.setTags(listHotTags(1));

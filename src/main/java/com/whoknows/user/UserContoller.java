@@ -2,6 +2,7 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.User;
+import com.whoknows.hot.VipDetail;
 import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -39,15 +40,15 @@ public class UserContoller {
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
-		public ResponseEntity getUserInfo(@PathVariable("id") Long id) {
-			UserDetail userView = userService.getUser(id);
-			if (userView != null) {
-				return ResponseEntity.ok(userView);
-			} else {
-				return ResponseEntity.badRequest().build();
-			}
+	public ResponseEntity getUserInfo(@PathVariable("id") Long id) {
+		UserDetail userView = userService.getUser(id);
+		if (userView != null) {
+			return ResponseEntity.ok(userView);
+		} else {
+			return ResponseEntity.badRequest().build();
 		}
-	
+	}
+
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity registUser(@RequestBody User user) {
 		log.info("Try to create user: {}", user == null ? "" : user);
@@ -107,7 +108,7 @@ public class UserContoller {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/home/count/into/{userId}", method = RequestMethod.GET)
 	public ResponseEntity getUserCountInfo(@PathVariable("userId") Long userId) {
 		UserConutInfoResponse userConutInfoResponse = userService.getUserCountInfo(userId);
@@ -117,14 +118,24 @@ public class UserContoller {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/follow/list/tag", method = RequestMethod.GET)
-	public ResponseEntity getUserTagList() {
-		List<Tag> tags = userService.getUserTagList();
+	public ResponseEntity getUserFollowTagList() {
+		List<Tag> tags = userService.getUserFollowTagList();
 		if (tags != null) {
 			return ResponseEntity.ok(tags);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
-	} 
+	}
+
+	@RequestMapping(path = "/follow/list/vip", method = RequestMethod.GET)
+	public ResponseEntity getUserVipList() {
+		List<VipDetail> vips = userService.getUserFollowVipList();
+		if (vips != null) {
+			return ResponseEntity.ok(vips);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

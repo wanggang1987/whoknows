@@ -7,6 +7,7 @@ import com.whoknows.domain.TargetType;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
+import com.whoknows.hot.VipDetail;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.reply.ReplyDetail;
@@ -262,11 +263,28 @@ public class UserService {
 		}
 	}
 
-	public List<Tag> getUserTagList() {
+	public List<Tag> getUserFollowTagList() {
 		try {
 			UserDetail user = currentUser();
 			if (user != null && user.getId() != null) {
-				return userRepository.getUserTagList(user.getId());
+				return userRepository.getUserFollowTagList(user.getId());
+			}
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<VipDetail> getUserFollowVipList() {
+		try {
+			UserDetail user = currentUser();
+			if (user != null && user.getId() != null) {
+				return userRepository.getUserFollowVipList(user.getId()).parallelStream().map(hotVip -> {
+					hotVip.setFollowCount(followService.followCount(hotVip.getUserID(), TargetType.user));
+					hotVip.setCurrentFollowed(followService.isFollowed(user.getId(), hotVip.getUserID(), TargetType.user));
+					return hotVip;
+				}).collect(Collectors.toList());
 			}
 			return null;
 		} catch (Exception e) {

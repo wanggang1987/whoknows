@@ -4,22 +4,22 @@ import java.util.List;
 
 public class HotRecommend {
 
-	private List<HotVip> vips;
-	private List<HotTag> tags;
+	private List<VipDetail> vips;
+	private List<TagDetail> tags;
 
-	public List<HotVip> getVips() {
+	public List<VipDetail> getVips() {
 		return vips;
 	}
 
-	public void setVips(List<HotVip> vips) {
+	public void setVips(List<VipDetail> vips) {
 		this.vips = vips;
 	}
 
-	public List<HotTag> getTags() {
+	public List<TagDetail> getTags() {
 		return tags;
 	}
 
-	public void setTags(List<HotTag> tags) {
+	public void setTags(List<TagDetail> tags) {
 		this.tags = tags;
 	}
 }

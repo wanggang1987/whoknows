@@ -21,7 +21,7 @@ public class HotController {
 
 	@RequestMapping(path = "/vip/{page}", method = RequestMethod.GET)
 	public ResponseEntity searchVipyKeyWordOnRank(String keyWord, @PathVariable("page") Integer page) {
-		List<HotVip> vips = null;
+		List<VipDetail> vips = null;
 		if (keyWord == null) {
 			vips = hotService.listHotVip(page);
 		} else {
@@ -37,7 +37,7 @@ public class HotController {
 
 	@RequestMapping(path = "/tag/{page}", method = RequestMethod.GET)
 	public ResponseEntity listHotTag(String keyWord, @PathVariable("page") Integer page) {
-		List<HotTag> topics = null;
+		List<TagDetail> topics = null;
 		if (keyWord == null) {
 			topics = hotService.listHotTags(page);
 		} else {
@@ -52,8 +52,8 @@ public class HotController {
 	}
 
 	@RequestMapping(path = "/recommend", method = RequestMethod.GET)
-	public ResponseEntity getRecommed() {
-		HotRecommend hotIndex = hotService.getRecommed();
+	public ResponseEntity getRecommend() {
+		HotRecommend hotIndex = hotService.getRecommend();
 		if (hotIndex != null) {
 			return ResponseEntity.ok(hotIndex);
 		} else {
