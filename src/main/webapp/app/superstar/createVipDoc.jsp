@@ -9,7 +9,7 @@
        		<h4>内容</h4>
        		<textarea ui-tinymce="tinymceOptions1" required ng-model="content"   class="tea"/></textarea>
         		<div class="form-group text-right">
-				<button type="submit" class="btn btn-default default-wk-blue-btn" ng-disabled="title == undefined || title == null ||  title.length == 0 || content == undefined || content == null && content.length == 0" ng-click="createQuestion()">提问</button>
+				<button type="submit" class="btn btn-default default-wk-blue-btn" ng-disabled="title == undefined || title == null ||  title.length == 0 || content == undefined || content == null && content.length == 0" ng-click="createVipDoc()">发布</button>
 			</div>
         </div><!--/.col-xs-12.col-sm-9-->
 
