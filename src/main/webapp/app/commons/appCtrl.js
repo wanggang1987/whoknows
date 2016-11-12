@@ -48,5 +48,9 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		$scope.createQuestion = function(){
 			$location.path('/creteTopic');
 		}
+		
+		$scope.createVipDoc = function(){
+			$location.path('/creteVipDoc');
+		}
 		console.log("wkCommon- wkCommon.appCtrl load.")
 	});

@@ -1,7 +1,10 @@
 package com.whoknows.hot;
 
+import com.whoknows.domain.RoleType;
 import com.whoknows.utils.CommonFunction;
+
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +22,7 @@ public class HotDAO {
 	public List<HotVip> listHotVip(Integer page, int pageSize) {
 		return jdbcTemplate.query("select user.* from user "
 				+ "left join user_role on user_role.user_id = user.id "
-				+ "where user_role.role_id = ( select id from role where role = 'SITE_VIP' limit 1 ) "
+				+ "where user_role.role_id = ( select id from role where role = '" + RoleType.SITE_VIP.toString() + "' limit 1 ) "
 				+ "order by rank desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
@@ -38,7 +41,7 @@ public class HotDAO {
 	public List<HotVip> listHotVip(String key, int page, int pageSize) {
 		return jdbcTemplate.query("select user.* from user "
 				+ "left join user_role on user_role.user_id = user.id "
-				+ "where user_role.role_id = ( select id from role where role = 'SITE_VIP' limit 1 ) "
+				+ "where user_role.role_id = ( select id from role where role = '" + RoleType.SITE_VIP.toString() + "' limit 1 ) "
 				+ "and ( email like ? "
 				+ "or phone like ? "
 				+ "or first_name like ? "

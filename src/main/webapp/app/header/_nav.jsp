@@ -6,15 +6,22 @@
 				<li ng-class="{ active: isActive('/superStar') }"><a href="#/superStar"  >大咖</a></li>
 				<li ng-class="{ active: isActive('/message') }"><a href="#/message"  >消息</a></li>
 				<sec:authorize access="isAuthenticated()">
-					<li class="fill-maring-left" ng-show="loginIn">
+					<li class="fill-maring-left-100" >
 						<div class="form-group index-create-question-btn">
 							<button type="submit" class="btn btn-default " ng-click="createQuestion()">提问</button>
 						</div>
 					</li>
 				</sec:authorize>
-              	<li class="fill-maring-left" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
+				<sec:authorize access="hasAuthority('SITE_ADMIN')">	
+					<li class="fill-maring-left-20" >
+						<div class="form-group index-create-question-btn">
+							<button type="submit" class="btn btn-default " ng-click="createVipDoc()">大咖文章</button>
+						</div>
+					</li>
+				</sec:authorize>
+              	<li class="fill-maring-left-100" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
               	<sec:authorize access="isAuthenticated()">
-	              	<li class="fill-maring-left dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
+	              	<li class="fill-maring-left-100 dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
 		              	<a href="#/selfPage" data-toggle="dropdown" >
 		              		<img alt="" class="img-20-size" ng-src="{{user.picture || defaultPeopleImg}}"></img> <span class="ng-cloak">{{user.email}}</span>
 		              		<span class="glyphicon glyphicon-chevron-down"></span>

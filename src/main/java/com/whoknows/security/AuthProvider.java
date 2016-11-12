@@ -19,7 +19,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.whoknows.domain.Role;
 import com.whoknows.domain.User;
+import com.whoknows.user.UserDetail;
 
 @Component
 public class AuthProvider implements AuthenticationProvider{
@@ -46,8 +48,9 @@ public class AuthProvider implements AuthenticationProvider{
 					log.info("Password do not match.");
 					throw new BadCredentialsException("Invalid username/password given.");
 				}
-				List<String> roles = authDao.getRolesByUserId(user.getId());
-				return new UsernamePasswordAuthenticationToken(user, null, roles.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+				List<Role> roles = authDao.getRolesByUserId(user.getId());
+				UserDetail userDetail = new UserDetail(user, roles);
+				return new UsernamePasswordAuthenticationToken(userDetail, null, roles.stream().map(role -> role.getRole()).map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
 			} catch (EmptyResultDataAccessException ex) {
 				log.warn("Could not find username : {}", username);
 				throw new UsernameNotFoundException("User " + username + " not found.");

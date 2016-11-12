@@ -13,9 +13,12 @@ import com.whoknows.reply.ReplyDetail;
 import com.whoknows.search.Paging;
 import com.whoknows.search.TopicResult;
 import com.whoknows.topic.TopicDetail;
+import com.whoknows.user.UserDetail;
 import com.whoknows.user.UserService;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -98,7 +101,7 @@ public class TagService {
 		}
 
 		try {
-			User user = userService.currentUser();
+			UserDetail user = userService.currentUser();
 
 			TagHomeRespone tagHomeRespone = new TagHomeRespone();
 			tagHomeRespone.setTag(tagRepository.getTag(tagId));

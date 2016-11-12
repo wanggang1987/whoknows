@@ -275,7 +275,8 @@ body{
 	margin:0px auto;
 	padding:0px 0px;
 }
-.fill-maring-left{margin-left:100px}
+.fill-maring-left-100{margin-left:100px}
+.fill-maring-left-20{margin-left:20px}
 .img-20-size{
 	margin-right:10px;
 	width:20px;
@@ -354,7 +355,7 @@ footer {
 	margin:0px;
 }
 .index-create-question-btn button{
-	width: 75px; 
+	width: 85px; 
 	height: 35px; 
 	border : 2px solid #FFF;
 	margin-top: 6px; 

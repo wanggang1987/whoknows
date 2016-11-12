@@ -27,7 +27,7 @@ public class UserContoller {
 	@RequestMapping(path = "/current", method = RequestMethod.GET, produces = "application/json")
 	public ResponseEntity current() {
 		try {
-			User currentUser = userService.currentUser();
+			UserDetail currentUser = userService.currentUser();
 			if (currentUser != null) {
 				return ResponseEntity.ok(currentUser);
 			} else {

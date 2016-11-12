@@ -2,8 +2,10 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Role;
 import com.whoknows.domain.User;
+
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class UserDetail {
 
@@ -17,7 +19,6 @@ public class UserDetail {
 	private String city;
 	private String address;
 	private Timestamp createTime;
-	private Boolean vip;
 	private String picture;
 	private String education;
 	private String signature;
@@ -25,7 +26,30 @@ public class UserDetail {
 	private Integer rank;
 	private String profile;
 	private String name;
-
+	private List<String> roles;
+	
+	public UserDetail(){
+		
+	}
+	public UserDetail(User user, List<Role> roles) {
+		this.id = user.getId();
+		this.email = user.getEmail();
+		this.phone = user.getPhone();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.companyName = user.getCompanyName();
+		this.province = user.getProvince();
+		this.city = user.getCity();
+		this.address = user.getAddress();
+		this.createTime = user.getCreateTime();
+		this.picture = user.getPicture();
+		this.education = user.getEducation();
+		this.signature = user.getSignature();
+		this.title = user.getTitle();
+		this.rank = user.getRank();
+		this.profile = user.getProfile();
+		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
+	}
 	public String getName() {
 		return name;
 	}
@@ -49,8 +73,6 @@ public class UserDetail {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-
-	private List<Role> roles;
 
 	public Long getId() {
 		return id;
@@ -132,13 +154,6 @@ public class UserDetail {
 		this.createTime = createTime;
 	}
 
-	public Boolean getVip() {
-		return vip;
-	}
-
-	public void setVip(Boolean vip) {
-		this.vip = vip;
-	}
 
 	public String getPicture() {
 		return picture;
@@ -172,11 +187,11 @@ public class UserDetail {
 		this.title = title;
 	}
 
-	public List<Role> getRoles() {
+	public List<String> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 
@@ -197,7 +212,7 @@ public class UserDetail {
 		this.title = user.getTitle();
 		this.rank = user.getRank();
 		this.profile = user.getProfile();
-		this.roles = roles;
+		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
 	}
 
 }

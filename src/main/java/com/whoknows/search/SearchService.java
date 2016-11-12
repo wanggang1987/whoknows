@@ -9,13 +9,17 @@ import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
+import com.whoknows.user.UserDetail;
 import com.whoknows.user.UserService;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.stream.Collectors;
+
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -46,7 +50,7 @@ public class SearchService {
 		}
 
 		try {
-			User user = userService.currentUser();
+			UserDetail user = userService.currentUser();
 
 			SearchTopicResponse searchResponse = new SearchTopicResponse();
 			searchResponse.setKeyWord(key);

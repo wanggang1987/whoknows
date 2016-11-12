@@ -94,6 +94,7 @@
 	<script type="text/javascript" src="/app/topic/createTopicCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/topicDetailCtrl.js"></script>
 	<script type="text/javascript" src="/app/tags/tagModule.js"></script>
+	<script type="text/javascript" src="/app/superstar/createVipDoc.js"></script>
 	<script type="text/javascript" src="/app/tags/directives/hotTagSidbar.js"></script>
 	<script type="text/javascript" src="/app/tags/tagDetailCtrl.js"></script>
 </body>

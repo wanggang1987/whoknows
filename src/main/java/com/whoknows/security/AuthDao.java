@@ -1,5 +1,6 @@
 package com.whoknows.security;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import com.whoknows.domain.Role;
+import com.whoknows.domain.RoleType;
 import com.whoknows.domain.User;
 
 @Component
@@ -16,7 +19,7 @@ public class AuthDao {
 	private JdbcTemplate jdbcTemplate;
 
 	private final String QUERY_USER_BY_USER_EMAIL = "SELECT * FROM user where email = ?";
-	private final String QUERY_ROLES_BY_USER_ID = "select role.role from role left join user_role on role.id = user_role.role_id where user_id = ?";
+	private final String QUERY_ROLES_BY_USER_ID = "select * from role left join user_role on role.id = user_role.role_id where user_id = ?";
 
 	public User getUserByEmail(String username) {
 		return jdbcTemplate.query(QUERY_USER_BY_USER_EMAIL,
@@ -48,10 +51,18 @@ public class AuthDao {
 
 	}
 
-	public List<String> getRolesByUserId(Long id) {
-		List<String> roles = jdbcTemplate.queryForList(QUERY_ROLES_BY_USER_ID, new Object[]{id}, String.class);
+	public List<Role> getRolesByUserId(Long id) {
+		List<Role> roles = new ArrayList<>();
+		jdbcTemplate.query(QUERY_ROLES_BY_USER_ID, ps -> ps.setLong(1, id), (rs, row) -> {
+			Role role = new Role();
+			role.setRole(rs.getString("role"));
+			roles.add(role);
+			return null;
+		});
 		if (roles.size() == 0) {
-			roles = Arrays.asList(new String[]{"SITE_USER"});
+			Role role = new Role();
+			role.setRole(RoleType.SITE_USER.toString());
+			roles.add(role);
 		}
 		return roles;
 	}

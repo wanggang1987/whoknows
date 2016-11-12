@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import com.whoknows.domain.User;
 import com.whoknows.security.tools.CookieTools;
+import com.whoknows.user.UserDetail;
 
 
 @Component
@@ -27,7 +28,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler{
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest hsr, HttpServletResponse hsrp, Authentication auth) throws IOException, ServletException {
 		
-		User user = (User) auth.getPrincipal();
+		UserDetail user = (UserDetail) auth.getPrincipal();
 		
 		log.info("Successful login ,user: {}.", user.getEmail());
 		hsrp.setStatus(HttpServletResponse.SC_OK);

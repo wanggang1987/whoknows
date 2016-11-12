@@ -2,23 +2,12 @@
 'use strict';
 
 var wkCommon = angular.module('wkSuperstar', ['ngRoute']).config(function($routeProvider, $logProvider){
-	$routeProvider.when('/', {
-		templateUrl: 'app/home',
-		controller: 'HomeCtrl',
+	$routeProvider.when('/creteVipDoc', {
+		templateUrl: 'app/superstar/createVipDoc',
+		controller: 'CreateVipDocCtrl',
 		data: {
 			standalonePage: true
 		}
-	}).when('/selfPage', {
-		templateUrl: 'app/users/selfHomePage',
-		controller: 'SelfHomeCtrl',
-		data: {
-			standalonePage: true
-		}
-	}).when('/error', {
-		templateUrl: 'error',
-		data: {
-			standalonePage: true
-		}
-	});
+	})
 });
 

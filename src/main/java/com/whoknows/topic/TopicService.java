@@ -8,7 +8,9 @@ import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.tag.TagService;
+import com.whoknows.user.UserDetail;
 import com.whoknows.user.UserService;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -105,7 +107,7 @@ public class TopicService {
 		}
 
 		try {
-			User user = userService.currentUser();
+			UserDetail user = userService.currentUser();
 
 			TopicDetail topicDetail = new TopicDetail();
 			topicDetail.setTopic(topicRepository.getTopic(id));

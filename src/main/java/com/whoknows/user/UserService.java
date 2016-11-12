@@ -45,10 +45,10 @@ public class UserService {
 	@Autowired
 	private CommentService commentService;
 
-	public User currentUser() {
+	public UserDetail currentUser() {
 		if (SecurityContextHolder.getContext().getAuthentication()
-				.getPrincipal() instanceof User) {
-			return (User) SecurityContextHolder.getContext()
+				.getPrincipal() instanceof UserDetail) {
+			return (UserDetail) SecurityContextHolder.getContext()
 					.getAuthentication().getPrincipal();
 		} else {
 			return null;
@@ -264,7 +264,7 @@ public class UserService {
 
 	public List<Tag> getUserTagList() {
 		try {
-			User user = currentUser();
+			UserDetail user = currentUser();
 			if (user != null && user.getId() != null) {
 				return userRepository.getUserTagList(user.getId());
 			}

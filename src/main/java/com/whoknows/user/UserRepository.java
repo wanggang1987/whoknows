@@ -2,10 +2,13 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Role;
+import com.whoknows.domain.RoleType;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
+
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,7 +82,7 @@ public class UserRepository {
 				ps -> ps.setString(1, user.getEmail()),
 				(rs, row) -> rs.getLong("id")).stream().findAny().orElse(null);
 		jdbcTemplate.update("insert into user_role (user_id, role_id) "
-				+ "values (? , ( select id from role where role = 'SITE_USER' limit 1 )) ",
+				+ "values (? , ( select id from role where role = ' " + RoleType.SITE_USER.toString() + " ' limit 1 )) ",
 				ps -> ps.setLong(1, id));
 	}
 	
