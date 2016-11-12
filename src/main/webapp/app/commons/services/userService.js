@@ -62,5 +62,15 @@ angular.module('wkCommon').service('UserService', function ($http, $q, $rootScop
 	this.isSignedIn = function () {
 		return signedIn;
 	};
+	
+	this.hasPermission = function (role) {
+		if (!_.has(user, 'roles')) {
+			return false;
+		} else {
+			return _.find(user.roles, function (p) {
+				return p === role;
+			}) !== undefined;
+		}
+	};
 
 });
