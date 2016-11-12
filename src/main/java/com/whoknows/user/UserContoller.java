@@ -60,7 +60,7 @@ public class UserContoller {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity editUserInfo(@RequestBody User user) {
+	public ResponseEntity editUserInfo(@RequestBody UserDetail user) {
 		log.info(ToStringBuilder.reflectionToString(user, ToStringStyle.MULTI_LINE_STYLE));
 		if (userService.editUserInfo(user)) {
 			return ResponseEntity.ok().build();

@@ -130,8 +130,8 @@ public class UserService {
 		}
 	}
 
-	public boolean editUserInfo(User user) {
-		if (user.getId() == null) {
+	public boolean editUserInfo(UserDetail user) {
+		if (user == null || user.getId() == null) {
 			return false;
 		}
 

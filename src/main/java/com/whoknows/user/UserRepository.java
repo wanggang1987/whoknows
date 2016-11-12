@@ -86,9 +86,10 @@ public class UserRepository {
 				ps -> ps.setLong(1, id));
 	}
 
-	public void editUserInfo(User user) {
+	public void editUserInfo(UserDetail user) {
 		jdbcTemplate.update("update user set phone = ?,  first_name = ? , last_name = ? , company_name = ? , "
-				+ "province = ? , city = ? , address = ? , education = ?, title = ? , signature = ? "
+				+ "province = ? , city = ? , address = ? , education = ?, title = ? , signature = ?, "
+				+ "profile = ? "
 				+ "where id = ? ",
 				ps -> {
 					ps.setString(1, user.getPhone());
@@ -102,6 +103,7 @@ public class UserRepository {
 					ps.setString(9, user.getTitle());
 					ps.setLong(10, user.getId());
 					ps.setString(11, user.getSignature());
+					ps.setString(12, user.getProfile());
 				});
 	}
 
