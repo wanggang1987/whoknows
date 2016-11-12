@@ -110,7 +110,7 @@ public class SearchDAO {
 					user.setVip(rs.getBoolean("vip"));
 					user.setPicture(rs.getString("picture"));
 					user.setEducation(rs.getString("education"));
-					user.setSignatureId(rs.getLong("signature_id"));
+					user.setSignature(rs.getString("signature"));
 					user.setTitle(rs.getString("title"));
 					user.setAction(rs.getString("action"));
 					return user;

@@ -80,6 +80,10 @@ public class TagService {
 	}
 
 	public List<Tag> getTagList(String tagName) {
+		if (StringUtils.isEmpty(tagName)) {
+			return null;
+		}
+
 		try {
 			return tagRepository.getTagList(tagName);
 		} catch (Exception e) {

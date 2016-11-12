@@ -1,0 +1,21 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="edit signature" author="whoknows">
+		<dropColumn tableName="user" columnName="signature_id"/>
+		<addColumn tableName="user">
+			<column name="signature" type="varchar(1000)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="edit vip profile" author="whoknows">
+		<dropColumn tableName="vip" columnName="personal_profile_id"/>
+		<addColumn tableName="vip">
+			<column name="personal_profile" type="varchar(5000)"/>
+		</addColumn>
+	</changeSet>
+</databaseChangeLog>

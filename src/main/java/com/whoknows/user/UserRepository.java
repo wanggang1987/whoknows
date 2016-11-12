@@ -5,11 +5,7 @@ import com.whoknows.domain.Role;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
-import com.whoknows.domain.autoMappingBean.UserRowMapper;
-import com.whoknows.message.password.ResetPasswdRequest;
-
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +26,30 @@ public class UserRepository {
 
 	public User getUserById(Long id) {
 		return jdbcTemplate.query("select * from user where id = ? limit 1",
-				ps -> ps.setLong(1, id), new UserRowMapper()).stream().findAny().orElse(null);
+				ps -> ps.setLong(1, id),
+				(rs, row) -> {
+					User user = new User();
+					user.setId(rs.getLong("id"));
+					user.setEmail(rs.getString("email"));
+					user.setPhone(rs.getString("phone"));
+					user.setPasswd(rs.getString("passwd"));
+					user.setePass(rs.getString("e_pass"));
+					user.setFirstName(rs.getString("first_name"));
+					user.setLastName(rs.getString("last_name"));
+					user.setCompanyName(rs.getString("company_name"));
+					user.setProvince(rs.getString("province"));
+					user.setCity(rs.getString("city"));
+					user.setAddress(rs.getString("address"));
+					user.setCreateTime(rs.getTimestamp("create_time"));
+					user.setUpdateTime(rs.getTimestamp("update_time"));
+					user.setVip(rs.getBoolean("vip"));
+					user.setPicture(rs.getString("picture"));
+					user.setEducation(rs.getString("education"));
+					user.setSignature(rs.getString("signature"));
+					user.setTitle(rs.getString("title"));
+					user.setAction(rs.getString("action"));
+					return user;
+				}).stream().findAny().orElse(null);
 	}
 
 	public List<Topic> getUserTopic(Long id) {
@@ -59,7 +78,8 @@ public class UserRepository {
 	}
 
 	public void editUserInfo(User user) {
-		jdbcTemplate.update("update user set phone = ?,  first_name = ? , last_name = ? , company_name = ? , province = ? , city = ? , address = ? , education = ?, title = ?  "
+		jdbcTemplate.update("update user set phone = ?,  first_name = ? , last_name = ? , company_name = ? , "
+				+ "province = ? , city = ? , address = ? , education = ?, title = ? , signature = ? "
 				+ "where id = ? ",
 				ps -> {
 					ps.setString(1, user.getPhone());
@@ -72,6 +92,7 @@ public class UserRepository {
 					ps.setString(8, user.getEducation());
 					ps.setString(9, user.getTitle());
 					ps.setLong(10, user.getId());
+					ps.setString(11, user.getSignature());
 				});
 	}
 

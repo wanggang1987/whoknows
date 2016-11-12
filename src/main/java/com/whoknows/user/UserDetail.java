@@ -21,7 +21,7 @@ public class UserDetail {
 	private Boolean vip;
 	private String picture;
 	private String education;
-	private Long signatureId;
+	private String signature;
 	private String title;
 
 	private List<Role> roles;
@@ -131,12 +131,12 @@ public class UserDetail {
 		this.education = education;
 	}
 
-	public Long getSignatureId() {
-		return signatureId;
+	public String getSignature() {
+		return signature;
 	}
 
-	public void setSignatureId(Long signatureId) {
-		this.signatureId = signatureId;
+	public void setSignature(String signature) {
+		this.signature = signature;
 	}
 
 	public String getTitle() {
@@ -177,7 +177,7 @@ public class UserDetail {
 		this.vip = user.getVip();
 		this.picture = user.getPicture();
 		this.education = user.getEducation();
-		this.signatureId = user.getSignatureId();
+		this.signature = user.getSignature();
 		this.roles = roles;
 		this.title = user.getTitle();
 	}

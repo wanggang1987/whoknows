@@ -8,7 +8,6 @@ import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
-import com.whoknows.message.password.ResetPasswdRequest;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.reply.ReplyDetail;
 import com.whoknows.search.Paging;

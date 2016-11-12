@@ -2,7 +2,6 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.User;
-import com.whoknows.message.password.ResetPasswdRequest;
 import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;

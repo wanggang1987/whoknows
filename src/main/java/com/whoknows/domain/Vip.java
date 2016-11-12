@@ -6,11 +6,19 @@ public class Vip {
 
 	private Long id;
 	private Long user_id;
-	private Long personal_profile_id;
+	private String personal_profile;
 	private Timestamp create_time;
 	private Timestamp update_time;
 	private Long rank;
 	private String action;
+
+	public String getPersonal_profile() {
+		return personal_profile;
+	}
+
+	public void setPersonal_profile(String personal_profile) {
+		this.personal_profile = personal_profile;
+	}
 
 	public Long getId() {
 		return id;
@@ -26,14 +34,6 @@ public class Vip {
 
 	public void setUser_id(Long user_id) {
 		this.user_id = user_id;
-	}
-
-	public Long getPersonal_profile_id() {
-		return personal_profile_id;
-	}
-
-	public void setPersonal_profile_id(Long personal_profile_id) {
-		this.personal_profile_id = personal_profile_id;
 	}
 
 	public Timestamp getCreate_time() {

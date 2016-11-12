@@ -2,8 +2,6 @@ package com.whoknows.tag;
 
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.Topic;
-import com.whoknows.domain.autoMappingBean.TagRowMapper;
-import com.whoknows.utils.CharacterConvert;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,7 +56,19 @@ public class TagRepository {
 	}
 
 	public List<Tag> getTagList(String tagName) {
-		return jdbcTemplate.query("SELECT * FROM whoknows.tag where name like '%" + CharacterConvert.translateSqlConvert(tagName) + "%' order by rank desc  limit 5", new TagRowMapper());
+		return jdbcTemplate.query("SELECT * FROM whoknows.tag where name like ?"
+				+ " order by rank desc  limit 5",
+				ps -> {
+					ps.setString(1, "%" + tagName + "%");
+				},
+				(rs, row) -> {
+					Tag tag = new Tag();
+					tag.setId(rs.getLong("id"));
+					tag.setName(rs.getString("name"));
+					tag.setAction(rs.getString("action"));
+					tag.setRank(rs.getLong("rank"));
+					return tag;
+				});
 	}
 
 	public Integer getTopicByTagCount(Long tagId) {

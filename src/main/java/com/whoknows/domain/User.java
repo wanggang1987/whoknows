@@ -20,9 +20,17 @@ public class User {
 	private Boolean vip;
 	private String picture;
 	private String education;
-	private Long signatureId;
+	private String signature;
 	private String title;
 	private String action;
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
+	}
 	
 	public Long getId() {
 		return id;
@@ -166,14 +174,6 @@ public class User {
 
 	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
-	}
-
-	public Long getSignatureId() {
-		return signatureId;
-	}
-
-	public void setSignatureId(Long signatureId) {
-		this.signatureId = signatureId;
 	}
 
 }
