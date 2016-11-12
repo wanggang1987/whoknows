@@ -7,7 +7,8 @@ angular.module('WhoKnows').directive('wkNameSpan', function ($location, $window,
 		templateUrl: 'app/commons/directives/nameSpan',
 		replace: true,
 		scope: {
-			user : '='
+			user : '=',
+			hideImg : '='
 		},
 		link: function (scope, elem) {
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;

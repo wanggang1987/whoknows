@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log, $http, DEFAULT_IMG) {
+angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log, $http, UserService, DEFAULT_IMG) {
 
 	return {
 		restrict: 'AE',
@@ -42,6 +42,25 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 			scope.nextPage = function(){
 				scope.currentPage = scope.currentPage + 1;
 				getVipLists(scope.currentPage, scope.keyWordVip);
+			}
+			
+			scope.fllowVip = function(vip){
+				if(!UserService.isSignedIn()){
+					$location.path("/login");
+					return;
+				}
+				if(vip.currentFollowed){
+					$http.post("/follow/user/disable/" + UserService.getCurrent().id + "/" + vip.userID).success(function(data){
+						vip.followCount = vip.followCount > 0 ? vip.followCount - 1 : 0;
+						vip.currentFollowed = false;
+					})
+				}else{
+					$http.post("/follow/user/" + UserService.getCurrent().id + "/" + vip.userID).success(function(data){
+						vip.followCount += 1;
+						vip.currentFollowed = true;
+					})
+				}
+				
 			}
 		}
 	};

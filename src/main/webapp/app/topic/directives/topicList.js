@@ -57,7 +57,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 				}
 				if(topicDetail.currentFollowed){
 					$http.post("/follow/topic/disable/" + UserService.getCurrent().id + "/" + topicDetail.topic.id).success(function(data){
-						topicDetail.followCount = topicDetail.followCount - 1;
+						topicDetail.followCount = topicDetail.followCount > 0 ? topicDetail.followCount - 1 : 0;
 						topicDetail.currentFollowed = false;
 						if(scope.refreshFollowCount){
 							scope.refreshFollowCount();
@@ -87,7 +87,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 				}
 				if(replyDetail.currentLiked){
 					$http.post("/like/reply/disable/" + UserService.getCurrent().id + "/" + replyDetail.reply.id).success(function(data){
-						replyDetail.likeCount -= 1;
+						replyDetail.likeCount = replyDetail.likeCount > 0 ? replyDetail.likeCount - 1 : 0;
 						replyDetail.currentLiked = false;
 					});
 					

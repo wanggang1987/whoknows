@@ -28,6 +28,9 @@ body{
 .margin-top-70{
 	margin-top:70px;
 }
+.margin-top-40{
+	margin-top:40px;
+}
 .wk-add-more-btn{
 	outline:none;
 	width:100%;
@@ -37,9 +40,17 @@ body{
 	margin-bottom: 35px;
 	margin-top: 35px;
 }
-
+.wk-default-ul li{
+	margin:0px;
+	padding:0px 0px 0px 0px;
+	float:left;
+	list-style-type:none;
+}
 .wk-img-25{
 	width: 25px;
+}
+.wk-img-65{
+	width: 65px;
 }
 .wk-orign-hr {
 	clear:both;
@@ -48,10 +59,10 @@ body{
     border: 0;
     border-top: 2px solid #ed8b1e ;
 }
-.font-gray-color{
-	color: #b5b5b5
+.wk-orange-color, .wk-orange-color:hover{
+	color: #ed8b1e;
 }
-.font-gray-color:hover{
+.font-gray-color, .font-gray-color:hover{
 	color: #b5b5b5
 }
 .wk-a-disabled {
@@ -750,3 +761,4 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 	border: 1px solid #e5e5e5 ; 
 	border-radius: 4px;
 }
+/**vip****/

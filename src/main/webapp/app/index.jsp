@@ -66,6 +66,7 @@
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>
+	<script type="text/javascript" src="/app/commons/filters/formateName.js"></script>
 	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/nameSpan.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
@@ -97,5 +98,6 @@
 	<script type="text/javascript" src="/app/superstar/createVipDoc.js"></script>
 	<script type="text/javascript" src="/app/tags/directives/hotTagSidbar.js"></script>
 	<script type="text/javascript" src="/app/tags/tagDetailCtrl.js"></script>
+	
 </body>
 </html>
