@@ -1,4 +1,4 @@
-package com.whoknows.security.autoDao;
+package com.whoknows.security;
 
 import java.util.Arrays;
 import java.util.List;
