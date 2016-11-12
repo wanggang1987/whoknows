@@ -36,7 +36,6 @@ public class AuthDao {
 					user.setAddress(rs.getString("address"));
 					user.setCreateTime(rs.getTimestamp("create_time"));
 					user.setUpdateTime(rs.getTimestamp("update_time"));
-					user.setVip(rs.getBoolean("vip"));
 					user.setPicture(rs.getString("picture"));
 					user.setEducation(rs.getString("education"));
 					user.setSignature(rs.getString("signature"));

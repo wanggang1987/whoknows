@@ -17,7 +17,6 @@ public class User {
 	private String address;
 	private Timestamp createTime;
 	private Timestamp updateTime;
-	private Boolean vip;
 	private String picture;
 	private String education;
 	private String signature;
@@ -104,14 +103,6 @@ public class User {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public Boolean getVip() {
-		return vip;
-	}
-
-	public void setVip(Boolean vip) {
-		this.vip = vip;
 	}
 
 	public String getPicture() {

@@ -48,16 +48,6 @@ public class UserContoller {
 		}
 	}
 
-	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity getUserInfo(@PathVariable("id") Long id) {
-		UserDetail userView = userService.getUser(id);
-		if (userView != null) {
-			return ResponseEntity.ok(userView);
-		} else {
-			return ResponseEntity.badRequest().build();
-		}
-	}
-
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity editUserInfo(@RequestBody User user) {
 		log.info(ToStringBuilder.reflectionToString(user, ToStringStyle.MULTI_LINE_STYLE));

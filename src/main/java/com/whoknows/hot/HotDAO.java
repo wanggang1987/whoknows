@@ -17,8 +17,9 @@ public class HotDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public List<HotVip> listHotVip(Integer page, int pageSize) {
-		return jdbcTemplate.query("select * from user "
-				+ "where vip = true "
+		return jdbcTemplate.query("select user.* from user "
+				+ "left join user_role on user_role.user_id = user.id "
+				+ "where user_role.role_id = ( select id from role where role = 'SITE_VIP' limit 1 ) "
 				+ "order by rank desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
@@ -29,14 +30,15 @@ public class HotDAO {
 					HotVip vip = new HotVip();
 					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
-					vip.setUserID(rs.getLong("user_id"));
+					vip.setUserID(rs.getLong("id"));
 					return vip;
 				});
 	}
 
 	public List<HotVip> listHotVip(String key, int page, int pageSize) {
-		return jdbcTemplate.query("select * from user "
-				+ "where vip = true "
+		return jdbcTemplate.query("select user.* from user "
+				+ "left join user_role on user_role.user_id = user.id "
+				+ "where user_role.role_id = ( select id from role where role = 'SITE_VIP' limit 1 ) "
 				+ "and ( email like ? "
 				+ "or phone like ? "
 				+ "or first_name like ? "
@@ -55,7 +57,7 @@ public class HotDAO {
 					HotVip vip = new HotVip();
 					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
-					vip.setUserID(rs.getLong("user_id"));
+					vip.setUserID(rs.getLong("id"));
 					return vip;
 				});
 	}

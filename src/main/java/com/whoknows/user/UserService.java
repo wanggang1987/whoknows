@@ -14,6 +14,7 @@ import com.whoknows.search.Paging;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.search.TopicResult;
 import com.whoknows.topic.TopicService;
+import com.whoknows.utils.CommonFunction;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -60,13 +61,14 @@ public class UserService {
 		}
 
 		try {
-			UserDetail userView = new UserDetail();
+			UserDetail userDetail = new UserDetail();
 			User user = userRepository.getUserById(id);
 			if (user == null) {
 				return null;
 			}
-			userView.setUser(user, userRepository.getUserRolesByUserId(id));
-			return userView;
+			userDetail.setUser(user, userRepository.getUserRolesByUserId(id));
+			userDetail.setName(CommonFunction.getUserName(user.getFirstName(), user.getLastName(), user.getEmail()));
+			return userDetail;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

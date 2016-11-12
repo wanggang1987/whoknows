@@ -24,6 +24,15 @@ public class UserDetail {
 	private String title;
 	private Integer rank;
 	private String profile;
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public Integer getRank() {
 		return rank;
@@ -182,7 +191,6 @@ public class UserDetail {
 		this.city = user.getCity();
 		this.address = user.getAddress();
 		this.createTime = user.getCreateTime();
-		this.vip = user.getVip();
 		this.picture = user.getPicture();
 		this.education = user.getEducation();
 		this.signature = user.getSignature();

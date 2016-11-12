@@ -40,4 +40,8 @@
 			<column name="rank"/>
 		</createIndex>
 	</changeSet>
+	
+	<changeSet id="drop vip column" author="whoknows">
+		<dropColumn tableName="user" columnName="vip"/>
+	</changeSet>
 </databaseChangeLog>

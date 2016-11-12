@@ -42,7 +42,6 @@ public class UserRepository {
 					user.setAddress(rs.getString("address"));
 					user.setCreateTime(rs.getTimestamp("create_time"));
 					user.setUpdateTime(rs.getTimestamp("update_time"));
-					user.setVip(rs.getBoolean("vip"));
 					user.setPicture(rs.getString("picture"));
 					user.setEducation(rs.getString("education"));
 					user.setSignature(rs.getString("signature"));
@@ -80,7 +79,7 @@ public class UserRepository {
 				ps -> ps.setString(1, user.getEmail()),
 				(rs, row) -> rs.getLong("id")).stream().findAny().orElse(null);
 		jdbcTemplate.update("insert into user_role (user_id, role_id) "
-				+ "values (? , ( select id from role where role = 'SITE_USER' )) ",
+				+ "values (? , ( select id from role where role = 'SITE_USER' limit 1 )) ",
 				ps -> ps.setLong(1, id));
 	}
 	
