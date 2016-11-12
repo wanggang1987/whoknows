@@ -106,21 +106,22 @@ public class TopicService {
 		}
 
 		try {
-			UserDetail user = userService.currentUser();
+			Topic topic = topicRepository.getTopic(id);
+			if (topic == null) {
+				return null;
+			}
 
 			TopicDetail topicDetail = new TopicDetail();
-			topicDetail.setTopic(topicRepository.getTopic(id));
-			if (topicDetail.getTopic() != null) {
-				topicDetail.setAuthor(userService.getUser(topicDetail.getTopic().getUser_id()));
-				topicDetail.setFollowCount(followService.followCount(topicDetail.getTopic().getId(), TargetType.topic));
-				topicDetail.setReplys(relpyService.getReplyDetails(topicDetail.getTopic().getId(), 1));
-				if (user != null && user.getId() != null) {
-					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topicDetail.getTopic().getId(), TargetType.topic));
-					topicDetail.getReplys().parallelStream().forEach(replyDetail -> {
-						replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), replyDetail.getReply().getId(), TargetType.reply));
-					});
-				}
-
+			topicDetail.setTopic(topic);
+			topicDetail.setAuthor(userService.getUser(topic.getUser_id()));
+			topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
+			topicDetail.setReplys(relpyService.getReplyDetails(topic.getId(), 1));
+			UserDetail user = userService.currentUser();
+			if (user != null && user.getId() != null) {
+				topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
+				topicDetail.getReplys().parallelStream().forEach(replyDetail -> {
+					replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), replyDetail.getReply().getId(), TargetType.reply));
+				});
 			}
 			return topicDetail;
 		} catch (Exception e) {

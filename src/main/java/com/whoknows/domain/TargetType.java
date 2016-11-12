@@ -6,4 +6,5 @@ public enum TargetType {
 	topic,
 	reply,
 	comment,
+	paper,
 }

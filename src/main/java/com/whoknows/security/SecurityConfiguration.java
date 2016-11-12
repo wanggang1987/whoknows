@@ -61,6 +61,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/like/**").permitAll()
 				.antMatchers("/comment/**").permitAll()
 				.antMatchers("/vip/**").permitAll()
+				.antMatchers("/paper/**").permitAll()
 				.anyRequest().authenticated()
 			.and()
 				.formLogin()
