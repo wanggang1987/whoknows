@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="topic-list">
-	<div class=" margin-top-70 alert alert-warning alert-dismissable" ng-show="topicLists == undefined || topicLists == null || topicLists.length == 0">
+	<div class=" margin-top-70 alert alert-warning alert-dismissable" ng-if="topicLists == undefined || topicLists == null || topicLists.length == 0">
 		暂时没有相应的话题，您可以点击创建话题按钮创建话题。
 	</div>
 	<div class="row" ng-repeat="topic in topicLists"> 

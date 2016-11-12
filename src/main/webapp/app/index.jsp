@@ -80,6 +80,8 @@
 	<script type="text/javascript" src="/app/topic/topicPageCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/directives/topicList.js"></script>
 	<script type="text/javascript" src="/app/superstar/superstarModule.js"></script>
+	<script type="text/javascript" src="/app/superstar/directives/wkVipDetailPageDrective.js"></script>
+	<script type="text/javascript" src="/app/superstar/vipDetailPage.js"></script>
 	<script type="text/javascript" src="/app/superstar/vipPage.js"></script>
 	<script type="text/javascript" src="/app/superstar/directives/leftSidebarHotSuperstar.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/side-bar.js"></script>

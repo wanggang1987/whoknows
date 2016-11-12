@@ -4,13 +4,9 @@
       <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
-       		 <div class="row alert alert-danger alert-dismissable" ng-show="noVipWarn">
-				您没有关注的大咖，您可以通过热门大咖选择感兴趣的大咖。
-			</div>
-        		<div class="row have-follow-topic" ng-hide="noVipWarn">
-        			<h4>已关注大咖</h4>
-        			<hr/>
-        			<a href="javascript:void(0)" ng-click="loadVipDetail(vip)" ng-repeat="vip in vips" ng-class="{active : currentVip.userID == vip.userID}">{{vip.name}}</a>	
+        		<div class="row have-follow-topic">
+        			{{vip.name}}
+        			<hr/>	
         		</div>
         		<wk-vip-detail-page ng-if ="currentVip" vip="currentVip"></wk-vip-detail-page>
         </div><!--/.col-xs-12.col-sm-9-->

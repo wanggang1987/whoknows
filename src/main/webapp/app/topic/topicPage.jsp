@@ -6,7 +6,6 @@
         			<h4>已关注话题动态</h4>
         			<hr/>
         			<div class="alert alert-danger alert-dismissable" ng-show="noTagWarn">
-					<button type="button" class="close" ng-click="closeNoTagWarn()" data-dismiss="alert" aria-hidden="true">×</button>
 					您没有关注的标签，您可以通过热门标签选择感兴趣的标签。
 				</div>
         			<a href="javascript:void(0)" ng-click="loadTopicByTag(tag)" ng-repeat="tag in tags" ng-class="{active : currentTag.id == tag.id}">{{tag.name}}</a>	

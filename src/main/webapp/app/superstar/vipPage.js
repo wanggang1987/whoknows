@@ -7,55 +7,26 @@ angular.module('wkSuperstar').controller('VipPageCtrl',
 			$location.path("/login");
 			return;
 		}
-		$scope.currentVip = null;
+		
 		$scope.noVipWarn = false;
-		$scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
+		$scope.hideReadMore = false;
 		
-		$scope.vips = [
-					{
-					    "pricture": null,
-					    "name": "test-name",
-					    "userID": 7,
-					    "followCount": 0,
-					    "currentFollowed": false
-					  },
-					  {
-						    "pricture": null,
-						    "name": "t@T",
-						    "userID": 6,
-						    "followCount": 0,
-						    "currentFollowed": false
-						}
-		               ];
-//		$http.get("/user/follow/vip").success();
-		var loadVipInfo = function(id){
-			$http.get("/user/" + id).then(function(data){
-				$scope.currentVipDetail = data.data;
-			})
+		var init = function(){
+			$http.get("/user/follow/list/vip").success(function(data){
+				if(data != null && data.length > 0){
+					$scope.vips = data;
+					$scope.currentVip = $scope.vips[0];
+				}else{
+					$scope.noVipWarn = true;
+					$scope.hideReadMore = true;
+				}
+			}).error(function(data){
+				$scope.noVipWarn = true;
+				$scope.hideReadMore = true;
+			});
 		}
-		
-		
-		$scope.closeNoVipWarn = function(){
-			$scope.noVipWarn = false;
-		}
-		
-		$scope.fllowVip = function(vip){
-			if(vip.currentFollowed){
-				$http.post("/follow/user/disable/" + UserService.getCurrent().id + "/" + vip.userID).success(function(data){
-					vip.followCount = vip.followCount > 0 ? vip.followCount - 1 : 0;
-					vip.currentFollowed = false;
-				})
-			}else{
-				$http.post("/follow/user/" + UserService.getCurrent().id + "/" + vip.userID).success(function(data){
-					vip.followCount += 1;
-					vip.currentFollowed = true;
-				})
-			}
-			
-		}
-		
 		$scope.loadVipDetail = function(vip){
 			$scope.currentVip = vip;
-			loadVipInfo($scope.currentVip.userID);
 		}
+		init();
 	});

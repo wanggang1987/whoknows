@@ -43,9 +43,6 @@ angular.module('wkTopic').controller('TopicCtrl',
 			loadTopic();
 		} 
 		
-		$scope.closeNoTagWarn = function(){
-			$scope.noTagWarn = false;
-		}
 		
 		var init = function(){
 			$http.get("/user/follow/list/tag").success(function(data){
