@@ -4,7 +4,6 @@
             		<li ng-class="{ active: isActive('/') }"><a href="#/">首页</a></li>
 				<li ng-class="{ active: isActive('/topic') }"><a href="#/topic" >话题</a></li>
 				<li ng-class="{ active: isActive('/vipDetailPage') }"><a href="#/vipDetailPage"  >大咖</a></li>
-				<li ng-class="{ active: isActive('/message') }"><a href="#/message"  >消息</a></li>
 				<sec:authorize access="isAuthenticated()">
 					<li class="fill-maring-left-100" >
 						<div class="form-group index-create-question-btn">
