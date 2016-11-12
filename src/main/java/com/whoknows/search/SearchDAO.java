@@ -113,6 +113,8 @@ public class SearchDAO {
 					user.setSignature(rs.getString("signature"));
 					user.setTitle(rs.getString("title"));
 					user.setAction(rs.getString("action"));
+					user.setRank(rs.getInt("rank"));
+					user.setProfile(rs.getString("profile"));
 					return user;
 				});
 	}

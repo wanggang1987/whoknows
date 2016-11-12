@@ -23,6 +23,24 @@ public class User {
 	private String signature;
 	private String title;
 	private String action;
+	private Integer rank;
+	private String profile;
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 
 	public String getSignature() {
 		return signature;

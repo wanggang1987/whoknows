@@ -2,7 +2,6 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Role;
 import com.whoknows.domain.User;
-import com.whoknows.domain.Vip;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -23,9 +22,26 @@ public class UserDetail {
 	private String education;
 	private String signature;
 	private String title;
+	private Integer rank;
+	private String profile;
+
+	public Integer getRank() {
+		return rank;
+	}
+
+	public void setRank(Integer rank) {
+		this.rank = rank;
+	}
+
+	public String getProfile() {
+		return profile;
+	}
+
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 
 	private List<Role> roles;
-	private Vip vipInfo;
 
 	public Long getId() {
 		return id;
@@ -155,14 +171,6 @@ public class UserDetail {
 		this.roles = roles;
 	}
 
-	public Vip getVipInfo() {
-		return vipInfo;
-	}
-
-	public void setVipInfo(Vip vipInfo) {
-		this.vipInfo = vipInfo;
-	}
-
 	public void setUser(User user, List<Role> roles) {
 		this.id = user.getId();
 		this.email = user.getEmail();
@@ -178,8 +186,10 @@ public class UserDetail {
 		this.picture = user.getPicture();
 		this.education = user.getEducation();
 		this.signature = user.getSignature();
-		this.roles = roles;
 		this.title = user.getTitle();
+		this.rank = user.getRank();
+		this.profile = user.getProfile();
+		this.roles = roles;
 	}
 
 }

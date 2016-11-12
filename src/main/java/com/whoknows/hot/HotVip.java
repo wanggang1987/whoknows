@@ -5,7 +5,6 @@ public class HotVip {
 	private String pricture;
 	private String name;
 	private Long userID;
-	private Long vipID;
 	private Integer followCount;
 	private Boolean currentFollowed;
 
@@ -47,13 +46,5 @@ public class HotVip {
 
 	public void setUserID(Long userID) {
 		this.userID = userID;
-	}
-
-	public Long getVipID() {
-		return vipID;
-	}
-
-	public void setVipID(Long vipID) {
-		this.vipID = vipID;
 	}
 }

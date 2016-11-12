@@ -18,4 +18,26 @@
 			<column name="personal_profile" type="varchar(5000)"/>
 		</addColumn>
 	</changeSet>
+	
+	<changeSet id="add vip role" author="whoknows">
+		<sql>
+			 insert into role(role) values("SITE_VIP");
+		</sql>
+	</changeSet>
+	
+	<changeSet id="merge user vip table" author="whoknows">
+		<addColumn tableName="user">
+			<column name="rank" type="bigint"/>
+			<column name="profile" type="varchar(5000)"/>
+		</addColumn>
+		
+		<dropTable tableName="vip"/>
+	</changeSet>
+	
+	<changeSet id="drop extra index" author="whoknows">
+		<dropIndex tableName="user" indexName="email_2"/>
+		<createIndex tableName="user" indexName="rank">
+			<column name="rank"/>
+		</createIndex>
+	</changeSet>
 </databaseChangeLog>

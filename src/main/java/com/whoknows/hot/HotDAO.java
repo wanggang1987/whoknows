@@ -17,9 +17,9 @@ public class HotDAO {
 	private JdbcTemplate jdbcTemplate;
 
 	public List<HotVip> listHotVip(Integer page, int pageSize) {
-		return jdbcTemplate.query("select vip.*, user.email, user.phone, user.first_name, user.last_name, user.picture from vip "
-				+ "left join user on user.id = vip.user_id "
-				+ "order by vip.rank desc "
+		return jdbcTemplate.query("select * from user "
+				+ "where vip = true "
+				+ "order by rank desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setInt(1, pageSize);
@@ -30,19 +30,18 @@ public class HotDAO {
 					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("user_id"));
-					vip.setVipID(rs.getLong("id"));
 					return vip;
 				});
 	}
 
 	public List<HotVip> listHotVip(String key, int page, int pageSize) {
-		return jdbcTemplate.query("select vip.*, user.email, user.phone, user.first_name, user.last_name, user.picture from vip "
-				+ "left join user on user.id = vip.user_id "
-				+ "where email like ? "
+		return jdbcTemplate.query("select * from user "
+				+ "where vip = true "
+				+ "and ( email like ? "
 				+ "or phone like ? "
 				+ "or first_name like ? "
-				+ "or last_name like ? "
-				+ "order by vip.rank desc "
+				+ "or last_name like ? ) "
+				+ "order by rank desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setString(1, "%" + key + "%");
@@ -57,7 +56,6 @@ public class HotDAO {
 					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("user_id"));
-					vip.setVipID(rs.getLong("id"));
 					return vip;
 				});
 	}
