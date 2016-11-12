@@ -48,7 +48,7 @@ angular.module('wkTopic').controller('TopicCtrl',
 		}
 		
 		var init = function(){
-			$http.get("/user/tag").success(function(data){
+			$http.get("/user/follow/list/tag").success(function(data){
 				if(data != null && data.length > 0){
 					$scope.tags = data;
 					$scope.loadTopicByTag($scope.tags[0])

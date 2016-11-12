@@ -8,6 +8,12 @@ var wkCommon = angular.module('wkSuperstar', ['ngRoute']).config(function($route
 		data: {
 			standalonePage: true
 		}
+	}).when('/vipDetailPage', {
+		templateUrl: 'app/superstar/vipPage',
+		controller: 'VipPageCtrl',
+		data: {
+			standalonePage: true
+		}
 	})
 });
 

@@ -82,7 +82,7 @@ public class UserRepository {
 				ps -> ps.setString(1, user.getEmail()),
 				(rs, row) -> rs.getLong("id")).stream().findAny().orElse(null);
 		jdbcTemplate.update("insert into user_role (user_id, role_id) "
-				+ "values (? , ( select id from role where role = ' " + RoleType.SITE_USER.toString() + " ' limit 1 )) ",
+				+ "values (? , ( select id from role where role = '" + RoleType.SITE_USER.toString() + "' limit 1 )) ",
 				ps -> ps.setLong(1, id));
 	}
 	

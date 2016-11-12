@@ -531,7 +531,7 @@ footer {
 	font-size:13px;
 	color:#b5b5b5;
 }
-.topic-page .have-follow-topic a{
+.have-follow-topic a{
 	background: #fff;
     padding: 1px 10px 0;
     border-radius: 30px;
@@ -543,10 +543,10 @@ footer {
     border : 2px solid #ed8b1e;
     color: #000;
 }
-.topic-page .have-follow-topic a.active{
+.have-follow-topic a.active{
 	background: #ed8b1e;
 }
-.topic-page .have-follow-topic hr {
+.have-follow-topic hr {
     margin-top: 0px;
     margin-bottom: 10px;
     border: 0;

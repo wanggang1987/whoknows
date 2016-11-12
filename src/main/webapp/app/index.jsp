@@ -76,10 +76,10 @@
 	<script type="text/javascript" src="/app/homeCtrl.js"></script>
 	<script type="text/javascript" src="/app/users/selfHomeCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/topicModule.js"></script>
-	<script type="text/javascript" src="/app/topic/wkTopicCtrl.js"></script>
+	<script type="text/javascript" src="/app/topic/topicPageCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/directives/topicList.js"></script>
 	<script type="text/javascript" src="/app/superstar/superstarModule.js"></script>
-	<script type="text/javascript" src="/app/superstar/wkSuperstarCtrl.js"></script>
+	<script type="text/javascript" src="/app/superstar/vipPage.js"></script>
 	<script type="text/javascript" src="/app/superstar/directives/leftSidebarHotSuperstar.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/side-bar.js"></script>
 	<script type="text/javascript" src="/app/login/loginModule.js"></script>

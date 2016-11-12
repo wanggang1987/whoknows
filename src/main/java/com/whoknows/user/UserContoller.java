@@ -108,7 +108,7 @@ public class UserContoller {
 		}
 	}
 	
-	@RequestMapping(path = "/tag", method = RequestMethod.GET)
+	@RequestMapping(path = "/follow/list/tag", method = RequestMethod.GET)
 	public ResponseEntity getUserTagList() {
 		List<Tag> tags = userService.getUserTagList();
 		if (tags != null) {
