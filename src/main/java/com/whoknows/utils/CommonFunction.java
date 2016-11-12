@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommonFunction {
 
-	public String getUserName(String first_name, String last_name, String email) {
+	public static String getUserName(String first_name, String last_name, String email) {
 		String name = new String();
 		if (last_name != null && StringUtils.isNotEmpty(last_name)) {
 			name += last_name;
@@ -14,7 +14,7 @@ public class CommonFunction {
 		if (first_name != null && StringUtils.isNotEmpty(first_name)) {
 			name += first_name;
 		}
-		if (StringUtils.isNotEmpty(name)) {
+		if (StringUtils.isNotEmpty(email)) {
 			name = email;
 		}
 		return name;

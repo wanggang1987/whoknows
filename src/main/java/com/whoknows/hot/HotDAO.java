@@ -15,8 +15,6 @@ public class HotDAO {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	@Autowired
-	private CommonFunction commonFunction;
 
 	public List<HotVip> listHotVip(Integer page, int pageSize) {
 		return jdbcTemplate.query("select vip.*, user.email, user.phone, user.first_name, user.last_name, user.picture from vip "
@@ -29,7 +27,7 @@ public class HotDAO {
 				},
 				(rs, row) -> {
 					HotVip vip = new HotVip();
-					vip.setName(commonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
+					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("user_id"));
 					vip.setVipID(rs.getLong("id"));
@@ -56,7 +54,7 @@ public class HotDAO {
 				},
 				(rs, row) -> {
 					HotVip vip = new HotVip();
-					vip.setName(commonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
+					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
 					vip.setPricture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("user_id"));
 					vip.setVipID(rs.getLong("id"));
