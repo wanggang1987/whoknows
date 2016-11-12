@@ -21,7 +21,7 @@
 	
 	<changeSet id="add vip role" author="whoknows">
 		<sql>
-			 insert into role(role) values("SITE_VIP");
+			insert into role(role) values("SITE_VIP");
 		</sql>
 	</changeSet>
 	
@@ -43,5 +43,47 @@
 	
 	<changeSet id="drop vip column" author="whoknows">
 		<dropColumn tableName="user" columnName="vip"/>
+	</changeSet>
+	
+	<changeSet id="add paper table" author="whoknows">
+		<createTable tableName="paper">
+			<column name="id" autoIncrement="true" type="bigint">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="title" type="varchar(1024)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="content" type="blob">
+				<constraints nullable="false"/>
+			</column>
+			<column name="rank" type="bigint"/>
+			<column name="action" type="varchar(20)"/>
+			<column name="create_time" type="timestamp"/>
+			<column name="update_time" type="timestamp"/>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="paper index" author="whoknows">
+		<createIndex tableName="paper" indexName="user_id">
+			<column name="user_id"/>
+		</createIndex>
+		<createIndex tableName="paper" indexName="rank">
+			<column name="rank"/>
+		</createIndex>
+		<createIndex tableName="paper" indexName="create_time">
+			<column name="create_time"/>
+		</createIndex>
+		<createIndex tableName="paper" indexName="update_time">
+			<column name="update_time"/>
+		</createIndex>
+	</changeSet>
+
+	<changeSet id="paper table" author="whoknows">
+		<sql>
+			ALTER TABLE paper CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+		</sql>
 	</changeSet>
 </databaseChangeLog>
