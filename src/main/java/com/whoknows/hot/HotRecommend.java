@@ -1,5 +1,7 @@
 package com.whoknows.hot;
 
+import com.whoknows.vip.VipDetail;
+import com.whoknows.tag.TagDetail;
 import java.util.List;
 
 public class HotRecommend {

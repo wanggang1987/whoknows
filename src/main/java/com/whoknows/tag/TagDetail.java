@@ -1,4 +1,4 @@
-package com.whoknows.hot;
+package com.whoknows.tag;
 
 public class TagDetail {
 

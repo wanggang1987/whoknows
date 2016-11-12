@@ -7,7 +7,7 @@ import com.whoknows.domain.TargetType;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
-import com.whoknows.hot.VipDetail;
+import com.whoknows.vip.VipDetail;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.reply.ReplyDetail;
@@ -108,7 +108,7 @@ public class UserService {
 		}
 	}
 
-	public boolean resetPasswd(ResetPasswdRequest request) {
+	public boolean resetPasswd(ResetPasswdMessage request) {
 		if (request == null || StringUtils.isEmpty(request.getEmail())
 				|| StringUtils.isEmpty(request.getOldPasswd())
 				|| StringUtils.isEmpty(request.getNewPasswd())
@@ -293,8 +293,8 @@ public class UserService {
 		}
 	}
 
-	public UserConutInfoResponse getUserCountInfo(Long userId) {
-		UserConutInfoResponse userConutInfoResponse = new UserConutInfoResponse();
+	public UserConutInfoMessage getUserCountInfo(Long userId) {
+		UserConutInfoMessage userConutInfoResponse = new UserConutInfoMessage();
 		userConutInfoResponse.setReplyCount(userRepository.getUserReplyCount(userId));
 		userConutInfoResponse.setCreateTopicCount(userRepository.getUserCreateTopicCount(userId));
 		userConutInfoResponse.setFollowCount(userRepository.getUserFollowTopicCount(userId));

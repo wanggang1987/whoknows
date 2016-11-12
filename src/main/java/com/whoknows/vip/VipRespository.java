@@ -24,4 +24,5 @@ public class VipRespository {
 	public void setVip() {
 		
 	}
+	
 }

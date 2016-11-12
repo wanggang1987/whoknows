@@ -6,7 +6,7 @@ import com.whoknows.domain.RoleType;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
-import com.whoknows.hot.VipDetail;
+import com.whoknows.vip.VipDetail;
 import com.whoknows.utils.CommonFunction;
 import java.util.List;
 import org.slf4j.Logger;
@@ -117,7 +117,7 @@ public class UserRepository {
 		}
 	}
 
-	public void resetPasswd(ResetPasswdRequest request) {
+	public void resetPasswd(ResetPasswdMessage request) {
 
 		jdbcTemplate.update("update user set e_pass = ? where email = ?",
 				ps -> {

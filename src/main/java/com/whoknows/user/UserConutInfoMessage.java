@@ -1,6 +1,6 @@
 package com.whoknows.user;
 
-public class UserConutInfoResponse {
+public class UserConutInfoMessage {
 
 	private Integer followCount ;
 	private Integer createTopicCount;

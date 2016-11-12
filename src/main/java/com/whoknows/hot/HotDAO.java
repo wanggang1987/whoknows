@@ -1,5 +1,7 @@
 package com.whoknows.hot;
 
+import com.whoknows.vip.VipDetail;
+import com.whoknows.tag.TagDetail;
 import com.whoknows.domain.RoleType;
 import com.whoknows.utils.CommonFunction;
 import java.util.List;

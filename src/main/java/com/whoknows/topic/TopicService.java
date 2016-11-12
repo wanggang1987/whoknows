@@ -35,7 +35,7 @@ public class TopicService {
 	@Autowired
 	private LikeService likeService;
 
-	public boolean createTopic(TopicCreate topicCreate) {
+	public boolean createTopic(TopicCreateMessage topicCreate) {
 		if (topicCreate.getTopic() == null
 				|| topicCreate.getTopic().getUser_id() == null
 				|| StringUtils.isEmpty(topicCreate.getTopic().getTitle())

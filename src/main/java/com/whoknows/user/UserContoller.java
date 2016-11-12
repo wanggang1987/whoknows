@@ -2,7 +2,7 @@ package com.whoknows.user;
 
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.User;
-import com.whoknows.hot.VipDetail;
+import com.whoknows.vip.VipDetail;
 import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -70,7 +70,7 @@ public class UserContoller {
 	}
 
 	@RequestMapping(path = "/password/reset", method = RequestMethod.POST, produces = "application/json")
-	public ResponseEntity resetPasswd(@RequestBody ResetPasswdRequest request) {
+	public ResponseEntity resetPasswd(@RequestBody ResetPasswdMessage request) {
 		log.info("Try to reset passwd: {}", request == null ? "" : request);
 		if (userService.resetPasswd(request)) {
 			return ResponseEntity.ok().build();
@@ -111,7 +111,7 @@ public class UserContoller {
 
 	@RequestMapping(path = "/home/count/into/{userId}", method = RequestMethod.GET)
 	public ResponseEntity getUserCountInfo(@PathVariable("userId") Long userId) {
-		UserConutInfoResponse userConutInfoResponse = userService.getUserCountInfo(userId);
+		UserConutInfoMessage userConutInfoResponse = userService.getUserCountInfo(userId);
 		if (userConutInfoResponse != null) {
 			return ResponseEntity.ok(userConutInfoResponse);
 		} else {

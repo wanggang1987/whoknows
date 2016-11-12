@@ -1,6 +1,6 @@
 package com.whoknows.user;
 
-public class ResetPasswdRequest {
+public class ResetPasswdMessage {
 
 	private String email;
 	private String oldPasswd;

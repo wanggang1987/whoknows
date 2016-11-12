@@ -23,7 +23,7 @@ public class TopicController {
 	private TopicService topicService;
 
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity createTopic(@RequestBody TopicCreate topicCreate) {
+	public ResponseEntity createTopic(@RequestBody TopicCreateMessage topicCreate) {
 		log.info(ToStringBuilder.reflectionToString(topicCreate, ToStringStyle.MULTI_LINE_STYLE));
 		if (topicService.createTopic(topicCreate)) {
 			return ResponseEntity.ok().build();

@@ -1,12 +1,23 @@
-package com.whoknows.hot;
+package com.whoknows.vip;
+
+import com.whoknows.user.UserDetail;
 
 public class VipDetail {
 
+	private UserDetail userDetail;
 	private String pricture;
 	private String name;
 	private Long userID;
 	private Integer followCount;
 	private Boolean currentFollowed;
+
+	public UserDetail getUserDetail() {
+		return userDetail;
+	}
+
+	public void setUserDetail(UserDetail userDetail) {
+		this.userDetail = userDetail;
+	}
 
 	public Integer getFollowCount() {
 		return followCount;

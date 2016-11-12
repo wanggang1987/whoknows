@@ -4,7 +4,7 @@ import com.whoknows.domain.Topic;
 import com.whoknows.tag.TagSelect;
 import java.util.List;
 
-public class TopicCreate {
+public class TopicCreateMessage {
 
 	private Topic topic;
 	private List<TagSelect> tags;
