@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="container setting-page">
 
           <div class="row">
@@ -7,24 +8,27 @@
 			    		<a data-target="#base-info-setting" data-toggle="tab">基本信息 </a>
 			    </li>
 			    <li><a data-target="#account-passwd-setting" data-toggle="tab">账号密码</a></li>
-			    <li><a data-target="#message-setting" data-toggle="tab">消息设置</a></li>
+			    <sec:authorize access="hasAuthority('SITE_VIP')">	
+			    		<li><a data-target="#self-profile-setting" data-toggle="tab">个人简历</a></li>
+			    </sec:authorize>
+			    <!-- <li><a data-target="#message-setting" data-toggle="tab">消息设置</a></li> -->
 			</ul>
 			<div class="tab-content">
 			    <div class="tab-pane fade in active" id="base-info-setting">
 			    		<div class="row">
 			    			<div class="col-lg-6">
 			    				 <div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label text-right">姓名</label>
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right">姓</label>
 							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.firstName" placeholder="姓名" >
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.lastName" placeholder="姓名" >
 							    </div>
 						  	</div>
 			    			</div><!-- end-col -->
 			    			<div class="col-lg-6">
-			    				<div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label text-right">职位名称</label>
+			    				 <div class="form-group">
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right">名</label>
 							    <div class="col-sm-9">
-							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.title" placeholder="职位" >
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.firstName" placeholder="姓名" >
 							    </div>
 						  	</div>
 			    			</div><!-- end-col -->
@@ -50,13 +54,21 @@
 			    		<div class="row">
 			    			<div class="col-lg-6">
 			    				<div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label text-right" >我的签名</label>
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right">职位名称</label>
+							    <div class="col-sm-9">
+							      <input type="text" required class="form-control login-email-input"  ng-model = "setUser.title" placeholder="职位" >
+							    </div>
+						  	</div>
+			    			</div><!-- end-col -->
+			    			<div class="col-lg-6">
+			    				<div class="form-group">
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right" ng-model="setUser.signature">我的签名</label>
 							    <div class="col-sm-9">
 							     <textarea class="form-control" rows="3"></textarea>
 							    </div>
 						  	</div>
 			    			</div>
-			    			<div class="col-lg-6">
+			    			<!-- <div class="col-lg-6">
 			    				<label for="inputEmail3" class="col-sm-3 control-label text-right">隐私保护</label>
 				    			<div class="checkbox col-sm-9">
 							  <label>
@@ -64,7 +76,7 @@
 							    在站内搜索到我在该平台创作的内容时，我的姓名将不会被显示。
 							  </label>
 							</div>
-			    			</div>
+			    			</div>  -->
 			    		</div><!-- end-row -->
 			    		<div class="row">
 			    			<div class="alert alert-success alert-dismissible fade in wk-warn-panel" role="alert" ng-show="showSaveBaseInfoSuccess">
@@ -144,7 +156,35 @@
 			    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center" ng-click="savePassInfo()">保存</button></div>
 			    		</div><!-- end-row -->
 			    </div>
-			    <div class="tab-pane fade" id="message-setting">
+			    <sec:authorize access="hasAuthority('SITE_VIP')">	
+				  	<div class="tab-pane fade" id="self-profile-setting">
+				    		<div class="row">
+				    			<div class="col-lg-1">
+				    				我的简历:
+				    			</div>
+				    			<div class="col-lg-9">
+				    				<textarea ui-tinymce="tinymceOptions1" required ng-model="setUser.profile"   class="tea"/></textarea>
+				    			</div>
+				    			<div class="col-lg-2">
+				    			</div>
+				    		</div>
+					    	<div class="row">
+				    			<div class="alert alert-success alert-dismissible fade in wk-warn-panel" role="alert" ng-show="showSaveProfileInfoSuccess">
+							      <button type="button" class="close" data-dismiss="alert" ng-click="closeProfileInfoSuccessPanel()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+							      <strong>简历信息保存成功！</strong>
+						     </div>
+						     <div class="alert alert-danger alert-dismissible fade in wk-warn-panel" role="alert" ng-show="showSaveProfileInfoError">
+							      <button type="button" class="close" data-dismiss="alert" ng-click="closeProfileInfoWarnPanel()"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+							      <strong>简历信息保存失败！</strong>
+							 </div>
+				    		</div>
+				    		<div class="row">
+				    			<div class="col-lg-10"></div>
+				    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center" ng-click="saveProfileInfo()">保存</button></div>
+				    		</div><!-- end-row -->	
+				   	</div>	
+			   	</sec:authorize>
+			   <!--  <div class="tab-pane fade" id="message-setting">
 			        <div class="row">
 			    			<div class="col-lg-3">
 			    				 <div class="form-group">
@@ -155,7 +195,7 @@
 							  		</label>
 								</div>
 						  	</div>
-			    			</div><!-- end-col -->
+			    			</div>end-col
 			    			<div class="col-lg-3">
 			    				 <div class="form-group">
 							    <div class="radio">
@@ -165,7 +205,7 @@
 							  		</label>
 								</div>
 						  	</div>
-			    			</div><!-- end-col -->
+			    			</div>end-col
 			    			<div class="col-lg-3">
 			    				 <div class="form-group">
 							    <div class="radio">
@@ -175,9 +215,9 @@
 							  		</label>
 								</div>
 						  	</div>
-			    			</div><!-- end-col -->
+			    			</div>end-col
 			    			<div class="col-lg-3"></div>
-			    		</div><!-- end-row -->
+			    		</div>end-row
 			    		<div class="row">
 			    			<div class="col-lg-6">
 			    				 <div class="form-group">
@@ -188,7 +228,7 @@
 							  		</label>
 								</div>
 						  	</div>
-			    			</div><!-- end-col -->
+			    			</div>end-col
 			    			<div class="col-lg-6"></div>
 			    		</div>
 			    		<div class="row">
@@ -201,14 +241,14 @@
 							  		</label>
 								</div>
 						  	</div>
-			    			</div><!-- end-col -->
+			    			</div>end-col
 			    			<div class="col-lg-6"></div>
-			    		</div><!-- end-row -->
+			    		</div>end-row
 			    		<div class="row">
 			    			<div class="col-lg-10"></div>
 			    			<div class="col-lg-2"> <button type="submit" class="btn btn-primary text-center">保存</button></div>
-			    		</div><!-- end-row -->
-			    		</div><!-- end-row -->
+			    		</div>end-row
+			    		</div>end-row -->
 			    		
 			    </div>
 			</div>
@@ -216,3 +256,5 @@
 		<wk-reset-password></wk-reset-password>
 
  </div>
+ <wk-img-upload-modal callback-function="uploadImgSuccess(imgId)"></wk-img-upload-modal>
+ 
