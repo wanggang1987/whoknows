@@ -65,11 +65,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/token/**").permitAll()
 				.anyRequest().authenticated()
 			.and()
-				.formLogin()
-			.and()
-				.logout().permitAll()
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/")
+				.formLogin().loginPage("/p/#/login").permitAll().and().csrf().disable()
+				.logout().permitAll().logoutUrl("/logout").logoutSuccessUrl("/")
 			.and()
 				.addFilterBefore(authFilter(),UsernamePasswordAuthenticationFilter.class).csrf().disable()
 				.exceptionHandling().authenticationEntryPoint(authEntryPoint());

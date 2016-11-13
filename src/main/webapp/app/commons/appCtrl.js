@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkCommon').controller('wkCommon.appCtrl',
-	function ($scope, $rootScope, $location, $route, $window, LocalStorageService, UserService, DEFAULT_IMG) {
+	function ($scope, $rootScope, $cookies, $location, $route, $window, LocalStorageService, UserService, DEFAULT_IMG) {
 		$scope.loginIn = false;
 		$scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 		
@@ -23,7 +23,10 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 			$rootScope.$on('$locationChangeSuccess', function () {
 				$window.location.reload();
 			});
-			if (LocalStorageService.get('LastPage')) {
+			if($cookies.get("firstLogin") != undefined && $cookies.get("firstLogin") != null && $cookies.get("firstLogin") == 'true'){
+				$cookies.remove("firstLogin")
+				$location.path("/registTagSelect");
+			}else if (LocalStorageService.get('LastPage')) {
 				var lastPage = LocalStorageService.get('LastPage');
 				if (lastPage) {
 					LocalStorageService.remove('LastPage');

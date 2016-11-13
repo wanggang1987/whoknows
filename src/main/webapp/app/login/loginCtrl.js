@@ -8,6 +8,7 @@ angular.module('wkLogin').controller('LoginCtrl',
 			$scope.$broadcast('event:forgotPassword');
 		};
 		
+		
 		$scope.regist = function(){
 			$location.path("/regist");
 		};
@@ -30,8 +31,7 @@ angular.module('wkLogin').controller('LoginCtrl',
 					$rootScope.$broadcast('event:login:success');
 				});
 				
-			})
-			.error(function () {
+			}).error(function () {
 				$scope.loggingError = true;
 				$scope.loggingIn = false;
 				$scope.$broadcast('event:login:failure');

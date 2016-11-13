@@ -3,24 +3,24 @@
 angular.module('wkRegist').controller('RegistCtrl',
 	function ($scope, $rootScope, $location, $route, $http) {
 		console.log("wkCommon- wkRegist.RegistCtrl  load.")
-		$scope.registSuccess = true;
-		
+		$scope.registSuccess = false;
+		$scope.registError = false;
 		$scope.regist = function(){
 			$http.put("/user", $scope.registInfo).success(function(){
 				console.log("regist success");
 				$scope.registSuccess = true;
-				$location.path("/registTagSelect");
-				$rootScope.regist={
-						"userName" : $scope.registInfo.email,
-						"s" :  $scope.registInfo.passwordAgain
-				}
+				$scope.registError = false;
 			}).error(function(){
 				console.log("regist error");
 				$scope.registSuccess = false;
+				$scope.registError = true;
 			});
 		}
 		
-		$scope.closeWarn = function(){
-			$scope.registSuccess = true;
+		$scope.closeRegistErrorWarn = function(){
+			$scope.registError = false;
+		}
+		$scope.closeRegistSuccessWarn = function(){
+			$scope.registSuccess = false;
 		}
 	});
