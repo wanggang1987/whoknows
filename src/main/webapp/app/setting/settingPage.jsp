@@ -62,9 +62,9 @@
 			    			</div><!-- end-col -->
 			    			<div class="col-lg-6">
 			    				<div class="form-group">
-							    <label for="inputEmail3" class="col-sm-3 control-label text-right" ng-model="setUser.signature">我的签名</label>
+							    <label for="inputEmail3" class="col-sm-3 control-label text-right" >我的签名</label>
 							    <div class="col-sm-9">
-							     <textarea class="form-control" rows="3"></textarea>
+							     <textarea class="form-control" rows="3" required ng-model="setUser.signature"></textarea>
 							    </div>
 						  	</div>
 			    			</div>

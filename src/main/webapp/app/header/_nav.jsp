@@ -21,7 +21,7 @@
               	<li class="fill-maring-left-100" ng-hide="loginIn" ng-class="{ active: isActive('/login') }"><a href="#/login" >注册/登录</a></li>
               	<sec:authorize access="isAuthenticated()">
 	              	<li class="fill-maring-left-100 dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
-		              	<a href="#/selfPage" data-toggle="dropdown" >
+		              	<a href="javascript:void(0)" data-toggle="dropdown" >
 		              		<img alt="" class="img-20-size" ng-src="{{user.picture || defaultPeopleImg}}"></img> <span class="ng-cloak">{{user.email}}</span>
 		              		<span class="glyphicon glyphicon-chevron-down"></span>
 		              	</a>

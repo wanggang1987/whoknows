@@ -18,27 +18,29 @@
    		</div>
     		<div class="row" ng-hide="noVipWarn">
     			<h5>个人简历</h5>
-    			<p>{{currentFollowed.userDetail.profile || '暂无'}}</p>
+    			<p ng-bind-html="(currentVipDetail.userDetail.profile || '暂无') | to_trusted"></p>
+    			<hr/>
     		</div>
+    		
     		<div class="topic-list" ng-hide="noVipWarn">
-	<div class="row" ng-repeat="paper in papers"> 
-		<div class="col-xs-20 col-sm-12"> 
-			<div class="topic-body" >
-				<h5 class="wk-blue-color"><p ng-bind-html="paper.paper.title | to_trusted"></p></h5>
-				<div class="topic-body-content">
-					<p ng-bind-html="paper.paper.content | to_trusted"></p>
+			<div class="row" ng-repeat="paper in papers"> 
+				<div class="col-xs-20 col-sm-12"> 
+					<div class="topic-body" >
+						<h5 class="wk-blue-color"><p ng-bind-html="paper.paper.title | to_trusted"></p></h5>
+						<div class="topic-body-content">
+							<p ng-bind-html="paper.paper.content | to_trusted"></p>
+						</div>
+				</div>
+				<div class="topic-footer">
+					<ul class="topic-footer-ul">
+						<li><a href="javascript:void(0);" ng-click="likePaper(paper)"><span class="glyphicon glyphicon-thumbs-up"></span><span ng-hide="paper.currentLiked">点赞</span><span ng-show="paper.currentLiked">取消点赞</span></a>({{paper.likeCount}})</li>
+					</ul>
 				</div>
 			</div>
-			<div class="topic-footer">
-				<ul class="topic-footer-ul">
-					<li><a href="javascript:void(0);" ng-click="likePaper(paper)"><span class="glyphicon glyphicon-thumbs-up"></span><span ng-hide="paper.currentLiked">点赞</span><span ng-show="paper.currentLiked">取消点赞</span></a>({{paper.likeCount}})</li>
-				</ul>
-			</div>
+	     </div>
+
+
+		<div class="row">
+		 <button class="btn btn-default btn-lg wk-add-more-btn"  ng-click="loadMore()" ng-hide="hideReadMore">更多</button>
 		</div>
-	</div>
-
-
-	<div class="row">
-	 <button class="btn btn-default btn-lg wk-add-more-btn"  ng-click="loadMore()" ng-hide="hideReadMore">更多</button>
-	</div>
 </div>

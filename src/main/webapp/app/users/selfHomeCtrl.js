@@ -70,6 +70,33 @@ angular.module('wkCommon').controller('SelfHomeCtrl',
 			$scope.myFllowTopic();
 		}
 		
+		$scope.showEditTitle = function(){
+			$scope.showTitleEdit = true;
+		}
+		
+		$scope.showEditCompany = function(){
+			$scope.showCompanyEdit = true;
+		}
+		$scope.showEditEdu = function(){
+			$scope.showEduEdit = true;
+		}
+		$scope.showEditSin = function(){
+			$scope.showSinEdit = true;
+		}
+		$scope.saveUserInfo = function(editType){
+			$http.post("/user", $scope.user).then(function(){
+				if(editType === 'companyName'){
+					$scope.showCompanyEdit = false;
+				}else if(editType === 'title'){
+					$scope.showTitleEdit = false;
+				}else if(editType === 'education'){
+					$scope.showEduEdit = false;
+				}else if(editType === 'signature'){
+					$scope.showSinEdit = false;
+				}
+				editType = false;
+			})
+		}
 		init();
 		
 		
