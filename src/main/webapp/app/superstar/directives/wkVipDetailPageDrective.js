@@ -8,21 +8,21 @@ angular.module('wkSuperstar').directive('wkVipDetailPage', function ($location, 
 		templateUrl: 'app/superstar/directives/wkVipDetailPageDrective',
 		replace: true,
 		scope: {
-			vip: '='
+			currentVipDetail: '=',
+			papers : '=',
+			hideReadMore : '=',
+			loadMoreData : '&'
 		},
 		link: function (scope) {
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 			
-			
-			var loadVipInfo = function(id){
-				$http.get("/user/" + id).then(function(data){
-					scope.currentVipDetail = data.data;
-				})
-			}
-			
 			scope.fllowVip = function(vip){
+				if(!UserService.isSignedIn()){
+					$location.path("/login");
+					return;
+				}
 				if(vip.currentFollowed){
-					$http.post("/follow/user/disable/" + UserService.getCurrent().id + "/" + vip.userID).success(function(data){
+					$http.post("/follow/user/disable/" + UserService.getCurrent().id + "/" + vip.userDetail.userID).success(function(data){
 						vip.followCount = vip.followCount > 0 ? vip.followCount - 1 : 0;
 						vip.currentFollowed = false;
 					})
@@ -32,9 +32,29 @@ angular.module('wkSuperstar').directive('wkVipDetailPage', function ($location, 
 						vip.currentFollowed = true;
 					})
 				}
-				
 			}
-			loadVipInfo(scope.vip.userID);
+			
+			scope.likePaper = function(paper){
+				if(!UserService.isSignedIn()){
+					$location.path("/login");
+					return;
+				}
+				if(paper.currentLiked){
+					$http.post("/like/paper/disable/" + UserService.getCurrent().id + "/" + paper.paper.id).success(function(data){
+						paper.likeCount = paper.likeCount > 0 ? paper.likeCount - 1 : 0;
+						paper.currentLiked = false;
+					})
+				}else{
+					$http.post("/like/paper/" + UserService.getCurrent().id + "/" + paper.paper.id).success(function(data){
+						paper.likeCount += 1;
+						paper.currentLiked = true;
+					})
+				}
+			}
+			scope.loadMore = function(){
+				scope.loadMoreData();
+			}
+			
 		}
 	};
 

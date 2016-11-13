@@ -8,7 +8,7 @@
         			{{vip.name}}
         			<hr/>	
         		</div>
-        		<wk-vip-detail-page ng-if ="currentVip" vip="currentVip"></wk-vip-detail-page>
+        		<wk-vip-detail-page ng-if ="currentVipDetail" load-more-data="loadMore()" papers ="paperLists" current-vip-detail="currentVipDetail" hide-read-more="hideReadMore"></wk-vip-detail-page>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
