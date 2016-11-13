@@ -7,6 +7,7 @@ angular.module('wkSuperstar').controller('CreateVipDocCtrl',
 		var init = function(){
 			if(!UserService.isSignedIn() || !UserService.hasPermission(ROLE_TYPE.SITE_VIP)){
 				$location.path("/");
+				return;
 			}
 			$scope.tinymceOptions1 = {
 					resize: false,
@@ -21,25 +22,13 @@ angular.module('wkSuperstar').controller('CreateVipDocCtrl',
 		}
 		
 		$scope.createVipDoc = function(){
-			var tags = $('.multipleSelect').val();
-			if(tags == undefined || tags == null || tags.length == 0){
-				$scope.tagEmptyWarn = true;
+			if(!UserService.isSignedIn() || !UserService.hasPermission(ROLE_TYPE.SITE_VIP)){
+				$location.path("/");
 				return;
 			}
-			var reqTags = [];
-			_.each(tags, function(tag){
-				reqTags.push({"value" : tag});
-			})
-			var req ={ "topic" : {
-						tagId: $('.multipleSelect').val(),
-						user_id : UserService.getCurrent().id,
-						title : $scope.title,	
-						content: $scope.content
-						}, 
-						"tags" : reqTags
-					};
 			
-			$http.put("/topic", req).success(function(){
+			$scope.req.user_id = UserService.getCurrent().id;
+			$http.put("/paper", $scope.req).success(function(){
 				console.log("create topic success");
 				$location.path("/");
 			}).error(function(){
