@@ -11,11 +11,12 @@ angular.module('WhoKnows').directive('wkImgUploadModal', function ($location, $w
 		},
 		replace: true,
 		link: function (scope, elem) {
-			
+			scope.uploadingImg = false;
+			scope.uploadImgError = false;
 			scope.$on('event:upload:topic:img', function (event, data) {
 				$('#topicImgModal').modal({backdrop: 'static'});
 			});
-
+			
 			scope.uploadImg = function(file){
 				scope.uploadingImg = true;
 				 file.upload = Upload.upload({
@@ -26,8 +27,10 @@ angular.module('WhoKnows').directive('wkImgUploadModal', function ($location, $w
 					 	scope.callbackFunction({imgId: response.data})
 					 	$("#topicImgModal").modal('hide');
 					 	scope.uploadingImg = false;
+					 	scope.uploadImgError = false;
 				    }, function (response) {
 				    		scope.uploadingImg = false;
+				    		scope.uploadImgError = true;
 				    });
 			}
 		}

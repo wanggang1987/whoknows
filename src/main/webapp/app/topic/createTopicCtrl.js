@@ -4,7 +4,7 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.");
 		$scope.tagEmptyWarn = false;
-		$scope.uploadingImg = false;
+		
 		$scope.closeWarnPanel = function(){
 			$scope.tagEmptyWarn = false;
 		}
