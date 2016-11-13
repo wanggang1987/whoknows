@@ -42,7 +42,7 @@ public class Highlighter {
 
 	private static Node buildElementForText(String searchString, TextNode textNode) {
 		String text = textNode.getWholeText();
-		String newtext = text.replaceAll(searchString, "<span style=\"color: #ffffff; background-color: #008bac\"><b>" + searchString + "</b></span>");
+		String newtext = text.replaceAll(searchString, "<span class=\"highLight\">" + searchString + "</span>");
 		return new DataNode(newtext, textNode.baseUri());
 	}
 
