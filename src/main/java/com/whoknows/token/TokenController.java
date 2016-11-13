@@ -1,5 +1,7 @@
 package com.whoknows.token;
 
+import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,8 +17,9 @@ public class TokenController {
 	private TokenService tokenService;
 
 	@RequestMapping(path = "/{userId}/{token}", method = RequestMethod.GET)
-	public ResponseEntity continueRegister(@PathVariable("userId") Long userId, @PathVariable("token") String token) {
+	public ResponseEntity continueRegister(HttpServletResponse hsrp, @PathVariable("userId") Long userId, @PathVariable("token") String token) throws IOException {
 		if (tokenService.continueRegister(userId, token)) {
+			hsrp.sendRedirect("/p/#/login");
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
