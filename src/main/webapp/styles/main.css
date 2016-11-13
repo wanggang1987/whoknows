@@ -31,6 +31,9 @@ body{
 .margin-top-40{
 	margin-top:40px;
 }
+.wk-blue-color{
+	color: #337ab7;
+}
 .wk-add-more-btn{
 	outline:none;
 	width:100%;
@@ -314,6 +317,7 @@ article.page-home{
 	min-height: 670px;
 }
 footer {
+	margin-top : 50px;
     padding: 15px 0;
     color: #999;
     text-align: center;
