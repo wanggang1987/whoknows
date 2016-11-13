@@ -17,8 +17,8 @@
 			   <span class="wk-warn-color" ng-show="uploadImgError">图片上传失败!请重试.</span>
 	      </div>
 	      <div class="modal-footer">
-	     	<button type="button" class="btn btn-default"  ng-disabled="!myForm.$valid" ng-click="uploadImg(picFile)">上传</button>
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-default font-gray-color" data-dismiss="modal">取消</button>
+	     	<button type="button" class="btn btn-default wk-blue-color"  ng-disabled="!myForm.$valid" ng-click="uploadImg(picFile)">上传</button>
 	      </div>
 	   </div>
     </form>

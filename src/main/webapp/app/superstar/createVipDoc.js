@@ -33,7 +33,8 @@ angular.module('wkSuperstar').controller('CreateVipDocCtrl',
 		}
 		
 		$scope.uploadImgSuccess = function(imgId){
-			if($scope.req.content == undefined){
+			if($scope.req == undefined || $scope.req.content == undefined){
+				$scope.req = {};
 		 		$scope.req.content = '';
 		 	}
 			$scope.req.content += '<img src="/img/'+ imgId +'" />';

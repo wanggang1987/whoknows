@@ -7,12 +7,45 @@ angular.module('wkCommon').controller('SettingCtrl',
 			$location.path("/login");
 			return;
 		}
-		$http.get("/user/" + UserService.getCurrent().id).then(function(data){
-			$scope.setUser = data.data;
-		})
+		var init = function(){
+			$http.get("/user/" + UserService.getCurrent().id).then(function(data){
+				$scope.setUser = data.data;
+			})
+			
+			$scope.tinymceOptions1 = {
+					resize: true,
+					menubar: false,
+					statusbar: false,
+					height: 250,
+					plugins: ["link", "code", "textcolor"],
+					toolbar: "undo redo | formatselect styleselect fontselect fontsizeselect| bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | link code mybutton ",
+					setup: function(editor) {
+						editor.addButton('mybutton', {
+							type: 'button',
+							title: 'Insert image',
+							icon: 'image',
+							id: 'mybutton'
+						});
+						editor.on('init', function(e) {
+							$("#mybutton").on("click", function(){
+								$scope.$broadcast('event:upload:topic:img');
+							});
+						});
+					}	
+			}
+		}
+		
+		$scope.uploadImgSuccess = function(imgId){
+			if($scope.setUser.profile == undefined){
+				$scope.setUser.profile = '';
+		 	}
+			$scope.setUser.profile += '<img src="/img/'+ imgId +'" />';
+		}
+		
 		$scope.resetPasswd = function(){
 			$scope.$broadcast('event:resetPassword');
 		}
+		
 		//---------------base info
 		$scope.showSaveBaseInfoSuccess = false;
 		$scope.showSaveBaseInfoError = false;
@@ -54,5 +87,23 @@ angular.module('wkCommon').controller('SettingCtrl',
 		$scope.closePassInfoWarnPanel = function(){
 			$scope.showSavePassInfoError = false;
 		}
+		
+		//------------------profile info
+		$scope.saveProfileInfo = function(){
+			$http.post("/user", $scope.setUser).success(function(){
+				$scope.showSaveProfileInfoSuccess = true;
+				$scope.showSaveProfileInfoError = false;
+			}).error(function(){
+				$scope.showSaveProfileInfoSuccess = false;
+				$scope.showSaveProfileInfoError = true;
+			});
+		}
+		$scope.closeProfileInfoSuccessPanel = function(){
+			$scope.showSaveProfileInfoSuccess = false;
+		}  
+		$scope.closeProfileInfoWarnPanel = function(){
+			$scope.showSaveProfileInfoError = false;
+		}
+		init();
 		
 	});

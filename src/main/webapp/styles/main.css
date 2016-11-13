@@ -714,7 +714,7 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 }
 /*--regist style---*/
 .setting-page {
-	height : 568px;
+	min-height : 568px;
 	padding-top: 30px;
 	margin : 0px auto;
 }
