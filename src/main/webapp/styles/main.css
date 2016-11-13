@@ -216,6 +216,11 @@ body{
 	margin: auto auto;
 	
 }
+.nav-search-input{
+	width : 350px;
+	margin-top:8px;
+	margin-left:45px;
+}
 /*----------side bar page-------------*/
 .contact-side-bar {
     position: fixed;

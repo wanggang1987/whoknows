@@ -28,6 +28,12 @@
             <a class="navbar-brand" href="#/" >
             		<span style="font-size:12px">Labnetwork</span><br> <span style="font-size:20px">Knows</span>
             	</a>
+            	<div class="input-group nav-search-input">
+		      <input type="text" class="form-control" ng-model="searchContent">
+		      <span class="input-group-btn">
+		        <button class="btn btn-default"  ng-disabled="searchContent == undefined || searchContent == null || searchContent.length <= 0 " ng-click= "search()" type="button" ><span class="glyphicon glyphicon-search"></span></button>
+		      </span>
+		    </div><!-- /input-group -->
           </div>
           <div id="navbar" class="navbar-collapse collapse" ng-include="'app/header/_nav'">
             

@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <ul class="nav navbar-nav navbar-right wk-nav" >
-            		<li ng-class="{ active: isActive('/') }"><a href="#/">首页</a></li>
+            		<!-- <li ng-class="{ active: isActive('/') }"><a href="#/">首页</a></li> -->
 				<li ng-class="{ active: isActive('/topic') }"><a href="#/topic" >话题</a></li>
 				<li ng-class="{ active: isActive('/vipDetailPage') }"><a href="#/vipDetailPage"  >大咖</a></li>
 				<sec:authorize access="isAuthenticated()">

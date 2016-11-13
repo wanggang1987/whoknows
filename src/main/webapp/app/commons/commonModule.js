@@ -2,13 +2,7 @@
 'use strict';
 
 var wkCommon = angular.module('wkCommon', ['ngRoute', 'ngFileUpload']).config(function($routeProvider, $logProvider){
-	$routeProvider.when('/', {
-		templateUrl: 'app/home',
-		controller: 'HomeCtrl',
-		data: {
-			standalonePage: true
-		}
-	}).when('/selfPage', {
+	$routeProvider.when('/selfPage', {
 		templateUrl: 'app/users/selfHomePage',
 		controller: 'SelfHomeCtrl',
 		data: {
@@ -34,7 +28,7 @@ var wkCommon = angular.module('wkCommon', ['ngRoute', 'ngFileUpload']).config(fu
 			standalonePage: true
 		}
 	}).otherwise({
-        redirectTo: '/'
+        redirectTo: '/topic'
     });
 });
 

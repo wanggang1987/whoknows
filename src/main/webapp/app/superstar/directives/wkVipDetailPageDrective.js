@@ -22,12 +22,12 @@ angular.module('wkSuperstar').directive('wkVipDetailPage', function ($location, 
 					return;
 				}
 				if(vip.currentFollowed){
-					$http.post("/follow/user/disable/" + UserService.getCurrent().id + "/" + vip.userDetail.userID).success(function(data){
+					$http.post("/follow/user/disable/" + UserService.getCurrent().id + "/" + vip.userDetail.id).success(function(data){
 						vip.followCount = vip.followCount > 0 ? vip.followCount - 1 : 0;
 						vip.currentFollowed = false;
 					})
 				}else{
-					$http.post("/follow/user/" + UserService.getCurrent().id + "/" + vip.userID).success(function(data){
+					$http.post("/follow/user/" + UserService.getCurrent().id + "/" + vip.userDetail.id).success(function(data){
 						vip.followCount += 1;
 						vip.currentFollowed = true;
 					})
