@@ -1,6 +1,7 @@
 package com.whoknows.user;
 
 import com.whoknows.comment.CommentService;
+import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.TargetType;
@@ -9,21 +10,23 @@ import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.vip.VipDetail;
 import com.whoknows.like.LikeService;
+import com.whoknows.mail.AliMailService;
+import com.whoknows.mail.RegisterMailInfo;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.reply.ReplyDetail;
 import com.whoknows.search.Paging;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.search.TopicResult;
+import com.whoknows.token.TokenService;
 import com.whoknows.topic.TopicService;
 import com.whoknows.utils.CommonFunction;
-
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +35,10 @@ public class UserService {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final int pageSize = 20;
+	@Value("${domain}")
+	private String domain;
+	@Value("${spring.application.name}")
+	private String appName;
 
 	@Autowired
 	private UserRepository userRepository;
@@ -45,6 +52,10 @@ public class UserService {
 	private FollowService followService;
 	@Autowired
 	private CommentService commentService;
+	@Autowired
+	private AliMailService aliMailService;
+	@Autowired
+	private TokenService tokenService;
 
 	public UserDetail currentUser() {
 		if (SecurityContextHolder.getContext().getAuthentication()
@@ -99,7 +110,18 @@ public class UserService {
 			return false;
 		}
 		try {
-			userRepository.createUser(user);
+			user.setAction(ActionType.pending.name());
+			Long id = userRepository.createUser(user);
+			String token = tokenService.genToken();
+			tokenService.storeToken(id, token);
+
+			RegisterMailInfo registerMailInfo = new RegisterMailInfo();
+			registerMailInfo.setToAddress(user.getEmail());
+			registerMailInfo.setTitle("欢迎注册" + appName);
+			registerMailInfo.setContent("注册成功,请点击链接激活账号登陆:\n"
+					+ domain + "/token/" + id + "/" + token);
+			aliMailService.regester(registerMailInfo);
+
 			log.info("Create user :{} success.", user.getEmail());
 			return true;
 		} catch (Exception e) {
@@ -296,6 +318,14 @@ public class UserService {
 		userConutInfoResponse.setCreateTopicCount(userRepository.getUserCreateTopicCount(userId));
 		userConutInfoResponse.setFollowCount(userRepository.getUserFollowTopicCount(userId));
 		return userConutInfoResponse;
+	}
+
+	public void activeUser(Long userId) {
+		try {
+			userRepository.activeUser(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

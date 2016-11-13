@@ -86,4 +86,20 @@
 			ALTER TABLE paper CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
 		</sql>
 	</changeSet>
+	
+	<changeSet id="add token table" author="whoknows">
+		<createTable tableName="token">
+			<column name="id" autoIncrement="true" type="bigint">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="token" type="varchar(100)"/>
+			<column name="create_time" type="timestamp"/>
+		</createTable>
+		<sql>
+			ALTER TABLE token CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+		</sql>
+	</changeSet>
 </databaseChangeLog>

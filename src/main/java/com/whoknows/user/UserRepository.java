@@ -1,5 +1,6 @@
 package com.whoknows.user;
 
+import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Role;
 import com.whoknows.domain.RoleType;
@@ -72,18 +73,20 @@ public class UserRepository {
 				});
 	}
 
-	public void createUser(User user) {
-		jdbcTemplate.update("insert into user(email,e_pass) values (?, ?)",
+	public Long createUser(User user) {
+		jdbcTemplate.update("insert into user(email,e_pass, action) values (?, ?, ?)",
 				ps -> {
 					ps.setString(1, user.getEmail());
 					ps.setString(2, encoder.encode(user.getPasswd()));
+					ps.setString(3, user.getAction());
 				});
 		Long id = jdbcTemplate.query("select id from user where email = ? ",
 				ps -> ps.setString(1, user.getEmail()),
 				(rs, row) -> rs.getLong("id")).stream().findAny().orElse(null);
 		jdbcTemplate.update("insert into user_role (user_id, role_id) "
-				+ "values (? , ( select id from role where role = '" + RoleType.SITE_USER.toString() + "' limit 1 )) ",
+				+ "values (? , ( select id from role where role = '" + RoleType.SITE_USER.name() + "' limit 1 )) ",
 				ps -> ps.setLong(1, id));
+		return id;
 	}
 
 	public void editUserInfo(UserDetail user) {
@@ -272,6 +275,14 @@ public class UserRepository {
 					vip.setPricture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("id"));
 					return vip;
+				});
+	}
+
+	public void activeUser(Long userId) {
+		jdbcTemplate.update("update user set action = ? where id = ?",
+				ps -> {
+					ps.setString(1, ActionType.active.name());
+					ps.setLong(2, userId);
 				});
 	}
 }
