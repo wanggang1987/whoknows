@@ -82,3 +82,7 @@
       </div><!--/row-->
 
  </div>
+ 
+ <wk-img-upload-modal callback-function="uploadImgSuccess(imgId)"></wk-img-upload-modal>
+
+ 

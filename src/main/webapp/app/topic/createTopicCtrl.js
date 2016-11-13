@@ -43,7 +43,6 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 						editor.on('init', function(e) {
 							$("#mybutton").on("click", function(){
 								$scope.$broadcast('event:upload:topic:img');
-//								$("#topicImgModal").modal('show');
 							});
 						});
 					}	

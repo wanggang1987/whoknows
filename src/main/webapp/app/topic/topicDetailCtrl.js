@@ -18,15 +18,33 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 			
 		});
 		
+		$scope.uploadImgSuccess = function(imgId){
+			if($scope.content == undefined){
+		 		$scope.content = '';
+		 	}
+			$scope.content += '<img src="/img/'+ imgId +'" />';
+		}
+		
 		$scope.tinymceOptions1 = {
-				resize: false,
+				resize: true,
 				menubar: false,
 				statusbar: false,
-				height: 200
-//				plugins: ["image"],
-//			    file_browser_callback: function(field_name, url, type, win) {
-//			            if(type=='image') alert(url +"->" + field_name +"->" + type +"->" + win);
-//			    }
+				height: 350,
+				plugins: ["link", "code", "textcolor"],
+				toolbar: "undo redo | formatselect styleselect fontselect fontsizeselect| bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | link code mybutton ",
+				setup: function(editor) {
+					editor.addButton('mybutton', {
+						type: 'button',
+						title: 'Insert image',
+						icon: 'image',
+						id: 'mybutton'
+					});
+					editor.on('init', function(e) {
+						$("#mybutton").on("click", function(){
+							$scope.$broadcast('event:upload:topic:img');
+						});
+					});
+				}	
 		}
 		
 		var loadReplyByPage = function(page){
