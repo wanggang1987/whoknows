@@ -30,5 +30,6 @@
           <hot-tag-siderbar topic="ttttopic"></hot-tag-siderbar>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
+      
+      <wk-img-upload-modal callback-function="uploadImgSuccess(imgId)"></wk-img-upload-modal>
 
- </div>

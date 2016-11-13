@@ -61,8 +61,11 @@
 	<script type="text/javascript" src="/bower_components/angular-ui-tinymce/dist/tinymce.min.js"></script>
 	<script type="text/javascript" src="/components/fastselect-master/dist/fastselect.standalone.min.js"></script>
 	<script type="text/javascript" src="/bower_components/bootstrap/js/tab.js"></script>
+	<script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+	<script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
 	<!-- self app js  -->
 	<script type="text/javascript" src="/app/app.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/imgUploadModal.js"></script>
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>

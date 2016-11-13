@@ -4,9 +4,16 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.");
 		$scope.tagEmptyWarn = false;
-		
+		$scope.uploadingImg = false;
 		$scope.closeWarnPanel = function(){
 			$scope.tagEmptyWarn = false;
+		}
+
+		$scope.uploadImgSuccess = function(imgId){
+			if($scope.content == undefined){
+		 		$scope.content = '';
+		 	}
+			$scope.content += '<img src="/img/'+ imgId +'" />';
 		}
 		var init = function(){
 			if(!UserService.isSignedIn()){
@@ -17,15 +24,29 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 				$scope.tags = data.data;
 				$('.multipleSelect').fastselect({"maxItems":5,"placeholder":"请选择标签"});
 			})
+			
+			
 			$scope.tinymceOptions1 = {
-					resize: false,
+					resize: true,
 					menubar: false,
 					statusbar: false,
 					height: 350,
-					plugins: ["image"],
-				    file_browser_callback: function(field_name, url, type, win) {
-				            if(type=='image') alert(url +"->" + field_name +"->" + type +"->" + win);
-				    }
+					plugins: ["link", "code", "textcolor"],
+					toolbar: "undo redo | formatselect styleselect fontselect fontsizeselect| bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | link code mybutton ",
+					setup: function(editor) {
+						editor.addButton('mybutton', {
+							type: 'button',
+							title: 'Insert image',
+							icon: 'image',
+							id: 'mybutton'
+						});
+						editor.on('init', function(e) {
+							$("#mybutton").on("click", function(){
+								$scope.$broadcast('event:upload:topic:img');
+//								$("#topicImgModal").modal('show');
+							});
+						});
+					}	
 				}
 		}
 		

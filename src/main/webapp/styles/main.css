@@ -82,6 +82,9 @@ body{
 .fstElement.fstMultipleMode .fstControls{
 	width:100%
 }
+.wk-warn-color{
+	color: #FF0000;
+}
 .wk-warn-panel{
 	margin: 10px;
 }

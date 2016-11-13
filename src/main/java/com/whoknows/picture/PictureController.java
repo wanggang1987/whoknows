@@ -52,4 +52,5 @@ public class PictureController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+	
 }
