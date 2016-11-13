@@ -10,7 +10,7 @@
 						  <button type="button" class="close" data-dismiss="alert" ng-click="closeWarn()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 						  <strong>登录失败! 用户名或密码错误</strong> 
 					 </div>
-					 <form class="form-horizontal" role="form">
+					 <form class="form-horizontal" role="form" name="loginForm">
 						  <div class="form-group">
 						    <label for="inputEmail3" class="col-sm-3 control-label">邮箱地址</label>
 						    <div class="col-sm-9">
@@ -43,7 +43,7 @@
 						  </div>
 						  <div class="form-group panel-footer">
 						    <div class="col-sm-offset-4 col-sm-10">
-						      <button type="submit" ng-click="login()" class="btn btn-default login-btn">登录</button>
+						      <button type="submit" ng-click="login()" ng-disabled="loginForm.$invalid" class="btn btn-default login-btn">登录</button>
 						    </div>
 						  </div>
 						</form>

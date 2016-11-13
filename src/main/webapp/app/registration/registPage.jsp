@@ -4,7 +4,7 @@
 			<div class="panel login-panel regist-panel">
 				  <div class="panel-heading text-center">注册</div>
 				  <div class="panel-body">
-					 <form class="form-horizontal" role="form">
+					 <form class="form-horizontal" role="form" name="registForm">
 					 	  <div class="alert alert-danger alert-dismissible" role="alert" ng-show="!registSuccess">
 							  <button type="button" class="close" data-dismiss="alert" ng-click="closeWarn()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 							  <strong>注册失败!</strong> 
@@ -31,7 +31,7 @@
 						    </div>
 						  </div>
 						  
-						   <div class="form-group">
+						  <!--  <div class="form-group">
 						    <label for="inputPassword3"  class="col-sm-3 control-label">由朋友或同事推荐？</label>
 						    <div class="col-sm-8 regise-friends-checkbox">
 						      <div class="checkbox " >
@@ -52,7 +52,7 @@
 						    <div class="col-sm-9">
 						      <input type=text  class="form-control login-email-input"  ng-model="registInfo.recommendName" placeholder="姓名">
 						    </div>
-						  </div>
+						  </div> -->
 						  <div class="form-group">
 						    <label for="inputEmail3" class="col-sm-3 control-label">您是从什么渠道了解到我们的？</label>
 						    <div class="col-sm-7">
@@ -78,7 +78,7 @@
 						  
 						  <div class="form-group panel-footer">
 						    <div class="col-sm-offset-4 col-sm-10">
-						      <button type="submit" class="btn btn-default login-btn" ng-click="regist()">提交</button>
+						      <button type="submit" class="btn btn-default login-btn" ng-disabled="registForm.$invalid || !registSuccess" ng-click="regist()">提交</button>
 						      <button type="submit" class="btn btn-default cancel-btn">取消</button>
 						    </div>
 						  </div>

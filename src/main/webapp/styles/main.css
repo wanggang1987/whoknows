@@ -547,6 +547,7 @@ footer {
 }
 .topic-list .row{
 	border-bottom: 1px solid #eee;
+	padding-bottom:15px;
 }
 .topic-comment-lists .popover{
 	clear:both;
