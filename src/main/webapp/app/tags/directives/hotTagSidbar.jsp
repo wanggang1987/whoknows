@@ -12,7 +12,7 @@
 	    	 	<div class="list-group-item row" ng-repeat="tag in tags">
 	    	 		<div class="col-md-3"><img alt="" ng-src="{{tag.picture || defaultPeopleIMg}}" ng-cloak></img></div>
 	    	 		<div class="col-md-9">
-	    	 			<a ng-href="#/tagDetail/{{tag.tagID}}" ><h5 class="list-group-item-heading" ng-bind-html="tag.tagName | to_trusted"></h5></a>
+	    	 			<a ng-href="#/tagDetail/{{tag.tagID}}" ><p class="list-group-item-heading" ng-bind-html="tag.tagName | to_trusted"></p></a>
 			    		<p class="list-group-item-text"><a href="javascript:void(0);" ng-click="fllowTag(tag)" class="font-gray-color"><span class="glyphicon glyphicon-heart"></span><span ng-hide="tag.currentFollowed">关注</span><span ng-show="tag.currentFollowed">取消关注</span></a>({{tag.followCount}})</p>
 			    		
 			    	</div>

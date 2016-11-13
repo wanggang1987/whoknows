@@ -12,7 +12,7 @@
 			    	 	<div class="list-group-item row" ng-repeat="vip in vips">
 			    	 		<div class="col-md-3"><img alt="" ng-src="{{vip.picture || defaultPeopleImg }}" ng-cloak></img></div>
 			    	 		<div class="col-md-9">
-			    	 			<a ng-href="#/vipDetail/{{vip.userID}}"><h5 class="list-group-item-heading">{{vip.name}}</h5></a>
+			    	 			<a ng-href="#/vipDetail/{{vip.userID}}"><p class="list-group-item-heading">{{vip.name}}</p></a>
 					    		<a href="javascript:void(0);" ng-click="fllowVip(vip)" class="font-gray-color"><span class="glyphicon glyphicon-heart"></span><span ng-hide="vip.currentFollowed">关注</span><span ng-show="vip.currentFollowed">取消关注</span></a>({{vip.followCount}})
 					    	</div>
 			    	 	</div>
