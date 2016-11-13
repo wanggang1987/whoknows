@@ -11,7 +11,7 @@
 						</div>
 					</li>
 				</sec:authorize>
-				<sec:authorize access="hasAuthority('SITE_ADMIN')">	
+				<sec:authorize access="hasAuthority('SITE_VIP')">	
 					<li class="fill-maring-left-20" >
 						<div class="form-group index-create-question-btn">
 							<button type="submit" class="btn btn-default " ng-click="createVipDoc()">大咖文章</button>
