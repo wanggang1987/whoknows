@@ -104,9 +104,9 @@ public class UserRepository {
 					ps.setString(7, user.getAddress());
 					ps.setString(8, user.getEducation());
 					ps.setString(9, user.getTitle());
-					ps.setLong(10, user.getId());
-					ps.setString(11, user.getSignature());
-					ps.setString(12, user.getProfile());
+					ps.setString(10, user.getSignature());
+					ps.setString(11, user.getProfile());
+					ps.setLong(12, user.getId());
 				});
 	}
 
