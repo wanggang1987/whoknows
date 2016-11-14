@@ -115,12 +115,12 @@ public class UserService {
 			String token = tokenService.genToken();
 			tokenService.storeToken(id, token);
 
-			String link = domain + "/token/" + id + "/" + token;
+			String link = "http://" + domain + "/token/" + id + "/" + token;
 			RegisterMailInfo registerMailInfo = new RegisterMailInfo();
 			registerMailInfo.setToAddress(user.getEmail());
 			registerMailInfo.setTitle("欢迎注册" + appName);
 			registerMailInfo.setContent("注册成功,请点击链接激活账号登陆:\n"
-					+ "<a href='"+link+"' style='color:#EDF7EC'>激活</a>");
+					+ "<a href='" + link + "' style='color:#EDF7EC'>激活</a>");
 			aliMailService.regester(registerMailInfo);
 
 			log.info("Create user :{} success.", user.getEmail());
