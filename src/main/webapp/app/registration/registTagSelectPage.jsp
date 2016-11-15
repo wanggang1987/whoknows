@@ -29,6 +29,6 @@
       	
       </div>
       <div class="row text-center">
-      	<button type="submit" class="btn btn-default default-wk-blue-btn" ng-disabled="!loginSuccess"  ng-click="enterWk()" >完成注册</button>
+      	<button type="submit" class="btn btn-default default-wk-blue-btn" ng-disabled="disabledSubmit()"  ng-click="enterWk()" >完成注册</button>
       </div> 
  </div>
