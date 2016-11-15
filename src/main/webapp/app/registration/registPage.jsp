@@ -10,7 +10,6 @@
 							  <strong>注册失败!</strong> 
 						  </div>
 						  <div class="alert alert-success alert-dismissible" role="alert" ng-show="registSuccess">
-							  <button type="button" class="close" data-dismiss="alert" ng-click="closeRegistSuccessWarn()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 							  <strong>注册成功!我们已经向您的邮箱：{{registInfo.email}} 发送了一封激活邮件.请注意查收。</strong> 
 						  </div>
 						  <div class="form-group">
@@ -79,7 +78,7 @@
 						  
 						  <div class="form-group panel-footer">
 						    <div class="col-sm-offset-4 col-sm-10">
-						      <button type="submit" class="btn btn-default login-btn" ng-disabled="registForm.$invalid || registSuccess" ng-click="regist()">提交</button>
+						      <button type="submit" class="btn btn-default login-btn" ng-disabled="registForm.$invalid || registInfo.passwd != registInfo.passwordAgain || registSuccess " ng-click="regist()">提交</button>
 						      <button type="submit" class="btn btn-default cancel-btn">取消</button>
 						    </div>
 						  </div>

@@ -20,7 +20,4 @@ angular.module('wkRegist').controller('RegistCtrl',
 		$scope.closeRegistErrorWarn = function(){
 			$scope.registError = false;
 		}
-		$scope.closeRegistSuccessWarn = function(){
-			$scope.registSuccess = false;
-		}
 	});
