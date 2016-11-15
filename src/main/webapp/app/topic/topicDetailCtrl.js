@@ -121,6 +121,7 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 			}).success(function(){
 				$scope.loadComments(replyDetail, {"currentPage" : 1});
 				$scope.request.commentContent = '';
+				replyDetail.commentCount += 1;
 			});
 		}
 		
