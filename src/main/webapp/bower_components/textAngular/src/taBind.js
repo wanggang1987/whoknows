@@ -563,7 +563,14 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
 										continue;
 									} else {
 										var tagName = dom[0].childNodes[i].tagName.toLowerCase();
-										if(tagName !== "p" && tagName !== "h1" && tagName !== "h2" && tagName !== "h3" && tagName !== "h4" && tagName !== "h5" && tagName !== "h6"){
+										if(tagName !== "p" &&
+											tagName !== "h1" &&
+											tagName !== "h2" &&
+											tagName !== "h3" &&
+											tagName !== "h4" &&
+											tagName !== "h5" &&
+											tagName !== "h6" &&
+										    tagName !== "table"){
 											continue;
 										}
 									}
@@ -682,7 +689,11 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
 
 							if(_pasteHandler) text = _pasteHandler(scope, {$html: text}) || text;
 
+							// turn span vertical-align:super into <sup></sup>
+							text = text.replace(/<span style=("|')([^<]*?)vertical-align\s*:\s*super;?([^>]*?)("|')>([^<]+?)<\/span>/g, "<sup style='$2$3'>$5</sup>");
+
 							text = taSanitize(text, '', _disableSanitizer);
+							//console.log('DONE\n', text);
 
 							taSelection.insertHtml(text, element[0]);
 							$timeout(function(){
@@ -864,17 +875,17 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
 							} else {
 								// if enter - insert new taDefaultWrap, if shift+enter insert <br/>
 								if(_defaultVal !== '' && _defaultVal !== '<BR><BR>' && event.keyCode === _ENTER_KEYCODE && !event.ctrlKey && !event.metaKey && !event.altKey){
+									var selection = taSelection.getSelectionElement();
+									while(!selection.nodeName.match(VALIDELEMENTS) && selection !== element[0]){
+										selection = selection.parentNode;
+									}
 									if(!event.shiftKey){
 										// new paragraph, br should be caught correctly
-										var selection = taSelection.getSelectionElement();
 										// shifted to nodeName here from tagName since it is more widely supported see: http://stackoverflow.com/questions/4878484/difference-between-tagname-and-nodename
-										while(!selection.nodeName.match(VALIDELEMENTS) && selection !== element[0]){
-											selection = selection.parentNode;
-										}
-
+										//console.log('Enter', selection.nodeName, attrs.taDefaultWrap, selection.innerHTML.trim());
 										if(selection.tagName.toLowerCase() !==
 											attrs.taDefaultWrap &&
-											selection.tagName.toLowerCase() !== 'li' &&
+											selection.nodeName.toLowerCase() !== 'li' &&
 											(selection.innerHTML.trim() === '' || selection.innerHTML.trim() === '<br>')
 										) {
 											// Chrome starts with a <div><br></div> after an EnterKey
@@ -882,6 +893,29 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
 											var _new = angular.element(_defaultVal);
 											angular.element(selection).replaceWith(_new);
 											taSelection.setSelectionToElementStart(_new[0]);
+										}
+									} else {
+										// shift + Enter
+										var tagName = selection.tagName.toLowerCase();
+										//console.log('Shift+Enter', selection.tagName, attrs.taDefaultWrap, selection.innerHTML.trim());
+										// For an LI: We see: LI p ....<br><br>
+										// For a P: We see: P p ....<br><br>
+										// on Safari, the browser ignores the Shift+Enter and acts just as an Enter Key
+										// For an LI: We see: LI p <br>
+										// For a P: We see: P p <br>
+										if((tagName === attrs.taDefaultWrap ||
+											tagName === 'li' ||
+											tagName === 'pre' ||
+											tagName === 'div') &&
+											!/.+<br><br>/.test(selection.innerHTML.trim())) {
+											var ps = selection.previousSibling;
+											//console.log('wrong....', ps);
+											// we need to remove this selection and fix the previousSibling up...
+											if (ps) {
+												ps.innerHTML = ps.innerHTML + '<br><br>';
+												angular.element(selection).remove();
+												taSelection.setSelectionToElementEnd(ps);
+											}
 										}
 									}
 								}
@@ -923,6 +957,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
 							if(_inputTimeout) $timeout.cancel(_inputTimeout);
 							/* istanbul ignore next: cant' test? */
 							_inputTimeout = $timeout(function() {
+								var _savedSelection = rangy.saveSelection();
 								var _val = _compileHtml();
 								if (_val !== ngModel.$viewValue) {
 									//console.log('_setViewValue');
@@ -930,6 +965,7 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
 									//console.log('new:', _val);
 									_setViewValue(_val, true);
 								}
+								rangy.restoreSelection(_savedSelection);
 							}, 1000);
 						}
 					});

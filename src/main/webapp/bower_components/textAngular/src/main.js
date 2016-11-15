@@ -24,18 +24,12 @@ textAngular.directive("textAngular", [
 					_serial = (attrs.serial) ? attrs.serial : Math.floor(Math.random() * 10000000000000000),
 					_taExecCommand, _resizeMouseDown, _updateSelectedStylesTimeout;
 				var _resizeTimeout;
-				var _resizeElement;
 
 				scope._name = (attrs.name) ? attrs.name : 'textAngularEditor' + _serial;
 
 				var oneEvent = function(_element, event, action){
 					$timeout(function(){
-						// shim the .one till fixed
-						var _func = function(){
-							_element.off(event, _func);
-							action.apply(this, arguments);
-						};
-						_element.on(event, _func);
+						_element.one(event, action);
 					}, 100);
 				};
 				_taExecCommand = taExecCommand(attrs.taDefaultWrap);
@@ -131,21 +125,17 @@ textAngular.directive("textAngular", [
 						if(_resizeTimeout) $timeout.cancel(_resizeTimeout);
 						_resizeTimeout = $timeout(function() {
 							//console.log('resize', scope.displayElements.popover.css('display'));
-							scope.reflowPopover(_resizeElement);
-							scope.reflowResizeOverlay(_resizeElement);
+							scope.reflowPopover(scope.resizeElement);
+							scope.reflowResizeOverlay(scope.resizeElement);
 						}, 100);
 					}
 				};
 
 				/* istanbul ignore next: browser resize check */
-				angular.element(window).on('resize', function(e, eventData){
-					scope.handlePopoverEvents();
-				});
+				angular.element(window).on('resize', scope.handlePopoverEvents);
 
 				/* istanbul ignore next: browser scroll check */
-				angular.element(window).on('scroll', function(e, eventData){
-					scope.handlePopoverEvents();
-				});
+				angular.element(window).on('scroll', scope.handlePopoverEvents);
 
 				// we want to know if a given node has a scrollbar!
 				// credit to lotif on http://stackoverflow.com/questions/4880381/check-whether-html-element-has-scrollbars
@@ -211,7 +201,13 @@ textAngular.directive("textAngular", [
 				scope.showPopover = function(_el){
 					scope.getScrollTop(scope.displayElements.scrollWindow[0], true);
 					scope.displayElements.popover.css('display', 'block');
-					_resizeElement = _el;
+					// we must use a $timeout here, or the css change to the
+					// displayElements.resize.overlay will not take!!!
+					// WHY???
+					$timeout(function() {
+						scope.displayElements.resize.overlay.css('display', 'block');
+					});
+					scope.resizeElement = _el;
 					scope.reflowPopover(_el);
 					$animate.addClass(scope.displayElements.popover, 'in');
 					oneEvent($document.find('body'), 'click keyup', function(){scope.hidePopover();});
@@ -250,6 +246,7 @@ textAngular.directive("textAngular", [
 					scope.displayElements.popoverContainer.attr('style', '');
 					scope.displayElements.popoverContainer.attr('class', 'popover-content');
 					scope.displayElements.popover.removeClass('in');
+					scope.displayElements.resize.overlay.css('display', 'none');
 				};
 
 				// setup the resize overlay
@@ -263,7 +260,7 @@ textAngular.directive("textAngular", [
 				scope.displayElements.resize.background.on('click', function(e) {
 					scope.displayElements.text[0].focus();
 				});
-				
+
 				// define the show and hide events
 				scope.reflowResizeOverlay = function(_el){
 					_el = angular.element(_el)[0];
@@ -661,6 +658,8 @@ textAngular.directive("textAngular", [
 				scope.$on('$destroy', function(){
 					textAngularManager.unregisterEditor(scope._name);
 					angular.element(window).off('blur');
+					angular.element(window).off('resize', scope.handlePopoverEvents);
+					angular.element(window).off('scroll', scope.handlePopoverEvents);
 				});
 
 				// catch element select event and pass to toolbar tools
@@ -670,9 +669,60 @@ textAngular.directive("textAngular", [
 					}
 				});
 
+/******************* no working fully
+				var distanceFromPoint = function (px, py, x, y) {
+					return Math.sqrt((px-x)*(px-x)+(py-y)*(py-y));
+				};
+				// because each object is a rectangle and we have a single point,
+				// we need to give priority if the point is inside the rectangle
+				var getPositionDistance = function(el, x, y) {
+					var range = document.createRange();
+					range.selectNode(el);
+					var rect = range.getBoundingClientRect();
+					console.log(el, rect);
+					range.detach();
+					var bcr = rect;
+					// top left
+					var d1 = distanceFromPoint(bcr.left, bcr.top, x, y);
+					// bottom left
+					var d2 = distanceFromPoint(bcr.left, bcr.bottom, x, y);
+					// top right
+					var d3 = distanceFromPoint(bcr.right, bcr.top, x, y);
+					// bottom right
+					var d4 = distanceFromPoint(bcr.right, bcr.bottom, x, y);
+					return Math.min(d1, d2, d3, d4);
+				};
+				var findClosest = function(el, minElement, maxDistance, x, y) {
+					var _d=0;
+					for (var i = 0; i < el.childNodes.length; i++) {
+						var _n = el.childNodes[i];
+						if (!_n.childNodes.length) {
+							_d = getPositionDistance(_n, x, y);
+							//console.log(_n, _n.childNodes, _d);
+							if (_d < maxDistance) {
+								maxDistance = _d;
+								minElement = _n;
+							}
+						}
+						var res = findClosest(_n, minElement, maxDistance, x, y);
+						if (res.max < maxDistance) {
+							maxDistance = res.max;
+							minElement = res.min;
+						}
+					}
+					return { max: maxDistance, min: minElement };
+				};
+				var getClosestElement = function (el, x, y) {
+					return findClosest(el, null, 12341234124, x, y);
+				};
+****************/
+
 				scope.$on('ta-drop-event', function(event, element, dropEvent, dataTransfer){
 					if(dataTransfer && dataTransfer.files && dataTransfer.files.length > 0){
 						scope.displayElements.text[0].focus();
+						// we must set the location of the drop!
+						//console.log(dropEvent.clientX, dropEvent.clientY, dropEvent.target);
+						taSelection.setSelectionToElementEnd(dropEvent.target);
 						angular.forEach(dataTransfer.files, function(file){
 							// taking advantage of boolean execution, if the fileDropHandler returns true, nothing else after it is executed
 							// If it is false then execute the defaultFileDropHandler if the fileDropHandler is NOT the default one
