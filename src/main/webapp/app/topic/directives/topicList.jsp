@@ -5,7 +5,7 @@
 	</div>
 	<div class="row" ng-repeat="topic in topicLists"> 
 		<div class="col-xs-20 col-sm-12"> 
-			<div class="topic-header"><a href="#/topicDetail?id={{topic.topicDetail.topic.id}}"><p ng-bind-html="topic.topicDetail.topic.title | to_trusted"></p> </a></div>
+			<div class="topic-header"><a href="#/topicDetail?id={{topic.topicDetail.topic.id}}"><p class="topic-list-title" ng-bind-html="topic.topicDetail.topic.title | to_trusted"></p> </a></div>
 			<div class="topic-body" ng-show="topic.replyDetail.reply != null">
 				<div class="topic-body-author">
 					<wk-name-span user="topic.topicDetail.author"></wk-name-span>

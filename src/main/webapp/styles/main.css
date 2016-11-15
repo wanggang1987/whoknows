@@ -26,7 +26,11 @@ body{
 	line-height: 1.7;
 }
 .highLight{
-	color : #ed8b1e;
+	color : #FF0000;
+}
+.topic-list-title{
+	font-size: 1.1em;
+    font-weight: 700;
 }
 .margin-top-70{
 	margin-top:70px;
