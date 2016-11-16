@@ -112,6 +112,9 @@ public class UserService {
 		try {
 			user.setAction(ActionType.pending.name());
 			Long id = userRepository.createUser(user);
+			if (id == null) {
+				return false;
+			}
 			String token = tokenService.genToken();
 			tokenService.storeToken(id, token);
 
@@ -120,7 +123,7 @@ public class UserService {
 			registerMailInfo.setToAddress(user.getEmail());
 			registerMailInfo.setTitle("欢迎注册" + appName);
 			registerMailInfo.setContent("注册成功,请点击链接激活账号登陆:\n"
-					+ "<a href='" + link + "' style='color:#469b51'>激活</a>");
+					+ "<a href='" + link + "' style='color:#008bac'>激活</a>");
 			aliMailService.regester(registerMailInfo);
 
 			log.info("Create user :{} success.", user.getEmail());
