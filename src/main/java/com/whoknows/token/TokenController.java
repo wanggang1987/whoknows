@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.whoknows.security.CookieTools;
+import org.springframework.beans.factory.annotation.Value;
 
 @Controller
 @RequestMapping("/token")
@@ -21,13 +22,17 @@ public class TokenController {
 	@Autowired
 	private TokenService tokenService;
 
+	@Value("${domain}")
+	private String domain;
+
 	@Autowired
 	private CookieTools cookieTools;
+
 	@RequestMapping(path = "/{userId}/{token}", method = RequestMethod.GET)
 	public ResponseEntity continueRegister(HttpServletResponse hsrp, HttpServletRequest hsr, @PathVariable("userId") Long userId, @PathVariable("token") String token) throws IOException {
 		if (tokenService.continueRegister(userId, token)) {
 			cookieTools.addAuthCookie("firstLogin", "true", hsrp, hsr);
-			hsrp.sendRedirect("/p/#/login");
+			hsrp.sendRedirect("http://" + domain + "/p/#/login");
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
