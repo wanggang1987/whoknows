@@ -18,7 +18,7 @@
    		</div>
     		<div class="row" ng-hide="noVipWarn">
     			<h5>个人简历</h5>
-    			<p ng-bind-html="(currentVipDetail.userDetail.profile || '暂无') | to_trusted"></p>
+    			<p class="" ng-bind-html="(currentVipDetail.userDetail.profile || '暂无') | to_trusted"></p>
     			<hr/>
     		</div>
     		

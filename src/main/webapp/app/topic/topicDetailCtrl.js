@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkTopic').controller('TopicDetailCtrl',
-	function ($scope, $rootScope, $location, $http, UserService, DEFAULT_IMG, DEFAULT_PAGE) {
+	function ($scope, $rootScope, $location, $http, UserService, DEFAULT_IMG, DEFAULT_PAGE, TINYMCE) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.");
 		
 		$scope.tagEmptyWarn = false;
@@ -30,8 +30,11 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 				menubar: false,
 				statusbar: false,
 				height: 350,
+				content_style: ".mce-content-body {font-size:13px;}",
+				width: '100%',
+				language_url: TINYMCE.LANG_URL,
 				plugins: ["link", "code", "textcolor"],
-				toolbar: "undo redo | formatselect styleselect fontselect fontsizeselect| bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | link code mybutton ",
+				toolbar: "undo redo | bold italic subscript superscript strikethrough underline | bullist numlist | forecolor backcolor | link mybutton | removeformat",
 				setup: function(editor) {
 					editor.addButton('mybutton', {
 						type: 'button',

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkCommon').controller('SettingCtrl',
-	function ($scope, $rootScope, $location, UserService, $http) {
+	function ($scope, $rootScope, $location, UserService, $http, TINYMCE) {
 		console.log("wkCommon- SettingCtrl load.")
 		if(!UserService.isSignedIn()){
 			LocalStorageService.put('LastPage', $location.path());
@@ -18,8 +18,11 @@ angular.module('wkCommon').controller('SettingCtrl',
 					menubar: false,
 					statusbar: false,
 					height: 250,
+					content_style: ".mce-content-body {font-size:13px;}",
+					width: '100%',
+					language_url: TINYMCE.LANG_URL,
 					plugins: ["link", "code", "textcolor"],
-					toolbar: "undo redo | formatselect styleselect fontselect fontsizeselect| bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | link code mybutton ",
+					toolbar: "undo redo | bold italic subscript superscript strikethrough underline | bullist numlist | forecolor backcolor | link mybutton | removeformat",
 					setup: function(editor) {
 						editor.addButton('mybutton', {
 							type: 'button',

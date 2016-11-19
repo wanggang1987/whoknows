@@ -21,4 +21,5 @@ angular.module('WhoKnows').config(['$httpProvider','$locationProvider', function
 							'TOPIC_REPLY_PER_PAGE' : 10} )
 .constant( 'ROLE_TYPE', { 'SITE_ADMIN' : 'SITE_ADMIN',
 							'SITE_USER' : 'SITE_USER',
-							'SITE_VIP' : 'SITE_VIP'} );
+							'SITE_VIP' : 'SITE_VIP'} )
+.constant( 'TINYMCE', { 'LANG_URL' : '../../components/tinymce-lan/zh_CN.js'} );

@@ -25,6 +25,14 @@ body{
 	word-wrap: break-word;
 	line-height: 1.7;
 }
+.wk-default-content-font{
+	font-size: 13px;
+	word-wrap: break-word;
+	line-height: 1.7;
+}
+.wk-default-title-font{
+	
+}
 .highLight{
 	color : #FF0000;
 }
