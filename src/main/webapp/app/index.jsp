@@ -73,6 +73,8 @@
 	<!-- self app js  -->
 	<script type="text/javascript" src="/app/app.js"></script>
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
+	<script type="text/javascript" src="/app/commons/services/userService.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/side-bar.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/imgUploadModal.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>
@@ -96,7 +98,6 @@
 	<script type="text/javascript" src="/app/superstar/vipPage.js"></script>
 	<script type="text/javascript" src="/app/superstar/directives/leftSidebarHotSuperstar.js"></script>
 	<script type="text/javascript" src="/app/superstar/vipPaperDetailPage.js"></script>
-	<script type="text/javascript" src="/app/commons/directives/side-bar.js"></script>
 	<script type="text/javascript" src="/app/login/loginModule.js"></script>
 	<script type="text/javascript" src="/app/login/loginCtrl.js"></script>
 	<script type="text/javascript" src="/app/login/directives/forgetPasswdDirective.js"></script>
@@ -104,7 +105,6 @@
 	<script type="text/javascript" src="/app/registration/registCtrl.js"></script>
 	<script type="text/javascript" src="/app/registration/registTagSelectCtrl.js"></script>
 	<script type="text/javascript" src="/app/setting/settingCtrl.js"></script>
-	<script type="text/javascript" src="/app/commons/services/userService.js"></script>
 	<script type="text/javascript" src="/app/setting/directives/resetPasswdDirective.js"></script>
 	<script type="text/javascript" src="/app/topic/createTopicCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/topicDetailCtrl.js"></script>

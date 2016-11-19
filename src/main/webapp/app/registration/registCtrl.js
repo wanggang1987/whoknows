@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkRegist').controller('RegistCtrl',
-	function ($scope, $rootScope, $location, $route, $http) {
+	function ($scope, $rootScope, $location, $route, $http, UserService) {
 		console.log("wkCommon- wkRegist.RegistCtrl  load.")
 		if(UserService.isSignedIn()){
 			$location.path("/");
