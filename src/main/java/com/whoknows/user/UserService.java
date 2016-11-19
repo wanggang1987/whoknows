@@ -2,6 +2,7 @@ package com.whoknows.user;
 
 import com.whoknows.comment.CommentService;
 import com.whoknows.domain.ActionType;
+import com.whoknows.domain.Picture;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.TargetType;
@@ -12,6 +13,7 @@ import com.whoknows.vip.VipDetail;
 import com.whoknows.like.LikeService;
 import com.whoknows.mail.AliMailService;
 import com.whoknows.mail.RegisterMailInfo;
+import com.whoknows.picture.PictureService;
 import com.whoknows.reply.RelpyService;
 import com.whoknows.reply.ReplyDetail;
 import com.whoknows.search.Paging;
@@ -56,6 +58,25 @@ public class UserService {
 	private AliMailService aliMailService;
 	@Autowired
 	private TokenService tokenService;
+	@Autowired
+	private PictureService pictureService;
+
+	public boolean addUserPicture(Picture picture) {
+		try {
+			UserDetail user = currentUser();
+			if (user != null && user.getId() != null) {
+				Long id = pictureService.putPicture(picture);
+				if (id != null) {
+					userRepository.setUserPicture(user.getId(), id);
+					return true;
+				}
+			}
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 	public UserDetail currentUser() {
 		if (SecurityContextHolder.getContext().getAuthentication()

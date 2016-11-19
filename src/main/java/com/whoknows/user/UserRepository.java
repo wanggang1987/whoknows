@@ -27,7 +27,15 @@ public class UserRepository {
 
 	@Autowired
 	private PasswordEncoder encoder;
-
+	
+	public void  setUserPicture(Long userID, Long pictureId){
+		jdbcTemplate.update("update user set picture = ? where id = ? ",
+				ps -> {
+					ps.setString(1, "/img/" + String.valueOf(pictureId));
+					ps.setLong(2, userID);
+				});
+	}
+	
 	public User getUserById(Long id) {
 		return jdbcTemplate.query("select * from user where id = ? limit 1",
 				ps -> ps.setLong(1, id),
