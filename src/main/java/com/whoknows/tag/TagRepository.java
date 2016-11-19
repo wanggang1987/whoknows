@@ -87,7 +87,7 @@ public class TagRepository {
 		return jdbcTemplate.query("SELECT topic.* FROM topic "
 				+ "left join tag_topic on tag_topic.topic_id = topic.id "
 				+ "where tag_topic.tag_id = ? "
-				+ "order by topic.id desc "
+				+ "order by topic.rank desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, tagId);

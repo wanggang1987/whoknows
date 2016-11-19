@@ -18,7 +18,7 @@ public class ReplyRepository {
 
 	public List<Long> getTopicReplys(Long topicId, int page, int pageSize) {
 		return jdbcTemplate.query("select id from reply where topic_id = ? "
-				+ "order by id desc "
+				+ "order by rank desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, topicId);

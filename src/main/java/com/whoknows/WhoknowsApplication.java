@@ -3,7 +3,7 @@ package com.whoknows;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -11,9 +11,9 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @SpringBootApplication
-public class WhoknowsApplication extends WebMvcConfigurerAdapter{
+@EnableScheduling
+public class WhoknowsApplication extends WebMvcConfigurerAdapter {
 
-	
 	//setting View resolver
 	@Bean
 	public ViewResolver getViewResolver() {
@@ -23,7 +23,7 @@ public class WhoknowsApplication extends WebMvcConfigurerAdapter{
 		resolver.setSuffix(".jsp");
 		return resolver;
 	}
-	
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/app/**").addResourceLocations("/app/");
@@ -34,7 +34,7 @@ public class WhoknowsApplication extends WebMvcConfigurerAdapter{
 		registry.addResourceHandler("/bower_components/**").addResourceLocations("/bower_components/");
 		super.addResourceHandlers(registry);
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(WhoknowsApplication.class, args);
 	}
