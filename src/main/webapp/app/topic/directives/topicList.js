@@ -36,6 +36,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			}
 			scope.createComment = function(replyDetail){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}
@@ -52,6 +53,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			
 			scope.fllowTopic = function(topicDetail){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}
@@ -82,6 +84,7 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			
 			scope.likeReply = function(replyDetail){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}

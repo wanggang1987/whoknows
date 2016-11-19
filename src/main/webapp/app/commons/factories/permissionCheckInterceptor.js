@@ -13,7 +13,7 @@ angular.module('wkCommon').factory('permissionCheckInterceptor', function ($q, $
 					if ($location.path() !== '/login') { 
 						LocalStorageService.put('LastPage', $location.path());
 					}
-					$rootScope.$broadcast('event:loginRequired');
+					$location.path('/login');
 				} else {
 					$location.path('/');
 				}

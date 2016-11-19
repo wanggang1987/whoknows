@@ -30,6 +30,7 @@ angular.module('wkTag').controller('TagDetailCtrl',
 		
 		$scope.fllowTag = function(tag){
 			if(!UserService.isSignedIn()){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/login");
 				return;
 			}

@@ -42,19 +42,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers(HttpMethod.POST, "/login*").permitAll()
-				.antMatchers("/images/**").permitAll()
+				// static resource permit all
 				.antMatchers("index.html", "/app/**", "/p/**", "login*").permitAll()
 				.antMatchers("/images/**", "/styles/**", "/fronts/**", "/components/**", "/bower_components/**").permitAll()
+				// spring mvn controller permit all
+				.antMatchers(HttpMethod.POST, "/login*").permitAll()
 				.antMatchers("/user/current").permitAll()
+				.antMatchers(HttpMethod.PUT, "/user").permitAll()
 				.antMatchers("/token/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/img/**").permitAll()
+				// other spring mvn controller need auth
 				.antMatchers("/search/**").authenticated()
 				.antMatchers("/tag/**").authenticated()
 				.antMatchers("/topic/**").authenticated()
 				.antMatchers(HttpMethod.POST, "/img/**").authenticated()
 				.antMatchers("/hot/**").authenticated()
-				.antMatchers("/user/**").authenticated()
 				.antMatchers("/reply/**").authenticated()
 				.antMatchers("/follow/**").authenticated()
 				.antMatchers("/like/**").authenticated()

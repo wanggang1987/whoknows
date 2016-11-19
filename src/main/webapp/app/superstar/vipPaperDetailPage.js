@@ -4,6 +4,7 @@ angular.module('wkSuperstar').controller('vipPaperDetailCtrl',
 	function ($scope, $rootScope, $location, $route, $routeParams, $http, UserService, DEFAULT_IMG) {
 		console.log("wkSuperstar- vipPaperDetailCtrl load.")
 		if(!UserService.isSignedIn()){
+			LocalStorageService.put('LastPage', $location.path());
 			$location.path("/login");
 			return;
 		}
@@ -16,6 +17,7 @@ angular.module('wkSuperstar').controller('vipPaperDetailCtrl',
 		
 		$scope.likePaper = function(paper){
 			if(!UserService.isSignedIn()){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/login");
 				return;
 			}

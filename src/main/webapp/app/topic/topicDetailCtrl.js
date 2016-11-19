@@ -66,6 +66,7 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		
 		$scope.replyQuestion = function(){
 			if(!UserService.isSignedIn()){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/login");
 			}
 			var parm ={
@@ -111,6 +112,7 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		}
 		$scope.createComment = function(replyDetail){
 			if(!UserService.isSignedIn()){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/login");
 				return;
 			}
@@ -127,6 +129,7 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		
 		$scope.fllowTopic = function(topicDetail){
 			if(!UserService.isSignedIn()){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/login");
 				return;
 			}
@@ -149,6 +152,7 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		}
 		$scope.likeReply = function(replyDetail){
 			if(!UserService.isSignedIn()){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/login");
 				return;
 			}

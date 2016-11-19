@@ -45,6 +45,7 @@ angular.module('wkTag').directive('hotTagSiderbar', function ($location, UserSer
 			
 			scope.fllowTag = function(tag){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}

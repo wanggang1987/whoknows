@@ -6,6 +6,7 @@ angular.module('wkSuperstar').controller('CreateVipDocCtrl',
 		
 		var init = function(){
 			if(!UserService.isSignedIn() || !UserService.hasPermission(ROLE_TYPE.SITE_VIP)){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/");
 				return;
 			}
@@ -42,6 +43,7 @@ angular.module('wkSuperstar').controller('CreateVipDocCtrl',
 		
 		$scope.createVipDoc = function(){
 			if(!UserService.isSignedIn() || !UserService.hasPermission(ROLE_TYPE.SITE_VIP)){
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/");
 				return;
 			}

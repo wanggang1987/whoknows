@@ -5,6 +5,7 @@ angular.module('wkCommon').controller('SelfHomeCtrl',
 		console.log("wkCommon- SelfHomeCtrl load.")
 		
 		if(!UserService.isSignedIn()){
+			LocalStorageService.put('LastPage', $location.path());
 			$location.path("/login");
 			return;
 		}

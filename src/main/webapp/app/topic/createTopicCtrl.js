@@ -17,7 +17,7 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 		}
 		var init = function(){
 			if(!UserService.isSignedIn()){
-				LocalStorageService.put('LastPage', '/creteTopic', true);
+				LocalStorageService.put('LastPage', $location.path());
 				$location.path("/login");
 			}
 			$http.get("/tag/list").then(function(data){

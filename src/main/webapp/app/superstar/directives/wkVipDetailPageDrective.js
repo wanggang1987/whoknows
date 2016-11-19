@@ -18,6 +18,7 @@ angular.module('wkSuperstar').directive('wkVipDetailPage', function ($location, 
 			
 			scope.fllowVip = function(vip){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}
@@ -36,6 +37,7 @@ angular.module('wkSuperstar').directive('wkVipDetailPage', function ($location, 
 			
 			scope.likePaper = function(paper){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}

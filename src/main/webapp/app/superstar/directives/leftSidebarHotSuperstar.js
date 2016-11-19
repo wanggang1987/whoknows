@@ -46,6 +46,7 @@ angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($locat
 			
 			scope.fllowVip = function(vip){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}

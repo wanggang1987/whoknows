@@ -4,6 +4,7 @@ angular.module('wkTopic').controller('TopicCtrl',
 	function ($scope, $rootScope, $location, $route, $http, $window, UserService, LocalStorageService) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.")
 		if(!UserService.isSignedIn()){
+			LocalStorageService.put('LastPage', $location.path());
 			$location.path("/login");
 			return;
 		}

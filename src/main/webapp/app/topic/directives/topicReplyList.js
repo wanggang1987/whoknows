@@ -38,6 +38,7 @@ angular.module('wkTopic').directive('topicReplyList', function ($location, $log,
 			}
 			scope.createComment = function(replyDetail){
 				if(!UserService.isSignedIn()){
+					LocalStorageService.put('LastPage', $location.path());
 					$location.path("/login");
 					return;
 				}
