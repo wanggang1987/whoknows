@@ -43,6 +43,23 @@ public class HotService {
 		}
 	}
 
+	public List<VipDetail> listRandVip() {
+		try {
+			UserDetail user = userService.currentUser();
+
+			return hotDAO.listRandVip(pageSize).parallelStream().map(hotVip -> {
+				hotVip.setFollowCount(followService.followCount(hotVip.getUserID(), TargetType.user));
+				if (user != null && user.getId() != null) {
+					hotVip.setCurrentFollowed(followService.isFollowed(user.getId(), hotVip.getUserID(), TargetType.user));
+				}
+				return hotVip;
+			}).collect(Collectors.toList());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public List<VipDetail> listHotVip(String key, Integer page) {
 		try {
 			UserDetail user = userService.currentUser();
@@ -70,6 +87,23 @@ public class HotService {
 					hotTag.setCurrentFollowed(followService.isFollowed(user.getId(), hotTag.getTagID(), TargetType.tag));
 				}
 				return hotTag;
+			}).collect(Collectors.toList());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<TagDetail> listRandTags() {
+		try {
+			UserDetail user = userService.currentUser();
+
+			return hotDAO.listRandTag(pageSize).parallelStream().map(randTag -> {
+				randTag.setFollowCount(followService.followCount(randTag.getTagID(), TargetType.tag));
+				if (user != null && user.getId() != null) {
+					randTag.setCurrentFollowed(followService.isFollowed(user.getId(), randTag.getTagID(), TargetType.tag));
+				}
+				return randTag;
 			}).collect(Collectors.toList());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -37,6 +37,17 @@ public class HotController {
 		}
 	}
 
+	@RequestMapping(path = "/rand/vip", method = RequestMethod.GET)
+	public ResponseEntity listRandVip() {
+		List<VipDetail> vips = hotService.listRandVip();
+
+		if (vips != null) {
+			return ResponseEntity.ok(vips);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 	@RequestMapping(path = "/tag/{page}", method = RequestMethod.GET)
 	public ResponseEntity listHotTag(String keyWord, @PathVariable("page") Integer page) {
 		List<TagDetail> topics = null;
@@ -48,6 +59,17 @@ public class HotController {
 
 		if (topics != null) {
 			return ResponseEntity.ok(topics);
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
+	@RequestMapping(path = "/rand/tag", method = RequestMethod.GET)
+	public ResponseEntity listRandTag() {
+		List<TagDetail> tags = hotService.listRandTags();
+
+		if (tags != null) {
+			return ResponseEntity.ok(tags);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}

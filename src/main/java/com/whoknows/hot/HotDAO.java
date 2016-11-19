@@ -38,6 +38,24 @@ public class HotDAO {
 				});
 	}
 
+	public List<VipDetail> listRandVip(int pageSize) {
+		return jdbcTemplate.query("select user.* from user "
+				+ "left join user_role on user_role.user_id = user.id "
+				+ "where user_role.role_id = ( select id from role where role = '" + RoleType.SITE_VIP.toString() + "' limit 1 ) "
+				+ "order by rand() "
+				+ "limit ? ",
+				ps -> {
+					ps.setInt(1, pageSize);
+				},
+				(rs, row) -> {
+					VipDetail vip = new VipDetail();
+					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
+					vip.setPricture(rs.getString("picture"));
+					vip.setUserID(rs.getLong("id"));
+					return vip;
+				});
+	}
+
 	public List<VipDetail> listHotVip(String key, int page, int pageSize) {
 		return jdbcTemplate.query("select user.* from user "
 				+ "left join user_role on user_role.user_id = user.id "
@@ -72,6 +90,22 @@ public class HotDAO {
 				ps -> {
 					ps.setInt(1, pageSize);
 					ps.setInt(2, (page - 1) * pageSize);
+				},
+				(rs, row) -> {
+					TagDetail tag = new TagDetail();
+					tag.setPicture(null);
+					tag.setTagID(rs.getLong("id"));
+					tag.setTagName(rs.getNString("name"));
+					return tag;
+				});
+	}
+
+	public List<TagDetail> listRandTag(int pageSize) {
+		return jdbcTemplate.query("select * from tag "
+				+ "order by rand() "
+				+ "limit ? ",
+				ps -> {
+					ps.setInt(1, pageSize);
 				},
 				(rs, row) -> {
 					TagDetail tag = new TagDetail();
