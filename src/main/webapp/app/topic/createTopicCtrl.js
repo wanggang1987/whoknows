@@ -13,7 +13,7 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 			if($scope.content == undefined){
 		 		$scope.content = '';
 		 	}
-			$scope.content += '<img src="/img/'+ imgId +'" />';
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '<img style="max-width:100%" src="/img/'+ imgId +'" />');
 		}
 		var init = function(){
 			if(!UserService.isSignedIn()){

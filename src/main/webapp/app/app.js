@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('WhoKnows', ['ngResource', 'ngCookies', 'ngRoute', 'ngSanitize', 
+angular.module('WhoKnows', ['ngResource', 'ngCookies', 'ngRoute', 'ngSanitize', 'ngFileUpload', 'angular-img-cropper', 
 	'wkCommon',
 	'wkTopic',
 	'wkSuperstar',

@@ -39,7 +39,7 @@ angular.module('wkCommon').controller('SettingCtrl',
 			if($scope.setUser.profile == undefined){
 				$scope.setUser.profile = '';
 		 	}
-			$scope.setUser.profile += '<img src="/img/'+ imgId +'" />';
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '<img style="max-width:100%" src="/img/'+ imgId +'" />');
 		}
 		
 		$scope.resetPasswd = function(){

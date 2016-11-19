@@ -16,7 +16,7 @@ var getBrowser = function() {
 	}
 	return M[0];
 };
-
+//browser.driver.executeScript("tinyMCE.activeEditor.insertContent('This is <em>RICH</em> content')");
 var getBrowserVersion = function() {
 	var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
 	if (/trident/i.test(M[1])) {

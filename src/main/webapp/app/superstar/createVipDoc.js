@@ -37,7 +37,7 @@ angular.module('wkSuperstar').controller('CreateVipDocCtrl',
 				$scope.req = {};
 		 		$scope.req.content = '';
 		 	}
-			$scope.req.content += '<img src="/img/'+ imgId +'" />';
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '<img style="max-width:100%" src="/img/'+ imgId +'" />');
 		}
 		
 		$scope.createVipDoc = function(){

@@ -22,7 +22,7 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 			if($scope.content == undefined){
 		 		$scope.content = '';
 		 	}
-			$scope.content += '<img src="/img/'+ imgId +'" />';
+			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '<img style="max-width:100%" src="/img/'+ imgId +'" />');
 		}
 		
 		$scope.tinymceOptions1 = {

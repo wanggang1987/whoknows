@@ -1,7 +1,7 @@
 
 'use strict';
 
-var wkCommon = angular.module('wkCommon', ['ngRoute', 'ngFileUpload', 'angular-img-cropper']).config(function($routeProvider, $logProvider){
+var wkCommon = angular.module('wkCommon', ['ngRoute']).config(function($routeProvider, $logProvider){
 	$routeProvider.when('/selfPage', {
 		templateUrl: 'app/users/selfHomePage',
 		controller: 'SelfHomeCtrl',
