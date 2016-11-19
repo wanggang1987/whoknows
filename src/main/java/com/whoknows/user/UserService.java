@@ -61,20 +61,20 @@ public class UserService {
 	@Autowired
 	private PictureService pictureService;
 
-	public boolean addUserPicture(Picture picture) {
+	public Long addUserPicture(Picture picture) {
 		try {
 			UserDetail user = currentUser();
 			if (user != null && user.getId() != null) {
 				Long id = pictureService.putPicture(picture);
 				if (id != null) {
 					userRepository.setUserPicture(user.getId(), id);
-					return true;
+					return id;
 				}
 			}
-			return false;
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 	}
 

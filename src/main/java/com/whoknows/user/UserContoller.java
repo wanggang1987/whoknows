@@ -34,9 +34,9 @@ public class UserContoller {
 		Picture picture = new Picture();
 		picture.setName(uploadfile.getOriginalFilename());
 		picture.setStream(uploadfile.getBytes());
-
-		if (userService.addUserPicture(picture)) {
-			return ResponseEntity.ok().build();
+		Long id = userService.addUserPicture(picture);
+		if (id != null) {
+			return ResponseEntity.ok(id);
 		} else {
 			return ResponseEntity.badRequest().build();
 		}
