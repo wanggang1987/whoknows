@@ -45,6 +45,19 @@ angular.module('wkRegist').controller('RegistTagSelectCtrl',
 			})
 		}
 		
+		$scope.randomTag = function(){
+			$http.get("/hot/rand/tag").success(function(data){
+				$scope.tags = data;
+			})
+			
+		} 
+		
+		$scope.randomVip = function(){
+			$http.get("/hot/rand/vip").success(function(data){
+				$scope.vips = data;
+			})
+		}
+		
 		init();
 
 	});
