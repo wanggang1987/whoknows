@@ -5,8 +5,9 @@
 
         <div class="col-xs-12 col-sm-9">
           <div class="row self-info">
-          	<div class="col-xs-6 col-sm-3">
-          		<img alt="" src="../../images/selfPicture/2.png"></img>
+          	<div class="col-xs-6 col-sm-3 self-home-page-picture">
+          		<img alt="" ng-src="{{user.picture || defaultPeropleImg}}"></img>
+          		<span class="ProfileAvatarEditor-tip">修改头像</span>
           	</div>
           	<div class="col-xs-12 col-sm-9">
           		<h1>{{user.email}}</h1>
@@ -91,3 +92,4 @@
       </div><!--/row-->
 
  </div>
+ <wk-crop-img-modal callback-function="refreshImg(imgId)"></wk-crop-img-modal>

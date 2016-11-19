@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('WhoKnows').directive('wkNameSpan', function ($location, $window, UserService, DEFAULT_IMG) {
+angular.module('wkCommon').directive('wkNameSpan', function ($location, $window, UserService, DEFAULT_IMG) {
 
 	return {
 		restrict: 'EA',

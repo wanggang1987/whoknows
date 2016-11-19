@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('WhoKnows').directive('wkImgUploadModal', function ($location, $window, Upload) {
+angular.module('wkCommon').directive('wkImgUploadModal', function (Upload) {
 
 	return {
 		restrict: 'EA',
@@ -14,7 +14,7 @@ angular.module('WhoKnows').directive('wkImgUploadModal', function ($location, $w
 			scope.uploadingImg = false;
 			scope.uploadImgError = false;
 			scope.$on('event:upload:topic:img', function (event, data) {
-				$('#topicImgModal').modal({backdrop: 'static'});
+				elem.modal({backdrop: 'static'});
 			});
 			
 			scope.uploadImg = function(file){
@@ -25,8 +25,8 @@ angular.module('WhoKnows').directive('wkImgUploadModal', function ($location, $w
 				  });
 				 file.upload.then(function (response) {
 					 	scope.callbackFunction({imgId: response.data})
-					 	$("#topicImgModal").modal('hide');
-					 	scope.uploadingImg = false;
+					 	elem.modal('hide');
+					 	scope.uploadingImg = true;
 					 	scope.uploadImgError = false;
 				    }, function (response) {
 				    		scope.uploadingImg = false;

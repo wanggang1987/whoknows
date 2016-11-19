@@ -28,8 +28,8 @@
     "angular-ui-tinymce": "latest",
     "textAngular": "^1.5.1",
     "js-quantities": "^1.6.2",
-    "angular-filter": "0.5.8"
-
+    "angular-filter": "0.5.8",
+    "angular-img-cropper":"1.1.0"
   },
   "devDependencies": {
     "angular-mocks": "1.4.8",

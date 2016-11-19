@@ -321,7 +321,6 @@ body{
 .img-20-size{
 	margin-right:10px;
 	width:20px;
-	height:20px;
 	border:0px;
 }
 nav.navbar{ 
@@ -409,10 +408,38 @@ footer {
 	margin-top: 20px;
 }
 .self-home-page .self-info img{
-	height:200px;
 	width:150px;
-	border:0px;
+	border:1px solid #efefef;
+    height: 150px;
+    border-radius: 4px;
 }
+.self-home-page-picture{
+	position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,.3) inset;
+    overflow: hidden;
+    cursor: pointer;
+    padding:0;
+}
+.ProfileAvatarEditor-tip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,.8);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    opacity: 0;
+    -ms-filter: "alpha(Opacity=0)";
+    -webkit-transition: opacity .1s ease-out;
+    transition: opacity .1s ease-out;
+ }
 .self-home-page .self-info{
 	margin: 10px 0px 25px 0px;
 }
@@ -462,7 +489,6 @@ footer {
 	font-size:19px
 }
 .hot-topic-siderbar img{
-	height:50px;
 	width:50px;
 	border:0px;
 }
@@ -524,7 +550,6 @@ footer {
 
 .topic-list .topic-body .topic-body-author img{
 	width:25px;
-	height:25px;
 	padding:0;
 	border-radius: 3px;
     background-color: #eee;
@@ -606,7 +631,6 @@ topic-comment-list .topic-comment-body .topic-comment-body-author{
 }
 .topic-comment-list .topic-comment-body .topic-comment-body-author img{
 	width:25px;
-	height:25px;
 	padding:0;
 	border-radius: 3px;
     background-color: #eee;

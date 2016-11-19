@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkCommon').controller('SelfHomeCtrl',
-	function ($scope, $rootScope, $location, $route, $http, UserService) {
+	function ($scope, $rootScope, $location, $route, $http, UserService, DEFAULT_IMG) {
 		console.log("wkCommon- SelfHomeCtrl load.")
 		
 		if(!UserService.isSignedIn()){
@@ -10,6 +10,7 @@ angular.module('wkCommon').controller('SelfHomeCtrl',
 		}
 		var currentPage = 1;
 		var dataUrl = "";
+		$scope.defaultPeropleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 		$scope.topicLists = [];
 		$scope.hideReadMore = false;
 		
@@ -61,6 +62,16 @@ angular.module('wkCommon').controller('SelfHomeCtrl',
 		}
 		
 		var init = function(){
+			
+			$(".self-home-page-picture").hover(function(){
+			    $('.ProfileAvatarEditor-tip').css('opacity', '100');
+			},function(){
+				 $('.ProfileAvatarEditor-tip').css('opacity', '0');
+			});
+			$(".self-home-page-picture").click(function(){
+				$scope.$broadcast('event:crop:img');
+			})
+			
 			$http.get("/user/" + UserService.getCurrent().id).then(function(data){
 				$scope.user = data.data;
 			})
@@ -96,6 +107,10 @@ angular.module('wkCommon').controller('SelfHomeCtrl',
 				}
 				editType = false;
 			})
+		}
+		
+		$scope.refreshImg = function(imgId){
+			$scope.user.picture="/img/" + imgId;
 		}
 		init();
 		

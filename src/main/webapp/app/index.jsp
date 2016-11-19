@@ -6,8 +6,8 @@
 <!-- 检测浏览器 -->
 <script type="text/javascript" src="/app/commons/browserdcheck.js"></script>
 <title>LabNetwork knows</title>
+<link rel="icon" type="image/png" href="/images/favicon.png" />
 <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<!--  -->
 <link href="/styles/main.css" rel="stylesheet" media="screen" />
 <link rel="stylesheet" href="/components/fastselect-master/dist/fastselect.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -69,20 +69,22 @@
 	<script type="text/javascript" src="/bower_components/bootstrap/js/tab.js"></script>
 	<script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
 	<script type="text/javascript" src="/bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+	<script type="text/javascript" src="/bower_components/angular-img-cropper/dist/angular-img-cropper.min.js"></script>
 	<!-- self app js  -->
 	<script type="text/javascript" src="/app/app.js"></script>
-	<script type="text/javascript" src="/app/commons/directives/imgUploadModal.js"></script>
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/imgUploadModal.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/formateName.js"></script>
-	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/wkCropImgModal.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/nameSpan.js"></script>
-	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
-	<script type="text/javascript" src="/app/searchResult/searchResultCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/appCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/services/localStorageService.js"></script>
 	<script type="text/javascript" src="/app/commons/factories/permissionCheckInterceptor.js"></script>
+	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
+	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
+	<script type="text/javascript" src="/app/searchResult/searchResultCtrl.js"></script>
 	<script type="text/javascript" src="/app/homeCtrl.js"></script>
 	<script type="text/javascript" src="/app/users/selfHomeCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/topicModule.js"></script>
