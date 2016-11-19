@@ -95,6 +95,7 @@
 	<script type="text/javascript" src="/app/superstar/vipDetailPage.js"></script>
 	<script type="text/javascript" src="/app/superstar/vipPage.js"></script>
 	<script type="text/javascript" src="/app/superstar/directives/leftSidebarHotSuperstar.js"></script>
+	<script type="text/javascript" src="/app/superstar/vipPaperDetailPage.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/side-bar.js"></script>
 	<script type="text/javascript" src="/app/login/loginModule.js"></script>
 	<script type="text/javascript" src="/app/login/loginCtrl.js"></script>

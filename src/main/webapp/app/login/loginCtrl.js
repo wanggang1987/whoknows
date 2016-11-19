@@ -3,6 +3,11 @@
 angular.module('wkLogin').controller('LoginCtrl',
 	function ($scope, $http, $rootScope, $location, UserService, $log, LocalStorageService) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.")
+		if(UserService.isSignedIn()){
+			$location.path("/");
+			return;
+		}
+		
 		$scope.loggingError = false;
 		$scope.forgotPasswordRequest = function () {
 			$scope.$broadcast('event:forgotPassword');

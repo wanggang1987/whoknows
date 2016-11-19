@@ -20,6 +20,12 @@ var wkCommon = angular.module('wkSuperstar', ['ngRoute']).config(function($route
 		data: {
 			standalonePage: true
 		}
+	}).when('/vipPaperDetail/:id', {
+		templateUrl: 'app/superstar/vipPaperDetailPage',
+		controller: 'vipPaperDetailCtrl',
+		data: {
+			standalonePage: true
+		}
 	});
 });
 

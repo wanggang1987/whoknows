@@ -26,7 +26,7 @@
 			<div class="row" ng-repeat="paper in papers"> 
 				<div class="col-xs-20 col-sm-12"> 
 					<div class="topic-body" >
-						<h5 class="wk-blue-color"><p ng-bind-html="paper.paper.title | to_trusted"></p></h5>
+						<h5 class="wk-blue-color"><a ng-href="#/vipPaperDetail/{{paper.paper.id}}" ><p ng-bind-html="paper.paper.title | to_trusted"></p></a></h5>
 						<div class="topic-body-content">
 							<p ng-bind-html="paper.paper.content | to_trusted"></p>
 						</div>

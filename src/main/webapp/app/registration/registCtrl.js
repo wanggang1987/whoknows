@@ -3,6 +3,11 @@
 angular.module('wkRegist').controller('RegistCtrl',
 	function ($scope, $rootScope, $location, $route, $http) {
 		console.log("wkCommon- wkRegist.RegistCtrl  load.")
+		if(UserService.isSignedIn()){
+			$location.path("/");
+			return;
+		}
+		
 		$scope.registSuccess = false;
 		$scope.registError = false;
 		$scope.regist = function(){
