@@ -61,6 +61,8 @@
 	<script type="text/javascript" src="/bower_components/angular-resource/angular-resource.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script type="text/javascript" src="/bower_components/bootstrap/js/transition.js"></script>
+	<script type="text/javascript" src="/bower_components/bootstrap/js/collapse.js"></script>
 	<script type="text/javascript" src="/bower_components/bootstrap/js/dropdown.js"></script>
 	<script type="text/javascript" src="/bower_components/bootstrap/js/modal.js"></script>
 	<script type="text/javascript" src="/bower_components/tinymce/tinymce.min.js"></script>
