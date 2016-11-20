@@ -8,8 +8,8 @@
 			<div class="topic-header"><a href="#/topicDetail?id={{topic.topicDetail.topic.id}}"><p class="topic-list-title" ng-bind-html="topic.topicDetail.topic.title | to_trusted"></p> </a></div>
 			<div class="topic-body" ng-show="topic.replyDetail.reply != null">
 				<div class="topic-body-author">
-					<img ng-src="{{topic.topicDetail.author.picture || defaultPeopleImg}}" class="ng-cloak"></img>
-					<wk-name-span user="topic.topicDetail.author"></wk-name-span>
+					<img ng-src="{{topic.replyDetail.author.picture || defaultPeopleImg}}" class="ng-cloak"></img>
+					<wk-name-span ng-if="topic.replyDetail.author" user="topic.replyDetail.author"></wk-name-span>
 				</div>
 				<div class="topic-body-content">
 					<p ng-show="topic.replyDetail.shortContent.fullAble"><span ng-bind-html="topic.replyDetail.shortContent.text + '...' | to_trusted"></span><a href="javascript:void(0)" ng-show="topic.replyDetail.shortContent.fullAble" ng-click="toggelExpandReply(topic.replyDetail)">显示全部</a></p>

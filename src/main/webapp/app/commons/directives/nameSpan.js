@@ -10,11 +10,7 @@ angular.module('wkCommon').directive('wkNameSpan', function ($location, $window,
 			user : '=',
 		},
 		link: function (scope, elem) {
-			scope.goToUserPage = function(){
-				if(user !== undefined && user != null ){
-					
-				}
-			}	
+			
 		}
 	};
 });
