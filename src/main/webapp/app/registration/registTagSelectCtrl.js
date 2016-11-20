@@ -27,19 +27,17 @@ angular.module('wkRegist').controller('RegistTagSelectCtrl',
 		
 		$scope.enterWk = function(){
 			var user = UserService.getCurrent();
-			var parm ={"vips": [],
-					"tags":[]};
-			
-			_.each($scope.vips , function(vip){
-				if($scope.regist.vips[vip.userID]){
-					parm.vips.push(vip);
+			var parm ={"vips": [],"tags":[]};
+			for(var index in $scope.regist.tags){
+				if($scope.regist.tags[index]){
+					parm.tags.push({"tagID": index});
 				}
-			});
-			_.each($scope.tags, function(tag){
-				if($scope.regist.tags[tag.tagID]){
-					parm.tags.push(tag);
+			}
+			for(var index in $scope.regist.vips){
+				if($scope.regist.vips[index]){
+					parm.vips.push({"userID": index});
 				}
-			})
+			}
 			$http.post("/follow/recommend/" + user.id, parm).success(function(){
 				$location.path("/")
 			})
