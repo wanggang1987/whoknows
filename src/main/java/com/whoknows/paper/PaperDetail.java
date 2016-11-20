@@ -6,9 +6,18 @@ import com.whoknows.user.UserDetail;
 public class PaperDetail {
 
 	private Paper paper;
+	private String shortText;
 	private UserDetail author;
 	private Integer likeCount;
 	private Boolean currentLiked;
+
+	public String getShortText() {
+		return shortText;
+	}
+
+	public void setShortText(String shortText) {
+		this.shortText = shortText;
+	}
 
 	public Paper getPaper() {
 		return paper;

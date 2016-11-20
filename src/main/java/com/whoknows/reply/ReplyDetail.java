@@ -6,10 +6,19 @@ import com.whoknows.user.UserDetail;
 public class ReplyDetail {
 
 	private Reply reply;
+	private String shortText;
 	private UserDetail author;
 	private Integer likeCount;
 	private Integer commentCount;
 	private Boolean currentLiked;
+
+	public String getShortText() {
+		return shortText;
+	}
+
+	public void setShortText(String shortText) {
+		this.shortText = shortText;
+	}
 
 	public Boolean getCurrentLiked() {
 		return currentLiked;

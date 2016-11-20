@@ -10,7 +10,15 @@ import org.jsoup.nodes.TextNode;
 import org.jsoup.select.NodeTraversor;
 import org.jsoup.select.NodeVisitor;
 
-public class Highlighter {
+public class HtmlProcessor {
+
+	public static String getShortText(String htmlString, int limit) {
+		String str = Jsoup.parse(htmlString.trim()).text();
+		if (str.length() > limit) {
+			str = str.substring(0, limit);
+		}
+		return str;
+	}
 
 	public static String getHighlightedHtml(String searchString, String htmlString) {
 

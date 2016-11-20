@@ -60,6 +60,7 @@ public class SearchService {
 				topic.setTitle(CommonFunction.highLight(key, topic.getTitle()));
 				topic.setContent(CommonFunction.highLight(key, topic.getContent()));
 				topicDetail.setTopic(topic);
+				topicDetail.setShortText(CommonFunction.highLight(key, CommonFunction.shortText(topic.getContent())));
 				topicDetail.setAuthor(userService.getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				if (user != null && user.getId() != null) {
@@ -72,6 +73,7 @@ public class SearchService {
 					ReplyDetail replyDetail = new ReplyDetail();
 					reply.setContent(CommonFunction.highLight(key, reply.getContent()));
 					replyDetail.setReply(reply);
+					replyDetail.setShortText(CommonFunction.highLight(key, CommonFunction.shortText(reply.getContent())));
 					replyDetail.setAuthor(userService.getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));

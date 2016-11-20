@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommonFunction {
 
+	private static final int shortTextLimit = 200;
+
 	public static String getUserName(String first_name, String last_name, String email) {
 		String name = new String();
 		if (StringUtils.isNotEmpty(last_name)) {
@@ -21,6 +23,10 @@ public class CommonFunction {
 	}
 
 	public static String highLight(String key, String html) {
-		return Highlighter.getHighlightedHtml(key, html);
+		return HtmlProcessor.getHighlightedHtml(key, html);
+	}
+
+	public static String shortText(String html) {
+		return HtmlProcessor.getShortText(html, shortTextLimit);
 	}
 }

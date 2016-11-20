@@ -8,10 +8,19 @@ import java.util.List;
 public class TopicDetail {
 
 	private Topic topic;
+	private String shortText;
 	private UserDetail author;
 	private Integer followCount;
 	private Boolean currentFollowed;
 	private List<ReplyDetail> replys;
+
+	public String getShortText() {
+		return shortText;
+	}
+
+	public void setShortText(String shortText) {
+		this.shortText = shortText;
+	}
 
 	public Boolean getCurrentFollowed() {
 		return currentFollowed;
