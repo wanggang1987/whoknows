@@ -5,7 +5,10 @@
       	<h5>我们将根据你关注的话题定制首页推荐内容</h5>
       </div>
       <div class="hot-topic-list">
-      	<h4>热门话题</h4><a ng-click="randomTag()" href="javascript:void(0)">换一组</a>
+      	<div class="row">
+      		<div class="col-lg-8 text-left"><h4>热门话题</h4></div>
+      		<div class="col-lg-4 text-left"><a ng-click="randomTag()" href="javascript:void(0)">换一组</a></div>
+      	</div>
       	<div class="row">
       		<div class="col-lg-2 col-md-2" ng-repeat="tag in tags">
       			<img alt="" ng-src="{{tag.picture || defaultTagImg}}" />
@@ -17,7 +20,11 @@
       </div> 
       <hr/>
       <div class="hot-superstar-list">
-      	<h4>热门大咖</h4><a ng-click="randomVip()" href="javascript:void(0)">换一组</a>
+      	<div class="row">
+      		<div class="col-lg-8 text-left"><h4>热门大咖</h4></div>
+      		<div class="col-lg-4 text-left"><a ng-click="randomVip()" href="javascript:void(0)">换一组</a></div>
+      	</div>
+      	
       	<div class="row">
       		<div class="col-lg-2 col-md-2" ng-repeat="vip in vips">
       			<img alt="" ng-src="{{vip.picture || defaultPeopleImg}}" />
