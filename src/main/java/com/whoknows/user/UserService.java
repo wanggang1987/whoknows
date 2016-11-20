@@ -133,9 +133,6 @@ public class UserService {
 		try {
 			user.setAction(ActionType.pending.name());
 			Long id = userRepository.createUser(user);
-			if (id == null) {
-				return false;
-			}
 			String token = tokenService.genToken();
 			tokenService.storeToken(id, token);
 
