@@ -23,7 +23,6 @@
 	              	<li class="fill-maring-left-100 dropdown" ng-show="loginIn" ng-class="{ active: isActive('/selfPage') }">
 		              	<a href="#/selfPage" data-toggle="dropdown" class="wk-header-account-a">
 		              		<img alt="" class="img-20-size" ng-src="{{user.picture || defaultPeopleImg}}"></img> <span class="ng-cloak">{{user | formateName }}</span>
-		              		<span class="glyphicon glyphicon-chevron-down"></span>
 		              	</a>
 		              	<ul class="dropdown-menu wk-header-account-dropdown" role="menu" aria-labelledby="dLabel">
 						  	<li><a href="#/selfPage" ><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;我的主页</a></li>
