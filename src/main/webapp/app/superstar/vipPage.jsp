@@ -16,7 +16,6 @@
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
-          <hot-tag-siderbar topic="ttttopic"></hot-tag-siderbar>
 		  <hot-superstar-siderbar star="str"></hot-superstar-siderbar>
         </div><!--/.sidebar-offcanvas-->
       </div><!--/row-->
