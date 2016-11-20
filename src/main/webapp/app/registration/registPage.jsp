@@ -78,7 +78,7 @@
 						  
 						  <div class="form-group panel-footer">
 						    <div class="col-sm-offset-4 col-sm-10">
-						      <button type="submit" class="btn btn-default login-btn" ng-disabled="registForm.$invalid || registInfo.passwd != registInfo.passwordAgain || registSuccess " ng-click="regist()">提交</button>
+						      <button type="submit" class="btn btn-default login-btn" ng-disabled="registForm.$invalid || registInfo.passwd != registInfo.passwordAgain || registSuccess || processing" ng-click="regist()">提交</button>
 						      <button type="submit" class="btn btn-default cancel-btn">取消</button>
 						    </div>
 						  </div>
