@@ -1,0 +1,56 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+	
+	<changeSet id="add tags" author="labknows">
+		<sql>
+			INSERT INTO tag (name,action) VALUES ('酰胺化',NULL);
+			INSERT INTO tag (name,action) VALUES ('锰催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('自由基',NULL);
+			INSERT INTO tag (name,action) VALUES ('过渡金属',NULL);
+			INSERT INTO tag (name,action) VALUES ('银催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('胺化反应',NULL);
+			INSERT INTO tag (name,action) VALUES ('小分子催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('钨催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('苷化',NULL);
+			INSERT INTO tag (name,action) VALUES ('氰化',NULL);
+			INSERT INTO tag (name,action) VALUES ('氨基保护',NULL);
+			INSERT INTO tag (name,action) VALUES ('氟化',NULL);
+			INSERT INTO tag (name,action) VALUES ('羰基保护',NULL);
+			INSERT INTO tag (name,action) VALUES ('溴化',NULL);
+			INSERT INTO tag (name,action) VALUES ('三氟甲基化',NULL);
+			INSERT INTO tag (name,action) VALUES ('硝化',NULL);
+			INSERT INTO tag (name,action) VALUES ('二氟甲基化',NULL);
+			INSERT INTO tag (name,action) VALUES ('磺酰化',NULL);
+			INSERT INTO tag (name,action) VALUES ('碘化',NULL);
+			INSERT INTO tag (name,action) VALUES ('卤化',NULL);
+			INSERT INTO tag (name,action) VALUES ('水解',NULL);
+			INSERT INTO tag (name,action) VALUES ('氯化',NULL);
+			INSERT INTO tag (name,action) VALUES ('铜催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('重排',NULL);
+			INSERT INTO tag (name,action) VALUES ('双羟化',NULL);
+			INSERT INTO tag (name,action) VALUES ('金催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('烯化反应',NULL);
+			INSERT INTO tag (name,action) VALUES ('烯胺化',NULL);
+			INSERT INTO tag (name,action) VALUES ('铁催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('重氮化',NULL);
+			INSERT INTO tag (name,action) VALUES ('光催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('铑催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('烯丙基化',NULL);
+			INSERT INTO tag (name,action) VALUES ('氧化还原',NULL);
+			INSERT INTO tag (name,action) VALUES ('釕催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('芳基化',NULL);
+			INSERT INTO tag (name,action) VALUES ('天然产物',NULL);
+			INSERT INTO tag (name,action) VALUES ('钴催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('氢化',NULL);
+			INSERT INTO tag (name,action) VALUES ('全合成',NULL);
+			INSERT INTO tag (name,action) VALUES ('镍催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('糖化学',NULL);
+			INSERT INTO tag (name,action) VALUES ('钯催化',NULL);
+			INSERT INTO tag (name,action) VALUES ('增环反应',NULL);
+		</sql>
+	</changeSet>
+</databaseChangeLog>
