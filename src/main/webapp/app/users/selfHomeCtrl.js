@@ -111,8 +111,9 @@ angular.module('wkCommon').controller('SelfHomeCtrl',
 		}
 		
 		$scope.refreshImg = function(imgId){
-			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '<img style="max-width:100%" src="/img/'+ imgId +'" />');
+			$scope.user.picture="/img/" + imgId;
 		}
+		
 		init();
 		
 		

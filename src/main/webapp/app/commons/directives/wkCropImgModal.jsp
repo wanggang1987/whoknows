@@ -18,7 +18,7 @@
     					<div>{{$scope.cropper.sourceImage}}
 				      <canvas width="500" height="300" id="canvas" image-cropper image="cropper.sourceImage" cropped-image="cropper.croppedImage" crop-width="150" crop-height="150" min-width="50" min-height="50" keep-aspect="true" crop-area-bounds="bounds"></canvas>
 				    </div>
-				    <div ng-show="cropper.croppedImage!=null"><img ng-src="{{cropper.croppedImage}}" /></div>
+				    <div class="text-center" ng-show="cropper.croppedImage!=null"><img ng-src="{{cropper.croppedImage}}" /></div>
 				     <span class="wk-warn-color" ng-show="myForm.file.$error.maxSize">文件大小超过500k.请选择合适大小的图片上传</span>
 					 <span class="text-center" ng-show="uploadingImg">图片上传中...</span>
 					 <span class="wk-warn-color" ng-show="uploadImgError">图片上传失败!请重试.</span>
