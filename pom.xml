@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.whoknows</groupId>
-	<artifactId>whoknows</artifactId>
+	<artifactId>labkonws</artifactId>
 	<version>0.2.0</version>
 	<packaging>war</packaging>
 
