@@ -26,8 +26,9 @@ angular.module('wkCommon').directive('wkImgUploadModal', function (Upload) {
 				 file.upload.then(function (response) {
 					 	scope.callbackFunction({imgId: response.data})
 					 	elem.modal('hide');
-					 	scope.uploadingImg = true;
+					 	scope.uploadingImg = false;
 					 	scope.uploadImgError = false;
+					 	scope.picFile = null;
 				    }, function (response) {
 				    		scope.uploadingImg = false;
 				    		scope.uploadImgError = true;
