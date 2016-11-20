@@ -2,7 +2,6 @@
 
 angular.module('wkTopic').controller('CreateTopicCtrl',
 	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService, TINYMCE) {
-		console.log("wkCommon- wkTopic.TopicCtrl  load.");
 		$scope.tagEmptyWarn = false;
 		
 		$scope.closeWarnPanel = function(){

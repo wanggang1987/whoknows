@@ -2,7 +2,6 @@
 
 angular.module('wkCommon').controller('SettingCtrl',
 	function ($scope, $rootScope, $location, UserService, $http, TINYMCE, LocalStorageService) {
-		console.log("wkCommon- SettingCtrl load.")
 		if(!UserService.isSignedIn()){
 			LocalStorageService.put('LastPage', $location.path());
 			$location.path("/login");

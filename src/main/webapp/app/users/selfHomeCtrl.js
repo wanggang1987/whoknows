@@ -2,7 +2,6 @@
 
 angular.module('wkUser').controller('SelfHomeCtrl',
 	function ($scope, $rootScope, $location, $route, $http, UserService, DEFAULT_IMG, LocalStorageService) {
-		console.log("wkUser- SelfHomeCtrl load.")
 		
 		if(!UserService.isSignedIn()){
 			LocalStorageService.put('LastPage', $location.path());

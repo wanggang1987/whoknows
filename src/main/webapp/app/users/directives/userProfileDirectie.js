@@ -12,8 +12,6 @@ angular.module('wkUser').directive('wkUserProfile', function ($location, $log, $
 			enableEditUser : '='
 		},
 		link: function (scope) {
-			console.log('----');
-			console.log(scope.user)
 			var currentPage = 1;
 			var dataUrl = "";
 			scope.defaultPeropleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
@@ -21,11 +19,8 @@ angular.module('wkUser').directive('wkUserProfile', function ($location, $log, $
 			scope.hideReadMore = false;
 			
 			scope.loadCountInfo = function(){
-				console.log("/user/home/count/into/" + scope.user.id)
 				$http.get("/user/home/count/into/" + scope.user.id).success(function(data){
 					scope.contInfo = data;
-					console.log("/user/home/count/into/" + scope.user.id)
-					console.log(data)
 				}).error(function(){
 					scope.contInfo = {"followCount": 0,"createTopicCount": 0,"replyCount": 0}
 				});
@@ -44,7 +39,6 @@ angular.module('wkUser').directive('wkUserProfile', function ($location, $log, $
 				}).error(function(){
 					scope.hideReadMore = true;
 				});
-				console.log("---" + dataUrl + currentPage + " - " + scope.hideReadMore )
 			}
 			
 			var clearData = function(url){
