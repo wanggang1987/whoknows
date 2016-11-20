@@ -54,16 +54,15 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 		}
 		
 		$scope.createQuestion = function(){
-			var reqTags = [];
 			var tags = $('.multipleSelect').val();
 			if(tags == undefined || tags == null || tags.length == 0){
-//				$scope.tagEmptyWarn = true;
-//				return;
-			}else{
-				_.each(tags, function(tag){
-					reqTags.push({"value" : tag});
-				})
+				$scope.tagEmptyWarn = true;
+				return;
 			}
+			var reqTags = [];
+			_.each(tags, function(tag){
+				reqTags.push({"value" : tag});
+			})
 			var req ={ "topic" : {
 						tagId: $('.multipleSelect').val(),
 						user_id : UserService.getCurrent().id,
