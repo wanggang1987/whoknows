@@ -242,6 +242,16 @@ body{
 	opacity : 0.65;
 	
 }
+/*----------header page-------------*/
+.wk-header-account-a{
+	width:118px;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.wk-header-account-dropdown{
+	width:118px;
+}
 /*----------side bar page-------------*/
 .contact-side-bar {
     position: fixed;
