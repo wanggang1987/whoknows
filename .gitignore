@@ -1,0 +1,11 @@
+/target/
+.classpath
+.project
+bower.json.bk
+.metadata/**
+.mvn/**
+.settings/**
+Servers/**
+node/**
+:
+database.properties

@@ -1,0 +1,56 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="picture table" author="whoknows">
+        <dropColumn tableName="picture" columnName="stream_mb"/>
+        <renameColumn tableName="picture" oldColumnName="stream_b" newColumnName="stream" columnDataType="blob"/>
+    </changeSet>
+    
+    <changeSet id="picture table 2" author="whoknows">
+        <modifyDataType tableName="picture" columnName="stream" newDataType="MEDIUMBLOB"/>
+    </changeSet>
+    
+    <changeSet id="tag table" author="whoknows">
+        <sql>
+            ALTER TABLE tag ADD UNIQUE (name);
+        </sql>
+    </changeSet>
+    
+    <changeSet id="modify content" author="whoknows">
+        <modifyDataType tableName="topic" columnName="content" newDataType="varchar(20000)"/>
+        <modifyDataType tableName="reply" columnName="content" newDataType="varchar(20000)"/>
+        <modifyDataType tableName="comment" columnName="content" newDataType="varchar(20000)"/>
+    </changeSet>
+    
+    <changeSet id="user table 1" author="whoknows">
+        <modifyDataType tableName="user" columnName="passwd" newDataType="varchar(250)"/>
+    </changeSet>
+    
+    <changeSet id="user table 2" author="whoknows">
+        <renameColumn tableName="user" oldColumnName="comapny_name" newColumnName="company_name" columnDataType="varchar(1024)"/>
+    </changeSet>
+    
+    <changeSet id="topic table" author="whoknows">
+        <addColumn tableName="topic">
+            <column name="rank" type="bigint"/>
+        </addColumn>
+        
+        <createIndex tableName="topic" indexName="rank">
+            <column name="rank"/>
+        </createIndex>
+    </changeSet>
+    <changeSet id="tag table-1" author="whoknows">
+    		<sql>
+    			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('有机催化',NULL,3);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('光氧化还原',NULL,2);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('糖化学',NULL,1);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('天然产物全合成',NULL,1);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('波谱解析',NULL,1);
+			INSERT INTO `tag` (`name`,`action`,`rank`) VALUES ('计算机辅助药物设计',NULL,NULL);
+    		</sql>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,29 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="set auto time" author="whoknows">
+        <renameColumn tableName="follow" oldColumnName="time" newColumnName="create_time" columnDataType="timestamp"/>
+        <renameColumn tableName="like" oldColumnName="time" newColumnName="create_time" columnDataType="timestamp"/>
+        <renameColumn tableName="login_history" oldColumnName="time" newColumnName="create_time" columnDataType="timestamp"/>
+        <renameColumn tableName="search_history" oldColumnName="time" newColumnName="create_time" columnDataType="timestamp"/>
+        
+        <dropColumn tableName="picture" columnName="view_time"/>
+        
+        <sql>
+            ALTER TABLE comment CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE follow CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE `like` CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE login_history CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE picture CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE reply CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE search_history CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE topic CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE user CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+            ALTER TABLE vip CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

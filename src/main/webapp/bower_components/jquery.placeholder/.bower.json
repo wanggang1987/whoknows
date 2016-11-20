@@ -1,0 +1,14 @@
+{
+  "name": "jquery.placeholder",
+  "homepage": "https://github.com/matoilic/jquery.placeholder",
+  "version": "0.2.4",
+  "_release": "0.2.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.4",
+    "commit": "2ce5a44ea59cb5661044113105d269ec070adf28"
+  },
+  "_source": "https://github.com/matoilic/jquery.placeholder.git",
+  "_target": "~0.2.4",
+  "_originalSource": "jquery.placeholder"
+}

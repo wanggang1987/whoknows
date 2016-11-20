@@ -1,0 +1,26 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="reply rank" author="whoknows">
+		<addColumn tableName="reply" >
+			<column name="rank" type="bigint"/>
+		</addColumn>
+		
+		<createIndex tableName="reply" indexName="rank">
+			<column name="rank"/>
+		</createIndex>
+		
+	</changeSet>
+	
+	<changeSet id="update user2" author="whoknows">
+		<dropColumn tableName="user" columnName="phone"/>
+		<addColumn tableName="user">
+			<column name="phone" type="varchar(20)"/>
+		</addColumn>
+	</changeSet>
+	
+</databaseChangeLog>

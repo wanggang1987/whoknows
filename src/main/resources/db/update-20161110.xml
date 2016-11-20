@@ -1,0 +1,105 @@
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="edit signature" author="whoknows">
+		<dropColumn tableName="user" columnName="signature_id"/>
+		<addColumn tableName="user">
+			<column name="signature" type="varchar(1000)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="edit vip profile" author="whoknows">
+		<dropColumn tableName="vip" columnName="personal_profile_id"/>
+		<addColumn tableName="vip">
+			<column name="personal_profile" type="varchar(5000)"/>
+		</addColumn>
+	</changeSet>
+	
+	<changeSet id="add vip role" author="whoknows">
+		<sql>
+			insert into role(role) values("SITE_VIP");
+		</sql>
+	</changeSet>
+	
+	<changeSet id="merge user vip table" author="whoknows">
+		<addColumn tableName="user">
+			<column name="rank" type="bigint"/>
+			<column name="profile" type="varchar(5000)"/>
+		</addColumn>
+		
+		<dropTable tableName="vip"/>
+	</changeSet>
+	
+	<changeSet id="drop extra index" author="whoknows">
+		<dropIndex tableName="user" indexName="email_2"/>
+		<createIndex tableName="user" indexName="rank">
+			<column name="rank"/>
+		</createIndex>
+	</changeSet>
+	
+	<changeSet id="drop vip column" author="whoknows">
+		<dropColumn tableName="user" columnName="vip"/>
+	</changeSet>
+	
+	<changeSet id="add paper table" author="whoknows">
+		<createTable tableName="paper">
+			<column name="id" autoIncrement="true" type="bigint">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="title" type="varchar(1024)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="content" type="blob">
+				<constraints nullable="false"/>
+			</column>
+			<column name="rank" type="bigint"/>
+			<column name="action" type="varchar(20)"/>
+			<column name="create_time" type="timestamp"/>
+			<column name="update_time" type="timestamp"/>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="paper index" author="whoknows">
+		<createIndex tableName="paper" indexName="user_id">
+			<column name="user_id"/>
+		</createIndex>
+		<createIndex tableName="paper" indexName="rank">
+			<column name="rank"/>
+		</createIndex>
+		<createIndex tableName="paper" indexName="create_time">
+			<column name="create_time"/>
+		</createIndex>
+		<createIndex tableName="paper" indexName="update_time">
+			<column name="update_time"/>
+		</createIndex>
+	</changeSet>
+
+	<changeSet id="paper table" author="whoknows">
+		<sql>
+			ALTER TABLE paper CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+		</sql>
+	</changeSet>
+	
+	<changeSet id="add token table" author="whoknows">
+		<createTable tableName="token">
+			<column name="id" autoIncrement="true" type="bigint">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="token" type="varchar(100)"/>
+			<column name="create_time" type="timestamp"/>
+		</createTable>
+		<sql>
+			ALTER TABLE token CHANGE create_time create_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+		</sql>
+	</changeSet>
+</databaseChangeLog>

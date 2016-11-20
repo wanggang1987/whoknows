@@ -1,0 +1,138 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="add role" author="whoknows">
+        <createTable tableName="role">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role" type="varchar(20)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        
+        <addUniqueConstraint tableName="role" columnNames="role"/>
+        
+        <addColumn tableName="user">
+            <column name="role_id" type="bigint"/>
+        </addColumn>
+        
+        <createIndex tableName="user" indexName="role_id">
+            <column name="role_id"/>
+        </createIndex>
+        
+        <sql>
+            insert into role(role) values("SITE_ADMIN");
+            insert into role(role) values("SITE_USER");
+        </sql>
+    </changeSet>
+    
+    <changeSet id="add user emial unique" author="whoknows">
+        <addUniqueConstraint tableName="user" columnNames="email"/>
+        <addColumn tableName="user">
+            <column name="title" type="varchar(40)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="issue_tag" author="whoknows">
+        <createTable tableName="issue_tag">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="issue_id" type="bigint"/>
+            <column name="tag_id" type="bigint"/>
+        </createTable>
+        
+        <createIndex tableName="issue_tag" indexName="issue_id">
+            <column name="issue_id"/>
+        </createIndex>
+        <createIndex tableName="issue_tag" indexName="tag_id">
+            <column name="tag_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="add action" author="whoknows">
+        <addColumn tableName="user">
+            <column name="action" type="varchar(20)"/>
+        </addColumn>
+        <addColumn tableName="tag">
+            <column name="action" type="varchar(20)"/>
+        </addColumn>
+        <addColumn tableName="issue">
+            <column name="action" type="varchar(20)"/>
+        </addColumn>
+        <addColumn tableName="reply">
+            <column name="action" type="varchar(20)"/>
+        </addColumn>
+        <addColumn tableName="comment">
+            <column name="action" type="varchar(20)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="rename issue_tag" author="whoknows">
+        <renameTable oldTableName="issue_tag" newTableName="tag_issue"/>
+    </changeSet>
+    
+    <changeSet id="move rank from issue to tag" author="whoknows">
+        <dropColumn tableName="issue" columnName="rank"/>
+        <addColumn tableName="tag">
+            <column name="rank" type="bigint"/>
+        </addColumn>
+        <createIndex tableName="tag" indexName="rank">
+            <column name="rank"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="add time" author="whoknows">
+        <addColumn tableName="comment">
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="issue">
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </addColumn>
+        <addColumn tableName="reply">
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="add time index" author="whoknows">
+        <createIndex tableName="comment" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="comment" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="issue" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="issue" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="reply" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="reply" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="user" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="user" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+        <createIndex tableName="vip" indexName="create_time">
+            <column name="create_time"/>
+        </createIndex>
+        <createIndex tableName="vip" indexName="update_time">
+            <column name="update_time"/>
+        </createIndex>
+    </changeSet>
+    
+</databaseChangeLog>

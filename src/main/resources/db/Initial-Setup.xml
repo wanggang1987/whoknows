@@ -1,0 +1,295 @@
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="utf8" author="whoknows">
+        <sql>
+            ALTER DATABASE whoknows CHARACTER SET utf8 COLLATE utf8_general_ci;
+        </sql>
+    </changeSet>
+	
+    <changeSet id="user" author="whoknows">
+        <createTable tableName="user">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="passwd" type="varchar(30)"/>
+            <column name="e_pass" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)"/>
+            <column name="last_name" type="varchar(50)"/>
+            <column name="comapny_name" type="varchar(50)"/>
+            <column name="province" type="varchar(20)"/>
+            <column name="city" type="varchar(20)"/>
+            <column name="address" type="varchar(100)"/>
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="login_history" author="whoknows">
+        <createTable tableName="login_history">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="timestamp"/>
+            <column name="ip" type="varchar(100)"/>
+        </createTable>
+    </changeSet>
+        
+    <changeSet id="vip" author="whoknows">
+        <createTable tableName="vip">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="personal_profile_id" type="bigint"/>
+            <column name="create_time" type="timestamp"/>
+            <column name="update_time" type="timestamp"/>
+        </createTable>
+        
+        <addColumn tableName="user">
+            <column name="vip" type="boolean"/>
+        </addColumn>
+    </changeSet>
+	
+    <changeSet id="picture" author="whoknows">  
+        <createTable tableName="picture">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(100)" />
+            <column name="width" type="int"/>
+            <column name="height" type="int"/>
+            <column name="stream_b" type="BLOB"/>
+            <column name="stream_mb" type="MEDIUMBLOB"/>
+        </createTable>
+        
+        <addColumn tableName="user">
+            <column name="picture" type="varchar(1024)"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="user education" author="whoknows">
+        <addColumn tableName="user">
+            <column name="education" type="varchar(30)"/>
+            <column name="signature_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="picture time" author="whoknows">
+        <addColumn tableName="picture">
+            <column name="create_time" type="timestamp"/>
+            <column name="view_time" type="timestamp"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="login and vip index" author="whoknows">
+        <createIndex tableName="login_history" indexName="user_id">
+            <column name="user_id"/>
+        </createIndex>
+        
+        <createIndex tableName="vip" indexName="user_id">
+            <column name="user_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="tag" author="whoknows">
+        <createTable tableName="tag">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(100)"/> 
+        </createTable>
+        
+        <createIndex tableName="tag" indexName="name">
+            <column name="name"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="follow" author="whoknows">
+        <createTable tableName="follow">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="target_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createIndex tableName="follow" indexName="user_id">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex tableName="follow" indexName="target_id">
+            <column name="target_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="add index" author="whoknows">
+        <createIndex tableName="follow" indexName="type">
+            <column name="type"/>
+        </createIndex>
+        
+        <createIndex tableName="user" indexName="email">
+            <column name="email"/>
+        </createIndex>
+        <createIndex tableName="user" indexName="phone">
+            <column name="phone"/>
+        </createIndex>
+        <createIndex tableName="user" indexName="signature_id">
+            <column name="signature_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="add index 2" author="whoknows">
+        <createIndex tableName="vip" indexName="personal_profile_id">
+            <column name="personal_profile_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="issue" author="whoknows">
+        <createTable tableName="issue">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="title" type="varchar(1024)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="blob">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createIndex tableName="issue" indexName="user_id">
+            <column name="user_id"/>
+        </createIndex>
+        
+        <createTable tableName="reply">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="issue_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="varchar(1024)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createIndex tableName="reply" indexName="user_id">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex tableName="reply" indexName="issue_id">
+            <column name="issue_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="add rank" author="whoknows">
+        <addColumn tableName="vip" >
+            <column name="rank" type="bigint"/>
+        </addColumn>
+        <createIndex tableName="vip" indexName="rank">
+            <column name="rank"/>
+        </createIndex>
+        
+        <addColumn tableName="issue" >
+            <column name="rank" type="bigint"/>
+        </addColumn>
+        <createIndex tableName="issue" indexName="rank">
+            <column name="rank"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="comment" author="whoknows">
+        <createTable tableName="comment">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reply_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="content" type="varchar(1024)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createIndex tableName="comment" indexName="user_id">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex tableName="comment" indexName="reply_id">
+            <column name="reply_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="like" author="whoknows">
+        <createTable tableName="like">
+            <column name="id" autoIncrement="true" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="target_type" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="target_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createIndex tableName="like" indexName="user_id">
+            <column name="user_id"/>
+        </createIndex>
+        <createIndex tableName="like" indexName="target_type">
+            <column name="target_type"/>
+        </createIndex>
+        <createIndex tableName="like" indexName="target_id">
+            <column name="target_id"/>
+        </createIndex>
+    </changeSet>
+    
+    <changeSet id="edit follow type name" author="who knows">
+        <dropColumn tableName="follow" columnName="type"/>
+    </changeSet>
+    
+    <changeSet id="edit follow type name2" author="whoknows">
+        <addColumn tableName="follow">
+            <column name="target_type" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+        <createIndex tableName="follow" indexName="target_type">
+            <column name="target_type"/>
+        </createIndex>
+    </changeSet>
+    
+</databaseChangeLog>

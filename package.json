@@ -2,10 +2,11 @@
   "name": "whokonws",
   "version": "0.0.1",
   "description": "whoknows",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "dependencies": {
+    	"bower": "~1.3.12"
   },
-  "author": "",
+"scripts": {
+    "postinstall": "bower install"
+  },
   "license": "ISC"
 }
