@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkTopic').directive('topicList', function ($location, $log, $http, DEFAULT_IMG, UserService, DEFAULT_PAGE) {
+angular.module('wkTopic').directive('topicList', function ($location, $log, $http, DEFAULT_IMG, UserService, DEFAULT_PAGE, LocalStorageService) {
 
 	return {
 		restrict: 'AE',

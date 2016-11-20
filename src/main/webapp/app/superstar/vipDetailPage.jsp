@@ -6,7 +6,6 @@
         <div class="col-xs-12 col-sm-9">
         		<div class="row have-follow-topic">
         			{{vip.name}}
-        			<hr/>	
         		</div>
         		<wk-vip-detail-page ng-if ="currentVipDetail" load-more-data="loadMore()" papers ="paperLists" current-vip-detail="currentVipDetail" hide-read-more="hideReadMore"></wk-vip-detail-page>
         </div><!--/.col-xs-12.col-sm-9-->

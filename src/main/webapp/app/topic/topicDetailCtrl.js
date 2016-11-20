@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkTopic').controller('TopicDetailCtrl',
-	function ($scope, $rootScope, $location, $http, UserService, DEFAULT_IMG, DEFAULT_PAGE, TINYMCE) {
+	function ($scope, $rootScope, $location, $http, UserService, DEFAULT_IMG, DEFAULT_PAGE, TINYMCE, LocalStorageService) {
 		console.log("wkCommon- wkTopic.TopicCtrl  load.");
 		
 		$scope.tagEmptyWarn = false;

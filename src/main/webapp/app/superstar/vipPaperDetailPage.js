@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkSuperstar').controller('vipPaperDetailCtrl',
-	function ($scope, $rootScope, $location, $route, $routeParams, $http, UserService, DEFAULT_IMG) {
+	function ($scope, $rootScope, $location, $route, $routeParams, $http, UserService, DEFAULT_IMG, LocalStorageService) {
 		console.log("wkSuperstar- vipPaperDetailCtrl load.")
 		if(!UserService.isSignedIn()){
 			LocalStorageService.put('LastPage', $location.path());

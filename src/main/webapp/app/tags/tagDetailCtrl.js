@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkTag').controller('TagDetailCtrl',
-	function ($scope, $rootScope, $location, $route, $http, $routeParams, DEFAULT_IMG, UserService) {
+	function ($scope, $rootScope, $location, $route, $http, $routeParams, DEFAULT_IMG, UserService, LocalStorageService) {
 		console.log("wkTag->TagDetailCtrl")
 		
 		var currentPage = 1;

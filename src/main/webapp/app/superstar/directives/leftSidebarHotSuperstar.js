@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log, $http, UserService, DEFAULT_IMG) {
+angular.module('wkSuperstar').directive('hotSuperstarSiderbar', function ($location, $log, $http, UserService, DEFAULT_IMG, LocalStorageService) {
 
 	return {
 		restrict: 'AE',

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkCommon').controller('SelfHomeCtrl',
-	function ($scope, $rootScope, $location, $route, $http, UserService, DEFAULT_IMG) {
+	function ($scope, $rootScope, $location, $route, $http, UserService, DEFAULT_IMG, LocalStorageService) {
 		console.log("wkCommon- SelfHomeCtrl load.")
 		
 		if(!UserService.isSignedIn()){

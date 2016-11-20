@@ -1,7 +1,7 @@
 
 'use strict';
 
-angular.module('wkTag').directive('hotTagSiderbar', function ($location, UserService, $http, DEFAULT_IMG) {
+angular.module('wkTag').directive('hotTagSiderbar', function ($location, UserService, $http, DEFAULT_IMG, LocalStorageService) {
 
 	return {
 		restrict: 'AE',

@@ -6,9 +6,9 @@
    				<h3>{{ currentVipDetail.userDetail | formateName }}</h3>
    				<h4>{{ currentVipDetail.userDetail.title }}</h4>
    				<dl class="dl-horizontal">
-			  <dt>邮箱</dt><dd>{{ currentVipDetail.userDetail.email || '暂无'}}</dd>
-			  <dt>电话</dt><dd>{{ currentVipDetail.userDetail.phone || '暂无'}}</dd>
-			</dl>
+				  <dt>邮箱</dt><dd>{{ currentVipDetail.userDetail.email || '暂无'}}</dd>
+				  <dt>电话</dt><dd>{{ currentVipDetail.userDetail.phone || '暂无'}}</dd>
+				</dl>
    			</div>
    			<div class="col-lg-2">
    				<ul class="wk-default-ul">
