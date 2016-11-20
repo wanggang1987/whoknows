@@ -14,4 +14,3 @@
       </div><!--/row-->
 
  </div>
- <wk-crop-img-modal callback-function="refreshImg(imgId)"></wk-crop-img-modal>

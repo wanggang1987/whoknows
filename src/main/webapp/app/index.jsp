@@ -75,12 +75,12 @@
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/formateName.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/wkCropImgModal.js"></script>
 	<script type="text/javascript" src="/app/commons/services/userService.js"></script>
 	<script type="text/javascript" src="/app/commons/services/localStorageService.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/side-bar.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/imgUploadModal.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
-	<script type="text/javascript" src="/app/commons/directives/wkCropImgModal.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/nameSpan.js"></script>
 	<script type="text/javascript" src="/app/commons/appCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/factories/permissionCheckInterceptor.js"></script>

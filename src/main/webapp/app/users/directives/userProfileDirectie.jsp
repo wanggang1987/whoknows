@@ -3,7 +3,7 @@
 	 <div class="row self-info">
           	<div class="col-xs-6 col-sm-3 self-home-page-picture">
           		<img alt="" ng-src="{{user.picture || defaultPeropleImg}}"></img>
-          		<span class="ProfileAvatarEditor-tip" ng-if="enableEditUser">修改头像</span>
+          		<span class="ProfileAvatarEditor-tip" >修改头像</span>
           	</div>
           	<div class="col-xs-12 col-sm-9">
           		<h1>{{user | formateName }}</h1>
@@ -90,4 +90,5 @@
 			    </div>
 			</div>
           </div><!--/row-->
+ 		<wk-crop-img-modal callback-function="refreshImg(imgId)"></wk-crop-img-modal>
 </div>
