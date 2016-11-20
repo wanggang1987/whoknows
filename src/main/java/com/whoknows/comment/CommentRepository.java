@@ -14,7 +14,7 @@ public class CommentRepository {
 
 	public List<Long> getReplyComments(Long replyId, int page, int pageSize) {
 		return jdbcTemplate.query("select id from comment where reply_id = ? "
-				+ "order by rank desc "
+				+ "order by id desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, replyId);
