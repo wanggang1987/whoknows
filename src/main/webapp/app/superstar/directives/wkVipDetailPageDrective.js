@@ -57,6 +57,11 @@ angular.module('wkSuperstar').directive('wkVipDetailPage', function ($location, 
 				scope.loadMoreData();
 			}
 			
+			scope.toggelExpandReply = function(paper){
+				if(paper.shortContent != undefined && paper.shortContent != null){
+					paper.shortContent.fullAble = !paper.shortContent.fullAble;
+				}
+			}
 		}
 	};
 

@@ -12,7 +12,8 @@
 					<wk-name-span user="topic.topicDetail.author"></wk-name-span>
 				</div>
 				<div class="topic-body-content">
-					<p ng-bind-html="topic.replyDetail.reply.content | to_trusted"></p>
+					<p ng-show="topic.replyDetail.shortContent.fullAble"><span ng-bind-html="topic.replyDetail.shortContent.text + '...' | to_trusted"></span><a href="javascript:void(0)" ng-show="topic.replyDetail.shortContent.fullAble" ng-click="toggelExpandReply(topic.replyDetail)">显示全部</a></p>
+					<p ng-hide="topic.replyDetail.shortContent.fullAble" ng-bind-html="topic.replyDetail.reply.content | to_trusted"></p>
 				</div>
 			</div>
 			<div class="topic-footer">
@@ -20,6 +21,7 @@
 					<li><a href="javascript:void(0);" ng-click="fllowTopic(topic.topicDetail)"><span class="glyphicon glyphicon-heart"></span><span ng-hide="topic.topicDetail.currentFollowed">关注问题</span><span ng-show="topic.topicDetail.currentFollowed">取消关注</span></a>({{topic.topicDetail.followCount}})</li>
 					<li ng-show="topic.replyDetail.reply != null"><a href="javascript:void(0);" ng-click="expandCommentLists(topic.replyDetail)"><span class="glyphicon glyphicon-comment"></span>评论</a>({{topic.replyDetail.commentCount}})</li>
 					<li ng-show="topic.replyDetail.reply != null"><a href="javascript:void(0);" ng-click="likeReply(topic.replyDetail)"><span class="glyphicon glyphicon-thumbs-up"></span><span ng-hide="topic.replyDetail.currentLiked">点赞</span><span ng-show="topic.replyDetail.currentLiked">取消点赞</span></a>({{topic.replyDetail.likeCount}})</li>
+					<li ng-show="topic.replyDetail.reply != null && !topic.replyDetail.shortContent.fullAble"><a href="javascript:void(0);" ng-click="toggelExpandReply(topic.replyDetail)"><span class="glyphicon glyphicon-arrow-up"></span>收起</a></li>
 				</ul>
 				<div class="topic-comment-lists" >
 					<div class="popover bottom topic-comment-list-{{topic.replyDetail.reply.id}}" role="tooltip"  style="display:none">
