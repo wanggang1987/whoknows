@@ -10,7 +10,7 @@
           		<span class="ProfileAvatarEditor-tip">修改头像</span>
           	</div>
           	<div class="col-xs-12 col-sm-9">
-          		<h1>{{user.email}}</h1>
+          		<h1>{{user | formateName }}</h1>
           		<dl class="dl-horizontal">
 				  <dt>目前就职</dt>
 				  <dd><span ng-hide= "showCompanyEdit">{{user.companyName}}</span>
