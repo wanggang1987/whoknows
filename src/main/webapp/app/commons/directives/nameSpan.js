@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('wkCommon').directive('wkNameSpan', function ($location, $window, UserService, DEFAULT_IMG) {
+angular.module('wkCommon').directive('wkNameSpan', function ($location, $window, UserService) {
 
 	return {
 		restrict: 'EA',
@@ -8,10 +8,13 @@ angular.module('wkCommon').directive('wkNameSpan', function ($location, $window,
 		replace: true,
 		scope: {
 			user : '=',
-			hideImg : '='
 		},
 		link: function (scope, elem) {
-			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
+			scope.goToUserPage = function(){
+				if(user !== undefined && user != null ){
+					
+				}
+			}	
 		}
 	};
 });

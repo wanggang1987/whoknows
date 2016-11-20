@@ -84,11 +84,14 @@
 	<script type="text/javascript" src="/app/commons/directives/nameSpan.js"></script>
 	<script type="text/javascript" src="/app/commons/appCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/factories/permissionCheckInterceptor.js"></script>
+	<script type="text/javascript" src="/app/users/userModule.js"></script>
+	<script type="text/javascript" src="/app/users/directives/userProfileDirectie.js"></script>
 	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultCtrl.js"></script>
 	<script type="text/javascript" src="/app/homeCtrl.js"></script>
 	<script type="text/javascript" src="/app/users/selfHomeCtrl.js"></script>
+	<script type="text/javascript" src="/app/users/userProfilePage.js"></script>
 	<script type="text/javascript" src="/app/topic/topicModule.js"></script>
 	<script type="text/javascript" src="/app/topic/topicPageCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/directives/topicList.js"></script>

@@ -13,6 +13,7 @@
 					<div class="col-xs-20 col-sm-12"> 
 						<div class="topic-body" >
 							<div class="topic-body-author">
+								<img ng-src="{{reply.author.picture || defaultPeopleImg}}" class="ng-cloak"></img>
 								<wk-name-span user="reply.author"></wk-name-span>
 							</div>
 							<div class="topic-body-content">
