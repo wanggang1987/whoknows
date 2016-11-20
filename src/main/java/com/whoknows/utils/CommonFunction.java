@@ -1,5 +1,6 @@
 package com.whoknows.utils;
 
+import com.whoknows.search.ShortContent;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +27,11 @@ public class CommonFunction {
 		return HtmlProcessor.getHighlightedHtml(key, html);
 	}
 
-	public static String shortText(String html) {
+	public static ShortContent shortText(String html) {
 		return HtmlProcessor.getShortText(html, shortTextLimit);
+	}
+
+	public static ShortContent highLightShortText(String key, String html) {
+		return HtmlProcessor.getHighLightShortText(key, html, shortTextLimit);
 	}
 }

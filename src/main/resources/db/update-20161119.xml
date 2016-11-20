@@ -10,4 +10,10 @@
 			<column name="email" ></column>
 		</createIndex>
 	</changeSet>
+	
+	<changeSet id="clean tags" author="whoknows">
+		<sql>
+			delete from tag;
+		</sql>
+	</changeSet>
 </databaseChangeLog>
