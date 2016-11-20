@@ -1,22 +1,23 @@
 package com.whoknows.paper;
 
 import com.whoknows.domain.Paper;
+import com.whoknows.search.ShortContent;
 import com.whoknows.user.UserDetail;
 
 public class PaperDetail {
 
 	private Paper paper;
-	private String shortText;
 	private UserDetail author;
 	private Integer likeCount;
 	private Boolean currentLiked;
+	private ShortContent shortContent;
 
-	public String getShortText() {
-		return shortText;
+	public ShortContent getShortContent() {
+		return shortContent;
 	}
 
-	public void setShortText(String shortText) {
-		this.shortText = shortText;
+	public void setShortContent(ShortContent shortContent) {
+		this.shortContent = shortContent;
 	}
 
 	public Paper getPaper() {

@@ -206,7 +206,7 @@ public class UserService {
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
 				topicDetail.setAuthor(getUser(topic.getId()));
-				topicDetail.setShortText(CommonFunction.shortText(topic.getContent()));
+				topicDetail.setShortContent(CommonFunction.shortText(topic.getContent()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
 				topicResult.setTopicDetail(topicDetail);
@@ -215,7 +215,7 @@ public class UserService {
 				if (reply != null) {
 					ReplyDetail replyDetail = new ReplyDetail();
 					replyDetail.setReply(reply);
-					replyDetail.setShortText(CommonFunction.shortText(reply.getContent()));
+					replyDetail.setShortContent(CommonFunction.shortText(reply.getContent()));
 					replyDetail.setAuthor(getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
@@ -245,7 +245,7 @@ public class UserService {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
-				topicDetail.setShortText(CommonFunction.shortText(topic.getContent()));
+				topicDetail.setShortContent(CommonFunction.shortText(topic.getContent()));
 				topicDetail.setAuthor(getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
@@ -255,7 +255,7 @@ public class UserService {
 				if (reply != null) {
 					ReplyDetail replyDetail = new ReplyDetail();
 					replyDetail.setReply(reply);
-					replyDetail.setShortText(CommonFunction.shortText(reply.getContent()));
+					replyDetail.setShortContent(CommonFunction.shortText(reply.getContent()));
 					replyDetail.setAuthor(getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
@@ -287,7 +287,7 @@ public class UserService {
 				if (topic != null) {
 					TopicDetail topicDetail = new TopicDetail();
 					topicDetail.setTopic(topic);
-					topicDetail.setShortText(CommonFunction.shortText(topic.getContent()));
+					topicDetail.setShortContent(CommonFunction.shortText(topic.getContent()));
 					topicDetail.setAuthor(getUser(topic.getId()));
 					topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 					topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
@@ -298,7 +298,7 @@ public class UserService {
 
 				ReplyDetail replyDetail = new ReplyDetail();
 				replyDetail.setReply(reply);
-				replyDetail.setShortText(CommonFunction.shortText(reply.getContent()));
+				replyDetail.setShortContent(CommonFunction.shortText(reply.getContent()));
 				replyDetail.setAuthor(getUser(reply.getUser_id()));
 				replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 				replyDetail.setCommentCount(commentService.commentCount(reply.getId()));

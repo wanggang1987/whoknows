@@ -58,7 +58,7 @@ public class PaperService {
 			
 			PaperDetail paperDetail = new PaperDetail();
 			paperDetail.setPaper(paper);
-			paperDetail.setShortText(CommonFunction.shortText(paper.getContent()));
+			paperDetail.setShortContent(CommonFunction.shortText(paper.getContent()));
 			paperDetail.setAuthor(userService.getUser(paper.getUser_id()));
 			paperDetail.setLikeCount(likeService.likeCount(paper.getId(), TargetType.paper));
 			UserDetail user = userService.currentUser();

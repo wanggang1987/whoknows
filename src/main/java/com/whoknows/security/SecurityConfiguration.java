@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/token/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/img/**").permitAll()
 				// other spring mvn controller need auth
-				.antMatchers("/search/**").authenticated()
+				.antMatchers("/search/**").permitAll()
 				.antMatchers("/tag/**").authenticated()
 				.antMatchers("/topic/**").authenticated()
 				.antMatchers(HttpMethod.POST, "/img/**").authenticated()

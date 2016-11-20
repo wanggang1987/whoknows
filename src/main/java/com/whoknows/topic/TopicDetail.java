@@ -2,24 +2,25 @@ package com.whoknows.topic;
 
 import com.whoknows.domain.Topic;
 import com.whoknows.reply.ReplyDetail;
+import com.whoknows.search.ShortContent;
 import com.whoknows.user.UserDetail;
 import java.util.List;
 
 public class TopicDetail {
 
 	private Topic topic;
-	private String shortText;
 	private UserDetail author;
 	private Integer followCount;
 	private Boolean currentFollowed;
 	private List<ReplyDetail> replys;
+	private ShortContent shortContent;
 
-	public String getShortText() {
-		return shortText;
+	public ShortContent getShortContent() {
+		return shortContent;
 	}
 
-	public void setShortText(String shortText) {
-		this.shortText = shortText;
+	public void setShortContent(ShortContent shortContent) {
+		this.shortContent = shortContent;
 	}
 
 	public Boolean getCurrentFollowed() {
