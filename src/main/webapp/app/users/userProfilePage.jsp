@@ -4,7 +4,6 @@
       <div class="row row-offcanvas row-offcanvas-right">
 
         <div class="col-xs-12 col-sm-9">
-        	<h1>asfd</h1>
         		<wk-user-profile ng-if="visitUser" user="visitUser" enable-edit-user="false"></wk-user-profile>
         </div><!--/.col-xs-12.col-sm-9-->
 
