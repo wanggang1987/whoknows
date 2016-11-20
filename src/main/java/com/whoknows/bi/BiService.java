@@ -79,6 +79,7 @@ public class BiService {
 			biRepository.flushPaperRank(rankCollection.getPaperRank());
 			biRepository.flushTopicRank(rankCollection.getTopicRank());
 			biRepository.flushReplyRank(rankCollection.getReplayRank());
+			log.info("flush rank success");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
