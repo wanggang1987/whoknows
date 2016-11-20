@@ -286,7 +286,7 @@ public class UserRepository {
 				(rs, row) -> {
 					VipDetail vip = new VipDetail();
 					vip.setName(CommonFunction.getUserName(rs.getString("first_name"), rs.getString("last_name"), rs.getString("email")));
-					vip.setPricture(rs.getString("picture"));
+					vip.setPicture(rs.getString("picture"));
 					vip.setUserID(rs.getLong("id"));
 					return vip;
 				});

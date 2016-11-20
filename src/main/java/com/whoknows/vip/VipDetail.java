@@ -5,7 +5,7 @@ import com.whoknows.user.UserDetail;
 public class VipDetail {
 
 	private UserDetail userDetail;
-	private String pricture;
+	private String picture;
 	private String name;
 	private Long userID;
 	private Integer followCount;
@@ -35,12 +35,12 @@ public class VipDetail {
 		this.currentFollowed = currentFollowed;
 	}
 
-	public String getPricture() {
-		return pricture;
+	public String getPicture() {
+		return picture;
 	}
 
-	public void setPricture(String pricture) {
-		this.pricture = pricture;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	public String getName() {
