@@ -76,7 +76,7 @@
 			    		<a data-target="#attention-question" ng-click="myFllowTopic()" data-toggle="tab">关注的问题 <span class="badge ng-cloak">{{contInfo.followCount}}</span></a>
 			    </li>
 			    <li><a data-target="#my-question" data-toggle="tab" ng-click="myTopic()">提问 <span class="badge ng-cloak">{{contInfo.createTopicCount}}</span></a></li>
-			    <li><a data-target="#my-answer" data-toggle="tab" ng-click="myReply()">问答 <span class="badge ng-cloak">{{contInfo.replyCount}}</span></a></li>
+			    <li><a data-target="#my-answer" data-toggle="tab" ng-click="myReply()">回答 <span class="badge ng-cloak">{{contInfo.replyCount}}</span></a></li>
 			</ul>
 			<div id="myTabContent" class="tab-content">
 			    <div class="tab-pane fade in active" id="attention-question">
