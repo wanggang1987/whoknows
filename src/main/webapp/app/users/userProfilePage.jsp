@@ -3,8 +3,8 @@
 
       <div class="row row-offcanvas row-offcanvas-right">
 
-        <div class="col-xs-12 col-sm-9" >
-         	<wk-user-profile user="user" enable-edit-user="true"></wk-user-profile>
+        <div class="col-xs-12 col-sm-9">
+        		<wk-user-profile ng-if="visitUser" user="visitUser" enable-edit-user="false"></wk-user-profile>
         </div><!--/.col-xs-12.col-sm-9-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" role="navigation">
@@ -14,3 +14,4 @@
       </div><!--/row-->
 
  </div>
+ <wk-crop-img-modal callback-function="refreshImg(imgId)"></wk-crop-img-modal>

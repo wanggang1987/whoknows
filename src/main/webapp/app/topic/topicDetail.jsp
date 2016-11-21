@@ -3,7 +3,7 @@
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
         		<h2 class="text-center"><p ng-bind-html="topic.topic.title | to_trusted"></p> </h2>
-        		<h5 class="font-gray-color">{{topic.topic.create_time | date : "y-dd-MM HH:mm:ss"}}&nbsp;&nbsp;{{topic.author.email}}, {{topic.author.companyName}},{{topic.author.title}}</h5>
+        		<h5 class="font-gray-color">{{topic.topic.create_time | date : "y-dd-MM HH:mm:ss"}}&nbsp;&nbsp;{{topic.author | formateName}}, {{topic.author.companyName}},{{topic.author.title}}</h5>
         		<h5 class="font-gray-color"> <a class="font-gray-color" href="javascript:void(0);" ng-click="fllowTopic(topic)"><span class="glyphicon glyphicon-heart"></span><span ng-hide="topic.currentFollowed">关注问题</span><span ng-show="topic.currentFollowed">取消关注</span></a>({{topic.followCount}})</h5>
         		<p ng-bind-html="topic.topic.content | to_trusted"></p>
         		<hr />
@@ -13,6 +13,7 @@
 					<div class="col-xs-20 col-sm-12"> 
 						<div class="topic-body" >
 							<div class="topic-body-author">
+								<img ng-src="{{reply.author.picture || defaultPeopleImg}}" class="ng-cloak"></img>
 								<wk-name-span user="reply.author"></wk-name-span>
 							</div>
 							<div class="topic-body-content">

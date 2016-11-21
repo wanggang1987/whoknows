@@ -68,7 +68,7 @@ public class UserContoller {
 
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity registUser(@RequestBody User user) {
-		log.info("Try to create user: {}", user == null ? "" : user);
+		log.info("Try to create user: {}", user == null ? "" : user.getEmail());
 		if (userService.createUser(user)) {
 			return ResponseEntity.ok().build();
 		} else {

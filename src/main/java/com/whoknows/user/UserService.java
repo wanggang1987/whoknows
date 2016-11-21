@@ -133,9 +133,6 @@ public class UserService {
 		try {
 			user.setAction(ActionType.pending.name());
 			Long id = userRepository.createUser(user);
-			if (id == null) {
-				return false;
-			}
 			String token = tokenService.genToken();
 			tokenService.storeToken(id, token);
 
@@ -193,6 +190,8 @@ public class UserService {
 
 	public UserTopicResponse getUserCreateTopics(Long userID, int page) {
 		try {
+			UserDetail user = currentUser();
+
 			UserTopicResponse userTopicResponse = new UserTopicResponse();
 			Paging paging = new Paging();
 			paging.setCurrentPage(page);
@@ -208,7 +207,9 @@ public class UserService {
 				topicDetail.setAuthor(getUser(topic.getId()));
 				topicDetail.setShortContent(CommonFunction.shortText(topic.getContent()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
-				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
+				if (user != null && user.getId() != null) {
+					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
+				}
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -219,7 +220,9 @@ public class UserService {
 					replyDetail.setAuthor(getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
-					replyDetail.setCurrentLiked(likeService.isLiked(userID, reply.getId(), TargetType.reply));
+					if (user != null && user.getId() != null) {
+						replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), reply.getId(), TargetType.reply));
+					}
 					topicResult.setReplyDetail(replyDetail);
 				}
 				return topicResult;
@@ -233,6 +236,8 @@ public class UserService {
 
 	public UserTopicResponse getUserFollowTopics(Long userID, int page) {
 		try {
+			UserDetail user = currentUser();
+
 			UserTopicResponse userTopicResponse = new UserTopicResponse();
 			Paging paging = new Paging();
 			paging.setCurrentPage(page);
@@ -248,7 +253,9 @@ public class UserService {
 				topicDetail.setShortContent(CommonFunction.shortText(topic.getContent()));
 				topicDetail.setAuthor(getUser(topic.getId()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
-				topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
+				if (user != null && user.getId() != null) {
+					topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
+				}
 				topicResult.setTopicDetail(topicDetail);
 
 				Reply reply = relpyService.getHotReplyForRopic(topic.getId());
@@ -259,7 +266,9 @@ public class UserService {
 					replyDetail.setAuthor(getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
-					replyDetail.setCurrentLiked(likeService.isLiked(userID, reply.getId(), TargetType.reply));
+					if (user != null && user.getId() != null) {
+						replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), reply.getId(), TargetType.reply));
+					}
 					topicResult.setReplyDetail(replyDetail);
 				}
 				return topicResult;
@@ -273,6 +282,8 @@ public class UserService {
 
 	public UserTopicResponse getUserReplyTopics(Long userID, int page) {
 		try {
+			UserDetail user = currentUser();
+
 			UserTopicResponse userTopicResponse = new UserTopicResponse();
 			Paging paging = new Paging();
 			paging.setCurrentPage(page);
@@ -290,7 +301,9 @@ public class UserService {
 					topicDetail.setShortContent(CommonFunction.shortText(topic.getContent()));
 					topicDetail.setAuthor(getUser(topic.getId()));
 					topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
-					topicDetail.setCurrentFollowed(followService.isFollowed(userID, topic.getId(), TargetType.topic));
+					if (user != null && user.getId() != null) {
+						topicDetail.setCurrentFollowed(followService.isFollowed(user.getId(), topic.getId(), TargetType.topic));
+					}
 					topicResult.setTopicDetail(topicDetail);
 				} else {
 					return null;
@@ -302,7 +315,9 @@ public class UserService {
 				replyDetail.setAuthor(getUser(reply.getUser_id()));
 				replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 				replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
-				replyDetail.setCurrentLiked(likeService.isLiked(userID, reply.getId(), TargetType.reply));
+				if (user != null && user.getId() != null) {
+					replyDetail.setCurrentLiked(likeService.isLiked(user.getId(), reply.getId(), TargetType.reply));
+				}
 				topicResult.setReplyDetail(replyDetail);
 				return topicResult;
 			}).filter(topicResult -> topicResult != null).collect(Collectors.toList()));

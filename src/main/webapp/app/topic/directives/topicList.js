@@ -17,13 +17,10 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 			scope.defaultPerPage = DEFAULT_PAGE.TOPIC_PER_PAGE
 			scope.request ={};
-			
 			scope.loadComments = function(cacheData, paging){
-				console.log("-->>>>>>>>topic id:   reply-id:");
 				$http.get("/comment/list/" + cacheData.reply.id + '/' + paging.currentPage).success(function(data){
 					cacheData.commentLists.comments = data.comments;
 					cacheData.commentLists.paging = data.paging;
-					console.log(cacheData.commentLists.paging);
 				});
 			}
 			scope.expandCommentLists = function(replyDetail){
@@ -106,6 +103,11 @@ angular.module('wkTopic').directive('topicList', function ($location, $log, $htt
 				scope.loadMoreData();
 			}
 			
+			scope.toggelExpandReply = function(reply){
+				if(reply.shortContent != undefined && reply.shortContent != null){
+					reply.shortContent.fullAble = !reply.shortContent.fullAble;
+				}
+			}
 			
 		}
 	};

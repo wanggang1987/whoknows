@@ -61,6 +61,8 @@
 	<script type="text/javascript" src="/bower_components/angular-resource/angular-resource.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-route/angular-route.js"></script>
 	<script type="text/javascript" src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script type="text/javascript" src="/bower_components/bootstrap/js/transition.js"></script>
+	<script type="text/javascript" src="/bower_components/bootstrap/js/collapse.js"></script>
 	<script type="text/javascript" src="/bower_components/bootstrap/js/dropdown.js"></script>
 	<script type="text/javascript" src="/bower_components/bootstrap/js/modal.js"></script>
 	<script type="text/javascript" src="/bower_components/tinymce/tinymce.min.js"></script>
@@ -75,20 +77,23 @@
 	<script type="text/javascript" src="/app/commons/commonModule.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/trustAsHtmlFilter.js"></script>
 	<script type="text/javascript" src="/app/commons/filters/formateName.js"></script>
+	<script type="text/javascript" src="/app/commons/directives/wkCropImgModal.js"></script>
 	<script type="text/javascript" src="/app/commons/services/userService.js"></script>
 	<script type="text/javascript" src="/app/commons/services/localStorageService.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/side-bar.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/imgUploadModal.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/pagination.js"></script>
-	<script type="text/javascript" src="/app/commons/directives/wkCropImgModal.js"></script>
 	<script type="text/javascript" src="/app/commons/directives/nameSpan.js"></script>
 	<script type="text/javascript" src="/app/commons/appCtrl.js"></script>
 	<script type="text/javascript" src="/app/commons/factories/permissionCheckInterceptor.js"></script>
+	<script type="text/javascript" src="/app/users/userModule.js"></script>
+	<script type="text/javascript" src="/app/users/directives/userProfileDirectie.js"></script>
 	<script type="text/javascript" src="/app/setting/settingModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultModule.js"></script>
 	<script type="text/javascript" src="/app/searchResult/searchResultCtrl.js"></script>
 	<script type="text/javascript" src="/app/homeCtrl.js"></script>
 	<script type="text/javascript" src="/app/users/selfHomeCtrl.js"></script>
+	<script type="text/javascript" src="/app/users/userProfilePage.js"></script>
 	<script type="text/javascript" src="/app/topic/topicModule.js"></script>
 	<script type="text/javascript" src="/app/topic/topicPageCtrl.js"></script>
 	<script type="text/javascript" src="/app/topic/directives/topicList.js"></script>

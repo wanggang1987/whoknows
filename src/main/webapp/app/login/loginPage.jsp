@@ -35,8 +35,8 @@
 						  <div class="form-group">
 						    <div class="col-sm-offset-3 col-sm-10">
 						      <span class="form-instructions hint">
-									<a href="javascript:void(0)" ng-click="forgotPasswordRequest()"><span >忘记密码</span>?</a>
-									<br>
+									<!-- <a href="javascript:void(0)" ng-click="forgotPasswordRequest()"><span >忘记密码</span>?</a> 
+									<br>-->
 									<span data-prop-message="" title="login.help">如果您还需要其他帮助，<a href="#/contact">请联系我们的客服</a>。</span>
 								</span>
 						    </div>

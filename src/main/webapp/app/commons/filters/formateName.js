@@ -18,6 +18,5 @@ angular.module('wkCommon').filter('formateName', function () {
 		}else{
 			return '';
 		}
-		return (translated ? translated : value);
 	};
 });

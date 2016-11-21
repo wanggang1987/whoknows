@@ -30,7 +30,7 @@ angular.module('wkCommon').service('UserService', function ($http, $q, $rootScop
 				watch = $interval(self.verify, 40000); 
 
 				deferredResource.resolve(user);
-				console.log("login success" + data)
+				console.log("login success")
 			}).error(function () {
 				signedIn = false;
 				user = {};

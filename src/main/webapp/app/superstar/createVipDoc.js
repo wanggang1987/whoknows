@@ -2,7 +2,6 @@
 
 angular.module('wkSuperstar').controller('CreateVipDocCtrl',
 	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService, ROLE_TYPE, TINYMCE) {
-		console.log("wkSuperstar- CreateVipDocCtrl  load.");
 		
 		var init = function(){
 			if(!UserService.isSignedIn() || !UserService.hasPermission(ROLE_TYPE.SITE_VIP)){

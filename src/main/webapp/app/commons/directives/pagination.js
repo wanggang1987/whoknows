@@ -19,15 +19,10 @@ angular.module('WhoKnows').directive('wkPagination', function ($location, $windo
 				calcShowPage();
 			});
 			
-			console.log("> pag directive : " );
-			console.log(scope.paginationInfo)
 			
 			scope.setPage = function(page){
 				scope.paginationInfo.currentPage = page;
 				calcShowPage();
-				console.log("pag directive-++++" );
-				console.log(scope.cacheData)
-				console.log(scope.paginationInfo)
 				scope.loadData({cacheData : scope.cacheData, paging : scope.paginationInfo});
 			}
 			
