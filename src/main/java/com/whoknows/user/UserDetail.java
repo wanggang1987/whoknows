@@ -26,7 +26,7 @@ public class UserDetail {
 	private Integer rank;
 	private String profile;
 	private String name;
-	private Timestamp loginime;
+	private Timestamp loginTime;
 	private List<String> roles;
 
 	public UserDetail() {
@@ -50,17 +50,10 @@ public class UserDetail {
 		this.title = user.getTitle();
 		this.rank = user.getRank();
 		this.profile = user.getProfile();
-		this.loginime = user.getLogin_time();
+		this.loginTime = user.getLogin_time();
 		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
 	}
 
-	public Timestamp getLoginime() {
-		return loginime;
-	}
-
-	public void setLoginime(Timestamp loginime) {
-		this.loginime = loginime;
-	}
 
 	public String getName() {
 		return name;
@@ -224,6 +217,14 @@ public class UserDetail {
 		this.rank = user.getRank();
 		this.profile = user.getProfile();
 		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
+	}
+
+	public Timestamp getLoginTime() {
+		return loginTime;
+	}
+
+	public void setLoginTime(Timestamp loginTime) {
+		this.loginTime = loginTime;
 	}
 
 }
