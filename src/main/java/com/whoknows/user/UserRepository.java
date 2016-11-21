@@ -9,6 +9,7 @@ import com.whoknows.domain.Topic;
 import com.whoknows.domain.User;
 import com.whoknows.vip.VipDetail;
 import com.whoknows.utils.CommonFunction;
+import java.sql.Timestamp;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,15 +28,46 @@ public class UserRepository {
 
 	@Autowired
 	private PasswordEncoder encoder;
-	
-	public void  setUserPicture(Long userID, Long pictureId){
+
+	public void setUserPicture(Long userID, Long pictureId) {
 		jdbcTemplate.update("update user set picture = ? where id = ? ",
 				ps -> {
 					ps.setString(1, "/img/" + String.valueOf(pictureId));
 					ps.setLong(2, userID);
 				});
 	}
-	
+
+	public User getUserByEmail(String email) {
+		return jdbcTemplate.query("SELECT * FROM user where email = ? limit 1",
+				ps -> ps.setString(1, email),
+				(rs, row) -> {
+					User user = new User();
+					user.setId(rs.getLong("id"));
+					user.setEmail(rs.getString("email"));
+					user.setPhone(rs.getString("phone"));
+					user.setPasswd(rs.getString("passwd"));
+					user.setePass(rs.getString("e_pass"));
+					user.setFirstName(rs.getString("first_name"));
+					user.setLastName(rs.getString("last_name"));
+					user.setCompanyName(rs.getString("company_name"));
+					user.setProvince(rs.getString("province"));
+					user.setCity(rs.getString("city"));
+					user.setAddress(rs.getString("address"));
+					user.setCreateTime(rs.getTimestamp("create_time"));
+					user.setUpdateTime(rs.getTimestamp("update_time"));
+					user.setPicture(rs.getString("picture"));
+					user.setEducation(rs.getString("education"));
+					user.setSignature(rs.getString("signature"));
+					user.setTitle(rs.getString("title"));
+					user.setAction(rs.getString("action"));
+					user.setRank(rs.getInt("rank"));
+					user.setProfile(rs.getString("profile"));
+					user.setLogin_time(rs.getTimestamp("login_time"));
+					return user;
+				}).stream().findAny().orElse(null);
+
+	}
+
 	public User getUserById(Long id) {
 		return jdbcTemplate.query("select * from user where id = ? limit 1",
 				ps -> ps.setLong(1, id),
@@ -61,6 +93,7 @@ public class UserRepository {
 					user.setAction(rs.getString("action"));
 					user.setRank(rs.getInt("rank"));
 					user.setProfile(rs.getString("profile"));
+					user.setLogin_time(rs.getTimestamp("login_time"));
 					return user;
 				}).stream().findAny().orElse(null);
 	}
@@ -292,5 +325,20 @@ public class UserRepository {
 					ps.setString(1, ActionType.active.name());
 					ps.setLong(2, userId);
 				});
+	}
+
+	public void setLoginTime(Long id) {
+		jdbcTemplate.update("update user set login_time = ? where id = ? ",
+				ps -> {
+					ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+					ps.setLong(2, id);
+				});
+	}
+
+	public String getPasswd(Long id) {
+		return jdbcTemplate.query("select e_pass from user where id = ? ",
+				ps -> ps.setLong(1, id),
+				(rs, row) -> rs.getString("e_pass")
+		).stream().findAny().orElse(null);
 	}
 }

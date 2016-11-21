@@ -30,6 +30,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -42,6 +43,8 @@ public class UserService {
 	@Value("${spring.application.name}")
 	private String appName;
 
+	@Autowired
+	private PasswordEncoder encoder;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -88,18 +91,36 @@ public class UserService {
 		}
 	}
 
+	public UserDetail getUser(String email) {
+		if (StringUtils.isEmpty(email)) {
+			return null;
+		}
+
+		try {
+			User user = userRepository.getUserByEmail(email);
+			if (user == null) {
+				return null;
+			}
+			UserDetail userDetail = new UserDetail(user, userRepository.getUserRolesByUserId(user.getId()));
+			userDetail.setName(CommonFunction.getUserName(user.getFirstName(), user.getLastName(), user.getEmail()));
+			return userDetail;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 	public UserDetail getUser(Long id) {
 		if (id == null) {
 			return null;
 		}
 
 		try {
-			UserDetail userDetail = new UserDetail();
 			User user = userRepository.getUserById(id);
 			if (user == null) {
 				return null;
 			}
-			userDetail.setUser(user, userRepository.getUserRolesByUserId(id));
+			UserDetail userDetail = new UserDetail(user, userRepository.getUserRolesByUserId(id));
 			userDetail.setName(CommonFunction.getUserName(user.getFirstName(), user.getLastName(), user.getEmail()));
 			return userDetail;
 		} catch (Exception e) {
@@ -142,7 +163,8 @@ public class UserService {
 			registerMailInfo.setTitle("欢迎注册" + appName);
 			registerMailInfo.setContent("注册成功，请点击链接激活账号："
 					+ "<a href='" + link + "' style='color:#008bac'>激活</a> 。在跳转页面中直接完成登录操作.");
-			aliMailService.regester(registerMailInfo);
+			log.info(registerMailInfo.getContent());
+//			aliMailService.regester(registerMailInfo);
 
 			log.info("Create user :{} success.", user.getEmail());
 			return true;
@@ -374,4 +396,11 @@ public class UserService {
 		}
 	}
 
+	public boolean checkPasswd(Long id, String pass) {
+		return encoder.matches(pass, userRepository.getPasswd(id));
+	}
+	
+	public void setLoginTime(Long id) {
+		userRepository.setLoginTime(id);
+	} 
 }
