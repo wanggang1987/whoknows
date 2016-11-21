@@ -16,4 +16,10 @@
 			delete from tag;
 		</sql>
 	</changeSet>
+	
+	<changeSet id="add other tag" author="whoknows">
+		<sql>
+			INSERT INTO tag (name,action) VALUES ('其他',NULL);
+		</sql>
+	</changeSet>
 </databaseChangeLog>
