@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<sec:authorize access="hasAuthority('SITE_VIP')">	
 <div class="container create-topic-page"> 
       <div class="row row-offcanvas row-offcanvas-right">
         <div class="col-xs-12 col-sm-9">
@@ -32,4 +34,5 @@
       </div><!--/row-->
       
       <wk-img-upload-modal callback-function="uploadImgSuccess(imgId)"></wk-img-upload-modal>
-
+</div>
+</sec:authorize>

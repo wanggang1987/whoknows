@@ -10,8 +10,6 @@
 							<button type="submit" class="btn btn-default " ng-click="createQuestion()">提问</button>
 						</div>
 					</li>
-				</sec:authorize>
-				<sec:authorize access="hasAuthority('SITE_VIP')">	
 					<li class="fill-maring-left-20" >
 						<div class="form-group index-create-question-btn">
 							<button type="submit" class="btn btn-default " ng-click="createVipDoc()">发表文章</button>

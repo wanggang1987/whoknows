@@ -15,9 +15,10 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 			tinyMCE.activeEditor.execCommand('mceInsertContent', false, '<img style="max-width:100%" src="/img/'+ imgId +'" />');
 		}
 		var init = function(){
-			if(!UserService.isSignedIn()){
+			if(!UserService.isSignedIn() || !UserService.hasPermission(ROLE_TYPE.SITE_VIP)){
 				LocalStorageService.put('LastPage', $location.path());
-				$location.path("/login");
+				$location.path("/");
+				return;
 			}
 			$http.get("/tag/list").then(function(data){
 				$scope.tags = data.data;
