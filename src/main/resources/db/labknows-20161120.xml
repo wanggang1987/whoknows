@@ -53,4 +53,18 @@
 			INSERT INTO tag (name,action) VALUES ('增环反应',NULL);
 		</sql>
 	</changeSet>
+	
+	<changeSet id="add tags 2" author="labknows">
+		<sql>
+			delete from tag where name = '其他';
+			
+			INSERT INTO tag (name,action) VALUES ('芳胺化',NULL);
+			INSERT INTO tag (name,action) VALUES ('炔烃合成',NULL);
+			INSERT INTO tag (name,action) VALUES ('Buchwald胺化',NULL);
+			INSERT INTO tag (name,action) VALUES ('氨基酸',NULL);
+			INSERT INTO tag (name,action) VALUES ('烯炔还原',NULL);
+			INSERT INTO tag (name,action) VALUES ('磺酰卤',NULL);
+			INSERT INTO tag (name,action) VALUES ('羧基保护',NULL);
+		</sql>
+	</changeSet>
 </databaseChangeLog>
