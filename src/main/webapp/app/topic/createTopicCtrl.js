@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkTopic').controller('CreateTopicCtrl',
-	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService, TINYMCE, ROLE_TYPE) {
+	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService, TINYMCE) {
 		$scope.tagEmptyWarn = false;
 		
 		$scope.closeWarnPanel = function(){
@@ -55,13 +55,14 @@ angular.module('wkTopic').controller('CreateTopicCtrl',
 		
 		$scope.createQuestion = function(){
 			var tags = $('.multipleSelect').val();
-			var reqTags = [];
-			if(tags != undefined && tags != null && tags.length >= 0){
-				_.each(tags, function(tag){
-					reqTags.push({"value" : tag});
-				})
+			if(tags == undefined || tags == null || tags.length == 0){
+				$scope.tagEmptyWarn = true;
+				return;
 			}
-			
+			var reqTags = [];
+			_.each(tags, function(tag){
+				reqTags.push({"value" : tag});
+			})
 			var req ={ "topic" : {
 						tagId: $('.multipleSelect').val(),
 						user_id : UserService.getCurrent().id,
