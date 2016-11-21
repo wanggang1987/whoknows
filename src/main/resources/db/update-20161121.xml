@@ -10,4 +10,10 @@
 			<column name="login_time" type="timestamp"/>
 		</addColumn>
 	</changeSet>
+	
+	<changeSet id="add login time default value" author="whoknows">
+		<sql>
+			update user set login_time = now() where action = 'active';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
