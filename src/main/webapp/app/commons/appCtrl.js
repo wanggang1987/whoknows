@@ -5,6 +5,10 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		$scope.loginIn = false;
 		$scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 		
+		function initUser(){
+			$scope.user = UserService.getCurrent();
+		}
+		
 		UserService.initialize().then(function () {
 			$scope.loginIn = UserService.isSignedIn();
 			if($scope.loginIn){
@@ -23,8 +27,7 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 			$rootScope.$on('$locationChangeSuccess', function () {
 				$window.location.reload();
 			});
-			if($cookies.get("firstLogin") != undefined && $cookies.get("firstLogin") != null && $cookies.get("firstLogin") == 'true'){
-				$cookies.remove("firstLogin")
+			if($scope.user.loginTime == null){
 				$location.path("/registTagSelect");
 			}else if (LocalStorageService.get('LastPage')) {
 				var lastPage = LocalStorageService.get('LastPage');
@@ -44,9 +47,7 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 			}
 		});
 		
-		function initUser(){
-			$scope.user = UserService.getCurrent();
-		}
+		
 		$scope.isActive = function (viewLocation) {
 		     var active = (viewLocation === $location.path());
 		     return active;
