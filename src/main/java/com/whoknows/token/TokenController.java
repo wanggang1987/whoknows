@@ -25,13 +25,9 @@ public class TokenController {
 	@Value("${domain}")
 	private String domain;
 
-	@Autowired
-	private CookieTools cookieTools;
-
 	@RequestMapping(path = "/{userId}/{token}", method = RequestMethod.GET)
 	public ResponseEntity continueRegister(HttpServletResponse hsrp, HttpServletRequest hsr, @PathVariable("userId") Long userId, @PathVariable("token") String token) throws IOException {
 		if (tokenService.continueRegister(userId, token)) {
-			cookieTools.addAuthCookie("firstLogin", "true", hsrp, hsr);
 			hsrp.sendRedirect("http://" + domain + "/p/#/login");
 			return ResponseEntity.ok().build();
 		} else {

@@ -1,16 +1,14 @@
 package com.whoknows.security;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
 import com.whoknows.domain.Role;
 import com.whoknows.domain.RoleType;
 import com.whoknows.domain.User;
+import java.sql.Timestamp;
 
 @Component
 public class AuthDao {
@@ -46,6 +44,7 @@ public class AuthDao {
 					user.setAction(rs.getString("action"));
 					user.setRank(rs.getInt("rank"));
 					user.setProfile(rs.getString("profile"));
+					user.setLogin_time(rs.getTimestamp("login_time"));
 					return user;
 				}).stream().findAny().orElse(null);
 
@@ -67,4 +66,11 @@ public class AuthDao {
 		return roles;
 	}
 
+	public void setLoginTime(Long id) {
+		jdbcTemplate.update("update user set login_time = ? where id = ? ",
+				ps -> {
+					ps.setTimestamp(1, new Timestamp(System.currentTimeMillis()));
+					ps.setLong(2, id);
+				});
+	}
 }

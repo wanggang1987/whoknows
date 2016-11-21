@@ -24,6 +24,15 @@ public class User {
 	private String action;
 	private Integer rank;
 	private String profile;
+	private Timestamp login_time;
+
+	public Timestamp getLogin_time() {
+		return login_time;
+	}
+
+	public void setLogin_time(Timestamp login_time) {
+		this.login_time = login_time;
+	}
 
 	public Integer getRank() {
 		return rank;

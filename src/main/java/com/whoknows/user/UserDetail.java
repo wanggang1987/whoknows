@@ -26,11 +26,13 @@ public class UserDetail {
 	private Integer rank;
 	private String profile;
 	private String name;
+	private Timestamp loginTime;
 	private List<String> roles;
-	
-	public UserDetail(){
-		
+
+	public UserDetail() {
+
 	}
+
 	public UserDetail(User user, List<Role> roles) {
 		this.id = user.getId();
 		this.email = user.getEmail();
@@ -48,8 +50,11 @@ public class UserDetail {
 		this.title = user.getTitle();
 		this.rank = user.getRank();
 		this.profile = user.getProfile();
+		this.loginTime = user.getLogin_time();
 		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
 	}
+
+
 	public String getName() {
 		return name;
 	}
@@ -154,7 +159,6 @@ public class UserDetail {
 		this.createTime = createTime;
 	}
 
-
 	public String getPicture() {
 		return picture;
 	}
@@ -213,6 +217,14 @@ public class UserDetail {
 		this.rank = user.getRank();
 		this.profile = user.getProfile();
 		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
+	}
+
+	public Timestamp getLoginTime() {
+		return loginTime;
+	}
+
+	public void setLoginTime(Timestamp loginTime) {
+		this.loginTime = loginTime;
 	}
 
 }

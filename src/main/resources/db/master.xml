@@ -17,4 +17,5 @@
 	<include file="update-20161110.xml" relativeToChangelogFile="true"/>
 	<include file="update-20161119.xml" relativeToChangelogFile="true"/>
 	<include file="labknows-20161120.xml" relativeToChangelogFile="true"/>
+	<include file="update-20161121.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
