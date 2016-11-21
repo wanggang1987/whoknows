@@ -2,7 +2,6 @@
 
 angular.module('wkSuperstar').controller('VipDetailPageCtrl',
 	function ($scope, $rootScope, $location, $route, $routeParams, $http, UserService, DEFAULT_IMG, LocalStorageService) {
-		console.log("wkSuperstar- VipPageCtrl load.")
 		if(!UserService.isSignedIn()){
 			LocalStorageService.put('LastPage', $location.path());
 			$location.path("/login");

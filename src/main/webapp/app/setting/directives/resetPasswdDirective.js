@@ -14,15 +14,14 @@ angular.module('wkSetting').directive('wkResetPassword',
 					});
 					
 					scope.resetPasswd = function(){
-						console.log("reset passwd")
 						scope.resetPasswdInfo.email = LocalStorageService.get("userName");
 						
 						$http.post("/user/password/reset", scope.resetPasswdInfo).success(function(){
-							console.log("Reset passwd success." + scope.resetPasswdInfo.email);
+							console.log("Reset passwd success." );
 							scope.resetPasswdSuccess = true;  
 							$('#reset-password-modal').modal('toggle');
 						}).error(function(){
-							console.log("Reset passwd error." + scope.resetPasswdInfo.email);
+							console.log("Reset passwd error."  );
 							scope.resetPasswdSuccess = false;
 						});
 					}

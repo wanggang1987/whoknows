@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="container self-home-page">
- 	<button uib-popover-template="app/superstar/directives/leftSidebarHotSuperstar.jsp" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Popover With Template</button>
 
       <div class="row row-offcanvas row-offcanvas-right">
 

@@ -2,7 +2,6 @@
 
 angular.module('wkTopic').controller('TopicDetailCtrl',
 	function ($scope, $rootScope, $location, $http, UserService, DEFAULT_IMG, DEFAULT_PAGE, TINYMCE, LocalStorageService) {
-		console.log("wkCommon- wkTopic.TopicCtrl  load.");
 		
 		$scope.tagEmptyWarn = false;
 		$scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
@@ -52,7 +51,6 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		
 		var loadReplyByPage = function(page){
 			$http.get("/reply/list/" + topicId + "/" + page).success(function(data){
-				console.log(data)
 				if(data.length > 0){
 					_.each(data, function(reply){
 						$scope.topic.replys.push(reply)
@@ -96,13 +94,9 @@ angular.module('wkTopic').controller('TopicDetailCtrl',
 		$scope.request ={};
 		
 		$scope.loadComments = function(cacheData, paging){
-			console.log("-->>>>>>>>topic id:   reply-id:");
-			console.log(cacheData)
-			console.log(paging)
 			$http.get("/comment/list/" + cacheData.reply.id + '/' + paging.currentPage).success(function(data){
 				cacheData.commentLists.comments = data.comments;
 				cacheData.commentLists.paging = data.paging;
-				console.log(cacheData.commentLists.paging);
 			});
 		}
 		$scope.expandCommentLists = function(replyDetail){

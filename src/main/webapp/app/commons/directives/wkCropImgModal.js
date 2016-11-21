@@ -28,7 +28,6 @@ angular.module('wkCommon').directive('wkCropImgModal', function(Upload){
 			});
 			
 			scope.uploadImg = function(img, fileName){
-				console.log(fileName)
 				  Upload.upload({
 				      url: '/user/img',
 				      data: {

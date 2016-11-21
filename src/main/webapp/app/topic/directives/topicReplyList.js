@@ -14,18 +14,10 @@ angular.module('wkTopic').directive('topicReplyList', function ($location, $log,
 		link: function (scope, element, attr) {
 			scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;
 			scope.request ={};
-			console.log("////////////")
-			console.log(scope.replyDetailList);
-			console.log(scope.topicDetail.followCount);
-			console.log("////////////")
 			scope.loadComments = function(cacheData, paging){
-				console.log("-->>>>>>>>topic id:   reply-id:");
-				console.log(cacheData)
-				console.log(paging)
 				$http.get("/comment/list/" + cacheData.reply.id + '/' + paging.currentPage).success(function(data){
 					cacheData.commentLists.comments = data.comments;
 					cacheData.commentLists.paging = data.paging;
-					console.log(cacheData.commentLists.paging);
 				});
 			}
 			scope.expandCommentLists = function(replyDetail){

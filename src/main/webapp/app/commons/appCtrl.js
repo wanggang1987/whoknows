@@ -59,5 +59,4 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		$scope.createVipDoc = function(){
 			$location.path('/creteVipDoc');
 		}
-		console.log("wkCommon- wkCommon.appCtrl load.")
 	});

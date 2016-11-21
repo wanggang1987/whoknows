@@ -2,7 +2,6 @@
 
 angular.module('wkRegist').controller('RegistTagSelectCtrl',
 	function ($scope, $rootScope, $location, $http, DEFAULT_IMG, LocalStorageService, UserService) {
-		console.log("wkCommon- wkRegist.RegistTagSelectCtrl  load.");
 		
 		$scope.defaultTagImg = DEFAULT_IMG.TAG_NO_IMG;
 		$scope.defaultPeopleImg = DEFAULT_IMG.PEOPLE_NO_IMG;

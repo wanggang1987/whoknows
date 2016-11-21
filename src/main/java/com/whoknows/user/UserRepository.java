@@ -82,12 +82,6 @@ public class UserRepository {
 	}
 
 	public Long createUser(User user) {
-		Long userid = jdbcTemplate.query("select id from user where email = ? ",
-				ps -> ps.setString(1, user.getEmail()),
-				(rs, row) -> rs.getLong("id")).stream().findAny().orElse(null);
-		if (userid != null) {
-			return null;
-		}
 		jdbcTemplate.update("insert into user(email,e_pass, action) values (?, ?, ?)",
 				ps -> {
 					ps.setString(1, user.getEmail());

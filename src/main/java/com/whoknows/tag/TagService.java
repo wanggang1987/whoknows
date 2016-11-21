@@ -5,7 +5,6 @@ import com.whoknows.domain.ActionType;
 import com.whoknows.domain.Reply;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.TargetType;
-import com.whoknows.domain.User;
 import com.whoknows.follow.FollowService;
 import com.whoknows.like.LikeService;
 import com.whoknows.reply.RelpyService;
@@ -15,6 +14,7 @@ import com.whoknows.search.TopicResult;
 import com.whoknows.topic.TopicDetail;
 import com.whoknows.user.UserDetail;
 import com.whoknows.user.UserService;
+import com.whoknows.utils.CommonFunction;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -121,6 +121,7 @@ public class TagService {
 				TopicResult topicResult = new TopicResult();
 				TopicDetail topicDetail = new TopicDetail();
 				topicDetail.setTopic(topic);
+				topicDetail.setShortContent(CommonFunction.shortText(topic.getContent()));
 				topicDetail.setAuthor(userService.getUser(topic.getUser_id()));
 				topicDetail.setFollowCount(followService.followCount(topic.getId(), TargetType.topic));
 				if (user != null && user.getId() != null) {
@@ -132,6 +133,7 @@ public class TagService {
 				if (reply != null) {
 					ReplyDetail replyDetail = new ReplyDetail();
 					replyDetail.setReply(reply);
+					replyDetail.setShortContent(CommonFunction.shortText(reply.getContent()));
 					replyDetail.setAuthor(userService.getUser(reply.getUser_id()));
 					replyDetail.setLikeCount(likeService.likeCount(reply.getId(), TargetType.reply));
 					replyDetail.setCommentCount(commentService.commentCount(reply.getId()));
