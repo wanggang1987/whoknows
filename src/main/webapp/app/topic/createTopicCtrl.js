@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('wkTopic').controller('CreateTopicCtrl',
-	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService, TINYMCE) {
+	function ($scope, $rootScope, $location, UserService, $http, LocalStorageService, TINYMCE, ROLE_TYPE) {
 		$scope.tagEmptyWarn = false;
 		
 		$scope.closeWarnPanel = function(){
