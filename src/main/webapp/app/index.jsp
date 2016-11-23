@@ -48,7 +48,7 @@
 	</div>
 	<footer>
       <div class="container">
-        <p class="text-muted">LabNetwork knows. © Company 2016</p>
+        <p class="text-muted">Who knows. © Company 2016</p>
       </div>
     </footer>
 
