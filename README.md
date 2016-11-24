@@ -1,3 +1,5 @@
+whoknows.wg1987.com
+
 Please make sure you have Java1.8, git, msyql and maven installed in your server.
 
 steps to install this website:
