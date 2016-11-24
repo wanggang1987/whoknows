@@ -5,7 +5,7 @@
 <head>
 <!-- 检测浏览器 -->
 <script type="text/javascript" src="/app/commons/browserdcheck.js"></script>
-<title>LabNetwork knows</title>
+<title>${title}</title>
 <link rel="icon" type="image/png" href="/images/favicon.png" />
 <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/styles/main.css" rel="stylesheet" media="screen" />
@@ -26,7 +26,7 @@
               <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#/" >
-            		<span style="font-size:12px">Labnetwork</span><br> <span style="font-size:20px">Knows</span>
+            		<span style="font-size:12px">${logoUpperWords}</span><br> <span style="font-size:20px">${logoDownWords}</span>
             	</a>
             	<div class="input-group nav-search-input">
 		      <input type="text" class="form-control" ng-model="searchContent">
@@ -48,7 +48,7 @@
 	</div>
 	<footer>
       <div class="container">
-        <p class="text-muted">LabNetwork knows. © Company 2016</p>
+        <p class="text-muted">Who knows. © Company 2016</p>
       </div>
     </footer>
 

@@ -20,19 +20,17 @@ import org.springframework.stereotype.Component;
 import com.whoknows.domain.Role;
 import com.whoknows.domain.User;
 import com.whoknows.user.UserDetail;
+import com.whoknows.user.UserService;
 import org.springframework.security.authentication.AccountExpiredException;
 
 @Component
 public class AuthProvider implements AuthenticationProvider {
-	
+
 	Logger log = LoggerFactory.getLogger(AuthProvider.class);
-	
+
 	@Autowired
-	private AuthDao authDao;
-	
-	@Autowired
-	private PasswordEncoder encoder;
-	
+	private UserService userService;
+
 	@Override
 	public Authentication authenticate(Authentication authen) throws AuthenticationException {
 		if (authen instanceof UsernamePasswordAuthenticationToken) {
@@ -40,10 +38,10 @@ public class AuthProvider implements AuthenticationProvider {
 			String username = (String) tkn.getPrincipal();
 			String password = (String) tkn.getCredentials();
 			log.info("Attempting login username:{}.", username);
-			
+
 			try {
-				User user = authDao.getUserByEmail(username);
-				if (!encoder.matches(password, user.getePass())) {
+				UserDetail user = userService.getUser(username);
+				if (!userService.checkPasswd(user.getId(), password)) {
 					log.info("Password do not match.");
 					throw new BadCredentialsException("Invalid username/password given.");
 				}
@@ -52,11 +50,9 @@ public class AuthProvider implements AuthenticationProvider {
 					log.info("User not active.");
 					throw new AccountExpiredException("User not active.");
 				}
-				authDao.setLoginTime(user.getId());
-				List<Role> roles = authDao.getRolesByUserId(user.getId());
-				UserDetail userDetail = new UserDetail(user, roles);
-				return new UsernamePasswordAuthenticationToken(userDetail, null,
-						roles.stream().map(role -> role.getRole()).map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+				userService.setLoginTime(user.getId());
+				return new UsernamePasswordAuthenticationToken(user, null,
+						user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
 			} catch (EmptyResultDataAccessException ex) {
 				log.warn("Could not find username : {}", username);
 				throw new UsernameNotFoundException("User " + username + " not found.");
@@ -65,10 +61,10 @@ public class AuthProvider implements AuthenticationProvider {
 			throw new AuthenticationServiceException("Invalid token  [" + authen.getClass().getSimpleName() + "].");
 		}
 	}
-	
+
 	@Override
 	public boolean supports(Class<?> type) {
 		return UsernamePasswordAuthenticationToken.class.isAssignableFrom(type);
 	}
-	
+
 }

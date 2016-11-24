@@ -1,12 +1,10 @@
 package com.whoknows.app;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,10 +12,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PageController {
 
 	private final Logger log = LoggerFactory.getLogger(PageController.class);
-
+	@Value("${wk.logo.upper.words:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Who}")
+	private String logoUpperWords;
+	@Value("${wk.logo.down.words:Knows}")
+	private String logoDownWords;
+	@Value("${wk.page.title:Who Knows}")
+	private String pageTitle;;
 	
 	@RequestMapping("/p/")
-	public String direct() {
+	public String direct(ModelMap model) {
+		model.addAttribute("title", pageTitle);
+		model.addAttribute("logoUpperWords", logoUpperWords);
+		model.addAttribute("logoDownWords", logoDownWords);
+		
 		return "app/index";
 	}
 

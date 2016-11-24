@@ -30,7 +30,7 @@
 									{{comment.comment.content}}
 								</div>
 								<div class="topic-comment-body-attach-info">
-									{{ comment.comment.create_time | date : "y-dd-MM HH:mm:ss" }}
+									{{ comment.comment.create_time | date : "y-MM-dd HH:mm:ss" }}
 								</div>
 							</div>
 			      		</div>
