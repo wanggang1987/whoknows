@@ -44,7 +44,7 @@ public class PaperRepository {
 
 	public List<Long> getPaperList(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select id from paper where user_id = ? "
-				+ "order by rank desc "
+				+ "order by rank desc , create_time desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, user_id);
