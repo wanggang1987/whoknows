@@ -47,17 +47,20 @@ public class SearchDAO {
 	}
 
 	public List<Topic> searchTopicByKeyWord(String key, int page, int pageSize, SearchType type) {
-		return jdbcTemplate.query("select * from topic "
+		String sql = "select * from topic "
 				+ "where title like ? "
-				+ "or content like ? "
-				+ "order by ? "
-				+ "limit ? OFFSET ? ",
+				+ "or content like ? ";
+		if (SearchType.rank.equals(type)) {
+			sql += "order by rank desc , create_time desc ";
+		} else if (SearchType.time.equals(type)) {
+			sql += "order by create_time desc ";
+		}
+		return jdbcTemplate.query(sql + "limit ? OFFSET ? ",
 				ps -> {
 					ps.setString(1, "%" + key + "%");
 					ps.setString(2, "%" + key + "%");
-					ps.setString(3, type.name());
-					ps.setInt(4, pageSize);
-					ps.setInt(5, (page - 1) * pageSize);
+					ps.setInt(3, pageSize);
+					ps.setInt(4, (page - 1) * pageSize);
 				},
 				(rs, row) -> {
 					Topic topic = new Topic();
