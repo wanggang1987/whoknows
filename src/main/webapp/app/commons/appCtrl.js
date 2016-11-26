@@ -17,8 +17,8 @@ angular.module('wkCommon').controller('wkCommon.appCtrl',
 		});
 		
 		$scope.homeSearch = function(){
-			LocalStorageService.put("homeSearchKeyWord", $scope.searchContent, true);
-			$location.path('/searchResult');
+			console.log('search key : ' +  $scope.searchContent + ' | ' + encodeURIComponent($scope.searchContent)) ;
+			$location.path('/searchResult/' + encodeURIComponent($scope.searchContent));
 		}
 		
 		$rootScope.$on('event:login:success', function () {
