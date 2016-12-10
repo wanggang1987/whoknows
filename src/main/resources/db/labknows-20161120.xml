@@ -67,4 +67,13 @@
 			INSERT INTO tag (name,action) VALUES ('羧基保护',NULL);
 		</sql>
 	</changeSet>
+
+	<changeSet id="change vip passed" author="labknows">
+		<sql>
+			update user set e_pass = '$2a$10$q6v9N1NweOedfG.L8jnHKukVAtP0h1sT0GzS/jqWkSN88A8Rkp7BW'
+			where id in (
+			select user_id from user_role
+			where user_role.role_id = ( select id from role where role = 'SITE_VIP' limit 1 ));
+		</sql>
+	</changeSet>
 </databaseChangeLog>
