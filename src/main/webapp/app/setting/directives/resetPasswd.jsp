@@ -10,21 +10,21 @@
 	      <form class="form-horizontal" role="form">
 						 
 			  <div class="form-group">
-			    <label for="inputPassword3" required class="col-sm-3 control-label" >密码</label>
+			    <label for="inputPassword3" required class="col-sm-3 control-label" >原密码</label>
 			    <div class="col-sm-9">
 			      <input type="password" class="form-control  login-passwd-input" ng-model="resetPasswdInfo.oldPasswd" id="inputPassword3" placeholder="Password">
 			    </div>
 			  </div>
 							  
 			  <div class="form-group">
-			    <label for="inputPassword3" required class="col-sm-3 control-label" >密码</label>
+			    <label for="inputPassword3" required class="col-sm-3 control-label" >新密码</label>
 			    <div class="col-sm-9">
 			      <input type="password" class="form-control  login-passwd-input" ng-model="resetPasswdInfo.newPasswd" id="inputPassword3" placeholder="Password">
 			    </div>
 			  </div>
 							  
 			  <div class="form-group">
-			    <label for="inputPassword3" required class="col-sm-3 control-label">重复密码</label>
+			    <label for="inputPassword3" required class="col-sm-3 control-label">重复新密码</label>
 			    <div class="col-sm-9">
 			      <input type="password" class="form-control  login-passwd-input" ng-model="resetPasswdInfo.repeatNewPasswd" id="inputPassword3" placeholder="Password">
 			    		<p class="warn-color-font" ng-show="resetPasswdInfo.repeatNewPasswd != resetPasswdInfo.newPasswd" >*两次密码不一致</p>
