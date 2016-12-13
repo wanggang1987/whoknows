@@ -76,4 +76,31 @@
 			where user_role.role_id = ( select id from role where role = 'SITE_VIP' limit 1 ));
 		</sql>
 	</changeSet>
+	
+	<changeSet id="add tags 3" author="labknows">
+		<sql>
+			INSERT INTO tag (name,action) VALUES ('羟基保护',NULL);
+			INSERT INTO tag (name,action) VALUES ('卤代芳烃',NULL);
+			INSERT INTO tag (name,action) VALUES ('醛酮合成',NULL);
+			INSERT INTO tag (name,action) VALUES ('脲类合成',NULL);
+			INSERT INTO tag (name,action) VALUES ('酚类制备',NULL);
+			INSERT INTO tag (name,action) VALUES ('酚醚制备',NULL);
+			INSERT INTO tag (name,action) VALUES ('羧酸合成',NULL);
+			INSERT INTO tag (name,action) VALUES ('Heck反应',NULL);
+			INSERT INTO tag (name,action) VALUES ('Mitsunobu反应',NULL);
+			INSERT INTO tag (name,action) VALUES ('Suzuki反应',NULL);
+			INSERT INTO tag (name,action) VALUES ('醇化反应',NULL);
+			INSERT INTO tag (name,action) VALUES ('芳酰胺化',NULL);
+			INSERT INTO tag (name,action) VALUES ('碳烃基化',NULL);
+		</sql>
+	</changeSet>
+	
+	<changeSet id="delete tags 3" author="labknows">
+		<sql>
+			delete from tag where name = '芳基化';
+			delete from tag where name = '双羟化';
+			delete from tag where name = '烯丙基化';
+			delete from tag where name = '磺酰化';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
