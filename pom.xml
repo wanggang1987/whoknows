@@ -17,5 +17,6 @@
 	</properties>
 	<modules>
 		<module>website</module>
+		<module>tools</module>
 	</modules>
 </project>
