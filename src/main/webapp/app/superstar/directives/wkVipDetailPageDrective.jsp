@@ -1,8 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div>
 	<div class="row margin-top-40" ng-hide="noVipWarn">
-   			<div class="col-lg-2"><img class="wk-img-65" ng-src="{{currentVipDetail.userDetail.picture || defaultPeopleImg}}"></div>
-   			<div class="col-lg-8">
+   			<div class="col-lg-3"><img class="wk-img-150" ng-src="{{currentVipDetail.userDetail.picture || defaultPeopleImg}}"></div>
+   			<div class="col-lg-7">
    				<h3 style="font-family:宋体; font-size:21px;font-weight:bold">{{ currentVipDetail.userDetail | formateName }}</h3>
    				<h4 style="font-family:宋体; font-size:18px;">{{ currentVipDetail.userDetail.title }}</h4>
    				<dl class="dl-horizontal">

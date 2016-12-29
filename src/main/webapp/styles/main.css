@@ -73,6 +73,9 @@ body{
 .wk-img-65{
 	width: 65px;
 }
+.wk-img-150{
+	width: 150px;
+}
 .wk-orign-hr {
 	clear:both;
     margin-top: 0px;
@@ -428,13 +431,11 @@ footer {
 .self-home-page .self-info img{
 	width:150px;
 	border:1px solid #efefef;
-    height: 150px;
     border-radius: 4px;
 }
 .self-home-page-picture{
 	position: relative;
     width: 150px;
-    height: 150px;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0,0,0,.3) inset;
     overflow: hidden;
