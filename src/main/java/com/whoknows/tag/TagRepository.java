@@ -71,7 +71,7 @@ public class TagRepository {
 				});
 	}
 
-	public Integer getTopicByTagCount(Long tagId) {
+	public Integer getTopicCountByTag(Long tagId) {
 		return jdbcTemplate.query("SELECT count(1) FROM topic "
 				+ "left join tag_topic on tag_topic.topic_id = topic.id "
 				+ "where tag_topic.tag_id = ? ",

@@ -18,7 +18,7 @@ public class ReplyRepository {
 
 	public List<Long> getTopicReplys(Long topicId, int page, int pageSize) {
 		return jdbcTemplate.query("select id from reply where topic_id = ? "
-				+ "order by rank desc "
+				+ "order by rank desc , create_time desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, topicId);
@@ -31,7 +31,9 @@ public class ReplyRepository {
 	}
 
 	public Reply getHotReplyForRopic(Long topicId) {
-		return jdbcTemplate.query("select * from reply where topic_id = ? order by rank desc limit 1",
+		return jdbcTemplate.query("select * from reply where topic_id = ? "
+				+ "order by rank desc , create_time desc "
+				+ "limit 1",
 				ps -> ps.setLong(1, topicId),
 				(rs, row) -> {
 					Reply reply = new Reply();

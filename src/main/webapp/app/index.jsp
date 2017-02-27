@@ -11,8 +11,8 @@
 <link href="/styles/main.css" rel="stylesheet" media="screen" />
 <link rel="stylesheet" href="/components/fastselect-master/dist/fastselect.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="who knows" />
-<meta name="keywords" content="who knows,whoknows,whoKnows,WhoKnows,who,knows" />
+<meta name="description" content="${title}" />
+<meta name="keywords" content="${title},${logoUpperWords},${logoDownWords}" />
 </head>
 <body ng-controller="wkCommon.appCtrl">
 	<wk-side-bar></wk-side-bar>
@@ -48,7 +48,7 @@
 	</div>
 	<footer>
       <div class="container">
-        <p class="text-muted">Who knows. © Company 2016</p>
+        <p class="text-muted">${title}. © Company 2016</p>
       </div>
     </footer>
 
@@ -117,6 +117,7 @@
 	<script type="text/javascript" src="/app/superstar/createVipDoc.js"></script>
 	<script type="text/javascript" src="/app/tags/directives/hotTagSidbar.js"></script>
 	<script type="text/javascript" src="/app/tags/tagDetailCtrl.js"></script>
-	
+	<script type="text/javascript" src="/app/contact/aboutUsModule.js"></script>
+	<script type="text/javascript" src="/app/contact/aboutUsCtrl.js"></script>
 </body>
 </html>

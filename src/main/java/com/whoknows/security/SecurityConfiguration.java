@@ -51,6 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers(HttpMethod.PUT, "/user").permitAll()
 				.antMatchers("/token/**").permitAll()
 				.antMatchers(HttpMethod.GET, "/img/**").permitAll()
+				.antMatchers("/properties/**").permitAll()
 				// other spring mvn controller need auth
 				.antMatchers("/search/**").authenticated()
 				.antMatchers("/tag/**").authenticated()

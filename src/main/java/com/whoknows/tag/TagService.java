@@ -113,7 +113,7 @@ public class TagService {
 			Paging paging = new Paging();
 			paging.setCurrentPage(page);
 			paging.setPerPage(pageSize);
-			int commentCount = tagRepository.getTopicByTagCount(tagId);
+			int commentCount = tagRepository.getTopicCountByTag(tagId);
 			paging.setTotalPage(commentCount % pageSize == 0 ? commentCount / pageSize : commentCount / pageSize + 1);
 			tagHomeRespone.setPaging(paging);
 

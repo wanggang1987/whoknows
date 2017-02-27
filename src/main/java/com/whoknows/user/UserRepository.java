@@ -185,7 +185,7 @@ public class UserRepository {
 
 	public List<Topic> getUserCreateTopics(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from topic where user_id = ? "
-				+ "order by rank desc "
+				+ "order by rank desc , create_time desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, user_id);
@@ -218,7 +218,7 @@ public class UserRepository {
 	public List<Topic> getUserFollowTopics(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from topic where id in (	"
 				+ "select target_id from follow where user_id = ? and target_type = 'topic' ) "
-				+ "order by rank desc "
+				+ "order by rank desc , create_time desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, user_id);
@@ -251,7 +251,7 @@ public class UserRepository {
 
 	public List<Reply> getUserReplys(Long user_id, int page, int pageSize) {
 		return jdbcTemplate.query("select * from reply where user_id = ? "
-				+ "order by rank desc "
+				+ "order by rank desc , create_time desc "
 				+ "limit ? OFFSET ? ",
 				ps -> {
 					ps.setLong(1, user_id);
@@ -287,7 +287,7 @@ public class UserRepository {
 				+ "( select target_id from follow "
 				+ "where follow.target_type = 'tag' "
 				+ "and user_id = ? ) "
-				+ "order by rank desc;",
+				+ "order by rank desc ",
 				ps -> {
 					ps.setLong(1, userId);
 				},
@@ -306,7 +306,7 @@ public class UserRepository {
 				+ "( select target_id from follow "
 				+ "where follow.target_type = 'user' "
 				+ "and user_id = ? ) "
-				+ "order by rank desc ",
+				+ "order by rank desc , create_time desc ",
 				ps -> {
 					ps.setLong(1, userId);
 				},
