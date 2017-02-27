@@ -27,7 +27,16 @@ public class UserDetail {
 	private String profile;
 	private String name;
 	private Timestamp loginTime;
+	private String action;
 	private List<String> roles;
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
 
 	public UserDetail() {
 
@@ -51,9 +60,9 @@ public class UserDetail {
 		this.rank = user.getRank();
 		this.profile = user.getProfile();
 		this.loginTime = user.getLogin_time();
+		this.action = user.getAction();
 		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
 	}
-
 
 	public String getName() {
 		return name;
@@ -197,26 +206,6 @@ public class UserDetail {
 
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
-	}
-
-	public void setUser(User user, List<Role> roles) {
-		this.id = user.getId();
-		this.email = user.getEmail();
-		this.phone = user.getPhone();
-		this.firstName = user.getFirstName();
-		this.lastName = user.getLastName();
-		this.companyName = user.getCompanyName();
-		this.province = user.getProvince();
-		this.city = user.getCity();
-		this.address = user.getAddress();
-		this.createTime = user.getCreateTime();
-		this.picture = user.getPicture();
-		this.education = user.getEducation();
-		this.signature = user.getSignature();
-		this.title = user.getTitle();
-		this.rank = user.getRank();
-		this.profile = user.getProfile();
-		this.roles = roles.stream().map(role -> role.getRole()).collect(Collectors.toList());
 	}
 
 	public Timestamp getLoginTime() {
