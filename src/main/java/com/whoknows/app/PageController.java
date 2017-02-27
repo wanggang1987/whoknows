@@ -17,14 +17,14 @@ public class PageController {
 	@Value("${wk.logo.down.words:Knows}")
 	private String logoDownWords;
 	@Value("${wk.page.title:Who Knows}")
-	private String pageTitle;;
-	
+	private String pageTitle;
+
 	@RequestMapping("/p/")
 	public String direct(ModelMap model) {
 		model.addAttribute("title", pageTitle);
 		model.addAttribute("logoUpperWords", logoUpperWords);
 		model.addAttribute("logoDownWords", logoDownWords);
-		
+
 		return "app/index";
 	}
 
@@ -45,13 +45,13 @@ public class PageController {
 		log.trace("Trying to render page: {}", finalPage);
 		return finalPage;
 	}
-	
+
 	@RequestMapping("/p/{dir}/{dir2}/{dir3}/{page}")
 	public String direct(@PathVariable("dir") String dir, @PathVariable("dir2") String dir2, @PathVariable("dir3") String dir3, @PathVariable("page") String page) {
 		String finalPage = dir + "/" + dir2 + "/" + dir3 + "/" + page;
 		return finalPage;
 	}
-	
+
 	@RequestMapping("/p/{dir}/{dir2}/{dir3}/{dir4}/{page}")
 	public String direct(@PathVariable("dir") String dir, @PathVariable("dir2") String dir2, @PathVariable("dir3") String dir3, @PathVariable("dir4") String dir4, @PathVariable("page") String page) {
 		String finalPage = dir + "/" + dir2 + "/" + dir3 + "/" + dir4 + "/" + page;

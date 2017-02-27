@@ -1,12 +1,12 @@
 {
-  "name": "whokonws",
-  "version": "0.0.1",
-  "description": "whoknows",
-  "dependencies": {
-    	"bower": "~1.3.12"
-  },
-"scripts": {
-    "postinstall": "bower install"
-  },
-  "license": "ISC"
+	"name": "whokonws",
+	"version": "0.0.1",
+	"description": "whoknows",
+	"dependencies": {
+		"bower": "~1.3.12"
+	},
+	"scripts": {
+		"postinstall": "bower install"
+	},
+	"license": "ISC"
 }

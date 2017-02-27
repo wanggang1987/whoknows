@@ -17,17 +17,17 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PaperService {
-	
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
 	private final int pageSize = 3;
-	
+
 	@Autowired
 	private PaperRepository paperRepository;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private LikeService likeService;
-	
+
 	public boolean createPaper(Paper paper) {
 		if (paper.getUser_id() == null
 				|| StringUtils.isEmpty(paper.getTitle())
@@ -35,7 +35,7 @@ public class PaperService {
 			return false;
 		}
 		paper.setAction(ActionType.pending.toString());
-		
+
 		try {
 			paperRepository.createPaper(paper);
 			return true;
@@ -44,18 +44,18 @@ public class PaperService {
 			return false;
 		}
 	}
-	
+
 	public PaperDetail getPaperDetail(Long id) {
 		if (id == null) {
 			return null;
 		}
-		
+
 		try {
 			Paper paper = paperRepository.getPaper(id);
 			if (paper == null) {
 				return null;
 			}
-			
+
 			PaperDetail paperDetail = new PaperDetail();
 			paperDetail.setPaper(paper);
 			paperDetail.setShortContent(CommonFunction.shortText(paper.getContent()));
@@ -71,12 +71,12 @@ public class PaperService {
 			return null;
 		}
 	}
-	
+
 	public PaperListResponse getPapers(Long userId, int page) {
 		if (userId == null) {
 			return null;
 		}
-		
+
 		try {
 			PaperListResponse paperListResponse = new PaperListResponse();
 			Paging paging = new Paging();
@@ -85,7 +85,7 @@ public class PaperService {
 			int commentCount = paperRepository.getPaperCount(userId);
 			paging.setTotalPage(commentCount % pageSize == 0 ? commentCount / pageSize : commentCount / pageSize + 1);
 			paperListResponse.setPaging(paging);
-			
+
 			paperListResponse.setPapers(paperRepository.getPaperList(userId, page, pageSize)
 					.stream().map(paperId -> getPaperDetail(paperId))
 					.collect(Collectors.toList()));

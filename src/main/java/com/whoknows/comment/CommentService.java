@@ -114,8 +114,8 @@ public class CommentService {
 			Paging paging = new Paging();
 			paging.setCurrentPage(page);
 			paging.setPerPage(pageSize);
-			int commentCount = commentRepository.getCommentCount(replyId) ;
-			paging.setTotalPage(commentCount % pageSize == 0 ?  commentCount/ pageSize  : commentCount/ pageSize + 1);
+			int commentCount = commentRepository.getCommentCount(replyId);
+			paging.setTotalPage(commentCount % pageSize == 0 ? commentCount / pageSize : commentCount / pageSize + 1);
 			commentListResponse.setPaging(paging);
 
 			commentListResponse.setComments(commentRepository.getReplyComments(replyId, page, pageSize)

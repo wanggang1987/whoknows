@@ -1,11 +1,11 @@
 
 'use strict';
 
-angular.module('wkCommon').service('LocalStorageService', function($window, $cookieStore, $cookies) {
+angular.module('wkCommon').service('LocalStorageService', function ($window, $cookieStore, $cookies) {
 
 	var localStorage = $window.localStorage;
 
-	var isLocalStorageAvailable = function() {
+	var isLocalStorageAvailable = function () {
 		var test = 'testLocal';
 		try {
 			localStorage.setItem(test, test);
@@ -15,21 +15,21 @@ angular.module('wkCommon').service('LocalStorageService', function($window, $coo
 			return false;
 		}
 	};
-	
-	var useCookie = function(options){
+
+	var useCookie = function (options) {
 		return (options !== undefined && options.cookie) || !lsAvailable;
 	};
 
 	var lsAvailable = isLocalStorageAvailable();
 
-	this.get = function(key, options) {
+	this.get = function (key, options) {
 		var value;
 		if (useCookie(options)) {
-			if(options.raw){
+			if (options.raw) {
 				value = $cookies.get(key);
-			}else{
+			} else {
 				value = $cookieStore.get(key);
-				
+
 			}
 		} else {
 			value = localStorage[key];
@@ -37,7 +37,7 @@ angular.module('wkCommon').service('LocalStorageService', function($window, $coo
 		return value;
 	};
 
-	this.put = function(key, value, options) {
+	this.put = function (key, value, options) {
 		if (useCookie(options)) {
 			$cookieStore.put(key, value);
 		} else {
@@ -45,7 +45,7 @@ angular.module('wkCommon').service('LocalStorageService', function($window, $coo
 		}
 	};
 
-	this.remove = function(key) {
+	this.remove = function (key) {
 		$cookieStore.remove(key);
 		if (lsAvailable) {
 			localStorage.removeItem(key);

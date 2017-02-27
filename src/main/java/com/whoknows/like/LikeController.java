@@ -27,7 +27,7 @@ public class LikeController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/reply/disable/{userId}/{replyId}", method = RequestMethod.POST)
 	public ResponseEntity disLikeReply(@PathVariable("userId") Long userId, @PathVariable("replyId") Long replyId) {
 		log.info("{} like reply {}.", userId, replyId);
@@ -37,7 +37,7 @@ public class LikeController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/paper/{userId}/{replyId}", method = RequestMethod.POST)
 	public ResponseEntity likePaper(@PathVariable("userId") Long userId, @PathVariable("replyId") Long replyId) {
 		log.info("{} like paper {}.", userId, replyId);
@@ -47,7 +47,7 @@ public class LikeController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/paper/disable/{userId}/{replyId}", method = RequestMethod.POST)
 	public ResponseEntity disLikePaper(@PathVariable("userId") Long userId, @PathVariable("replyId") Long replyId) {
 		log.info("{} like paper {}.", userId, replyId);

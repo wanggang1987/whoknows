@@ -17,7 +17,7 @@ public class PictureService {
 		if (id == null) {
 			return null;
 		}
-		
+
 		try {
 			return pictureRepository.getPicture(id);
 		} catch (Exception e) {

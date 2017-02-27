@@ -30,7 +30,7 @@ public class FollowController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/user/disable/{userId}/{targetId}", method = RequestMethod.POST)
 	public ResponseEntity disFollowUser(@PathVariable("userId") Long userId, @PathVariable("targetId") Long targetId) {
 		log.info("{} dis follow user {}", userId, targetId);
@@ -40,7 +40,7 @@ public class FollowController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/tag/{userId}/{targetId}", method = RequestMethod.POST)
 	public ResponseEntity followTag(@PathVariable("userId") Long userId, @PathVariable("targetId") Long targetId) {
 		log.info("{} dis follow tag {}", userId, targetId);
@@ -50,7 +50,7 @@ public class FollowController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/tag/disable/{userId}/{targetId}", method = RequestMethod.POST)
 	public ResponseEntity disFollowTag(@PathVariable("userId") Long userId, @PathVariable("targetId") Long targetId) {
 		log.info("{} dis follow tag {}", userId, targetId);
@@ -60,7 +60,7 @@ public class FollowController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/topic/{userId}/{targetId}", method = RequestMethod.POST)
 	public ResponseEntity followTopic(@PathVariable("userId") Long userId, @PathVariable("targetId") Long targetId) {
 		log.info("{} follow topic {}", userId, targetId);
@@ -70,7 +70,7 @@ public class FollowController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/topic/disable/{userId}/{targetId}", method = RequestMethod.POST)
 	public ResponseEntity disFollowTopic(@PathVariable("userId") Long userId, @PathVariable("targetId") Long targetId) {
 		log.info("{} dis follow topic {}", userId, targetId);
@@ -80,13 +80,14 @@ public class FollowController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
-	
+
 	@RequestMapping(path = "/recommend/{userId}", method = RequestMethod.POST)
-	public  ResponseEntity followRecommend(@PathVariable("userId") Long userId, @RequestBody HotRecommend hotRecommend){
+	public ResponseEntity followRecommend(@PathVariable("userId") Long userId, @RequestBody HotRecommend hotRecommend) {
 		log.info("{} follow recommend ", userId);
 		if (followService.followRecommed(userId, hotRecommend)) {
 			return ResponseEntity.ok().build();
-		}else
+		} else {
 			return ResponseEntity.badRequest().build();
+		}
 	}
 }

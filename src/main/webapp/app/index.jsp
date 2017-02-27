@@ -2,44 +2,44 @@
 <%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html ng-app="WhoKnows">
-<head>
-<!-- 检测浏览器 -->
-<script type="text/javascript" src="/app/commons/browserdcheck.js"></script>
-<title>${title}</title>
-<link rel="icon" type="image/png" href="/images/favicon.png" />
-<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="/styles/main.css" rel="stylesheet" media="screen" />
-<link rel="stylesheet" href="/components/fastselect-master/dist/fastselect.min.css">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="description" content="${title}" />
-<meta name="keywords" content="${title},${logoUpperWords},${logoDownWords}" />
-</head>
-<body ng-controller="wkCommon.appCtrl">
+	<head>
+		<!-- 检测浏览器 -->
+		<script type="text/javascript" src="/app/commons/browserdcheck.js"></script>
+		<title>${title}</title>
+		<link rel="icon" type="image/png" href="/images/favicon.png" />
+		<link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="/styles/main.css" rel="stylesheet" media="screen" />
+		<link rel="stylesheet" href="/components/fastselect-master/dist/fastselect.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content="${title}" />
+		<meta name="keywords" content="${title},${logoUpperWords},${logoDownWords}" />
+	</head>
+	<body ng-controller="wkCommon.appCtrl">
 	<wk-side-bar></wk-side-bar>
 	<nav class="navbar navbar-default" role="navigation" >
         <div class="container-fluid">
-          <div class="navbar-header"  >
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/" >
-            		<span style="font-size:12px">${logoUpperWords}</span><br> <span style="font-size:20px">${logoDownWords}</span>
-            	</a>
-            	<div class="input-group nav-search-input">
-		      <input type="text" class="form-control" ng-model="searchContent">
-		      <span class="input-group-btn">
-		        <button class="btn btn-default"  ng-disabled="searchContent == undefined || searchContent == null || searchContent.length <= 0 " ng-click= "homeSearch()" type="button" ><span class="glyphicon glyphicon-search"></span></button>
-		      </span>
-		    </div><!-- /input-group -->
-          </div>
-          <div id="navbar" class="navbar-collapse collapse" ng-include="'app/header/_nav'">
-            
-          </div><!--/.nav-collapse -->
+			<div class="navbar-header"  >
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#/" >
+					<span style="font-size:12px">${logoUpperWords}</span><br> <span style="font-size:20px">${logoDownWords}</span>
+				</a>
+				<div class="input-group nav-search-input">
+					<input type="text" class="form-control" ng-model="searchContent">
+					<span class="input-group-btn">
+						<button class="btn btn-default"  ng-disabled="searchContent == undefined || searchContent == null || searchContent.length <= 0" ng-click= "homeSearch()" type="button" ><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div><!-- /input-group -->
+			</div>
+			<div id="navbar" class="navbar-collapse collapse" ng-include="'app/header/_nav'">
+
+			</div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
-      </nav>
+	</nav>
 
 	<div class="header-fill"></div>
 
@@ -47,9 +47,9 @@
 		<div ng-view autoScroll="true"></div>
 	</div>
 	<footer>
-      <div class="container">
-        <p class="text-muted">${title}. © Company 2016</p>
-      </div>
+		<div class="container">
+			<p class="text-muted">${title}. © Company 2016</p>
+		</div>
     </footer>
 
 	<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>

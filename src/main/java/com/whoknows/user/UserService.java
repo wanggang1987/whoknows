@@ -398,8 +398,8 @@ public class UserService {
 	public boolean checkPasswd(Long id, String pass) {
 		return encoder.matches(pass, userRepository.getPasswd(id));
 	}
-	
+
 	public void setLoginTime(Long id) {
 		userRepository.setLoginTime(id);
-	} 
+	}
 }

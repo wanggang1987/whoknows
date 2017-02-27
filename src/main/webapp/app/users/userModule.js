@@ -1,7 +1,7 @@
 
 'use strict';
 
-var wkCommon = angular.module('wkUser', ['ngRoute']).config(function($routeProvider, $logProvider){
+var wkCommon = angular.module('wkUser', ['ngRoute']).config(function ($routeProvider, $logProvider) {
 	$routeProvider.when('/selfPage', {
 		templateUrl: 'app/users/selfHomePage',
 		controller: 'SelfHomeCtrl',

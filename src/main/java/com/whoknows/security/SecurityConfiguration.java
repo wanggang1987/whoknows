@@ -19,13 +19,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private final Logger log = LoggerFactory.getLogger(SecurityConfiguration.class);
-    
-	@Autowired 
+
+	@Autowired
 	private AuthProvider authProvider;
-	
+
 	@Bean
 	public AuthFilter authFilter() {
 		AuthFilter authFilter = new AuthFilter(authProvider);
@@ -33,7 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		authFilter.setAuthenticationFailureHandler(new AuthFailedHandler());
 		return authFilter;
 	}
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -65,19 +65,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 				.antMatchers("/vip/**").authenticated()
 				.antMatchers("/paper/**").authenticated()
 				.anyRequest().authenticated()
-			.and()
+				.and()
 				.formLogin().loginPage("/p/#/login").permitAll().and().csrf().disable()
 				.logout().permitAll().logoutUrl("/logout").logoutSuccessUrl("/")
-			.and()
-				.addFilterBefore(authFilter(),UsernamePasswordAuthenticationFilter.class).csrf().disable()
+				.and()
+				.addFilterBefore(authFilter(), UsernamePasswordAuthenticationFilter.class).csrf().disable()
 				.exceptionHandling().authenticationEntryPoint(authEntryPoint());
-			
+
 	}
-	
+
 	@Bean
 	public AuthenticationEntryPoint authEntryPoint() {
 		return new Http403ForbiddenEntryPoint();
 	}
 
-	
 }

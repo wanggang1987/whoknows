@@ -53,7 +53,7 @@ public class PaperRepository {
 				},
 				(rs, row) -> rs.getLong("id"));
 	}
-	
+
 	public Integer getPaperCount(Long user_id) {
 		return jdbcTemplate.query("select count(1) from paper where user_id = ?  ",
 				ps -> {

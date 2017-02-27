@@ -18,17 +18,16 @@ import org.springframework.stereotype.Component;
 import com.whoknows.domain.User;
 import com.whoknows.user.UserDetail;
 
-
 @Component
-public class AuthSuccessHandler implements AuthenticationSuccessHandler{
-	
+public class AuthSuccessHandler implements AuthenticationSuccessHandler {
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest hsr, HttpServletResponse hsrp, Authentication auth) throws IOException, ServletException {
-		
+
 		UserDetail user = (UserDetail) auth.getPrincipal();
-		
+
 		log.info("Successful login ,user: {}.", user.getEmail());
 		hsrp.setStatus(HttpServletResponse.SC_OK);
 		hsrp.setContentType("application/json");
@@ -41,8 +40,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler{
 				.build();
 		Json.createWriter(hsrp.getWriter()).writeObject(userObj);
 		hsrp.getWriter().flush();
-		
+
 	}
-	
 
 }

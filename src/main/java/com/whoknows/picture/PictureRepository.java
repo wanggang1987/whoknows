@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class PictureRepository {
-	
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	public Picture getPicture(Long id) {
 		return jdbcTemplate.query(
 				"select * from picture where id = ? limit 1",
@@ -30,14 +30,14 @@ public class PictureRepository {
 					return picture;
 				}).stream().findAny().orElse(null);
 	}
-	
+
 	public Long putPicture(Picture picture) {
 		jdbcTemplate.update("insert into picture(name, stream) values (?, ?) ",
 				ps -> {
 					ps.setString(1, picture.getName());
 					ps.setBytes(2, picture.getStream());
 				});
-		
+
 		return jdbcTemplate.query("select id from picture where name = ? order by create_time desc limit 1",
 				ps -> ps.setString(1, picture.getName()),
 				(rs, row) -> {

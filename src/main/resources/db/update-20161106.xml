@@ -7,7 +7,7 @@
 
 	<changeSet id="reply table" author="whoknows">
 		<sql>
-			 ALTER TABLE reply CHANGE reply_id reply_id BIGINT DEFAULT NULL;
+			ALTER TABLE reply CHANGE reply_id reply_id BIGINT DEFAULT NULL;
 		</sql>
 	</changeSet>
 	

@@ -7,10 +7,10 @@ angular.module('wkCommon').directive('wkNameSpan', function ($location, $window,
 		templateUrl: 'app/commons/directives/nameSpan',
 		replace: true,
 		scope: {
-			user : '=',
+			user: '=',
 		},
 		link: function (scope, elem) {
-			
+
 		}
 	};
 });

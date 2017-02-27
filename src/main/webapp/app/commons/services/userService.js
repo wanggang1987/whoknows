@@ -27,7 +27,7 @@ angular.module('wkCommon').service('UserService', function ($http, $q, $rootScop
 				signedIn = true;
 
 				self.verify();
-				watch = $interval(self.verify, 40000); 
+				watch = $interval(self.verify, 40000);
 
 				deferredResource.resolve(user);
 				console.log("login success")
@@ -50,11 +50,11 @@ angular.module('wkCommon').service('UserService', function ($http, $q, $rootScop
 			cancelWatchAndBroadcast();
 		});
 	};
-	
+
 	var cancelWatchAndBroadcast = function () {
 		$interval.cancel(watch);
 	};
-	
+
 	this.getCurrent = function () {
 		return user;
 	};
@@ -62,7 +62,7 @@ angular.module('wkCommon').service('UserService', function ($http, $q, $rootScop
 	this.isSignedIn = function () {
 		return signedIn;
 	};
-	
+
 	this.hasPermission = function (role) {
 		if (!_.has(user, 'roles')) {
 			return false;

@@ -1,73 +1,73 @@
 <databaseChangeLog
-    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-    <changeSet id="move tag to topic" author="whoknows">
-        <renameTable oldTableName="tag" newTableName="topic"/>
+	<changeSet id="move tag to topic" author="whoknows">
+		<renameTable oldTableName="tag" newTableName="topic"/>
         
-        <renameTable oldTableName="tag_issue" newTableName="topic_issue"/>
-        <renameColumn tableName="topic_issue" oldColumnName="tag_id" newColumnName="topic_id" columnDataType="bigint"/>
+		<renameTable oldTableName="tag_issue" newTableName="topic_issue"/>
+		<renameColumn tableName="topic_issue" oldColumnName="tag_id" newColumnName="topic_id" columnDataType="bigint"/>
         
-        <dropIndex tableName="topic_issue" indexName="tag_id"/>
-        <createIndex tableName="topic_issue" indexName="topic_id">
-            <column name="topic_id"/>
-        </createIndex>
-    </changeSet>
+		<dropIndex tableName="topic_issue" indexName="tag_id"/>
+		<createIndex tableName="topic_issue" indexName="topic_id">
+			<column name="topic_id"/>
+		</createIndex>
+	</changeSet>
     
-    <changeSet id="add action for vip" author="whoknows">
-        <addColumn tableName="vip">
-            <column name="action" type="varchar(20)"/>
-        </addColumn>
-    </changeSet>
+	<changeSet id="add action for vip" author="whoknows">
+		<addColumn tableName="vip">
+			<column name="action" type="varchar(20)"/>
+		</addColumn>
+	</changeSet>
     
-    <changeSet id="user role relation many to many" author="whoknows">
-        <dropColumn tableName="user" columnName="role_id"/>
+	<changeSet id="user role relation many to many" author="whoknows">
+		<dropColumn tableName="user" columnName="role_id"/>
         
-        <createTable tableName="user_role">
-            <column name="id" autoIncrement="true" type="bigint">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="user_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="role_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
+		<createTable tableName="user_role">
+			<column name="id" autoIncrement="true" type="bigint">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="user_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+			<column name="role_id" type="bigint">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
         
-        <createIndex tableName="user_role" indexName="user_id">
-            <column name="user_id"/>
-        </createIndex>
+		<createIndex tableName="user_role" indexName="user_id">
+			<column name="user_id"/>
+		</createIndex>
         
-        <createIndex tableName="user_role" indexName="role_id">
-            <column name="role_id"/>
-        </createIndex>
-    </changeSet>
+		<createIndex tableName="user_role" indexName="role_id">
+			<column name="role_id"/>
+		</createIndex>
+	</changeSet>
     
-    <changeSet id="follow and like add time " author="whoknows">
-        <addColumn tableName="follow">
-            <column name="time" type="timestamp"/>
-        </addColumn>
-        <addColumn tableName="like">
-            <column name="time" type="timestamp"/>
-        </addColumn>
-    </changeSet>
+	<changeSet id="follow and like add time " author="whoknows">
+		<addColumn tableName="follow">
+			<column name="time" type="timestamp"/>
+		</addColumn>
+		<addColumn tableName="like">
+			<column name="time" type="timestamp"/>
+		</addColumn>
+	</changeSet>
     
-    <changeSet id="search history" author="whoknows">
-        <createTable tableName="search_history">
-            <column name="id" autoIncrement="true" type="bigint">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="user_id" type="bigint"/>
-            <column name="time" type="timestamp"/>
-            <column name="ip" type="varchar(100)"/>
-            <column name="content" type="varchar(100)"/>
-        </createTable>
-        <createIndex tableName="search_history" indexName="user_id">
-            <column name="user_id"/>
-        </createIndex>
-    </changeSet>
+	<changeSet id="search history" author="whoknows">
+		<createTable tableName="search_history">
+			<column name="id" autoIncrement="true" type="bigint">
+				<constraints nullable="false" primaryKey="true"/>
+			</column>
+			<column name="user_id" type="bigint"/>
+			<column name="time" type="timestamp"/>
+			<column name="ip" type="varchar(100)"/>
+			<column name="content" type="varchar(100)"/>
+		</createTable>
+		<createIndex tableName="search_history" indexName="user_id">
+			<column name="user_id"/>
+		</createIndex>
+	</changeSet>
 </databaseChangeLog>
