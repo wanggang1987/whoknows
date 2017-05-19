@@ -77,9 +77,13 @@ public class UserContoller {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity importUserList(@RequestBody List<User> userliList) {
+	public ResponseEntity importUserList(@RequestBody List<User> users) {
 		log.info("Import users");
-		return ResponseEntity.ok().build();
+		if (userService.importUserList(users)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
