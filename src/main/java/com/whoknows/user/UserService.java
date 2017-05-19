@@ -23,6 +23,7 @@ import com.whoknows.token.TokenService;
 import com.whoknows.topic.TopicService;
 import com.whoknows.utils.CommonFunction;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -145,6 +146,23 @@ public class UserService {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	public boolean importUserList(List<User> users) {
+		if (Objects.isNull(users) || users.isEmpty()) {
+			return false;
+		}
+		try {
+			users.forEach(user -> {
+				user.setAction(ActionType.active.name());
+				userRepository.importUser(user);
+			});
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+		return true;
 	}
 
 	public boolean createUser(User user) {
