@@ -76,6 +76,12 @@ public class UserContoller {
 		}
 	}
 
+	@RequestMapping(method = RequestMethod.PUT, produces = "application/json")
+	public ResponseEntity importUserList(@RequestBody List<User> userliList) {
+		log.info("Import users");
+		return ResponseEntity.ok().build();
+	}
+
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity editUserInfo(@RequestBody UserDetail user) {
 		log.info(ToStringBuilder.reflectionToString(user, ToStringStyle.MULTI_LINE_STYLE));

@@ -11,6 +11,7 @@ import com.whoknows.vip.VipDetail;
 import com.whoknows.utils.CommonFunction;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +113,23 @@ public class UserRepository {
 					topic.setUpdate_time(rs.getTimestamp("update_time"));
 					return topic;
 				});
+	}
+
+	public void importUser(User user) {
+		Long id = jdbcTemplate.query("select id from user where email = ? ",
+				ps -> ps.setString(1, user.getEmail()),
+				(rs, row) -> rs.getLong("id")).stream().findAny().orElse(null);
+		if (Objects.isNull(id)) {
+			jdbcTemplate.update("insert into user(email,e_pass, action) values (?, ?, ?)",
+					ps -> {
+						ps.setString(1, user.getEmail());
+						ps.setString(2, encoder.encode(user.getPasswd()));
+						ps.setString(3, user.getAction());
+					});
+		} else {
+			jdbcTemplate.update("update user set e_pass = ? where id = ? ",
+					new Object[]{encoder.encode(user.getPasswd()), id});
+		}
 	}
 
 	public Long createUser(User user) {
