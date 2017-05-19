@@ -157,12 +157,11 @@ public class UserService {
 				user.setAction(ActionType.active.name());
 				userRepository.importUser(user);
 			});
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-
-		return true;
 	}
 
 	public boolean createUser(User user) {
