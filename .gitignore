@@ -7,5 +7,6 @@ bower.json.bk
 .settings/**
 Servers/**
 node/**
-:
 database.properties
+.idea/**/*
+

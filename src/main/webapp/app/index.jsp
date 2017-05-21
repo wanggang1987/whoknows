@@ -43,7 +43,7 @@
 
 	<div class="header-fill"></div>
 
-	<div class="app-content">
+	<div class="app-content container">
 		<div ng-view autoScroll="true"></div>
 	</div>
 	<footer>
@@ -119,5 +119,7 @@
 	<script type="text/javascript" src="/app/tags/tagDetailCtrl.js"></script>
 	<script type="text/javascript" src="/app/contact/aboutUsModule.js"></script>
 	<script type="text/javascript" src="/app/contact/aboutUsCtrl.js"></script>
+	<script type="text/javascript" src="/app/admin/importUserModule.js"></script>
+	<script type="text/javascript" src="/app/admin/importUserCtrl.js"></script>
 </body>
 </html>
