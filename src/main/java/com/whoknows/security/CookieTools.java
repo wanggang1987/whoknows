@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Component;
+
 @Component
 public class CookieTools {
 
@@ -13,7 +14,7 @@ public class CookieTools {
 		cookie.setPath("/");
 		cookie.setMaxAge(600);
 		if (!hsr.getRequestURL().toString().contains("localhost")) {
-			cookie.setSecure(true); 
+			cookie.setSecure(true);
 		}
 		resp.addCookie(cookie);
 	}

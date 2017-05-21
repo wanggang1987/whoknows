@@ -1,15 +1,15 @@
 angular.module('wkLogin').directive('wkForgotPassword',
-		function($log, $http, $timeout) {
+		function ($log, $http, $timeout) {
 
 			return {
 				templateUrl: 'app/login/directives/forgetPasswd',
 				scope: {
-					activateResetPassword : '='
+					activateResetPassword: '='
 				},
-				link: function(scope) {
-					scope.$on('event:forgotPassword', function() {
+				link: function (scope) {
+					scope.$on('event:forgotPassword', function () {
 						$('#forgot-password-modal').modal({keyboard: false, backdrop: 'static'});
 					});
 				}
 			}
-});
+		});

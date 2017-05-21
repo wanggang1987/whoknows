@@ -1,4 +1,4 @@
-var getBrowser = function() {
+var getBrowser = function () {
 	var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
 	if (/trident/i.test(M[1])) {
 		tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -17,7 +17,7 @@ var getBrowser = function() {
 	return M[0];
 };
 //browser.driver.executeScript("tinyMCE.activeEditor.insertContent('This is <em>RICH</em> content')");
-var getBrowserVersion = function() {
+var getBrowserVersion = function () {
 	var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
 	if (/trident/i.test(M[1])) {
 		tem = /\brv[ :]+(\d+)/g.exec(ua) || [];
@@ -35,6 +35,6 @@ var getBrowserVersion = function() {
 	}
 	return M[1];
 };
-if (getBrowser().toLowerCase() == 'msie' && (getBrowserVersion() < 10 ) ) {
+if (getBrowser().toLowerCase() == 'msie' && (getBrowserVersion() < 10)) {
 	window.location = ('/frontend-app/unsupported');
 }

@@ -28,12 +28,12 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthFilter  extends AbstractAuthenticationProcessingFilter {
+public class AuthFilter extends AbstractAuthenticationProcessingFilter {
 
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	private static final String DEFAULT_PROCESSING_URL = "/login";
-			
+
 	public AuthFilter(AuthenticationProvider authProvider) {
 		super(DEFAULT_PROCESSING_URL);
 		setAuthenticationManager(new ProviderManager(Arrays.asList(authProvider)));
@@ -49,26 +49,26 @@ public class AuthFilter  extends AbstractAuthenticationProcessingFilter {
 			chain.doFilter(req, res);
 		}
 	}
-	
+
 	@Override
-	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException,IOException, ServletException {
+	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res) throws AuthenticationException, IOException, ServletException {
 		try {
 			JsonObject obj = retrieveJsonBody(req);
 			String user = obj.getString("username");
 			String password = obj.getString("password");
-			
+
 			if (StringUtils.isEmpty(user) || StringUtils.isEmpty(password)) {
 				throw new BadCredentialsException("Username and/or password is empty.");
 			}
 			UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(user, password);
 			return getAuthenticationManager().authenticate(token);
 		} catch (BadCredentialsException e) {
-			log.error("Read user/passwd from http request error,{}." , e);
+			log.error("Read user/passwd from http request error,{}.", e);
 			throw e;
 		}
-		
+
 	}
-	
+
 	private JsonObject retrieveJsonBody(HttpServletRequest request) throws IOException {
 		String body = IOUtils.readLines(request.getInputStream()).stream().collect(Collectors.joining());
 		log.info("http body of: {}", body);

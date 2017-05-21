@@ -14,16 +14,15 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.stereotype.Component;
 
 @Component
-public class AuthFailedHandler extends SimpleUrlAuthenticationFailureHandler{
-	
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
+public class AuthFailedHandler extends SimpleUrlAuthenticationFailureHandler {
 
+	private final Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest hsr, HttpServletResponse response, AuthenticationException a) throws IOException, ServletException {
 		log.debug("Authentication failed.");
-		
-		if(a instanceof BadCredentialsException){
+
+		if (a instanceof BadCredentialsException) {
 			log.debug("invalid credentials");
 		}
 		super.onAuthenticationFailure(hsr, response, a);

@@ -4,6 +4,7 @@ import com.whoknows.domain.Comment;
 import com.whoknows.user.UserDetail;
 
 public class CommentDetail {
+
 	private Comment comment;
 	private UserDetail userDtail;
 	private Integer likeCount;

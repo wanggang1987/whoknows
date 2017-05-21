@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AliMailService {
-	
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Value("${mail.ali.key}")
 	private String key;
 	@Value("${mail.ali.secret}")
@@ -25,9 +25,9 @@ public class AliMailService {
 	private String fromAddress;
 	@Value("${mail.name}")
 	private String fromName;
-	
+
 	public boolean regester(RegisterMailInfo registerMailInfo) {
-		
+
 		if (StringUtils.isEmpty(key)
 				|| StringUtils.isEmpty(secret)
 				|| StringUtils.isEmpty(fromAddress)
@@ -39,7 +39,7 @@ public class AliMailService {
 			log.error("registerMailInfo not set");
 			return false;
 		}
-		
+
 		IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", key, secret);
 		IAcsClient client = new DefaultAcsClient(profile);
 		SingleSendMailRequest request = new SingleSendMailRequest();

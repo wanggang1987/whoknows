@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TopicRepository {
-	
+
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 	public Long createTopic(Topic topic) {
 		jdbcTemplate.update("insert into topic(user_id, title, content, action) values (?, ?, ?, ?)",
 				ps -> {
@@ -23,14 +23,14 @@ public class TopicRepository {
 					ps.setString(3, topic.getContent());
 					ps.setString(4, topic.getAction());
 				});
-		
+
 		return jdbcTemplate.query("select id from topic where user_id = ? order by id desc limit 1",
 				ps -> ps.setLong(1, topic.getUser_id()),
 				(rs, row) -> {
 					return rs.getLong("id");
 				}).stream().findAny().orElse(null);
 	}
-	
+
 	public void updateTopic(Topic topic) {
 		jdbcTemplate.update("update topic set title = ? , content = ? where id = ? ",
 				ps -> {
@@ -39,11 +39,11 @@ public class TopicRepository {
 					ps.setLong(3, topic.getId());
 				});
 	}
-	
+
 	public void deleteTopic(Long id) {
 		jdbcTemplate.update("delete from topic where id = ? ", ps -> ps.setLong(1, id));
 	}
-	
+
 	public Topic getTopic(Long id) {
 		return jdbcTemplate.query("select * from topic where id = ? limit 1",
 				ps -> ps.setLong(1, id),

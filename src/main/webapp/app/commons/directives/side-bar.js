@@ -8,7 +8,7 @@ angular.module('WhoKnows').directive('wkSideBar', function ($location, $window, 
 		scope: {},
 		replace: true,
 		link: function (scope, elem) {
-			
+
 		}
 	};
 });

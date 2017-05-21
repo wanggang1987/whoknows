@@ -4,8 +4,6 @@ import com.whoknows.domain.Picture;
 import com.whoknows.domain.Tag;
 import com.whoknows.domain.User;
 import com.whoknows.vip.VipDetail;
-import java.io.IOException;
-import java.util.List;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.slf4j.Logger;
@@ -13,12 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -70,6 +67,15 @@ public class UserContoller {
 	public ResponseEntity registUser(@RequestBody User user) {
 		log.info("Try to create user: {}", user == null ? "" : user.getEmail());
 		if (userService.createUser(user)) {
+			return ResponseEntity.ok().build();
+		} else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+	@RequestMapping(path = "/import", method = RequestMethod.PUT, produces = "application/json")
+	public ResponseEntity importUserList(@RequestBody List<User> users) {
+		log.info("Import users");
+		if (userService.importUserList(users)) {
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.badRequest().build();
